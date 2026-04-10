@@ -5,6 +5,7 @@ import GaugeRing     from './GaugeRing.jsx'
 import MiniBar       from './MiniBar.jsx'
 import DeltaBadge    from './DeltaBadge.jsx'
 import RarityBadge   from './RarityBadge.jsx'
+import CardImage     from './CardImage.jsx'
 
 // Small tab-button group for choosing sparkline time window
 function RangeToggle({ range, setRange }) {
@@ -66,7 +67,23 @@ export default function CardDetail({ card, onClose }) {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 20 }}>
-        <div style={{ fontSize: 38, marginBottom: 6 }}>{card.icon}</div>
+        {/* Card image — large, centered, above name */}
+        {card.image && (
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+            <CardImage
+              src={card.image}
+              cardCode={card.cardCode}
+              alt={card.name}
+              width={140}
+              height={196}
+              radius={8}
+            />
+          </div>
+        )}
+        {/* Emoji icon only shown when no real image */}
+        {!card.image && (
+          <div style={{ fontSize: 38, marginBottom: 6 }}>{card.icon}</div>
+        )}
         <div style={{ fontSize: 18, fontWeight: 800, color: T.text, fontFamily: T.display, lineHeight: 1.3 }}>
           {card.name}
         </div>

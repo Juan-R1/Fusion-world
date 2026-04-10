@@ -5,6 +5,9 @@ import DeltaBadge    from '../components/DeltaBadge.jsx'
 import MiniBar       from '../components/MiniBar.jsx'
 import RarityBadge   from '../components/RarityBadge.jsx'
 import CardDetail    from '../components/CardDetail.jsx'
+import CardImage     from '../components/CardImage.jsx'
+
+const PAGE_SIZE = 100
 
 const SORT_OPTS = [
   { value: 'undervalued',  label: 'Most Undervalued'  },
@@ -31,6 +34,7 @@ export default function ValueScanner({ cards }) {
   const [rarFilter, setRarFilter] = useState('ALL')
   const [sort,      setSort]      = useState('undervalued')
   const [selected,  setSelected]  = useState(null)
+  const [page,      setPage]      = useState(0)
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -50,6 +54,11 @@ export default function ValueScanner({ cards }) {
     })
   }, [cards, search, setFilter, rarFilter, sort])
 
+  // Reset page when filters change
+  const totalPages  = Math.ceil(filtered.length / PAGE_SIZE)
+  const clampedPage = Math.min(page, Math.max(0, totalPages - 1))
+  const pageSlice   = filtered.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
+
   const undervalued = filtered.filter(c => c.delta < -15).length
   const overvalued  = filtered.filter(c => c.delta >  15).length
   const avgDP       = filtered.length
@@ -68,7 +77,9 @@ export default function ValueScanner({ cards }) {
     setRarFilter('ALL')
     setSort('undervalued')
     setSelected(null)
+    setPage(0)
   }
+  const handleFilterChange = (fn) => { fn(); setPage(0) }
 
   return (
     <div style={{ display: 'flex', gap: 16, height: 'calc(100vh - 136px)' }}>
@@ -97,17 +108,17 @@ export default function ValueScanner({ cards }) {
             style={{ ...INP, flex: '1 1 150px' }}
             placeholder="Search character or card…"
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={e => handleFilterChange(() => setSearch(e.target.value))}
           />
-          <select style={{ ...INP, cursor: 'pointer' }} value={setFilter} onChange={e => setSetFilter(e.target.value)}>
+          <select style={{ ...INP, cursor: 'pointer' }} value={setFilter} onChange={e => handleFilterChange(() => setSetFilter(e.target.value))}>
             <option value="ALL">All Sets</option>
             {SETS.map(s => <option key={s.code} value={s.code}>{s.code} — {s.name}</option>)}
           </select>
-          <select style={{ ...INP, cursor: 'pointer' }} value={rarFilter} onChange={e => setRarFilter(e.target.value)}>
+          <select style={{ ...INP, cursor: 'pointer' }} value={rarFilter} onChange={e => handleFilterChange(() => setRarFilter(e.target.value))}>
             <option value="ALL">All Rarities</option>
             {RARITIES.map(r => <option key={r.code} value={r.code}>{r.code} — {r.name}</option>)}
           </select>
-          <select style={{ ...INP, cursor: 'pointer' }} value={sort} onChange={e => setSort(e.target.value)}>
+          <select style={{ ...INP, cursor: 'pointer' }} value={sort} onChange={e => handleFilterChange(() => setSort(e.target.value))}>
             {SORT_OPTS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </div>
@@ -131,7 +142,7 @@ export default function ValueScanner({ cards }) {
             <span style={{ textAlign: 'right' }}>Sup. Sat.</span>
           </div>
 
-          {filtered.map(card => {
+          {pageSlice.map(card => {
             const active = selected === card.id
             const dpCol  = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
 
@@ -150,7 +161,10 @@ export default function ValueScanner({ cards }) {
               >
                 {/* Card cell */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                  <span style={{ fontSize: 22, flexShrink: 0 }}>{card.icon}</span>
+                  {card.image
+                    ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={34} height={48} radius={3} />
+                    : <span style={{ fontSize: 22, flexShrink: 0 }}>{card.icon}</span>
+                  }
                   <div style={{ minWidth: 0 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {card.name}
@@ -212,6 +226,41 @@ export default function ValueScanner({ cards }) {
             </div>
           )}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 10 }}>
+            <button
+              onClick={() => setPage(p => Math.max(0, p - 1))}
+              disabled={clampedPage === 0}
+              style={{
+                background: T.s2, border: `1px solid ${T.border}`, color: clampedPage === 0 ? T.dim : T.text,
+                cursor: clampedPage === 0 ? 'default' : 'pointer', borderRadius: 6,
+                padding: '5px 12px', fontSize: 12, fontFamily: T.mono,
+              }}
+            >
+              ‹ Prev
+            </button>
+            <span style={{ fontSize: 12, color: T.muted, fontFamily: T.mono }}>
+              Page {clampedPage + 1} / {totalPages}
+              <span style={{ color: T.dim, marginLeft: 8 }}>
+                ({clampedPage * PAGE_SIZE + 1}–{Math.min((clampedPage + 1) * PAGE_SIZE, filtered.length)} of {filtered.length})
+              </span>
+            </span>
+            <button
+              onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+              disabled={clampedPage >= totalPages - 1}
+              style={{
+                background: T.s2, border: `1px solid ${T.border}`,
+                color: clampedPage >= totalPages - 1 ? T.dim : T.text,
+                cursor: clampedPage >= totalPages - 1 ? 'default' : 'pointer', borderRadius: 6,
+                padding: '5px 12px', fontSize: 12, fontFamily: T.mono,
+              }}
+            >
+              Next ›
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ─── Right detail panel ─── */}
