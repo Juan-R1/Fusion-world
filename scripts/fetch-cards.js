@@ -4,6 +4,9 @@
  * Generates src/cardData.json — base card metadata for all 9 DBFW sets.
  * Image URLs reference HighDefined/TCG-Arena-DBSFW (99 confirmed PNGs).
  * Run with: node scripts/fetch-cards.js
+ *
+ * verified: true  → card name / rarity read directly from the physical card
+ * verified: false → synthetic placeholder (real art unknown)
  */
 
 import fs   from 'fs'
@@ -18,22 +21,48 @@ function buildImageCodes() {
   const s = new Set()
   const add = (set, n) => s.add(`${set}-${String(n).padStart(3, '0')}`)
 
-  // FB01: 003, 004, 006-034, 139
+  // FB01: 003, 004, 006–034, 139
   add('FB01', 3); add('FB01', 4)
   for (let n = 6;  n <= 34;  n++) add('FB01', n)
   add('FB01', 139)
 
-  // FB02: 002-030, 032-035
+  // FB02: 002–030, 032–035
   for (let n = 2;  n <= 30;  n++) add('FB02', n)
   for (let n = 32; n <= 35;  n++) add('FB02', n)
 
-  // FB03: 002-026
+  // FB03: 002–026
   for (let n = 2;  n <= 26;  n++) add('FB03', n)
 
-  // FB04: 002-010
+  // FB04: 002–010
   for (let n = 2;  n <= 10;  n++) add('FB04', n)
 
   return s
+}
+
+// ── KNOWN CARDS — confirmed via direct image reading ─────────────────────────
+// Fields: name, character, rarity, cardColor, cardType, trait
+// All entries have verified: true; everything else gets verified: false.
+const KNOWN = {
+  // ── FB01 Awakened Pulse ──────────────────────────────────────────────────
+  'FB01-003': { name: 'Vados',    character: 'Vados',    rarity: 'C',   cardColor: 'Red',    cardType: 'BATTLE', trait: 'Angel/Universe 6'                 },
+  'FB01-004': { name: 'Whis',     character: 'Whis',     rarity: 'UC',  cardColor: 'Red',    cardType: 'BATTLE', trait: 'Angel/Universe 7'                 },
+  'FB01-006': { name: 'Caulifla', character: 'Caulifla', rarity: 'UC',  cardColor: 'Red',    cardType: 'BATTLE', trait: 'Saiyan/Universe 6'                },
+  'FB01-007': { name: 'Cabba',    character: 'Cabba',    rarity: 'UC',  cardColor: 'Red',    cardType: 'BATTLE', trait: 'Saiyan/Universe 6'                },
+  'FB01-008': { name: 'Krillin',  character: 'Krillin',  rarity: 'R',   cardColor: 'Red',    cardType: 'BATTLE', trait: 'Earthling/Universe 7'             },
+  'FB01-009': { name: 'Kale',     character: 'Kale',     rarity: 'UC',  cardColor: 'Red',    cardType: 'BATTLE', trait: 'Saiyan/Universe 6'                },
+  'FB01-010': { name: 'Saonel',   character: 'Saonel',   rarity: 'C',   cardColor: 'Red',    cardType: 'BATTLE', trait: 'Namekian/Universe 6'              },
+  'FB01-011': { name: 'Champa',   character: 'Champa',   rarity: 'C',   cardColor: 'Red',    cardType: 'BATTLE', trait: 'God of Destruction/Universe 6'    },
+  'FB01-034': { name: 'Mafuba',   character: 'Mafuba',   rarity: 'C',   cardColor: 'Red',    cardType: 'EXTRA',  trait: 'Earthling/Universe 7'             },
+  'FB01-139': { name: 'Son Goku', character: 'Goku',     rarity: 'SCR', cardColor: 'Red',    cardType: 'BATTLE', trait: 'Saiyan/Universe 7'                },
+
+  // ── FB02 Blazing Aura ────────────────────────────────────────────────────
+  'FB02-002': { name: 'Anilaza',  character: 'Anilaza',  rarity: 'C',   cardColor: 'Red',    cardType: 'BATTLE', trait: 'Universe 3/Tournament of Power'   },
+
+  // ── FB03 Raging Roar ─────────────────────────────────────────────────────
+  'FB03-009': { name: 'Jiren',    character: 'Jiren',    rarity: 'SCR', cardColor: 'Red',    cardType: 'BATTLE', trait: 'Pride Troopers/Universe 11'       },
+
+  // ── FB04 Ultra Limit ─────────────────────────────────────────────────────
+  'FB04-002': { name: 'Whis',     character: 'Whis',     rarity: 'UC',  cardColor: 'Purple', cardType: 'BATTLE', trait: 'Angel/Universe 7'                 },
 }
 
 // ── Seeded PRNG (mulberry32) ──────────────────────────────────────────────────
@@ -70,8 +99,8 @@ const RARITIES = {
   SPR: { name: 'Special Rare', pullRate: 0.003, color: '#dc2626' },
 }
 
-// ── Characters ────────────────────────────────────────────────────────────────
-// tier 1 = chases (SPR/SCR), tier 4 = commons
+// ── Characters (expanded with confirmed new chars from image reading) ──────────
+// tier 1 = chase (SPR/SCR), tier 4 = commons
 const CHARS = [
   { name: 'Goku',       icon: '🔥', tier: 1, avgRank: 1,  googleTrends: 100 },
   { name: 'Gogeta',     icon: '🌟', tier: 1, avgRank: 2,  googleTrends: 92  },
@@ -84,16 +113,27 @@ const CHARS = [
   { name: 'Jiren',      icon: '🔴', tier: 2, avgRank: 9,  googleTrends: 68  },
   { name: 'Gohan',      icon: '🟡', tier: 2, avgRank: 10, googleTrends: 70  },
   { name: 'Cell',       icon: '🧬', tier: 3, avgRank: 11, googleTrends: 65  },
-  { name: 'Trunks',     icon: '⚔️', tier: 3, avgRank: 12, googleTrends: 62  },
-  { name: 'Hit',        icon: '🔷', tier: 3, avgRank: 13, googleTrends: 58  },
-  { name: 'Android 18', icon: '🤖', tier: 3, avgRank: 14, googleTrends: 60  },
-  { name: 'Piccolo',    icon: '💚', tier: 3, avgRank: 15, googleTrends: 55  },
-  { name: 'Whis',       icon: '🪄', tier: 3, avgRank: 16, googleTrends: 50  },
-  { name: 'Kefla',      icon: '🌀', tier: 3, avgRank: 17, googleTrends: 62  },
-  { name: 'Cabba',      icon: '🔵', tier: 4, avgRank: 18, googleTrends: 40  },
-  { name: 'Goten',      icon: '👦', tier: 4, avgRank: 19, googleTrends: 45  },
-  { name: 'Pan',        icon: '🌸', tier: 4, avgRank: 20, googleTrends: 42  },
+  { name: 'Caulifla',   icon: '🌺', tier: 3, avgRank: 12, googleTrends: 58  },
+  { name: 'Kale',       icon: '🌿', tier: 3, avgRank: 13, googleTrends: 54  },
+  { name: 'Trunks',     icon: '⚔️', tier: 3, avgRank: 14, googleTrends: 62  },
+  { name: 'Krillin',    icon: '🥚', tier: 3, avgRank: 15, googleTrends: 52  },
+  { name: 'Hit',        icon: '🔷', tier: 3, avgRank: 16, googleTrends: 58  },
+  { name: 'Android 18', icon: '🤖', tier: 3, avgRank: 17, googleTrends: 60  },
+  { name: 'Piccolo',    icon: '💚', tier: 3, avgRank: 18, googleTrends: 55  },
+  { name: 'Whis',       icon: '🪄', tier: 3, avgRank: 19, googleTrends: 50  },
+  { name: 'Champa',     icon: '👑', tier: 3, avgRank: 20, googleTrends: 45  },
+  { name: 'Vados',      icon: '🌸', tier: 3, avgRank: 21, googleTrends: 48  },
+  { name: 'Kefla',      icon: '🌀', tier: 3, avgRank: 22, googleTrends: 62  },
+  { name: 'Cabba',      icon: '🔵', tier: 4, avgRank: 23, googleTrends: 40  },
+  { name: 'Goten',      icon: '👦', tier: 4, avgRank: 24, googleTrends: 45  },
+  { name: 'Pan',        icon: '🌸', tier: 4, avgRank: 25, googleTrends: 42  },
+  { name: 'Saonel',     icon: '💙', tier: 4, avgRank: 26, googleTrends: 25  },
+  { name: 'Anilaza',    icon: '🔮', tier: 4, avgRank: 27, googleTrends: 20  },
+  { name: 'Mafuba',     icon: '🌊', tier: 4, avgRank: 28, googleTrends: 20  },
 ]
+
+// Character lookup by name (for KNOWN_CARDS)
+const CHAR_BY_NAME = Object.fromEntries(CHARS.map(c => [c.name, c]))
 
 // ── Per-set art theme pools ───────────────────────────────────────────────────
 const SET_ARTS = {
@@ -205,7 +245,6 @@ const SET_ARTS = {
 }
 
 // ── Rarity from card number ───────────────────────────────────────────────────
-// Approximate real DBFW distribution: ~42% C, ~21% UC, ~14% R, ~9% SR, ~11% SCR, ~3% SPR
 function getRarity(cardNum, total, sprCount) {
   if (sprCount > 0 && cardNum > total - sprCount) return 'SPR'
   const pct = cardNum / total
@@ -238,12 +277,62 @@ SETS.forEach((set, si) => {
   let artIdx = 0
 
   for (let n = 1; n <= set.total; n++) {
-    const code    = `${set.code}-${String(n).padStart(3, '0')}`
-    const rarity  = getRarity(n, set.total, set.spr)
-    const rar     = RARITIES[rarity]
-    const rng     = mkRng(si * 100000 + n * 7 + 13)
-    const char    = pickChar(rarity, rng)
-    const art     = arts[artIdx % arts.length]
+    const code = `${set.code}-${String(n).padStart(3, '0')}`
+    const known = KNOWN[code]
+
+    let rarity, rarityName, rarityColor, pullRate
+    let character, icon, avgRank, googleTrends
+    let name, cardColor, cardType, trait, verified
+
+    if (known) {
+      // ── Verified real card data ──────────────────────────────────────────
+      rarity    = known.rarity
+      character = known.character
+      cardColor = known.cardColor
+      cardType  = known.cardType
+      trait     = known.trait
+      name      = known.name
+      verified  = true
+
+      const rar = RARITIES[rarity]
+      rarityName  = rar.name
+      rarityColor = rar.color
+      pullRate    = rar.pullRate
+
+      const charData = CHAR_BY_NAME[character]
+      if (charData) {
+        icon         = charData.icon
+        avgRank      = charData.avgRank
+        googleTrends = charData.googleTrends
+      } else {
+        // Character not in master list — use reasonable defaults
+        icon         = '🃏'
+        avgRank      = 20
+        googleTrends = 30
+      }
+    } else {
+      // ── Synthetic placeholder ────────────────────────────────────────────
+      const rng  = mkRng(si * 100000 + n * 7 + 13)
+      rarity     = getRarity(n, set.total, set.spr)
+      const rar  = RARITIES[rarity]
+      rarityName  = rar.name
+      rarityColor = rar.color
+      pullRate    = rar.pullRate
+
+      const char = pickChar(rarity, rng)
+      character    = char.name
+      icon         = char.icon
+      avgRank      = char.avgRank
+      googleTrends = char.googleTrends
+
+      const art = arts[artIdx % arts.length]
+      name      = `${character} — ${art}`
+      cardColor = 'Red'          // default — real color unknown
+      cardType  = 'BATTLE'       // default — real type unknown
+      trait     = null           // unknown
+      verified  = false
+    }
+
     artIdx++
 
     cards.push({
@@ -251,15 +340,19 @@ SETS.forEach((set, si) => {
       set:          set.code,
       setName:      set.name,
       rarity,
-      rarityName:   rar.name,
-      rarityColor:  rar.color,
-      pullRate:     rar.pullRate,
-      character:    char.name,
-      icon:         char.icon,
-      avgRank:      char.avgRank,
-      googleTrends: char.googleTrends,
-      name:         `${char.name} — ${art}`,
-      image:        IMAGE_CODES.has(code) ? `${IMG_BASE}/${code}.png` : null,
+      rarityName,
+      rarityColor,
+      pullRate,
+      character,
+      icon,
+      avgRank,
+      googleTrends,
+      name,
+      cardColor,
+      cardType,
+      trait,
+      verified,
+      image: IMAGE_CODES.has(code) ? `${IMG_BASE}/${code}.png` : null,
     })
   }
 })
@@ -267,6 +360,11 @@ SETS.forEach((set, si) => {
 // ── Write output ──────────────────────────────────────────────────────────────
 const outPath = path.join(__dirname, '..', 'src', 'cardData.json')
 fs.writeFileSync(outPath, JSON.stringify(cards, null, 2))
+
+const verified = cards.filter(c => c.verified).length
+const withImg  = cards.filter(c => c.image).length
 console.log(`✓ Wrote ${cards.length} cards to src/cardData.json`)
-console.log(`  Images: ${cards.filter(c => c.image).length} cards`)
+console.log(`  Verified (real names): ${verified}`)
+console.log(`  Synthetic (placeholders): ${cards.length - verified}`)
+console.log(`  With images: ${withImg}`)
 console.log(`  Sets: ${SETS.map(s => `${s.code}(${s.total})`).join(', ')}`)

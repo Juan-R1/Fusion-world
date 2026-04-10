@@ -84,14 +84,40 @@ export default function CardDetail({ card, onClose }) {
         {!card.image && (
           <div style={{ fontSize: 38, marginBottom: 6 }}>{card.icon}</div>
         )}
-        <div style={{ fontSize: 18, fontWeight: 800, color: T.text, fontFamily: T.display, lineHeight: 1.3 }}>
-          {card.name}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
+          <div style={{ fontSize: 18, fontWeight: 800, color: T.text, fontFamily: T.display, lineHeight: 1.3 }}>
+            {card.name}
+          </div>
+          {card.verified && (
+            <span title="Real card name verified from physical card" style={{
+              fontSize: 10, fontWeight: 700, color: T.green,
+              background: `${T.green}22`, border: `1px solid ${T.green}44`,
+              borderRadius: 4, padding: '2px 6px', flexShrink: 0,
+            }}>✓ VERIFIED</span>
+          )}
         </div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 8, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 6, flexWrap: 'wrap' }}>
           <RarityBadge rarity={card.rarity} color={card.rarityColor} />
+          {card.cardColor && (
+            <span style={{
+              fontSize: 10, fontFamily: T.mono, color: T.muted,
+              background: T.s3, borderRadius: 4, padding: '2px 6px',
+            }}>{card.cardColor}</span>
+          )}
+          {card.cardType && card.cardType !== 'BATTLE' && (
+            <span style={{
+              fontSize: 10, fontFamily: T.mono, color: T.orange,
+              background: `${T.orange}22`, borderRadius: 4, padding: '2px 6px',
+            }}>{card.cardType}</span>
+          )}
           <span style={{ color: T.muted, fontSize: 12, fontFamily: T.mono }}>{card.cardCode}</span>
           <span style={{ color: T.dim, fontSize: 12 }}>{card.setName}</span>
         </div>
+        {card.trait && (
+          <div style={{ marginTop: 6, fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+            {card.trait}
+          </div>
+        )}
       </div>
 
       {/* ── Price comparison ── */}
