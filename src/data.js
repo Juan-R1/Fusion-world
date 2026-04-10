@@ -83,27 +83,53 @@ function makeSparkline(rng, base, n, vol) {
 const DIST_LARGE = [['C',4],['UC',3],['R',3],['SR',2],['SCR',2],['SPR',1]]
 const DIST_SMALL = [['C',4],['UC',3],['R',3],['SR',2],['SCR',1],['SPR',0]]
 
-const ARTS = [
-  'Awakened Power',   'Final Flash',      'Limit Break',    'Spirit Bomb',
-  'Ultra Instinct',   'Fierce Strike',    'Dragon Fist',    'Galactic Nova',
-  'Legendary Form',   'Power Surge',      'Rising Phoenix', 'Shadow Force',
-  'Divine Wrath',     'Fusion Burst',     'Infinite Energy','Absolute Zero',
-  'Blazing Fury',     'Crimson Edge',     'Dimensional Rift','Eclipse Form',
-]
+// Per-set art pools — each set has its own theme vocabulary.
+// Sized to cover max cards per set (15 for large, 13 for small) with no repeats.
+const SET_ARTS = {
+  FB01: ['Awakened Pulse','Rising Surge','First Ascension','Primal Force','Dormant Power',
+         'Awakened Soul','Emergence','Kindled Flame','Origin Strike','Unbound Will',
+         'Breaking Limits','Initial Impact','Force Unleashed','Dawn of Power','Opening Gambit'],
+  FB02: ['Blazing Strike','Infernal Rush','Scorched Earth','Searing Edge','Molten Core',
+         'Firestorm','Burning Soul','Ignition Point','Heat Wave','Combustion',
+         'Ember Rage','Solar Flare','Conflagration','Wildfire','Blaze of Glory'],
+  FB03: ['Roaring Tide','Savage Howl','Beast Instinct','Primal Roar','Feral Rush',
+         'War Cry','Battle Hunger','Apex Fury','Predator\'s Edge','Unleashed Rage',
+         'Berserker Mode','Fang & Claw','Thunderous Charge','Primal Surge','Raging Tempest'],
+  FB04: ['Limit Exceeded','Beyond Bounds','Peak Performance','Ultimate Form','Transcendence',
+         'Breaking Point','Maximum Output','Extreme Force','Overdrive','Full Throttle',
+         'Critical Strike','Zenith Form','Absolute Limit','Final Push','Ultra Mode'],
+  FB05: ['New Horizon','Uncharted Path','Fresh Chapter','Unexplored Depths','Reborn Warrior',
+         'Second Wind','Rising Star','Rebirth','Genesis Form','New Dawn',
+         'Evolution Begins','Renewed Strength','New Era','Infinite Potential','Boundless Future'],
+  FB06: ['Rival\'s Challenge','Clash of Titans','Face-Off','Worthy Opponent','Battle of Equals',
+         'Supreme Duel','Head-to-Head','Mutual Respect','Power Struggle','Contest of Wills',
+         'Epic Showdown','Final Clash','Rivals Unite'],
+  FB07: ['Dragon\'s Wish','Eternal Desire','Wish Granted','Divine Request','Sacred Dragon',
+         'Shenron Calls','Granted Power','Dragon Blessing','Ultimate Wish','Dragon Awakens',
+         'Stars Align','Dragon Summon','Miracle Granted'],
+  FB08: ['Saiyan Heritage','Blood of Warriors','Saiyan Pride','Warrior\'s Honor','Battle-Born',
+         'Saiyan Resolve','Iron Will','Heritage of Battle','Born Fighter','Warrior Blood',
+         'Saiyan Might','Elite Warrior','Battle Legacy'],
+  FB09: ['Fusion Evolution','Fused Strength','Perfect Union','Dual Nature','Combined Power',
+         'Evolving Bond','Unified Form','Evolved State','Composite Power','Dual Strike',
+         'Fusion Mastery','Evolution Complete','Fused Destiny'],
+}
 
 export const CARDS = (() => {
   const out = []
   let gid = 0
   SETS.forEach((set, si) => {
-    const dist = si < 5 ? DIST_LARGE : DIST_SMALL
-    let cardN = 1
+    const dist    = si < 5 ? DIST_LARGE : DIST_SMALL
+    const setArts = SET_ARTS[set.code]
+    let cardN  = 1
+    let artIdx = 0   // sequential within each set — guarantees unique art per card
     dist.forEach(([code, count], ri) => {
       if (count === 0) return
       const rar = RARITIES.find(r => r.code === code)
       for (let i = 0; i < count; i++) {
         const rng  = mkRng(si * 9999 + ri * 999 + i * 13 + 42)
         const char = CHARACTERS[(si * 5 + ri * count + i) % CHARACTERS.length]
-        const art  = ARTS[(si * 3 + ri + i) % ARTS.length]
+        const art  = setArts[artIdx++ % setArts.length]
 
         const pullCost        = pullCostOf(rar)
         const charPremium     = charPremiumOf(char)
@@ -144,7 +170,7 @@ export const CARDS = (() => {
           demandPressure:    +demandPressure.toFixed(3),
           supplySaturation:  +supplySaturation.toFixed(3),
           priceHistory:  makeSparkline(rng, marketPrice,    30, 0.06),
-          demandHistory: makeSparkline(rng, demandPressure, 14, 0.05),
+          demandHistory: makeSparkline(rng, demandPressure, 30, 0.05),
         })
       }
     })

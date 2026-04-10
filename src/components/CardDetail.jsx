@@ -1,11 +1,42 @@
-import { T } from '../theme.js'
-import Sparkline   from './Sparkline.jsx'
-import GaugeRing   from './GaugeRing.jsx'
-import MiniBar     from './MiniBar.jsx'
-import DeltaBadge  from './DeltaBadge.jsx'
-import RarityBadge from './RarityBadge.jsx'
+import { useState }  from 'react'
+import { T }         from '../theme.js'
+import Sparkline     from './Sparkline.jsx'
+import GaugeRing     from './GaugeRing.jsx'
+import MiniBar       from './MiniBar.jsx'
+import DeltaBadge    from './DeltaBadge.jsx'
+import RarityBadge   from './RarityBadge.jsx'
+
+// Small tab-button group for choosing sparkline time window
+function RangeToggle({ range, setRange }) {
+  return (
+    <div style={{ display: 'flex', gap: 3 }}>
+      {[7, 14, 30].map(r => (
+        <button
+          key={r}
+          onClick={() => setRange(r)}
+          style={{
+            padding: '2px 9px',
+            borderRadius: 4,
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: 11,
+            fontFamily: T.mono,
+            fontWeight: 600,
+            background: range === r ? T.orange : T.s3,
+            color:      range === r ? '#fff'    : T.dim,
+            transition: 'background .15s, color .15s',
+          }}
+        >
+          {r}d
+        </button>
+      ))}
+    </div>
+  )
+}
 
 export default function CardDetail({ card, onClose }) {
+  const [range, setRange] = useState(30)
+
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
   const ssColor = card.supplySaturation > 1 ? T.red : T.green
 
@@ -78,12 +109,15 @@ export default function CardDetail({ card, onClose }) {
         </div>
       </div>
 
-      {/* ── 30-day price history ── */}
+      {/* ── Price history sparkline ── */}
       <div style={{ marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: T.dim, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          30-Day Price History
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <div style={{ fontSize: 11, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            Price History
+          </div>
+          <RangeToggle range={range} setRange={setRange} />
         </div>
-        <Sparkline data={card.priceHistory} color={T.orange} height={60} width={270} fill />
+        <Sparkline data={card.priceHistory.slice(-range)} color={T.orange} height={60} width={270} fill />
       </div>
 
       {/* ── Desirability breakdown ── */}
@@ -137,10 +171,10 @@ export default function CardDetail({ card, onClose }) {
       <div style={{ background: T.s2, borderRadius: 8, padding: 14, marginBottom: 16 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {[
-            { label: 'Pull Cost',    value: `${card.pullCost.toFixed(1)}/10`       },
-            { label: 'Total Supply', value: card.totalSupply.toLocaleString()       },
-            { label: 'Absorbed',     value: card.absorbed.toLocaleString()          },
-            { label: 'Supply Sat.',  value: card.supplySaturation.toFixed(3)        },
+            { label: 'Pull Cost',    value: `${card.pullCost.toFixed(1)}/10`  },
+            { label: 'Total Supply', value: card.totalSupply.toLocaleString() },
+            { label: 'Absorbed',     value: card.absorbed.toLocaleString()    },
+            { label: 'Supply Sat.',  value: card.supplySaturation.toFixed(3)  },
           ].map(({ label, value }) => (
             <div key={label}>
               <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>{label}</div>
@@ -150,12 +184,15 @@ export default function CardDetail({ card, onClose }) {
         </div>
       </div>
 
-      {/* ── 14-day demand trend ── */}
+      {/* ── Demand trend sparkline ── */}
       <div>
-        <div style={{ fontSize: 11, color: T.dim, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          14-Day Demand Trend
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <div style={{ fontSize: 11, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            Demand Trend
+          </div>
+          <RangeToggle range={range} setRange={setRange} />
         </div>
-        <Sparkline data={card.demandHistory} color={dpColor} height={40} width={270} fill />
+        <Sparkline data={card.demandHistory.slice(-range)} color={dpColor} height={40} width={270} fill />
       </div>
     </div>
   )

@@ -58,6 +58,18 @@ export default function ValueScanner({ cards }) {
 
   const selCard = selected != null ? cards.find(c => c.id === selected) : null
 
+  // Empty-state context
+  const isSprFilter  = rarFilter === 'SPR'
+  const isLateSet    = ['FB06','FB07','FB08','FB09'].includes(setFilter)
+  const selectedSetName = SETS.find(s => s.code === setFilter)?.name ?? ''
+  const resetFilters = () => {
+    setSearch('')
+    setSetFilter('ALL')
+    setRarFilter('ALL')
+    setSort('undervalued')
+    setSelected(null)
+  }
+
   return (
     <div style={{ display: 'flex', gap: 16, height: 'calc(100vh - 136px)' }}>
 
@@ -173,8 +185,30 @@ export default function ValueScanner({ cards }) {
           })}
 
           {filtered.length === 0 && (
-            <div style={{ padding: 48, textAlign: 'center', color: T.dim }}>
-              No cards match the current filters.
+            <div style={{ padding: '48px 32px', textAlign: 'center' }}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>
+                {isSprFilter && isLateSet ? '🚫' : '🔍'}
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: T.muted, marginBottom: 8 }}>
+                {isSprFilter && isLateSet
+                  ? `No Special Rares in ${selectedSetName}`
+                  : 'No cards match the current filters'}
+              </div>
+              <div style={{ fontSize: 12, color: T.dim, marginBottom: 20, lineHeight: 1.6 }}>
+                {isSprFilter && isLateSet
+                  ? 'SPR cards were discontinued after FB05. Try selecting All Sets or a different rarity.'
+                  : 'Try adjusting your search terms, set, or rarity filters.'}
+              </div>
+              <button
+                onClick={resetFilters}
+                style={{
+                  background: T.orange, border: 'none', color: '#fff',
+                  cursor: 'pointer', borderRadius: 6, padding: '8px 20px',
+                  fontSize: 13, fontWeight: 600, fontFamily: T.display,
+                }}
+              >
+                Reset Filters
+              </button>
             </div>
           )}
         </div>

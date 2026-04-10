@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { T }         from '../theme.js'
 import { SETS, RARITIES } from '../data.js'
 import RarityBadge   from '../components/RarityBadge.jsx'
+import Sparkline     from '../components/Sparkline.jsx'
 
 // ── Quadrant scatter map ──────────────────────────────────────────────────────
 function QuadrantMap({ cards }) {
@@ -123,13 +124,19 @@ function QuadrantMap({ cards }) {
 // ── Set health cards ──────────────────────────────────────────────────────────
 function SetHealthCards({ cards }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(185px, 1fr))', gap: 12 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 12 }}>
       {SETS.map(set => {
         const sc = cards.filter(c => c.set === set.code)
         if (!sc.length) return null
 
         const avgDP = sc.reduce((s, c) => s + c.demandPressure, 0) / sc.length
         const avgSS = sc.reduce((s, c) => s + c.supplySaturation, 0) / sc.length
+
+        // 30-day demand trend: average demandHistory[day] across all cards in set
+        const DAYS = sc[0].demandHistory.length
+        const demandTrend = Array.from({ length: DAYS }, (_, d) =>
+          sc.reduce((sum, c) => sum + c.demandHistory[d], 0) / sc.length
+        )
 
         const trend =
           avgDP > 0.65 && avgSS < 1.0  ? 'Heating'    :
@@ -180,15 +187,18 @@ function SetHealthCards({ cards }) {
               </div>
             </div>
 
-            <span
-              style={{
-                background: `${tCol}22`, color: tCol,
-                padding: '3px 10px', borderRadius: 20,
-                fontSize: 11, fontWeight: 700,
-              }}
-            >
-              {trend}
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span
+                style={{
+                  background: `${tCol}22`, color: tCol,
+                  padding: '3px 10px', borderRadius: 20,
+                  fontSize: 11, fontWeight: 700,
+                }}
+              >
+                {trend}
+              </span>
+              <Sparkline data={demandTrend} color={tCol} height={28} width={80} fill />
+            </div>
           </div>
         )
       })}
