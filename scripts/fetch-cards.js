@@ -46,7 +46,7 @@ const GT = {
   'Pirina':22,'Botamo':22,'Anilaza':20,'Kakunsa':20,'Quitela':20,
   'King Gomah':20,'Glorio':20,'Magetta':20,'Fuwa':20,'Salza':20,
   'Mafuba':20,'Katopesla':18,'Dore':18,'Yajirobe':18,'Kahseral':15,
-  'Dr. Rota':15,'Banan':15,
+  'Dr. Rota':15,'Banan':15,'Dr. Gero':25,
 }
 const ICON = {
   'Son Goku':'🔥','Gogeta':'🌟','Broly':'💪','Vegito':'💫','Vegeta':'⚡',
@@ -65,7 +65,7 @@ const ICON = {
   'Anilaza':'🔮','Kakunsa':'🐯','Quitela':'🐭','King Gomah':'👹',
   'Glorio':'👹','Magetta':'🔩','Fuwa':'⭕','Salza':'🗡️','Mafuba':'🌊',
   'Katopesla':'🔵','Dore':'💪','Yajirobe':'🗡️','Kahseral':'🔴',
-  'Dr. Rota':'🔬','Banan':'🍌',
+  'Dr. Rota':'🔬','Banan':'🍌','Dr. Gero':'🤖',
 }
 
 function gtOf(c) { return GT[c] ?? 50 }

@@ -1,145 +1,1451 @@
 [
-  {"code":"FB01-001","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-002","name":"Beerus","character":"Beerus","rarity":"L","color":"Red","type":"Leader","trait":"God/Universe 7"},
-  {"code":"FB01-003","name":"Vados","character":"Vados","rarity":"C","color":"Red","type":"Battle","trait":"Angel/Universe 6"},
-  {"code":"FB01-004","name":"Whis","character":"Whis","rarity":"UC","color":"Red","type":"Battle","trait":"Angel/Universe 7"},
-  {"code":"FB01-005","name":"Master Roshi","character":"Master Roshi","rarity":"UC","color":"Red","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB01-006","name":"Caulifla","character":"Caulifla","rarity":"UC","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB01-007","name":"Cabba","character":"Cabba","rarity":"UC","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB01-008","name":"Krillin","character":"Krillin","rarity":"R","color":"Red","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB01-009","name":"Kale","character":"Kale","rarity":"UC","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB01-010","name":"Saonel","character":"Saonel","rarity":"C","color":"Red","type":"Battle","trait":"Namekian/Universe 6"},
-  {"code":"FB01-011","name":"Champa","character":"Champa","rarity":"C","color":"Red","type":"Battle","trait":"God of Destruction/Universe 6"},
-  {"code":"FB01-012","name":"Shin","character":"Shin","rarity":"UC","color":"Red","type":"Battle","trait":"Supreme Kai/Universe 7"},
-  {"code":"FB01-013","name":"Android 17","character":"Android 17","rarity":"UC","color":"Red","type":"Battle","trait":"Warrior/Universe 7"},
-  {"code":"FB01-014","name":"Android 18","character":"Android 18","rarity":"UC","color":"Red","type":"Battle","trait":"Warrior/Universe 7"},
-  {"code":"FB01-015","name":"Son Goku","character":"Son Goku","rarity":"SR","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-016","name":"Son Gohan","character":"Son Gohan","rarity":"R","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-017","name":"Great Priest","character":"Great Priest","rarity":"UC","color":"Red","type":"Battle","trait":"Angel/Universe 7"},
-  {"code":"FB01-018","name":"Tien Shinhan","character":"Tien Shinhan","rarity":"C","color":"Red","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB01-019","name":"Dr. Rota","character":"Dr. Rota","rarity":"C","color":"Red","type":"Battle","trait":"Warrior/Universe 6"},
-  {"code":"FB01-020","name":"Piccolo","character":"Piccolo","rarity":"C","color":"Red","type":"Battle","trait":"Namekian/Universe 7"},
-  {"code":"FB01-021","name":"Hit","character":"Hit","rarity":"SR","color":"Red","type":"Battle","trait":"Assassin/Universe 6"},
-  {"code":"FB01-022","name":"Pirina","character":"Pirina","rarity":"C","color":"Red","type":"Battle","trait":"Namekian/Universe 6"},
-  {"code":"FB01-023","name":"Beerus","character":"Beerus","rarity":"SR","color":"Red","type":"Battle","trait":"God/Universe 7"},
-  {"code":"FB01-024","name":"Frieza","character":"Frieza","rarity":"C","color":"Red","type":"Battle","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-025","name":"Frost","character":"Frost","rarity":"R","color":"Red","type":"Battle","trait":"Frost Demon/Universe 6"},
-  {"code":"FB01-026","name":"Fuwa","character":"Fuwa","rarity":"R","color":"Red","type":"Battle","trait":"Supreme Kai/Universe 6"},
-  {"code":"FB01-027","name":"Vegeta","character":"Vegeta","rarity":"R","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-028","name":"Botamo","character":"Botamo","rarity":"R","color":"Red","type":"Battle","trait":"Warrior/Universe 6"},
-  {"code":"FB01-029","name":"Magetta","character":"Magetta","rarity":"C","color":"Red","type":"Battle","trait":"Metalman/Universe 6"},
-  {"code":"FB01-030","name":"Assemble, Universe 7!","character":"Son Goku","rarity":"C","color":"Red","type":"Extra","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-031","name":"Warriors of Universe 6","character":"Caulifla","rarity":"C","color":"Red","type":"Extra","trait":"Saiyan/Universe 6"},
-  {"code":"FB01-032","name":"Tournament of Power Arena","character":"Son Goku","rarity":"R","color":"Red","type":"Extra","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-033","name":"Time-Skip","character":"Hit","rarity":"C","color":"Red","type":"Extra","trait":"Assassin/Universe 6"},
-  {"code":"FB01-034","name":"Mafuba","character":"Mafuba","rarity":"C","color":"Red","type":"Extra","trait":"Earthling/Universe 7"},
-  {"code":"FB01-035","name":"Goku Black","character":"Goku Black","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Future"},
-  {"code":"FB01-036","name":"Trunks : Future","character":"Trunks","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Future"},
-  {"code":"FB01-037","name":"Goku Black","character":"Goku Black","rarity":"R","color":"Blue","type":"Battle","trait":"Saiyan/Future"},
-  {"code":"FB01-041","name":"Gowasu","character":"Gowasu","rarity":"C","color":"Blue","type":"Battle","trait":"Supreme Kai/Universe 10"},
-  {"code":"FB01-046","name":"Son Goku","character":"Son Goku","rarity":"R","color":"Blue","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-051","name":"Trunks : Future","character":"Trunks","rarity":"R","color":"Blue","type":"Battle","trait":"Saiyan/Future"},
-  {"code":"FB01-056","name":"Pilaf","character":"Pilaf","rarity":"C","color":"Blue","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB01-061","name":"Mai : Future","character":"Mai","rarity":"UC","color":"Blue","type":"Battle","trait":"Earthling/Future"},
-  {"code":"FB01-063","name":"Yajirobe : Future","character":"Yajirobe","rarity":"UC","color":"Blue","type":"Battle","trait":"Earthling/Future"},
-  {"code":"FB01-064","name":"Blade of Despair","character":"Goku Black","rarity":"UC","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-065","name":"Time Machine","character":"Trunks","rarity":"UC","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-066","name":"Final Hope Slash","character":"Trunks","rarity":"R","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-067","name":"Black Kamehameha","character":"Goku Black","rarity":"UC","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-068","name":"Sinister Sickle","character":"Goku Black","rarity":"R","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-069","name":"Sinister Shadows","character":"Goku Black","rarity":"R","color":"Blue","type":"Extra","trait":"Saiyan/Future"},
-  {"code":"FB01-070","name":"Android 17","character":"Android 17","rarity":"L","color":"Green","type":"Leader","trait":"Warrior/Universe 7"},
-  {"code":"FB01-071","name":"Son Gohan : Childhood","character":"Son Gohan","rarity":"L","color":"Green","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-074","name":"Android 16","character":"Android 16","rarity":"UC","color":"Green","type":"Battle","trait":"Android/Universe 7"},
-  {"code":"FB01-079","name":"Android 18","character":"Android 18","rarity":"SR","color":"Green","type":"Battle","trait":"Warrior/Universe 7"},
-  {"code":"FB01-084","name":"Android 20","character":"Android 20","rarity":"R","color":"Green","type":"Battle","trait":"Android/Universe 7"},
-  {"code":"FB01-089","name":"Son Gohan : Childhood","character":"Son Gohan","rarity":"R","color":"Green","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-094","name":"Piccolo","character":"Piccolo","rarity":"C","color":"Green","type":"Battle","trait":"Namekian/Universe 7"},
-  {"code":"FB01-097","name":"Hercule","character":"Hercule","rarity":"C","color":"Green","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB01-099","name":"Eye Beam","character":"Android 17","rarity":"UC","color":"Green","type":"Extra","trait":"Warrior/Universe 7"},
-  {"code":"FB01-101","name":"Instant Kamehameha","character":"Son Gohan","rarity":"C","color":"Green","type":"Extra","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-102","name":"Dr. Gero's Lab","character":"Android 20","rarity":"R","color":"Green","type":"Extra","trait":"Android/Universe 7"},
-  {"code":"FB01-103","name":"Big Bang Attack","character":"Vegeta","rarity":"UC","color":"Green","type":"Extra","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-104","name":"Ginyu","character":"Ginyu","rarity":"L","color":"Yellow","type":"Leader","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-105","name":"Cooler","character":"Cooler","rarity":"L","color":"Yellow","type":"Leader","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-107","name":"Ginyu","character":"Ginyu","rarity":"UC","color":"Yellow","type":"Battle","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-112","name":"Cooler","character":"Cooler","rarity":"C","color":"Yellow","type":"Battle","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-117","name":"Salza","character":"Salza","rarity":"C","color":"Yellow","type":"Battle","trait":"Cooler's Armored Squadron"},
-  {"code":"FB01-122","name":"Dore","character":"Dore","rarity":"C","color":"Yellow","type":"Battle","trait":"Cooler's Armored Squadron"},
-  {"code":"FB01-127","name":"Banan","character":"Banan","rarity":"UC","color":"Yellow","type":"Battle","trait":"Cooler's Armored Squadron"},
-  {"code":"FB01-130","name":"Mecha Frieza","character":"Mecha Frieza","rarity":"R","color":"Yellow","type":"Battle","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-131","name":"Meta-Cooler","character":"Meta-Cooler","rarity":"C","color":"Yellow","type":"Battle","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-132","name":"Recoome","character":"Recoome","rarity":"R","color":"Yellow","type":"Battle","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-133","name":"Bonds of the Ginyu Force","character":"Ginyu","rarity":"R","color":"Yellow","type":"Extra","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-134","name":"Cooler's Armored Squadron","character":"Cooler","rarity":"C","color":"Yellow","type":"Extra","trait":"Cooler's Armored Squadron"},
-  {"code":"FB01-135","name":"Crusher Ball","character":"Ginyu","rarity":"UC","color":"Yellow","type":"Extra","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-136","name":"Supernova","character":"Cooler","rarity":"R","color":"Yellow","type":"Extra","trait":"Frost Demon/Universe 7"},
-  {"code":"FB01-137","name":"Body Change","character":"Ginyu","rarity":"R","color":"Yellow","type":"Extra","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-138","name":"Power of the Ginyu Force","character":"Ginyu","rarity":"C","color":"Yellow","type":"Extra","trait":"Ginyu Force/Universe 7"},
-  {"code":"FB01-139","name":"Son Goku","character":"Son Goku","rarity":"SCR","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB01-140","name":"Son Gohan : Childhood","character":"Son Gohan","rarity":"SCR","color":"Green","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB02-001","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB02-002","name":"Anilaza","character":"Anilaza","rarity":"C","color":"Red","type":"Battle","trait":"Universe 3/Tournament of Power"},
-  {"code":"FB02-003","name":"Kakunsa","character":"Kakunsa","rarity":"UC","color":"Red","type":"Battle","trait":"Warrior/Universe 2"},
-  {"code":"FB02-004","name":"Katopesla","character":"Katopesla","rarity":"R","color":"Red","type":"Battle","trait":"Pride Troopers/Universe 3"},
-  {"code":"FB02-007","name":"Caulifla","character":"Caulifla","rarity":"R","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB02-008","name":"Quitela","character":"Quitela","rarity":"R","color":"Red","type":"Battle","trait":"God of Destruction/Universe 4"},
-  {"code":"FB02-013","name":"Kefla","character":"Kefla","rarity":"SR","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB02-036","name":"Zamasu : Fused","character":"Zamasu","rarity":"L","color":"Blue","type":"Leader","trait":"Supreme Kai/Future"},
-  {"code":"FB02-049","name":"Zen-Oh","character":"Zen-Oh","rarity":"R","color":"Blue","type":"Battle","trait":"Omni-King/All Universes"},
-  {"code":"FB02-070","name":"Cell","character":"Cell","rarity":"L","color":"Green","type":"Leader","trait":"Android/Universe 7"},
-  {"code":"FB02-105","name":"Vegeta","character":"Vegeta","rarity":"L","color":"Yellow","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB03-001","name":"Jiren","character":"Jiren","rarity":"L","color":"Red","type":"Leader","trait":"Pride Troopers/Universe 11"},
-  {"code":"FB03-002","name":"Kahseral","character":"Kahseral","rarity":"C","color":"Red","type":"Battle","trait":"Pride Troopers/Universe 11"},
-  {"code":"FB03-004","name":"Cabba","character":"Cabba","rarity":"C","color":"Red","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB03-009","name":"Jiren","character":"Jiren","rarity":"SCR","color":"Red","type":"Battle","trait":"Pride Troopers/Universe 11"},
-  {"code":"FB03-011","name":"Son Goku","character":"Son Goku","rarity":"R","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB03-025","name":"Pan : GT","character":"Pan","rarity":"SR","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB03-027","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB03-053","name":"Piccolo","character":"Piccolo","rarity":"L","color":"Green","type":"Leader","trait":"Namekian/Universe 7"},
-  {"code":"FB03-070","name":"Babidi","character":"Babidi","rarity":"L","color":"Yellow","type":"Leader","trait":"Wizard/Universe 7"},
-  {"code":"FB03-078","name":"Dabura","character":"Dabura","rarity":"UC","color":"Yellow","type":"Battle","trait":"Demon/Universe 7"},
-  {"code":"FB03-104","name":"Son Goku : GT","character":"Son Goku","rarity":"L","color":"Black","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB03-111","name":"Son Goku : GT","character":"Son Goku","rarity":"SCR","color":"Black","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB04-001","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB04-002","name":"Whis","character":"Whis","rarity":"UC","color":"Purple","type":"Battle","trait":"Angel/Universe 7"},
-  {"code":"FB04-026","name":"Son Gohan : Adolescence","character":"Son Gohan","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB04-051","name":"Vegeta","character":"Vegeta","rarity":"L","color":"Green","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB04-077","name":"Majin Buu : Evil","character":"Majin Buu","rarity":"L","color":"Yellow","type":"Leader","trait":"Majin/Universe 7"},
-  {"code":"FB04-103","name":"Baby Vegeta","character":"Baby Vegeta","rarity":"L","color":"Black","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB05-001","name":"Son Goku : DA","character":"Son Goku","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB05-025","name":"Vegito","character":"Vegito","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB05-049","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Green","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB05-073","name":"King Cold","character":"King Cold","rarity":"L","color":"Yellow","type":"Leader","trait":"Frost Demon/Universe 7"},
-  {"code":"FB06-001","name":"Android 18","character":"Android 18","rarity":"L","color":"Red","type":"Leader","trait":"Warrior/Universe 7"},
-  {"code":"FB06-025","name":"Son Goku : Childhood","character":"Son Goku","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB06-048","name":"Broly : BR","character":"Broly","rarity":"L","color":"Green","type":"Leader","trait":"Saiyan/Broly"},
-  {"code":"FB06-071","name":"King Gomah : DA","character":"King Gomah","rarity":"L","color":"Yellow","type":"Leader","trait":"Demon/DAIMA"},
-  {"code":"FB06-095","name":"King Piccolo","character":"King Piccolo","rarity":"L","color":"Black","type":"Leader","trait":"Namekian/Universe 7"},
-  {"code":"FB06-119","name":"Son Goku : Childhood","character":"Son Goku","rarity":"SCR","color":"Blue","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB06-120","name":"Broly : BR","character":"Broly","rarity":"SCR","color":"Green","type":"Battle","trait":"Saiyan/Broly"},
-  {"code":"FB07-001","name":"Glorio : DA","character":"Glorio","rarity":"L","color":"Red","type":"Leader","trait":"Demon/DAIMA"},
-  {"code":"FB07-025","name":"Syn Shenron","character":"Syn Shenron","rarity":"L","color":"Blue","type":"Leader","trait":"Shadow Dragon/GT"},
-  {"code":"FB07-049","name":"Piccolo : SH","character":"Piccolo","rarity":"L","color":"Green","type":"Leader","trait":"Namekian/Super Hero"},
-  {"code":"FB07-056","name":"Son Gohan : SH","character":"Son Gohan","rarity":"SR","color":"Green","type":"Battle","trait":"Saiyan/Super Hero"},
-  {"code":"FB07-073","name":"Frieza","character":"Frieza","rarity":"L","color":"Yellow","type":"Leader","trait":"Frost Demon/Universe 7"},
-  {"code":"FB07-097","name":"Shenron","character":"Shenron","rarity":"L","color":"Black","type":"Leader","trait":"Dragon/Universe 7"},
-  {"code":"FB07-116","name":"Yamcha","character":"Yamcha","rarity":"UC","color":"Black","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB08-001","name":"Son Gohan : Adolescence","character":"Son Gohan","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB08-005","name":"Android 18","character":"Android 18","rarity":"C","color":"Red","type":"Battle","trait":"Warrior/Universe 7"},
-  {"code":"FB08-012","name":"Son Gohan : Adolescence","character":"Son Gohan","rarity":"SR","color":"Red","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB08-034","name":"Kefla","character":"Kefla","rarity":"SR","color":"Blue","type":"Battle","trait":"Saiyan/Universe 6"},
-  {"code":"FB08-039","name":"Piccolo","character":"Piccolo","rarity":"UC","color":"Blue","type":"Battle","trait":"Namekian/Universe 7"},
-  {"code":"FB08-100","name":"Son Goku","character":"Son Goku","rarity":"R","color":"Black","type":"Battle","trait":"Saiyan/Universe 7"},
-  {"code":"FB08-110","name":"Chi-Chi","character":"Chi-Chi","rarity":"C","color":"Black","type":"Battle","trait":"Earthling/Universe 7"},
-  {"code":"FB09-001","name":"Gogeta : BR","character":"Gogeta","rarity":"L","color":"Red","type":"Leader","trait":"Saiyan/Broly"},
-  {"code":"FB09-007","name":"Gogeta : BR","character":"Gogeta","rarity":"SR","color":"Red","type":"Battle","trait":"Saiyan/Broly"},
-  {"code":"FB09-017","name":"Veku : BR","character":"Veku","rarity":"C","color":"Red","type":"Battle","trait":"Saiyan/Broly"},
-  {"code":"FB09-025","name":"Son Goku","character":"Son Goku","rarity":"L","color":"Blue","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB09-049","name":"Son Gohan : SH","character":"Son Gohan","rarity":"L","color":"Green","type":"Leader","trait":"Saiyan/Super Hero"},
-  {"code":"FB09-052","name":"Gamma 2 : SH","character":"Gamma 2","rarity":"R","color":"Green","type":"Battle","trait":"Android/Super Hero"},
-  {"code":"FB09-073","name":"Son Goku / Vegeta","character":"Gogeta","rarity":"L","color":"Yellow","type":"Leader","trait":"Saiyan/Universe 7"},
-  {"code":"FB09-091","name":"Veku","character":"Veku","rarity":"SR","color":"Yellow","type":"Battle","trait":"Saiyan/Broly"},
-  {"code":"FB09-097","name":"Gogeta : GT","character":"Gogeta","rarity":"L","color":"Black","type":"Leader","trait":"Saiyan/GT"},
-  {"code":"FB09-120","name":"Big Bang Kamehameha","character":"Gogeta","rarity":"R","color":"Black","type":"Extra","trait":"Saiyan/GT"}
+  {
+    "code": "FB01-001",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-002",
+    "name": "Beerus",
+    "character": "Beerus",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "God/Universe 7"
+  },
+  {
+    "code": "FB01-003",
+    "name": "Vados",
+    "character": "Vados",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Angel/Universe 6"
+  },
+  {
+    "code": "FB01-004",
+    "name": "Whis",
+    "character": "Whis",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Angel/Universe 7"
+  },
+  {
+    "code": "FB01-005",
+    "name": "Master Roshi",
+    "character": "Master Roshi",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-006",
+    "name": "Caulifla",
+    "character": "Caulifla",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB01-007",
+    "name": "Cabba",
+    "character": "Cabba",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB01-008",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-009",
+    "name": "Kale",
+    "character": "Kale",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB01-010",
+    "name": "Saonel",
+    "character": "Saonel",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Namekian/Universe 6"
+  },
+  {
+    "code": "FB01-011",
+    "name": "Champa",
+    "character": "Champa",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "God of Destruction/Universe 6"
+  },
+  {
+    "code": "FB01-012",
+    "name": "Shin",
+    "character": "Shin",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Supreme Kai/Universe 7"
+  },
+  {
+    "code": "FB01-013",
+    "name": "Android 17",
+    "character": "Android 17",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB01-014",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB01-015",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-016",
+    "name": "Son Gohan",
+    "character": "Son Gohan",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-017",
+    "name": "Great Priest",
+    "character": "Great Priest",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Angel/Universe 7"
+  },
+  {
+    "code": "FB01-018",
+    "name": "Tien Shinhan",
+    "character": "Tien Shinhan",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-019",
+    "name": "Dr. Rota",
+    "character": "Dr. Rota",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 6"
+  },
+  {
+    "code": "FB01-020",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Namekian/Universe 7"
+  },
+  {
+    "code": "FB01-021",
+    "name": "Hit",
+    "character": "Hit",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Assassin/Universe 6"
+  },
+  {
+    "code": "FB01-022",
+    "name": "Pirina",
+    "character": "Pirina",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Namekian/Universe 6"
+  },
+  {
+    "code": "FB01-023",
+    "name": "Beerus",
+    "character": "Beerus",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "God/Universe 7"
+  },
+  {
+    "code": "FB01-024",
+    "name": "Frieza",
+    "character": "Frieza",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-025",
+    "name": "Frost",
+    "character": "Frost",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 6"
+  },
+  {
+    "code": "FB01-026",
+    "name": "Fuwa",
+    "character": "Fuwa",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Supreme Kai/Universe 6"
+  },
+  {
+    "code": "FB01-027",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-028",
+    "name": "Botamo",
+    "character": "Botamo",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 6"
+  },
+  {
+    "code": "FB01-029",
+    "name": "Magetta",
+    "character": "Magetta",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Metalman/Universe 6"
+  },
+  {
+    "code": "FB01-030",
+    "name": "Assemble, Universe 7!",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Extra",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-031",
+    "name": "Warriors of Universe 6",
+    "character": "Caulifla",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Extra",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB01-032",
+    "name": "Tournament of Power Arena",
+    "character": "Son Goku",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Extra",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-033",
+    "name": "Time-Skip",
+    "character": "Hit",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Extra",
+    "trait": "Assassin/Universe 6"
+  },
+  {
+    "code": "FB01-034",
+    "name": "Mafuba",
+    "character": "Mafuba",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Extra",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-035",
+    "name": "Goku Black",
+    "character": "Goku Black",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-036",
+    "name": "Trunks : Future",
+    "character": "Trunks",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-037",
+    "name": "Goku Black",
+    "character": "Goku Black",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-041",
+    "name": "Gowasu",
+    "character": "Gowasu",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Supreme Kai/Universe 10"
+  },
+  {
+    "code": "FB01-046",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-051",
+    "name": "Trunks : Future",
+    "character": "Trunks",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-056",
+    "name": "Pilaf",
+    "character": "Pilaf",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-061",
+    "name": "Mai : Future",
+    "character": "Mai",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Earthling/Future"
+  },
+  {
+    "code": "FB01-063",
+    "name": "Yajirobe : Future",
+    "character": "Yajirobe",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Earthling/Future"
+  },
+  {
+    "code": "FB01-064",
+    "name": "Blade of Despair",
+    "character": "Goku Black",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-065",
+    "name": "Time Machine",
+    "character": "Trunks",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-066",
+    "name": "Final Hope Slash",
+    "character": "Trunks",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-067",
+    "name": "Black Kamehameha",
+    "character": "Goku Black",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-068",
+    "name": "Sinister Sickle",
+    "character": "Goku Black",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-069",
+    "name": "Sinister Shadows",
+    "character": "Goku Black",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": "Saiyan/Future"
+  },
+  {
+    "code": "FB01-070",
+    "name": "Android 17",
+    "character": "Android 17",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB01-071",
+    "name": "Son Gohan : Childhood",
+    "character": "Son Gohan",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-074",
+    "name": "Android 16",
+    "character": "Android 16",
+    "rarity": "UC",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB01-079",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "SR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB01-084",
+    "name": "Android 20",
+    "character": "Android 20",
+    "rarity": "R",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB01-089",
+    "name": "Son Gohan : Childhood",
+    "character": "Son Gohan",
+    "rarity": "R",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-094",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Namekian/Universe 7"
+  },
+  {
+    "code": "FB01-097",
+    "name": "Hercule",
+    "character": "Hercule",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB01-099",
+    "name": "Eye Beam",
+    "character": "Android 17",
+    "rarity": "UC",
+    "color": "Green",
+    "type": "Extra",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB01-101",
+    "name": "Instant Kamehameha",
+    "character": "Son Gohan",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Extra",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-102",
+    "name": "Dr. Gero's Lab",
+    "character": "Android 20",
+    "rarity": "R",
+    "color": "Green",
+    "type": "Extra",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB01-103",
+    "name": "Big Bang Attack",
+    "character": "Vegeta",
+    "rarity": "UC",
+    "color": "Green",
+    "type": "Extra",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-104",
+    "name": "Ginyu",
+    "character": "Ginyu",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-105",
+    "name": "Cooler",
+    "character": "Cooler",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-107",
+    "name": "Ginyu",
+    "character": "Ginyu",
+    "rarity": "UC",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-112",
+    "name": "Cooler",
+    "character": "Cooler",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-117",
+    "name": "Salza",
+    "character": "Salza",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Cooler's Armored Squadron"
+  },
+  {
+    "code": "FB01-122",
+    "name": "Dore",
+    "character": "Dore",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Cooler's Armored Squadron"
+  },
+  {
+    "code": "FB01-127",
+    "name": "Banan",
+    "character": "Banan",
+    "rarity": "UC",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Cooler's Armored Squadron"
+  },
+  {
+    "code": "FB01-130",
+    "name": "Mecha Frieza",
+    "character": "Mecha Frieza",
+    "rarity": "R",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-131",
+    "name": "Meta-Cooler",
+    "character": "Meta-Cooler",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-132",
+    "name": "Recoome",
+    "character": "Recoome",
+    "rarity": "R",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-133",
+    "name": "Bonds of the Ginyu Force",
+    "character": "Ginyu",
+    "rarity": "R",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-134",
+    "name": "Cooler's Armored Squadron",
+    "character": "Cooler",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Cooler's Armored Squadron"
+  },
+  {
+    "code": "FB01-135",
+    "name": "Crusher Ball",
+    "character": "Ginyu",
+    "rarity": "UC",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-136",
+    "name": "Supernova",
+    "character": "Cooler",
+    "rarity": "R",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB01-137",
+    "name": "Body Change",
+    "character": "Ginyu",
+    "rarity": "R",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-138",
+    "name": "Power of the Ginyu Force",
+    "character": "Ginyu",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": "Ginyu Force/Universe 7"
+  },
+  {
+    "code": "FB01-139",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "SCR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB01-140",
+    "name": "Son Gohan : Childhood",
+    "character": "Son Gohan",
+    "rarity": "SCR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB02-001",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB02-002",
+    "name": "Anilaza",
+    "character": "Anilaza",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Universe 3/Tournament of Power"
+  },
+  {
+    "code": "FB02-003",
+    "name": "Kakunsa",
+    "character": "Kakunsa",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 2"
+  },
+  {
+    "code": "FB02-004",
+    "name": "Katopesla",
+    "character": "Katopesla",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Pride Troopers/Universe 3"
+  },
+  {
+    "code": "FB02-007",
+    "name": "Caulifla",
+    "character": "Caulifla",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB02-008",
+    "name": "Quitela",
+    "character": "Quitela",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "God of Destruction/Universe 4"
+  },
+  {
+    "code": "FB02-013",
+    "name": "Kefla",
+    "character": "Kefla",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB02-036",
+    "name": "Zamasu : Fused",
+    "character": "Zamasu",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Supreme Kai/Future"
+  },
+  {
+    "code": "FB02-049",
+    "name": "Zen-Oh",
+    "character": "Zen-Oh",
+    "rarity": "R",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Omni-King/All Universes"
+  },
+  {
+    "code": "FB02-070",
+    "name": "Cell",
+    "character": "Cell",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB02-105",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB02-139",
+    "name": "Vegito",
+    "character": "Vegito",
+    "rarity": "SCR",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB02-140",
+    "name": "Golden Frieza",
+    "character": "Frieza",
+    "rarity": "SCR",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB03-001",
+    "name": "Jiren",
+    "character": "Jiren",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Pride Troopers/Universe 11"
+  },
+  {
+    "code": "FB03-002",
+    "name": "Kahseral",
+    "character": "Kahseral",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Pride Troopers/Universe 11"
+  },
+  {
+    "code": "FB03-004",
+    "name": "Cabba",
+    "character": "Cabba",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB03-009",
+    "name": "Jiren",
+    "character": "Jiren",
+    "rarity": "SCR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Pride Troopers/Universe 11"
+  },
+  {
+    "code": "FB03-011",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB03-025",
+    "name": "Pan : GT",
+    "character": "Pan",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB03-027",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB03-053",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Namekian/Universe 7"
+  },
+  {
+    "code": "FB03-070",
+    "name": "Babidi",
+    "character": "Babidi",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Wizard/Universe 7"
+  },
+  {
+    "code": "FB03-078",
+    "name": "Dabura",
+    "character": "Dabura",
+    "rarity": "UC",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Demon/Universe 7"
+  },
+  {
+    "code": "FB03-104",
+    "name": "Son Goku : GT",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Black",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB03-111",
+    "name": "Son Goku : GT",
+    "character": "Son Goku",
+    "rarity": "SCR",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB04-001",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB04-002",
+    "name": "Whis",
+    "character": "Whis",
+    "rarity": "UC",
+    "color": "Purple",
+    "type": "Battle",
+    "trait": "Angel/Universe 7"
+  },
+  {
+    "code": "FB04-026",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB04-051",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB04-077",
+    "name": "Majin Buu : Evil",
+    "character": "Majin Buu",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Majin/Universe 7"
+  },
+  {
+    "code": "FB04-103",
+    "name": "Baby Vegeta",
+    "character": "Baby Vegeta",
+    "rarity": "L",
+    "color": "Black",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB05-001",
+    "name": "Son Goku : DA",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB05-025",
+    "name": "Vegito",
+    "character": "Vegito",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB05-049",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB05-073",
+    "name": "King Cold",
+    "character": "King Cold",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB06-001",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB06-009",
+    "name": "Android 16",
+    "character": "Android 16",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB06-014",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB06-019",
+    "name": "Dr. Gero",
+    "character": "Dr. Gero",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Android/Universe 7"
+  },
+  {
+    "code": "FB06-025",
+    "name": "Son Goku : Childhood",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB06-048",
+    "name": "Broly : BR",
+    "character": "Broly",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB06-063",
+    "name": "Broly : BR",
+    "character": "Broly",
+    "rarity": "SR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB06-071",
+    "name": "King Gomah : DA",
+    "character": "King Gomah",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Demon/DAIMA"
+  },
+  {
+    "code": "FB06-095",
+    "name": "King Piccolo",
+    "character": "King Piccolo",
+    "rarity": "L",
+    "color": "Black",
+    "type": "Leader",
+    "trait": "Namekian/Universe 7"
+  },
+  {
+    "code": "FB06-119",
+    "name": "Son Goku : Childhood",
+    "character": "Son Goku",
+    "rarity": "SCR",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB06-120",
+    "name": "Broly : BR",
+    "character": "Broly",
+    "rarity": "SCR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB07-001",
+    "name": "Glorio : DA",
+    "character": "Glorio",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Demon/DAIMA"
+  },
+  {
+    "code": "FB07-010",
+    "name": "Son Goku : DA",
+    "character": "Son Goku",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/DAIMA"
+  },
+  {
+    "code": "FB07-025",
+    "name": "Syn Shenron",
+    "character": "Syn Shenron",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Shadow Dragon/GT"
+  },
+  {
+    "code": "FB07-049",
+    "name": "Piccolo : SH",
+    "character": "Piccolo",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Namekian/Super Hero"
+  },
+  {
+    "code": "FB07-056",
+    "name": "Son Gohan : SH",
+    "character": "Son Gohan",
+    "rarity": "SR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Super Hero"
+  },
+  {
+    "code": "FB07-058",
+    "name": "Son Gohan : SH",
+    "character": "Son Gohan",
+    "rarity": "SR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Super Hero"
+  },
+  {
+    "code": "FB07-073",
+    "name": "Frieza",
+    "character": "Frieza",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Frost Demon/Universe 7"
+  },
+  {
+    "code": "FB07-097",
+    "name": "Shenron",
+    "character": "Shenron",
+    "rarity": "L",
+    "color": "Black",
+    "type": "Leader",
+    "trait": "Dragon/Universe 7"
+  },
+  {
+    "code": "FB07-116",
+    "name": "Yamcha",
+    "character": "Yamcha",
+    "rarity": "UC",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB07-121",
+    "name": "Son Gohan : SH",
+    "character": "Son Gohan",
+    "rarity": "SCR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Super Hero"
+  },
+  {
+    "code": "FB07-122",
+    "name": "Son Goku : GT",
+    "character": "Son Goku",
+    "rarity": "SCR",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Saiyan/GT"
+  },
+  {
+    "code": "FB08-001",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB08-002",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "UC",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB08-003",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB08-005",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Warrior/Universe 7"
+  },
+  {
+    "code": "FB08-006",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "R",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB08-012",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB08-034",
+    "name": "Kefla",
+    "character": "Kefla",
+    "rarity": "SR",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 6"
+  },
+  {
+    "code": "FB08-039",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "UC",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": "Namekian/Universe 7"
+  },
+  {
+    "code": "FB08-100",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "R",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB08-110",
+    "name": "Chi-Chi",
+    "character": "Chi-Chi",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Earthling/Universe 7"
+  },
+  {
+    "code": "FB08-121",
+    "name": "Son Goten",
+    "character": "Goten",
+    "rarity": "SCR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB08-122",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "SCR",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB09-001",
+    "name": "Gogeta : BR",
+    "character": "Gogeta",
+    "rarity": "L",
+    "color": "Red",
+    "type": "Leader",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB09-007",
+    "name": "Gogeta : BR",
+    "character": "Gogeta",
+    "rarity": "SR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB09-017",
+    "name": "Veku : BR",
+    "character": "Veku",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB09-025",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "L",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB09-049",
+    "name": "Son Gohan : SH",
+    "character": "Son Gohan",
+    "rarity": "L",
+    "color": "Green",
+    "type": "Leader",
+    "trait": "Saiyan/Super Hero"
+  },
+  {
+    "code": "FB09-052",
+    "name": "Gamma 2 : SH",
+    "character": "Gamma 2",
+    "rarity": "R",
+    "color": "Green",
+    "type": "Battle",
+    "trait": "Android/Super Hero"
+  },
+  {
+    "code": "FB09-073",
+    "name": "Son Goku / Vegeta",
+    "character": "Gogeta",
+    "rarity": "L",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB09-091",
+    "name": "Veku",
+    "character": "Veku",
+    "rarity": "SR",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB09-097",
+    "name": "Gogeta : GT",
+    "character": "Gogeta",
+    "rarity": "L",
+    "color": "Black",
+    "type": "Leader",
+    "trait": "Saiyan/GT"
+  },
+  {
+    "code": "FB09-120",
+    "name": "Big Bang Kamehameha",
+    "character": "Gogeta",
+    "rarity": "R",
+    "color": "Black",
+    "type": "Extra",
+    "trait": "Saiyan/GT"
+  },
+  {
+    "code": "FB09-121",
+    "name": "Gogeta : BR",
+    "character": "Gogeta",
+    "rarity": "SCR",
+    "color": "Red",
+    "type": "Battle",
+    "trait": "Saiyan/Broly"
+  },
+  {
+    "code": "FB09-122",
+    "name": "Gogeta",
+    "character": "Gogeta",
+    "rarity": "SCR",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": "Saiyan/Universe 7"
+  },
+  {
+    "code": "FB09-123",
+    "name": "Gogeta : GT",
+    "character": "Gogeta",
+    "rarity": "SCR",
+    "color": "Black",
+    "type": "Battle",
+    "trait": "Saiyan/GT"
+  }
 ]
