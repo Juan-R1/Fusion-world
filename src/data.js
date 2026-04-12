@@ -15,12 +15,13 @@ export const SETS = [
 
 // ── Rarities ─────────────────────────────────────────────────────────────────
 export const RARITIES = [
-  { code: 'C',   name: 'Common',       pullRate: 0.55,  color: '#6b7280' },
-  { code: 'UC',  name: 'Uncommon',     pullRate: 0.28,  color: '#3b82f6' },
-  { code: 'R',   name: 'Rare',         pullRate: 0.12,  color: '#a855f7' },
-  { code: 'SR',  name: 'Super Rare',   pullRate: 0.04,  color: '#f59e0b' },
-  { code: 'SCR', name: 'Secret Rare',  pullRate: 0.008, color: '#f97316' },
-  { code: 'SPR', name: 'Special Rare', pullRate: 0.003, color: '#dc2626' },
+  { code: 'L',   name: 'Leader',        pullRate: 0.04,  color: '#10b981' },
+  { code: 'C',   name: 'Common',        pullRate: 0.55,  color: '#6b7280' },
+  { code: 'UC',  name: 'Uncommon',      pullRate: 0.28,  color: '#3b82f6' },
+  { code: 'R',   name: 'Rare',          pullRate: 0.12,  color: '#a855f7' },
+  { code: 'SR',  name: 'Super Rare',    pullRate: 0.04,  color: '#f59e0b' },
+  { code: 'SCR', name: 'Secret Rare',   pullRate: 0.008, color: '#f97316' },
+  { code: 'SPR', name: 'Special Rare',  pullRate: 0.003, color: '#dc2626' },
 ]
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -43,8 +44,8 @@ const LOG_MAX = Math.log(1 / 0.003)  // log(packs for SPR)
 const pullCostOf = pullRate =>
   ((Math.log(1 / pullRate) - LOG_MIN) / (LOG_MAX - LOG_MIN)) * 9 + 1
 
-// Character premium: rank 1 → 10, rank 20 → 1
-const charPremiumOf = avgRank => ((20 - avgRank) / 19) * 9 + 1
+// Character premium: googleTrends 100 → 10, 0 → 1
+const charPremiumOf = googleTrends => Math.max(1, Math.min(10, (googleTrends / 100) * 9 + 1))
 
 function makeSparkline(rng, base, n, vol) {
   const d = [base]
@@ -58,7 +59,7 @@ export const CARDS = RAW.map((raw, idx) => {
   const rng = mkRng(idx * 7919 + 42)
 
   const pullCost        = pullCostOf(raw.pullRate)
-  const charPremium     = charPremiumOf(raw.avgRank)
+  const charPremium     = charPremiumOf(raw.googleTrends)
   const artScore        = 3 + rng() * 7           // 3–10
   const universalAppeal = raw.googleTrends / 10   // 0–10
   const desirability    = charPremium * 0.45 + artScore * 0.45 + universalAppeal * 0.10
