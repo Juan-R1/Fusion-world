@@ -64,7 +64,7 @@ async function fetchAllCards(slug) {
   const headers = { 'x-api-key': API_KEY, 'Accept': 'application/json' }
   const cards   = []
   let offset    = 0
-  const limit   = 250
+  const limit   = 20   // free tier max
 
   while (true) {
     const url = `${BASE_URL}/cards?set=${encodeURIComponent(slug)}&limit=${limit}&offset=${offset}`
