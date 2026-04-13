@@ -1,0 +1,35 @@
+name: Update Live Prices
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'   # Every Monday at 05:00 UTC
+  workflow_dispatch:        # Manual trigger for testing
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Archive previous prices into history
+        run: node scripts/accumulate-prices.js
+
+      - name: Fetch latest prices from JustTCG
+        env:
+          JUSTTCG_API_KEY: ${{ secrets.JUSTTCG_API_KEY }}
+        run: node scripts/update-prices.js
+
+      - name: Commit updated price files
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'src/livePrices.json src/priceHistory.json'
+          message: 'chore: weekly price update'
+          default_author: github_actions

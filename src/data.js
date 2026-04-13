@@ -1,4 +1,6 @@
-import RAW from './cardData.json' assert { type: 'json' }
+import RAW      from './cardData.json'     assert { type: 'json' }
+import LIVE_RAW from './livePrices.json'   assert { type: 'json' }
+import HIST_RAW from './priceHistory.json' assert { type: 'json' }
 
 // ── Sets (FB01–FB09) ─────────────────────────────────────────────────────────
 export const SETS = [
@@ -23,6 +25,14 @@ export const RARITIES = [
   { code: 'SCR', name: 'Secret Rare',   pullRate: 0.008, color: '#f97316' },
   { code: 'SPR', name: 'Special Rare',  pullRate: 0.003, color: '#dc2626' },
 ]
+
+// ── Live price maps ───────────────────────────────────────────────────────────
+// LIVE_RAW: [{cardCode, marketPrice, timestamp}]
+// HIST_RAW: {[cardCode]: [{price, timestamp}]}
+const LIVE_MAP = new Map(LIVE_RAW.map(e => [e.cardCode, e.marketPrice]))
+const HIST_MAP = HIST_RAW
+
+export const HAS_LIVE_PRICES = LIVE_MAP.size > 0
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -60,18 +70,37 @@ export const CARDS = RAW.map((raw, idx) => {
 
   const pullCost        = pullCostOf(raw.pullRate)
   const charPremium     = charPremiumOf(raw.googleTrends)
-  const artScore        = 3 + rng() * 7           // 3–10
-  const universalAppeal = raw.googleTrends / 10   // 0–10
+  const artScore        = 3 + rng() * 7           // rng #1: 3–10
+  const universalAppeal = raw.googleTrends / 10
   const desirability    = charPremium * 0.45 + artScore * 0.45 + universalAppeal * 0.10
 
-  const predictedPrice = Math.exp(0.80 + 0.17 * pullCost + 0.38 * desirability)
-  const marketPrice    = predictedPrice * (0.7 + rng() * 0.6)
-  const delta          = ((marketPrice - predictedPrice) / predictedPrice) * 100
+  const predictedPrice  = Math.exp(0.80 + 0.17 * pullCost + 0.38 * desirability)
 
-  const totalSupply      = Math.floor(100 + rng() * 1400)
-  const absorbed         = Math.floor(totalSupply * (0.15 + rng() * 0.80))
-  const demandPressure   = absorbed / totalSupply
-  const supplySaturation = 0.4 + rng() * 1.7
+  // rng #2: ALWAYS consumed regardless of live data — preserves RNG stability
+  // for all downstream calls (totalSupply, absorbed, supplySaturation, sparklines)
+  const syntheticNoise  = 0.7 + rng() * 0.6
+  const syntheticPrice  = predictedPrice * syntheticNoise
+
+  const livePrice       = LIVE_MAP.get(raw.code) ?? null
+  const marketPrice     = livePrice ?? syntheticPrice
+  const delta           = ((marketPrice - predictedPrice) / predictedPrice) * 100
+
+  const totalSupply     = Math.floor(100 + rng() * 1400)          // rng #3
+  const absorbed        = Math.floor(totalSupply * (0.15 + rng() * 0.80)) // rng #4
+  const demandPressure  = absorbed / totalSupply
+  const supplySaturation = 0.4 + rng() * 1.7                      // rng #5
+
+  // rng #6–34: always generated — do NOT skip even when live price exists
+  const syntheticPriceHistory = makeSparkline(rng, syntheticPrice, 30, 0.06)
+
+  // Graft real historical prices onto the tail of the synthetic sparkline
+  const realPrices = (HIST_MAP[raw.code] ?? []).map(e => e.price)
+  const priceHistory = realPrices.length > 0
+    ? [...syntheticPriceHistory.slice(0, 30 - realPrices.length), ...realPrices]
+    : syntheticPriceHistory
+
+  // rng #35–63: always generated
+  const demandHistory = makeSparkline(rng, demandPressure, 30, 0.05)
 
   return {
     id:              idx,
@@ -101,7 +130,8 @@ export const CARDS = RAW.map((raw, idx) => {
     absorbed,
     demandPressure:    +demandPressure.toFixed(3),
     supplySaturation:  +supplySaturation.toFixed(3),
-    priceHistory:  makeSparkline(rng, marketPrice,    30, 0.06),
-    demandHistory: makeSparkline(rng, demandPressure, 30, 0.05),
+    hasLivePrice:    livePrice !== null,
+    priceHistory,
+    demandHistory,
   }
 })
