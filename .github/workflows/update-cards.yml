@@ -1,0 +1,47 @@
+name: Update Card Database
+
+on:
+  schedule:
+    - cron: '0 4 1 * *'   # 1st of every month at 04:00 UTC
+  workflow_dispatch:        # Manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+
+      - name: Scrape official DBFW card list
+        run: node scripts/scrape-official-fw.js
+        # Scrapes all 9 sets → scripts/official-card-db/{SET}.json
+        # Runs per-set; if one set fails the others still complete
+
+      - name: Merge scraped cards into known-cards.json
+        run: node scripts/merge-known-cards.js
+        # Only adds new entries — existing manual verifications are preserved
+
+      - name: Regenerate src/cardData.json
+        run: node scripts/fetch-cards.js
+
+      - name: Commit updated card data
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: |
+            scripts/known-cards.json
+            scripts/official-card-db
+            src/cardData.json
+          message: 'chore: monthly card database update'
+          default_author: github_actions
