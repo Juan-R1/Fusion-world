@@ -36,12 +36,12 @@ const cardDataPath = path.join(__dirname, '..', 'src', 'cardData.json')
 const localCards   = JSON.parse(fs.readFileSync(cardDataPath, 'utf8'))
 const LOCAL_MAP    = new Map(localCards.map(c => [c.code, c]))
 
-async function fetchWithRetry(url, options, retries = 3) {
-  let delay = 1000
+async function fetchWithRetry(url, options, retries = 4) {
+  let delay = 65000   // free tier: 10 req/min → wait >60s on 429
   for (let i = 0; i < retries; i++) {
     const res = await fetch(url, options)
     if (res.status === 429) {
-      console.warn(`Rate limited. Waiting ${delay}ms...`)
+      console.warn(`Rate limited. Waiting ${Math.round(delay/1000)}s...`)
       await new Promise(r => setTimeout(r, delay))
       delay *= 2
       continue
@@ -81,7 +81,7 @@ async function fetchAllCards(slug) {
 
     if (!body.meta?.hasMore || page.length < limit) break
     offset += limit
-    await new Promise(r => setTimeout(r, 300))   // polite inter-page delay
+    await new Promise(r => setTimeout(r, 7000))  // 10 req/min limit → 7s between pages
   }
 
   return cards
@@ -133,8 +133,8 @@ async function main() {
     } catch (err) {
       console.error(`\n[${setCode}] Error: ${err.message}`)
     }
-    // Polite delay between sets — free tier: 100 req/day, rate limit: 10/min
-    await new Promise(r => setTimeout(r, 600))
+    // Extra buffer between sets (inter-page delay already handles most of it)
+    await new Promise(r => setTimeout(r, 3000))
   }
 
   const outPath = path.join(__dirname, '..', 'src', 'livePrices.json')
