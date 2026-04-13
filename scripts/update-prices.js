@@ -18,7 +18,7 @@ if (!API_KEY) {
   process.exit(1)
 }
 
-// JustTCG set slugs — update these if the API returns 0 cards for a set
+// JustTCG set slugs — confirmed from /v1/sets?game=dragon-ball-super-fusion-world
 const SET_SLUGS = {
   FB01: 'awakened-pulse-dragon-ball-super-fusion-world',
   FB02: 'blazing-aura-dragon-ball-super-fusion-world',
@@ -27,23 +27,14 @@ const SET_SLUGS = {
   FB05: 'new-adventure-dragon-ball-super-fusion-world',
   FB06: 'rivals-clash-dragon-ball-super-fusion-world',
   FB07: 'wish-for-shenron-dragon-ball-super-fusion-world',
-  FB08: 'saiyans-pride-dragon-ball-super-fusion-world',
+  FB08: 'saiyan-s-pride-dragon-ball-super-fusion-world',   // apostrophe → -s-
   FB09: 'dual-evolution-dragon-ball-super-fusion-world',
 }
 
-// Load local card index
+// Load local card index — keyed by full code "FB01-001"
 const cardDataPath = path.join(__dirname, '..', 'src', 'cardData.json')
 const localCards   = JSON.parse(fs.readFileSync(cardDataPath, 'utf8'))
-
-// Build lookup: setCode → Map<paddedNum|intNum, card>
-// Registers both "001" and "1" so matching survives whatever format JustTCG uses
-const setMaps = {}
-for (const local of localCards) {
-  const [setCode, num] = local.code.split('-')
-  if (!setMaps[setCode]) setMaps[setCode] = new Map()
-  setMaps[setCode].set(num, local)                          // zero-padded: "001"
-  setMaps[setCode].set(String(parseInt(num, 10)), local)    // integer:     "1"
-}
+const LOCAL_MAP    = new Map(localCards.map(c => [c.code, c]))
 
 async function fetchWithRetry(url, options, retries = 3) {
   let delay = 1000
@@ -60,51 +51,74 @@ async function fetchWithRetry(url, options, retries = 3) {
   throw new Error(`Failed after ${retries} retries: ${url}`)
 }
 
+// Pick the best price variant: Near Mint Normal > Near Mint > first available
+function bestPrice(variants) {
+  if (!Array.isArray(variants) || variants.length === 0) return null
+  const nmNormal = variants.find(v => v.condition === 'Near Mint' && v.printing === 'Normal')
+  const nm       = variants.find(v => v.condition === 'Near Mint')
+  const variant  = nmNormal ?? nm ?? variants[0]
+  return variant?.price ?? null
+}
+
+async function fetchAllCards(slug) {
+  const headers = { 'x-api-key': API_KEY, 'Accept': 'application/json' }
+  const cards   = []
+  let offset    = 0
+  const limit   = 250
+
+  while (true) {
+    const url = `${BASE_URL}/cards?set=${encodeURIComponent(slug)}&limit=${limit}&offset=${offset}`
+    const res = await fetchWithRetry(url, { headers })
+
+    if (!res.ok) {
+      console.warn(`  HTTP ${res.status} at offset ${offset} — stopping`)
+      break
+    }
+
+    const body = await res.json()
+    const page = body.data ?? []
+    cards.push(...page)
+
+    if (!body.meta?.hasMore || page.length < limit) break
+    offset += limit
+    await new Promise(r => setTimeout(r, 300))   // polite inter-page delay
+  }
+
+  return cards
+}
+
 async function fetchSetPrices(setCode, slug) {
-  const url = `${BASE_URL}/products?set=${encodeURIComponent(slug)}&limit=250`
-  const res = await fetchWithRetry(url, {
-    headers: {
-      'Authorization': `Bearer ${API_KEY}`,
-      'Accept':        'application/json',
-    },
-  })
+  const allCards = await fetchAllCards(slug)
 
-  if (!res.ok) {
-    console.warn(`[${setCode}] HTTP ${res.status} for slug "${slug}" — skipping`)
+  if (allCards.length === 0) {
+    console.warn(`[${setCode}] WARNING: 0 cards returned for slug "${slug}" — slug may be wrong`)
     return []
   }
 
-  const data     = await res.json()
-  const products = Array.isArray(data) ? data : (data.products ?? data.data ?? [])
+  // De-duplicate by code: keep lowest Near Mint Normal price (base card, not alt art)
+  const priceMap = new Map()  // code → price
 
-  if (products.length === 0) {
-    console.warn(`[${setCode}] WARNING: 0 products returned for slug "${slug}" — slug may be wrong`)
-    return []
-  }
+  for (const card of allCards) {
+    const code = card.number
+    if (!code || code === 'N/A') continue        // skip sealed products
+    if (!LOCAL_MAP.has(code)) continue           // skip codes not in our dataset
 
-  const map     = setMaps[setCode] ?? new Map()
-  const results = []
-  const ts      = new Date().toISOString()
-
-  for (const product of products) {
-    const numRaw  = product.number ?? product.cardNumber ?? product.card_number ?? ''
-    const numMatch = String(numRaw).match(/(\d+)/)
-    if (!numMatch) continue
-
-    const local = map.get(numMatch[1].padStart(3, '0')) ?? map.get(numMatch[1])
-    if (!local) continue
-
-    const price = product.marketPrice ?? product.market_price ?? product.price ?? null
+    const price = bestPrice(card.variants)
     if (price == null) continue
 
-    results.push({
-      cardCode:    local.code,   // "FB01-001" — field name matches LIVE_MAP key in data.js
-      marketPrice: +Number(price).toFixed(2),
-      timestamp:   ts,
-    })
+    // If same code appears multiple times (alt art), keep the lowest price
+    if (!priceMap.has(code) || price < priceMap.get(code))
+      priceMap.set(code, price)
   }
 
-  console.log(`[${setCode}] matched ${results.length} / ${products.length} products`)
+  const ts      = new Date().toISOString()
+  const results = [...priceMap.entries()].map(([code, price]) => ({
+    cardCode:    code,
+    marketPrice: +Number(price).toFixed(2),
+    timestamp:   ts,
+  }))
+
+  console.log(`[${setCode}] matched ${results.length} / ${allCards.length} entries`)
   return results
 }
 
@@ -112,15 +126,15 @@ async function main() {
   const allPrices = []
 
   for (const [setCode, slug] of Object.entries(SET_SLUGS)) {
-    process.stdout.write(`Fetching ${setCode}...`)
+    process.stdout.write(`Fetching ${setCode}... `)
     try {
       const prices = await fetchSetPrices(setCode, slug)
       allPrices.push(...prices)
     } catch (err) {
       console.error(`\n[${setCode}] Error: ${err.message}`)
     }
-    // Polite delay — free tier is 100 req/day, 9 sets = well within limit
-    await new Promise(r => setTimeout(r, 500))
+    // Polite delay between sets — free tier: 100 req/day, rate limit: 10/min
+    await new Promise(r => setTimeout(r, 600))
   }
 
   const outPath = path.join(__dirname, '..', 'src', 'livePrices.json')
