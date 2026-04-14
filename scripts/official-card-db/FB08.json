@@ -1,0 +1,1100 @@
+[
+  {
+    "code": "FB08-001",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan : Adolescence",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Leader",
+    "trait": null
+  },
+  {
+    "code": "FB08-002",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-003",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-004",
+    "name": "Coco",
+    "character": "Coco",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-005",
+    "name": "Android 18",
+    "character": "Android 18",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-006",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-007",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-008",
+    "name": "Son Goten",
+    "character": "Son Goten",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-009",
+    "name": "Son Goten/Trunks : Youth",
+    "character": "Son Goten/Trunks : Youth",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-010",
+    "name": "Son Gohan : Childhood",
+    "character": "Son Gohan : Childhood",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-011",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan : Adolescence",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-012",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan : Adolescence",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-013",
+    "name": "Son Gohan : Future",
+    "character": "Son Gohan : Future",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-014",
+    "name": "Trunks : Future",
+    "character": "Trunks : Future",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-015",
+    "name": "Trunks : Youth",
+    "character": "Trunks : Youth",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-016",
+    "name": "Trunks : Youth",
+    "character": "Trunks : Youth",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-017",
+    "name": "Natade Village Elder",
+    "character": "Natade Village Elder",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-018",
+    "name": "Videl",
+    "character": "Videl",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-019",
+    "name": "Videl",
+    "character": "Videl",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-020",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-021",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-022",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-023",
+    "name": "Hercule",
+    "character": "Hercule",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-024",
+    "name": "Threads of Fate",
+    "character": null,
+    "rarity": "C",
+    "color": "Red",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-025",
+    "name": "Caulifla",
+    "character": "Caulifla",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Leader",
+    "trait": null
+  },
+  {
+    "code": "FB08-026",
+    "name": "Vados",
+    "character": "Vados",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-027",
+    "name": "Caulifla",
+    "character": "Caulifla",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-028",
+    "name": "Cabba",
+    "character": "Cabba",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-029",
+    "name": "Cabba",
+    "character": "Cabba",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-030",
+    "name": "Kale",
+    "character": "Kale",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-031",
+    "name": "Kale",
+    "character": "Kale",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-032",
+    "name": "Kale",
+    "character": "Kale",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-033",
+    "name": "Kefla",
+    "character": "Kefla",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-034",
+    "name": "Kefla",
+    "character": "Kefla",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-035",
+    "name": "Gotenks",
+    "character": "Gotenks",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-036",
+    "name": "Saonel",
+    "character": "Saonel",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-037",
+    "name": "Champa",
+    "character": "Champa",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-038",
+    "name": "Dr. Rota",
+    "character": "Dr. Rota",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-039",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-040",
+    "name": "Hit",
+    "character": "Hit",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-041",
+    "name": "Pirina",
+    "character": "Pirina",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-042",
+    "name": "Frost",
+    "character": "Frost",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-043",
+    "name": "Fuwa",
+    "character": "Fuwa",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-044",
+    "name": "Botamo",
+    "character": "Botamo",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-045",
+    "name": "Magetta",
+    "character": "Magetta",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-046",
+    "name": "Renso",
+    "character": "Renso",
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-047",
+    "name": "Champa Booing",
+    "character": null,
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-048",
+    "name": "Thirst for Strength",
+    "character": null,
+    "rarity": "C",
+    "color": "Blue",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-049",
+    "name": "Turles",
+    "character": "Turles",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Leader",
+    "trait": null
+  },
+  {
+    "code": "FB08-050",
+    "name": "Amond",
+    "character": "Amond",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-051",
+    "name": "Great Ape Son Gohan",
+    "character": "Great Ape Son Gohan",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-052",
+    "name": "Cacao",
+    "character": "Cacao",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-053",
+    "name": "Krillin",
+    "character": "Krillin",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-054",
+    "name": "Cell",
+    "character": "Cell",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-055",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-056",
+    "name": "Son Gohan : Youth",
+    "character": "Son Gohan : Youth",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-057",
+    "name": "Turles",
+    "character": "Turles",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-058",
+    "name": "Turles",
+    "character": "Turles",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-059",
+    "name": "Turles",
+    "character": "Turles",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-060",
+    "name": "Daiz",
+    "character": "Daiz",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-061",
+    "name": "Chiaotzu",
+    "character": "Chiaotzu",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-062",
+    "name": "Tien Shinhan",
+    "character": "Tien Shinhan",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-063",
+    "name": "Hire-Dragon",
+    "character": "Hire-Dragon",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-064",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-065",
+    "name": "Piccolo",
+    "character": "Piccolo",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-066",
+    "name": "Yamcha",
+    "character": "Yamcha",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-067",
+    "name": "Lakasei",
+    "character": "Lakasei",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-068",
+    "name": "Rasin",
+    "character": "Rasin",
+    "rarity": "C",
+    "color": "Green",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-069",
+    "name": "Incredible Perfect Form",
+    "character": null,
+    "rarity": "C",
+    "color": "Green",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-070",
+    "name": "Kill Driver",
+    "character": null,
+    "rarity": "C",
+    "color": "Green",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-071",
+    "name": "The Tree of Might",
+    "character": null,
+    "rarity": "C",
+    "color": "Green",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-072",
+    "name": "Fruit of the Tree of Might",
+    "character": null,
+    "rarity": "C",
+    "color": "Green",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-073",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Leader",
+    "trait": null
+  },
+  {
+    "code": "FB08-074",
+    "name": "Angol",
+    "character": "Angol",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-075",
+    "name": "Whis",
+    "character": "Whis",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-076",
+    "name": "Kakarot",
+    "character": "Kakarot",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-077",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-078",
+    "name": "Natade Village Shaman",
+    "character": "Natade Village Shaman",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-079",
+    "name": "Nappa",
+    "character": "Nappa",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-080",
+    "name": "Nappa : Adolescence",
+    "character": "Nappa : Adolescence",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-081",
+    "name": "Bio-Broly",
+    "character": "Bio-Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-082",
+    "name": "Paragus",
+    "character": "Paragus",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-083",
+    "name": "Paragus",
+    "character": "Paragus",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-084",
+    "name": "Paragus",
+    "character": "Paragus",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-085",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-086",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-087",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-088",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-089",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-090",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-091",
+    "name": "King Vegeta",
+    "character": "King Vegeta",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-092",
+    "name": "Vegeta : Youth",
+    "character": "Vegeta : Youth",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-093",
+    "name": "Moah",
+    "character": "Moah",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-094",
+    "name": "Raditz",
+    "character": "Raditz",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-095",
+    "name": "Demon Resurrection",
+    "character": null,
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-096",
+    "name": "Immense Latent Power",
+    "character": null,
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-097",
+    "name": "Son Goku Jr.",
+    "character": "Son Goku Jr.",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Leader",
+    "trait": null
+  },
+  {
+    "code": "FB08-098",
+    "name": "Kakarot",
+    "character": "Kakarot",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-099",
+    "name": "Gine : BR",
+    "character": "Gine : BR",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-100",
+    "name": "Son Goku",
+    "character": "Son Goku",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-101",
+    "name": "Son Goku : GT",
+    "character": "Son Goku : GT",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-102",
+    "name": "Son Goku Jr.",
+    "character": "Son Goku Jr.",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-103",
+    "name": "Son Goku : Childhood",
+    "character": "Son Goku : Childhood",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-104",
+    "name": "Son Goten",
+    "character": "Son Goten",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-105",
+    "name": "Son Gohan",
+    "character": "Son Gohan",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-106",
+    "name": "Son Gohan : Childhood",
+    "character": "Son Gohan : Childhood",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-107",
+    "name": "Son Gohan : Adolescence",
+    "character": "Son Gohan : Adolescence",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-108",
+    "name": "Son Gohan : Future",
+    "character": "Son Gohan : Future",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-109",
+    "name": "Son Gohan : Youth",
+    "character": "Son Gohan : Youth",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-110",
+    "name": "Chi-Chi",
+    "character": "Chi-Chi",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-111",
+    "name": "Bardock",
+    "character": "Bardock",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-112",
+    "name": "Bardock",
+    "character": "Bardock",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-113",
+    "name": "Pan : GT",
+    "character": "Pan : GT",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-114",
+    "name": "Pan : GT",
+    "character": "Pan : GT",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-115",
+    "name": "Videl",
+    "character": "Videl",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-116",
+    "name": "Veku",
+    "character": "Veku",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-117",
+    "name": "Vegeta",
+    "character": "Vegeta",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-118",
+    "name": "Raditz",
+    "character": "Raditz",
+    "rarity": "C",
+    "color": "Black",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-119",
+    "name": "Hero&#039;s Heritage",
+    "character": null,
+    "rarity": "C",
+    "color": "Black",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-120",
+    "name": "Mt. Paoz House",
+    "character": null,
+    "rarity": "C",
+    "color": "Black",
+    "type": "Extra",
+    "trait": null
+  },
+  {
+    "code": "FB08-121",
+    "name": "Son Goten",
+    "character": "Son Goten",
+    "rarity": "C",
+    "color": "Red",
+    "type": "Battle",
+    "trait": null
+  },
+  {
+    "code": "FB08-122",
+    "name": "Broly",
+    "character": "Broly",
+    "rarity": "C",
+    "color": "Yellow",
+    "type": "Battle",
+    "trait": null
+  }
+]
