@@ -94,104 +94,59 @@ async function saveDebugDump(page, setCode) {
   console.error(`  Open ${htmlPath} in your browser, find a card link, and paste its HTML here.`);
 }
 
-// ── Multi-strategy card link extractor ───────────────────────────────────────
-// Returns: [{code, name, href}]
+// ── Card link extractor ───────────────────────────────────────────────────────
+// Bandai's card list page uses:
+//   <a class="cardStr" data-src="detail.php?card_no=FB01-030">
+//     <img alt="FB01-030 Card Name Here">
+//   </a>
+// All cards are in the DOM (hidden ones too) — no pagination clicking needed.
+
+const DETAIL_BASE = "https://www.dbs-cardgame.com/fw/en/cardlist/";
 
 async function getCardLinks(page, setCode) {
-  // Log how many total anchors exist for debugging
-  const totalAnchors = await page.evaluate(() => document.querySelectorAll("a[href]").length);
-  console.log(`  ${setCode}: ${totalAnchors} total anchor tags found on page`);
+  const totalAnchors = await page.evaluate(() => document.querySelectorAll("a").length);
+  console.log(`  ${setCode}: ${totalAnchors} total anchor tags on page`);
 
-  const links = await page.evaluate((prefix) => {
-    const seen  = new Map();
-    const code  = new RegExp(`(${prefix}-\\d{3})`, "i");
-    const named = new RegExp(`(${prefix}-\\d{3})\\s+(.+)`, "i");
+  const links = await page.evaluate((prefix, base) => {
+    const seen       = new Map();
+    const codeRe     = new RegExp(`(${prefix}-\\d{3})\\s*(.*)`, "i");
 
-    // ── Strategy 1 (original): anchor text contains "FB01-001 Name", href has /cardlist/card/
-    for (const a of document.querySelectorAll("a[href]")) {
-      const text = cleanText(a.innerText || a.getAttribute("aria-label") || "");
-      const href = a.href || "";
-      const m = text.match(named);
-      if (m && href.includes("/cardlist/card/") && !seen.has(m[1].toUpperCase())) {
-        seen.set(m[1].toUpperCase(), { code: m[1].toUpperCase(), name: m[2].trim(), href });
-      }
+    // ── Primary: <a class="cardStr" data-src="detail.php?card_no=FB01-030">
+    for (const a of document.querySelectorAll("a[data-src]")) {
+      const dataSrc = a.getAttribute("data-src") || "";
+      if (!dataSrc.includes("card_no=")) continue;
+
+      const img  = a.querySelector("img");
+      const alt  = (img?.getAttribute("alt") || "").trim();
+      const m    = alt.match(codeRe);
+      if (!m || !m[1].toUpperCase().startsWith(prefix)) continue;
+
+      const code = m[1].toUpperCase();
+      if (seen.has(code)) continue;
+      seen.set(code, { code, name: m[2].trim() || null, href: base + dataSrc });
     }
-    if (seen.size > 0) return { strategy: 1, links: [...seen.values()] };
+    if (seen.size > 0) return { strategy: "data-src", links: [...seen.values()] };
 
-    // ── Strategy 2 (original fallback): href contains FB01-001 and /cardlist/card/
-    for (const a of document.querySelectorAll("a[href]")) {
-      const href = a.href || "";
-      const m = href.match(code);
-      if (href.includes("/cardlist/card/") && m && !seen.has(m[1].toUpperCase())) {
-        seen.set(m[1].toUpperCase(), { code: m[1].toUpperCase(), name: null, href });
-      }
+    // ── Fallback: any img whose alt starts with the set prefix
+    for (const img of document.querySelectorAll("img[alt]")) {
+      const alt = (img.getAttribute("alt") || "").trim();
+      const m   = alt.match(codeRe);
+      if (!m || !m[1].toUpperCase().startsWith(prefix)) continue;
+
+      const code   = m[1].toUpperCase();
+      if (seen.has(code)) continue;
+      const a      = img.closest("a[data-src]");
+      const dataSrc = a?.getAttribute("data-src") || "";
+      seen.set(code, { code, name: m[2].trim() || null, href: dataSrc ? base + dataSrc : "" });
     }
-    if (seen.size > 0) return { strategy: 2, links: [...seen.values()] };
+    if (seen.size > 0) return { strategy: "img-alt", links: [...seen.values()] };
 
-    // ── Strategy 3: href contains FB01-001 in ANY link (URL pattern may have changed)
-    for (const a of document.querySelectorAll("a[href]")) {
-      const href = a.href || "";
-      const m = href.match(code);
-      if (m && !seen.has(m[1].toUpperCase())) {
-        seen.set(m[1].toUpperCase(), { code: m[1].toUpperCase(), name: null, href });
-      }
-    }
-    if (seen.size > 0) return { strategy: 3, links: [...seen.values()] };
+    return { strategy: "none", links: [] };
+  }, setCode, DETAIL_BASE);
 
-    // ── Strategy 4: any element whose text contains FB01-001 (data attrs, spans, etc.)
-    for (const el of document.querySelectorAll("*")) {
-      const text = cleanText(el.innerText || el.textContent || "");
-      const m = text.match(new RegExp(`^(${prefix}-\\d{3})$`));
-      if (!m) continue;
-      // Walk up to find a parent <a> or sibling link
-      let node = el;
-      let link = null;
-      for (let i = 0; i < 6; i++) {
-        if (!node) break;
-        if (node.tagName === "A" && node.href) { link = node; break; }
-        const a = node.querySelector?.("a[href]");
-        if (a) { link = a; break; }
-        node = node.parentElement;
-      }
-      const cardCode = m[1].toUpperCase();
-      if (!seen.has(cardCode)) {
-        seen.set(cardCode, { code: cardCode, name: null, href: link?.href || "" });
-      }
-    }
-    if (seen.size > 0) return { strategy: 4, links: [...seen.values()] };
+  if (links.links.length > 0)
+    console.log(`  ${setCode}: found ${links.links.length} card links via [${links.strategy}]`);
 
-    // ── Strategy 5: scan all text nodes for card code pattern, take nearest link href
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    let node;
-    while ((node = walker.nextNode())) {
-      const text = (node.textContent || "").trim();
-      const m = text.match(code);
-      if (!m) continue;
-      const cardCode = m[1].toUpperCase();
-      if (seen.has(cardCode)) continue;
-      let el = node.parentElement;
-      let link = null;
-      for (let i = 0; i < 8; i++) {
-        if (!el) break;
-        if (el.tagName === "A" && el.href) { link = el; break; }
-        const a = el.querySelector?.("a[href]");
-        if (a) { link = a; break; }
-        el = el.parentElement;
-      }
-      seen.set(cardCode, { code: cardCode, name: null, href: link?.href || "" });
-    }
-    if (seen.size > 0) return { strategy: 5, links: [...seen.values()] };
-
-    return { strategy: 0, links: [] };
-
-    function cleanText(v) {
-      return (v || "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
-    }
-  }, setCode);
-
-  if (links.links.length > 0) {
-    console.log(`  ${setCode}: found ${links.links.length} card links via strategy ${links.strategy}`);
-  }
   return links.links.sort((a, b) => a.code.localeCompare(b.code));
 }
 
