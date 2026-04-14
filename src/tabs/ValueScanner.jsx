@@ -172,6 +172,9 @@ export default function ValueScanner({ cards }) {
                     <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
                       <RarityBadge rarity={card.rarity} color={card.rarityColor} />
                       <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
+                      {card.hasLivePrice && (
+                        <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>LIVE</span>
+                      )}
                     </div>
                   </div>
                 </div>

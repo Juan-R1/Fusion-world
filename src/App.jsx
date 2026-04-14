@@ -1,6 +1,6 @@
 import { useState }    from 'react'
 import { T }           from './theme.js'
-import { CARDS }       from './data.js'
+import { CARDS, HAS_LIVE_PRICES } from './data.js'
 import ValueScanner    from './tabs/ValueScanner.jsx'
 import PricingModel    from './tabs/PricingModel.jsx'
 import MarketDynamics  from './tabs/MarketDynamics.jsx'
@@ -42,8 +42,12 @@ export default function App() {
               Dragon Ball Fusion World · Market Analytics
             </span>
           </div>
-          <div style={{ fontSize: 11, color: T.dim, fontFamily: T.mono }}>
-            {CARDS.length} cards · FB01–FB09 · Simulated data
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+            {CARDS.length} cards · FB01–FB09
+            {HAS_LIVE_PRICES
+              ? <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 4, padding: '2px 7px', fontSize: 10, fontWeight: 700, letterSpacing: '0.05em' }}>● LIVE</span>
+              : <span style={{ color: T.dim }}>· Simulated data</span>
+            }
           </div>
         </div>
       </header>
