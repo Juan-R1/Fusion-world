@@ -107,7 +107,7 @@ async function getCardLinks(page, setCode) {
   const totalAnchors = await page.evaluate(() => document.querySelectorAll("a").length);
   console.log(`  ${setCode}: ${totalAnchors} total anchor tags on page`);
 
-  const links = await page.evaluate((prefix, base) => {
+  const links = await page.evaluate(({ prefix, base }) => {
     const seen       = new Map();
     const codeRe     = new RegExp(`(${prefix}-\\d{3})\\s*(.*)`, "i");
 
@@ -142,7 +142,7 @@ async function getCardLinks(page, setCode) {
     if (seen.size > 0) return { strategy: "img-alt", links: [...seen.values()] };
 
     return { strategy: "none", links: [] };
-  }, setCode, DETAIL_BASE);
+  }, { prefix: setCode, base: DETAIL_BASE });
 
   if (links.links.length > 0)
     console.log(`  ${setCode}: found ${links.links.length} card links via [${links.strategy}]`);
