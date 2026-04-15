@@ -1,0 +1,26 @@
+{
+  "name": "FusionMetrics — DBFW Market Analytics",
+  "short_name": "FusionMetrics",
+  "description": "Live pricing, value scanner, Box EV, and watchlist for Dragon Ball Fusion World.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "categories": ["finance", "utilities", "games"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
