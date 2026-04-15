@@ -4,11 +4,13 @@ import { CARDS, HAS_LIVE_PRICES } from './data.js'
 import ValueScanner    from './tabs/ValueScanner.jsx'
 import PricingModel    from './tabs/PricingModel.jsx'
 import MarketDynamics  from './tabs/MarketDynamics.jsx'
+import BoxEV           from './tabs/BoxEV.jsx'
 
 const TABS = [
   { id: 'scanner',  label: '🔍 Value Scanner'  },
   { id: 'model',    label: '📈 Pricing Model'   },
   { id: 'dynamics', label: '🌊 Market Dynamics' },
+  { id: 'boxev',    label: '📦 Box EV'          },
 ]
 
 export default function App() {
@@ -79,6 +81,7 @@ export default function App() {
         {tab === 'scanner'  && <ValueScanner   cards={CARDS} />}
         {tab === 'model'    && <PricingModel   cards={CARDS} />}
         {tab === 'dynamics' && <MarketDynamics cards={CARDS} />}
+        {tab === 'boxev'    && <BoxEV          cards={CARDS} />}
       </main>
     </div>
   )
