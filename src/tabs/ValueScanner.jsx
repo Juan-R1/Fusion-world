@@ -28,7 +28,7 @@ const INP = {
   fontFamily: "'Outfit', system-ui, sans-serif",
 }
 
-export default function ValueScanner({ cards }) {
+export default function ValueScanner({ cards, watchedCodes = new Set(), onToggleWatch = () => {} }) {
   const [search,    setSearch]    = useState('')
   const [setFilter, setSetFilter] = useState('ALL')
   const [rarFilter, setRarFilter] = useState('ALL')
@@ -161,6 +161,18 @@ export default function ValueScanner({ cards }) {
               >
                 {/* Card cell */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                  {/* Star / watchlist toggle */}
+                  <button
+                    onClick={e => { e.stopPropagation(); onToggleWatch(card.cardCode) }}
+                    title={watchedCodes.has(card.cardCode) ? 'Remove from watchlist' : 'Add to watchlist'}
+                    style={{
+                      background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0,
+                      color: watchedCodes.has(card.cardCode) ? '#eab308' : '#64748b',
+                      fontSize: 15, padding: '0 1px', lineHeight: 1, transition: 'color .15s',
+                    }}
+                  >
+                    {watchedCodes.has(card.cardCode) ? '★' : '☆'}
+                  </button>
                   {card.image
                     ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={34} height={48} radius={3} />
                     : <span style={{ fontSize: 22, flexShrink: 0 }}>{card.icon}</span>
@@ -269,7 +281,12 @@ export default function ValueScanner({ cards }) {
       {/* ─── Right detail panel ─── */}
       {selCard ? (
         <div style={{ flex: '0 0 42%', minWidth: 0, overflowY: 'auto' }}>
-          <CardDetail card={selCard} onClose={() => setSelected(null)} />
+          <CardDetail
+              card={selCard}
+              onClose={() => setSelected(null)}
+              watched={watchedCodes.has(selCard.cardCode)}
+              onToggleWatch={() => onToggleWatch(selCard.cardCode)}
+            />
         </div>
       ) : (
         <div

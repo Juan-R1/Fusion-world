@@ -35,7 +35,7 @@ function RangeToggle({ range, setRange }) {
   )
 }
 
-export default function CardDetail({ card, onClose }) {
+export default function CardDetail({ card, onClose, watched = false, onToggleWatch = null }) {
   const [range, setRange] = useState(30)
 
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
@@ -64,6 +64,23 @@ export default function CardDetail({ card, onClose }) {
       >
         ✕ close
       </button>
+
+      {/* Watch toggle */}
+      {onToggleWatch && (
+        <button
+          onClick={onToggleWatch}
+          style={{
+            position: 'absolute', top: 16, right: 80,
+            background: watched ? 'rgba(234,179,8,0.12)' : T.s2,
+            border: `1px solid ${watched ? 'rgba(234,179,8,0.4)' : T.border}`,
+            color: watched ? '#eab308' : T.dim,
+            cursor: 'pointer', borderRadius: 6, padding: '4px 10px', fontSize: 12,
+            transition: 'background .15s, border-color .15s, color .15s',
+          }}
+        >
+          {watched ? '★ Watching' : '☆ Watch'}
+        </button>
+      )}
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 20 }}>
