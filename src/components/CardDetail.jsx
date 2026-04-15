@@ -1,5 +1,6 @@
 import { useState }  from 'react'
 import { T }         from '../theme.js'
+import { useIsMobile } from '../hooks/useIsMobile.js'
 import Sparkline     from './Sparkline.jsx'
 import GaugeRing     from './GaugeRing.jsx'
 import MiniBar       from './MiniBar.jsx'
@@ -37,20 +38,31 @@ function RangeToggle({ range, setRange }) {
 
 export default function CardDetail({ card, onClose, watched = false, onToggleWatch = null }) {
   const [range, setRange] = useState(30)
+  const isMobile = useIsMobile()
 
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
   const ssColor = card.supplySaturation > 1 ? T.red : T.green
+
+  // Responsive widths for inline charts
+  const chartWidth = isMobile
+    ? Math.min((typeof window !== 'undefined' ? window.innerWidth : 320) - 64, 320)
+    : 270
+  const pad   = isMobile ? 16 : 24
+  const imgW  = isMobile ? 120 : 140
+  const imgH  = isMobile ? 168 : 196
 
   return (
     <div
       style={{
         background: T.s1,
         border: `1px solid ${T.border}`,
-        borderRadius: 12,
-        padding: 24,
+        borderRadius: isMobile ? 0 : 12,
+        padding: pad,
+        paddingTop: isMobile ? 56 : pad,
         overflowY: 'auto',
         position: 'relative',
         height: '100%',
+        WebkitOverflowScrolling: 'touch',
       }}
     >
       {/* Close button */}
@@ -59,10 +71,11 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
         style={{
           position: 'absolute', top: 16, right: 16,
           background: T.s2, border: 'none', color: T.muted,
-          cursor: 'pointer', borderRadius: 6, padding: '4px 10px', fontSize: 12,
+          cursor: 'pointer', borderRadius: 6, padding: '6px 12px', fontSize: 13,
+          fontWeight: 600, zIndex: 2,
         }}
       >
-        ✕ close
+        ✕ {isMobile ? 'Close' : 'close'}
       </button>
 
       {/* Watch toggle */}
@@ -70,11 +83,12 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
         <button
           onClick={onToggleWatch}
           style={{
-            position: 'absolute', top: 16, right: 80,
+            position: 'absolute', top: 16, right: isMobile ? 92 : 80,
             background: watched ? 'rgba(234,179,8,0.12)' : T.s2,
             border: `1px solid ${watched ? 'rgba(234,179,8,0.4)' : T.border}`,
             color: watched ? '#eab308' : T.dim,
-            cursor: 'pointer', borderRadius: 6, padding: '4px 10px', fontSize: 12,
+            cursor: 'pointer', borderRadius: 6, padding: '6px 12px', fontSize: 13,
+            fontWeight: 600, zIndex: 2,
             transition: 'background .15s, border-color .15s, color .15s',
           }}
         >
@@ -84,22 +98,20 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 20 }}>
-        {/* Card image — large, centered, above name */}
         {card.image && (
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
             <CardImage
               src={card.image}
               cardCode={card.cardCode}
               alt={card.name}
-              width={140}
-              height={196}
+              width={imgW}
+              height={imgH}
               radius={8}
             />
           </div>
         )}
-        {/* Emoji icon only shown when no real image */}
         {!card.image && (
-          <div style={{ fontSize: 38, marginBottom: 6 }}>{card.icon}</div>
+          <div style={{ fontSize: 38, marginBottom: 6, textAlign: 'center' }}>{card.icon}</div>
         )}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: T.text, fontFamily: T.display, lineHeight: 1.3 }}>
@@ -139,12 +151,12 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
 
       {/* ── Price comparison ── */}
       <div style={{ background: T.s2, borderRadius: 10, padding: 16, marginBottom: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, gap: 12 }}>
           <div>
             <div style={{ fontSize: 11, color: T.dim, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Market Price
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: T.text, fontFamily: T.mono }}>
+            <div style={{ fontSize: isMobile ? 22 : 26, fontWeight: 700, color: T.text, fontFamily: T.mono }}>
               ${card.marketPrice.toFixed(2)}
             </div>
           </div>
@@ -152,12 +164,12 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
             <div style={{ fontSize: 11, color: T.dim, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Model Price
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: T.muted, fontFamily: T.mono }}>
+            <div style={{ fontSize: isMobile ? 22 : 26, fontWeight: 700, color: T.muted, fontFamily: T.mono }}>
               ${card.predictedPrice.toFixed(2)}
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <DeltaBadge delta={card.delta} />
           <span style={{ fontSize: 12, color: T.dim }}>
             {card.delta < -15
@@ -177,7 +189,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           </div>
           <RangeToggle range={range} setRange={setRange} />
         </div>
-        <Sparkline data={card.priceHistory.slice(-range)} color={T.orange} height={60} width={270} fill />
+        <Sparkline data={card.priceHistory.slice(-range)} color={T.orange} height={60} width={chartWidth} fill />
       </div>
 
       {/* ── Desirability breakdown ── */}
@@ -195,7 +207,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
               <span style={{ fontSize: 12, color: T.muted }}>{label}</span>
               <span style={{ fontSize: 12, fontFamily: T.mono, color }}>{value.toFixed(1)}/10</span>
             </div>
-            <MiniBar value={value} max={10} color={color} w={270} />
+            <MiniBar value={value} max={10} color={color} w={chartWidth} />
           </div>
         ))}
         <div
@@ -212,7 +224,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
       </div>
 
       {/* ── Gauge rings ── */}
-      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 16 }}>
+      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 16, flexWrap: 'wrap' }}>
         <div style={{ textAlign: 'center' }}>
           <GaugeRing value={card.demandPressure} max={1} color={dpColor} size={90} label="Demand" />
           <div style={{ fontSize: 10, color: dpColor, marginTop: 4 }}>
@@ -252,7 +264,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           </div>
           <RangeToggle range={range} setRange={setRange} />
         </div>
-        <Sparkline data={card.demandHistory.slice(-range)} color={dpColor} height={40} width={270} fill />
+        <Sparkline data={card.demandHistory.slice(-range)} color={dpColor} height={40} width={chartWidth} fill />
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { T }         from '../theme.js'
 import { SETS, RARITIES } from '../data.js'
+import { useIsMobile } from '../hooks/useIsMobile.js'
 import DeltaBadge    from '../components/DeltaBadge.jsx'
 import MiniBar       from '../components/MiniBar.jsx'
 import RarityBadge   from '../components/RarityBadge.jsx'
@@ -22,8 +23,8 @@ const INP = {
   border: '1px solid #2a2a2a',
   borderRadius: 6,
   color: '#f1f5f9',
-  padding: '7px 11px',
-  fontSize: 13,
+  padding: '8px 11px',
+  fontSize: 14,
   outline: 'none',
   fontFamily: "'Outfit', system-ui, sans-serif",
 }
@@ -35,6 +36,7 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
   const [sort,      setSort]      = useState('undervalued')
   const [selected,  setSelected]  = useState(null)
   const [page,      setPage]      = useState(0)
+  const isMobile = useIsMobile()
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -54,7 +56,6 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
     })
   }, [cards, search, setFilter, rarFilter, sort])
 
-  // Reset page when filters change
   const totalPages  = Math.ceil(filtered.length / PAGE_SIZE)
   const clampedPage = Math.min(page, Math.max(0, totalPages - 1))
   const pageSlice   = filtered.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
@@ -67,37 +68,48 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
 
   const selCard = selected != null ? cards.find(c => c.id === selected) : null
 
-  // Empty-state context
   const isSprFilter  = rarFilter === 'SPR'
   const isLateSet    = ['FB06','FB07','FB08','FB09'].includes(setFilter)
   const selectedSetName = SETS.find(s => s.code === setFilter)?.name ?? ''
   const resetFilters = () => {
-    setSearch('')
-    setSetFilter('ALL')
-    setRarFilter('ALL')
-    setSort('undervalued')
-    setSelected(null)
-    setPage(0)
+    setSearch(''); setSetFilter('ALL'); setRarFilter('ALL')
+    setSort('undervalued'); setSelected(null); setPage(0)
   }
   const handleFilterChange = (fn) => { fn(); setPage(0) }
 
+  const gridCols = '2fr 1fr 1fr 1fr 1fr 1fr'
+  const tableMinWidth = isMobile ? 640 : 'auto'
+
   return (
-    <div style={{ display: 'flex', gap: 16, height: 'calc(100vh - 136px)' }}>
+    <div style={{
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      gap: 16,
+      height: isMobile ? 'auto' : 'calc(100vh - 136px)',
+    }}>
 
       {/* ─── Left panel ─── */}
-      <div style={{ flex: selCard ? '0 0 58%' : '1', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+      <div style={{
+        flex: isMobile ? '1 1 auto' : (selCard ? '0 0 58%' : '1'),
+        display: 'flex', flexDirection: 'column', minWidth: 0,
+        minHeight: isMobile ? 'calc(100vh - 160px)' : 0,
+      }}>
 
         {/* Summary bar */}
-        <div style={{ display: 'flex', gap: 10, marginBottom: 14 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+          gap: 10, marginBottom: 14,
+        }}>
           {[
             { label: 'Cards',       value: filtered.length,                color: T.text    },
             { label: 'Undervalued', value: undervalued,                    color: T.green   },
             { label: 'Overvalued',  value: overvalued,                     color: T.red     },
             { label: 'Avg Demand',  value: `${(avgDP*100).toFixed(0)}%`,   color: T.orange  },
           ].map(({ label, value, color }) => (
-            <div key={label} style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: '8px 14px', flex: 1 }}>
+            <div key={label} style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: '8px 14px' }}>
               <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>{label}</div>
-              <div style={{ fontSize: 22, fontWeight: 800, color, fontFamily: T.mono }}>{value}</div>
+              <div style={{ fontSize: isMobile ? 18 : 22, fontWeight: 800, color, fontFamily: T.mono }}>{value}</div>
             </div>
           ))}
         </div>
@@ -105,162 +117,168 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
         {/* Filters */}
         <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
           <input
-            style={{ ...INP, flex: '1 1 150px' }}
+            style={{ ...INP, flex: isMobile ? '1 1 100%' : '1 1 150px' }}
             placeholder="Search character or card…"
             value={search}
             onChange={e => handleFilterChange(() => setSearch(e.target.value))}
           />
-          <select style={{ ...INP, cursor: 'pointer' }} value={setFilter} onChange={e => handleFilterChange(() => setSetFilter(e.target.value))}>
+          <select style={{ ...INP, cursor: 'pointer', flex: isMobile ? '1 1 48%' : '0 0 auto' }} value={setFilter} onChange={e => handleFilterChange(() => setSetFilter(e.target.value))}>
             <option value="ALL">All Sets</option>
             {SETS.map(s => <option key={s.code} value={s.code}>{s.code} — {s.name}</option>)}
           </select>
-          <select style={{ ...INP, cursor: 'pointer' }} value={rarFilter} onChange={e => handleFilterChange(() => setRarFilter(e.target.value))}>
+          <select style={{ ...INP, cursor: 'pointer', flex: isMobile ? '1 1 48%' : '0 0 auto' }} value={rarFilter} onChange={e => handleFilterChange(() => setRarFilter(e.target.value))}>
             <option value="ALL">All Rarities</option>
             {RARITIES.map(r => <option key={r.code} value={r.code}>{r.code} — {r.name}</option>)}
           </select>
-          <select style={{ ...INP, cursor: 'pointer' }} value={sort} onChange={e => handleFilterChange(() => setSort(e.target.value))}>
+          <select style={{ ...INP, cursor: 'pointer', flex: isMobile ? '1 1 100%' : '0 0 auto' }} value={sort} onChange={e => handleFilterChange(() => setSort(e.target.value))}>
             {SORT_OPTS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </div>
 
-        {/* Table */}
-        <div style={{ overflowY: 'auto', flex: 1, borderRadius: 8, border: `1px solid ${T.border}` }}>
-          {/* Header row */}
-          <div
-            style={{
-              display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr',
-              gap: 8, padding: '8px 14px', fontSize: 10, color: T.dim,
-              borderBottom: `1px solid ${T.border}`, textTransform: 'uppercase',
-              letterSpacing: '0.06em', position: 'sticky', top: 0, background: T.bg,
-            }}
-          >
-            <span>Card</span>
-            <span style={{ textAlign: 'right' }}>Market $</span>
-            <span style={{ textAlign: 'right' }}>Model $</span>
-            <span style={{ textAlign: 'right' }}>Delta</span>
-            <span style={{ textAlign: 'center' }}>Demand</span>
-            <span style={{ textAlign: 'right' }}>Sup. Sat.</span>
-          </div>
+        {/* Table (horizontally scrollable on mobile) */}
+        <div style={{ overflow: 'auto', flex: 1, borderRadius: 8, border: `1px solid ${T.border}`, WebkitOverflowScrolling: 'touch' }}>
+          <div style={{ minWidth: tableMinWidth }}>
+            {/* Header row */}
+            <div
+              style={{
+                display: 'grid', gridTemplateColumns: gridCols,
+                gap: 8, padding: '8px 14px', fontSize: 10, color: T.dim,
+                borderBottom: `1px solid ${T.border}`, textTransform: 'uppercase',
+                letterSpacing: '0.06em', position: 'sticky', top: 0, background: T.bg, zIndex: 1,
+              }}
+            >
+              <span>Card</span>
+              <span style={{ textAlign: 'right' }}>Market $</span>
+              <span style={{ textAlign: 'right' }}>Model $</span>
+              <span style={{ textAlign: 'right' }}>Delta</span>
+              <span style={{ textAlign: 'center' }}>Demand</span>
+              <span style={{ textAlign: 'right' }}>Sup. Sat.</span>
+            </div>
 
-          {pageSlice.map(card => {
-            const active = selected === card.id
-            const dpCol  = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
+            {pageSlice.map(card => {
+              const active = selected === card.id
+              const dpCol  = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
 
-            return (
-              <div
-                key={card.id}
-                onClick={() => setSelected(active ? null : card.id)}
-                style={{
-                  display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr',
-                  gap: 8, padding: '10px 14px', cursor: 'pointer', alignItems: 'center',
-                  borderBottom: `1px solid ${T.border}`, transition: 'background .12s',
-                  background: active ? T.s2 : 'transparent',
-                }}
-                onMouseEnter={e => { if (!active) e.currentTarget.style.background = T.s1 }}
-                onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
-              >
-                {/* Card cell */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                  {/* Star / watchlist toggle */}
-                  <button
-                    onClick={e => { e.stopPropagation(); onToggleWatch(card.cardCode) }}
-                    title={watchedCodes.has(card.cardCode) ? 'Remove from watchlist' : 'Add to watchlist'}
-                    style={{
-                      background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0,
-                      color: watchedCodes.has(card.cardCode) ? '#eab308' : '#64748b',
-                      fontSize: 15, padding: '0 1px', lineHeight: 1, transition: 'color .15s',
-                    }}
-                  >
-                    {watchedCodes.has(card.cardCode) ? '★' : '☆'}
-                  </button>
-                  {card.image
-                    ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={34} height={48} radius={3} />
-                    : <span style={{ fontSize: 22, flexShrink: 0 }}>{card.icon}</span>
-                  }
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {card.name}
-                    </div>
-                    <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
-                      <RarityBadge rarity={card.rarity} color={card.rarityColor} />
-                      <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
-                      {card.hasLivePrice && (
-                        <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>LIVE</span>
-                      )}
+              return (
+                <div
+                  key={card.id}
+                  onClick={() => setSelected(active ? null : card.id)}
+                  style={{
+                    display: 'grid', gridTemplateColumns: gridCols,
+                    gap: 8, padding: '10px 14px', cursor: 'pointer', alignItems: 'center',
+                    borderBottom: `1px solid ${T.border}`, transition: 'background .12s',
+                    background: active ? T.s2 : 'transparent',
+                  }}
+                  onMouseEnter={e => { if (!active) e.currentTarget.style.background = T.s1 }}
+                  onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
+                >
+                  {/* Card cell */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                    <button
+                      onClick={e => { e.stopPropagation(); onToggleWatch(card.cardCode) }}
+                      title={watchedCodes.has(card.cardCode) ? 'Remove from watchlist' : 'Add to watchlist'}
+                      style={{
+                        background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0,
+                        color: watchedCodes.has(card.cardCode) ? '#eab308' : '#64748b',
+                        fontSize: 18, padding: '0 2px', lineHeight: 1, transition: 'color .15s',
+                      }}
+                    >
+                      {watchedCodes.has(card.cardCode) ? '★' : '☆'}
+                    </button>
+                    {card.image
+                      ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={34} height={48} radius={3} />
+                      : <span style={{ fontSize: 22, flexShrink: 0 }}>{card.icon}</span>
+                    }
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {card.name}
+                      </div>
+                      <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
+                        <RarityBadge rarity={card.rarity} color={card.rarityColor} />
+                        <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
+                        {card.hasLivePrice && (
+                          <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>LIVE</span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 13, fontWeight: 600, color: T.text }}>
-                  ${card.marketPrice.toFixed(2)}
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 13, fontWeight: 600, color: T.text }}>
+                    ${card.marketPrice.toFixed(2)}
+                  </div>
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, color: T.muted }}>
+                    ${card.predictedPrice.toFixed(2)}
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <DeltaBadge delta={card.delta} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                    <MiniBar value={card.demandPressure} max={1} color={dpCol} w={60} />
+                    <span style={{ fontSize: 10, fontFamily: T.mono, color: T.dim }}>
+                      {(card.demandPressure * 100).toFixed(0)}%
+                    </span>
+                  </div>
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 600, color: card.supplySaturation > 1 ? T.red : T.green }}>
+                    {card.supplySaturation.toFixed(2)}
+                  </div>
                 </div>
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, color: T.muted }}>
-                  ${card.predictedPrice.toFixed(2)}
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <DeltaBadge delta={card.delta} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                  <MiniBar value={card.demandPressure} max={1} color={dpCol} w={60} />
-                  <span style={{ fontSize: 10, fontFamily: T.mono, color: T.dim }}>
-                    {(card.demandPressure * 100).toFixed(0)}%
-                  </span>
-                </div>
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 600, color: card.supplySaturation > 1 ? T.red : T.green }}>
-                  {card.supplySaturation.toFixed(2)}
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
 
-          {filtered.length === 0 && (
-            <div style={{ padding: '48px 32px', textAlign: 'center' }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>
-                {isSprFilter && isLateSet ? '🚫' : '🔍'}
+            {filtered.length === 0 && (
+              <div style={{ padding: '48px 32px', textAlign: 'center' }}>
+                <div style={{ fontSize: 36, marginBottom: 12 }}>
+                  {isSprFilter && isLateSet ? '🚫' : '🔍'}
+                </div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: T.muted, marginBottom: 8 }}>
+                  {isSprFilter && isLateSet
+                    ? `No Special Rares in ${selectedSetName}`
+                    : 'No cards match the current filters'}
+                </div>
+                <div style={{ fontSize: 12, color: T.dim, marginBottom: 20, lineHeight: 1.6 }}>
+                  {isSprFilter && isLateSet
+                    ? 'SPR cards were discontinued after FB05. Try selecting All Sets or a different rarity.'
+                    : 'Try adjusting your search terms, set, or rarity filters.'}
+                </div>
+                <button
+                  onClick={resetFilters}
+                  style={{
+                    background: T.orange, border: 'none', color: '#fff',
+                    cursor: 'pointer', borderRadius: 6, padding: '8px 20px',
+                    fontSize: 13, fontWeight: 600, fontFamily: T.display,
+                  }}
+                >
+                  Reset Filters
+                </button>
               </div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: T.muted, marginBottom: 8 }}>
-                {isSprFilter && isLateSet
-                  ? `No Special Rares in ${selectedSetName}`
-                  : 'No cards match the current filters'}
-              </div>
-              <div style={{ fontSize: 12, color: T.dim, marginBottom: 20, lineHeight: 1.6 }}>
-                {isSprFilter && isLateSet
-                  ? 'SPR cards were discontinued after FB05. Try selecting All Sets or a different rarity.'
-                  : 'Try adjusting your search terms, set, or rarity filters.'}
-              </div>
-              <button
-                onClick={resetFilters}
-                style={{
-                  background: T.orange, border: 'none', color: '#fff',
-                  cursor: 'pointer', borderRadius: 6, padding: '8px 20px',
-                  fontSize: 13, fontWeight: 600, fontFamily: T.display,
-                }}
-              >
-                Reset Filters
-              </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 10 }}>
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: 8, paddingTop: 10, flexWrap: 'wrap',
+          }}>
             <button
               onClick={() => setPage(p => Math.max(0, p - 1))}
               disabled={clampedPage === 0}
               style={{
                 background: T.s2, border: `1px solid ${T.border}`, color: clampedPage === 0 ? T.dim : T.text,
                 cursor: clampedPage === 0 ? 'default' : 'pointer', borderRadius: 6,
-                padding: '5px 12px', fontSize: 12, fontFamily: T.mono,
+                padding: '6px 14px', fontSize: 13, fontFamily: T.mono, minHeight: 36,
               }}
             >
               ‹ Prev
             </button>
             <span style={{ fontSize: 12, color: T.muted, fontFamily: T.mono }}>
               Page {clampedPage + 1} / {totalPages}
-              <span style={{ color: T.dim, marginLeft: 8 }}>
-                ({clampedPage * PAGE_SIZE + 1}–{Math.min((clampedPage + 1) * PAGE_SIZE, filtered.length)} of {filtered.length})
-              </span>
+              {!isMobile && (
+                <span style={{ color: T.dim, marginLeft: 8 }}>
+                  ({clampedPage * PAGE_SIZE + 1}–{Math.min((clampedPage + 1) * PAGE_SIZE, filtered.length)} of {filtered.length})
+                </span>
+              )}
             </span>
             <button
               onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
@@ -269,7 +287,7 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
                 background: T.s2, border: `1px solid ${T.border}`,
                 color: clampedPage >= totalPages - 1 ? T.dim : T.text,
                 cursor: clampedPage >= totalPages - 1 ? 'default' : 'pointer', borderRadius: 6,
-                padding: '5px 12px', fontSize: 12, fontFamily: T.mono,
+                padding: '6px 14px', fontSize: 13, fontFamily: T.mono, minHeight: 36,
               }}
             >
               Next ›
@@ -279,16 +297,32 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
       </div>
 
       {/* ─── Right detail panel ─── */}
-      {selCard ? (
+      {selCard && isMobile && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 200,
+          background: T.bg, overflowY: 'auto', WebkitOverflowScrolling: 'touch',
+        }}>
+          <CardDetail
+            card={selCard}
+            onClose={() => setSelected(null)}
+            watched={watchedCodes.has(selCard.cardCode)}
+            onToggleWatch={() => onToggleWatch(selCard.cardCode)}
+          />
+        </div>
+      )}
+
+      {selCard && !isMobile && (
         <div style={{ flex: '0 0 42%', minWidth: 0, overflowY: 'auto' }}>
           <CardDetail
-              card={selCard}
-              onClose={() => setSelected(null)}
-              watched={watchedCodes.has(selCard.cardCode)}
-              onToggleWatch={() => onToggleWatch(selCard.cardCode)}
-            />
+            card={selCard}
+            onClose={() => setSelected(null)}
+            watched={watchedCodes.has(selCard.cardCode)}
+            onToggleWatch={() => onToggleWatch(selCard.cardCode)}
+          />
         </div>
-      ) : (
+      )}
+
+      {!selCard && !isMobile && (
         <div
           style={{
             flex: '0 0 300px', display: 'flex', alignItems: 'center', justifyContent: 'center',
