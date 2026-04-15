@@ -34,6 +34,21 @@ const HIST_MAP = HIST_RAW
 
 export const HAS_LIVE_PRICES = LIVE_MAP.size > 0
 
+// ── Calibrated rarity base prices (geometric means from 1,156 real prices) ──
+// SPR extrapolated via log-linear pull-rate trend (no SPR price data available).
+// UC smoothed upward from noisy 27-card sample to enforce C < UC < R ordering.
+const RARITY_BASE_PRICE = {
+  L:   0.2304,
+  C:   0.1598,
+  UC:  0.2000,   // smoothed (27-card sample was below C; enforced C < UC < R)
+  R:   0.2440,
+  SR:  1.1144,
+  SCR: 12.9869,
+  SPR: 24.99,    // extrapolated via log-linear pull-rate trend
+}
+const CHAR_PREMIUM_BETA = 0.0803   // within-rarity charPremium effect (OLS, R²=0.32)
+const MEAN_CHAR_PREMIUM = 5.9386   // global mean charPremium across 1,156 priced cards
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 // Seeded PRNG (mulberry32) — reproducible, no external deps
@@ -74,7 +89,8 @@ export const CARDS = RAW.map((raw, idx) => {
   const universalAppeal = raw.googleTrends / 10
   const desirability    = charPremium * 0.45 + artScore * 0.45 + universalAppeal * 0.10
 
-  const predictedPrice  = Math.exp(0.80 + 0.17 * pullCost + 0.38 * desirability)
+  const rarityBase      = RARITY_BASE_PRICE[raw.rarity] ?? RARITY_BASE_PRICE['C']
+  const predictedPrice  = rarityBase * Math.exp(CHAR_PREMIUM_BETA * (charPremium - MEAN_CHAR_PREMIUM))
 
   // rng #2: ALWAYS consumed regardless of live data — preserves RNG stability
   // for all downstream calls (totalSupply, absorbed, supplySaturation, sparklines)
