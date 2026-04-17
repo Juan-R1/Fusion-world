@@ -495,7 +495,7 @@ These are the project's codified decision-making templates. Always prefer invoki
 
 1. **Has the weekly `update-prices.yml` actually run on schedule?** The only existing price file is from 2026-04-14; need to confirm subsequent Mondays fired and committed.
 2. **Has the monthly `update-cards.yml` run successfully** at least once autonomously (not manually dispatched)? The 2026-04-13/14 commits look like manual runs.
-3. **Is `accumulate-prices.js` wired into any workflow?** It exists but none of the three workflow YAMLs visibly invoke it — this explains why `priceHistory.json` is empty. **Needs confirmation.**
+3. ~~**Is `accumulate-prices.js` wired into any workflow?**~~ **RESOLVED 2026-04-17 by fresh-session cross-check:** `update-prices.yml` lines 22–23 already invoke `node scripts/accumulate-prices.js` BEFORE the JustTCG fetch, and line 33 already commits `src/priceHistory.json` alongside `src/livePrices.json`. The reason `priceHistory.json` is still `{}` is therefore **not** a missing wiring — it's that the weekly workflow has either not fired yet, has fired but had nothing to archive on the first run, or has fired and failed silently. This folds entirely into open question #1 below.
 4. **Does Vercel receive the upstream `workflow_run` triggers?** `deploy.yml` claims to but has never been end-to-end traced from a cron-driven commit in the audit window.
 5. **Is the JustTCG dataset consistent with TCGPlayer / PriceCharting?** A spot-check of 5–10 known market-price cards would either confirm or caveat the calibration.
 6. **Are there any console errors in production on iOS Safari / Android Chrome?** No telemetry, so unknown.
@@ -574,9 +574,7 @@ Ordered by dependency chain and risk reduction. A future session can pick this u
    Inspect workflow run history in the GitHub UI. Confirm timestamps of `update-prices.yml` (Mondays), `update-cards.yml` (1st of month), `deploy.yml` (on push + on upstream workflow_run).
    *Why first:* the entire "auto-refresh" story depends on these actually running. Audit cannot verify GitHub state from the filesystem.
 
-2. **Wire `accumulate-prices.js` into `update-prices.yml`.**
-   Today `priceHistory.json` is `{}`. The accumulator script exists but doesn't appear to run. Adding it to the weekly workflow turns on real price history.
-   *Deliverable:* an updated YAML that runs `node scripts/update-prices.js && node scripts/accumulate-prices.js` and commits both files.
+2. ~~Wire `accumulate-prices.js` into `update-prices.yml`.~~ **Already done** (verified 2026-04-17). `update-prices.yml` invokes the accumulator and commits `priceHistory.json`. The open blocker is purely #1 above — confirming the workflow has actually executed and whether `priceHistory.json` is `{}` because no run has committed yet, because the first run had nothing to archive, or because the commit step failed silently.
 
 3. **Distinguish real vs. synthetic sparklines in `CardDetail.jsx`.**
    Until `priceHistory.json` has ≥4 weeks of entries, label the sparkline "synthetic preview" (or hide it) to avoid misleading users.
