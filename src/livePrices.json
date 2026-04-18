@@ -1,5782 +1,2377 @@
 [
   {
     "cardCode": "FB01-139",
-    "marketPrice": 9.4,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 9.25,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-140",
     "marketPrice": 11.71,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-071",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-035",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.23,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-001",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.26,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-036",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.27,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-002",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-070",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.25,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-105",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.21,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-104",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-039",
-    "marketPrice": 1.23,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 1.22,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-096",
-    "marketPrice": 1,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.99,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-015",
-    "marketPrice": 0.6,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.63,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-023",
     "marketPrice": 0.5,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-109",
     "marketPrice": 1.61,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-050",
-    "marketPrice": 0.73,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.72,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-079",
-    "marketPrice": 1.68,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 1.53,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-113",
-    "marketPrice": 0.51,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.52,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-062",
-    "marketPrice": 1.34,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 1.33,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-021",
     "marketPrice": 0.67,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-078",
-    "marketPrice": 0.62,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.56,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-129",
     "marketPrice": 0.36,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-004",
     "marketPrice": 1.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-042",
-    "marketPrice": 1.68,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 1.66,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-068",
     "marketPrice": 1.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-026",
     "marketPrice": 0.72,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-119",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-089",
     "marketPrice": 0.45,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-132",
-    "marketPrice": 0.46,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.45,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-025",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-032",
     "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-016",
     "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-051",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-092",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.16,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-093",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-066",
     "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-087",
     "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-037",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.19,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-133",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-124",
     "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-090",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-136",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-027",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.14,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-059",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.14,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-073",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
-    "cardCode": "FB01-107",
+    "cardCode": "FB01-101",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-130",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-101",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-085",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-111",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-114",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-065",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-074",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-081",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-103",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-111",
+    "marketPrice": 0.19,
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-107",
+    "marketPrice": 0.19,
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-074",
+    "marketPrice": 0.18,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-013",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-084",
+    "marketPrice": 0.18,
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-099",
+    "marketPrice": 0.18,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-056",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-046",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-084",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-127",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-100",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-102",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-099",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-108",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-131",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-055",
+    "marketPrice": 0.17,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-067",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-012",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-088",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-014",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-137",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-121",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-055",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-069",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-049",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-063",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-005",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-125",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-086",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-063",
+    "marketPrice": 0.14,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-044",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-077",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-028",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-135",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-024",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-115",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-061",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-138",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-120",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-033",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-098",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-080",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-007",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-006",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-135",
+    "marketPrice": 0.11,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-128",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-110",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-040",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-008",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-034",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-118",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-047",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-058",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-134",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-116",
+    "marketPrice": 0.11,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-075",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-057",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-126",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-112",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "marketPrice": 0.1,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-123",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-122",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-017",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-034",
+    "marketPrice": 0.1,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-020",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-117",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
+  },
+  {
+    "cardCode": "FB01-058",
+    "marketPrice": 0.1,
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-043",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:22:12.897Z"
-  },
-  {
-    "cardCode": "FB01-116",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-038",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-054",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-052",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-060",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-095",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-082",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-064",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-009",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-076",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-083",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-030",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-053",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-072",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-094",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-048",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-091",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-106",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-011",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-097",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-019",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-022",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-031",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-018",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-003",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-029",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-010",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-041",
     "marketPrice": 0.03,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB01-045",
     "marketPrice": 0.03,
-    "timestamp": "2026-04-14T14:22:12.897Z"
+    "timestamp": "2026-04-18T20:04:13.684Z"
   },
   {
     "cardCode": "FB02-139",
-    "marketPrice": 6.55,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 6.58,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-105",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.23,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-140",
-    "marketPrice": 9.51,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 9.31,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-001",
     "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-070",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.16,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-119",
-    "marketPrice": 3.72,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 3.7,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-084",
-    "marketPrice": 0.62,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.59,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-036",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.12,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-013",
-    "marketPrice": 1.3,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 1.25,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-130",
-    "marketPrice": 0.66,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.63,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-133",
     "marketPrice": 0.45,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-018",
-    "marketPrice": 2.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 2.13,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-044",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.25,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-061",
-    "marketPrice": 0.61,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.59,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-089",
-    "marketPrice": 1.33,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 1.31,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-091",
-    "marketPrice": 0.43,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.45,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-043",
     "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-098",
     "marketPrice": 2.63,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-015",
-    "marketPrice": 0.44,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.39,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-049",
-    "marketPrice": 1.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 1.14,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-029",
-    "marketPrice": 0.98,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.89,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-104",
     "marketPrice": 0.49,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-085",
-    "marketPrice": 0.46,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.47,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-109",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.12,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-086",
     "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-068",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-075",
-    "marketPrice": 0.31,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-007",
-    "marketPrice": 0.3,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.33,
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-068",
+    "marketPrice": 0.27,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-137",
     "marketPrice": 0.3,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-075",
+    "marketPrice": 0.28,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-102",
     "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-042",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-110",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-026",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-058",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-042",
+    "marketPrice": 0.25,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-077",
     "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-052",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-095",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-040",
+    "marketPrice": 0.21,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-004",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
-    "cardCode": "FB02-055",
+    "cardCode": "FB02-012",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-040",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-101",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-092",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-060",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.1,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
-    "cardCode": "FB02-012",
+    "cardCode": "FB02-055",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-116",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-096",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-022",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-024",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-136",
+    "marketPrice": 0.17,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-115",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-054",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-136",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-023",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.15,
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-135",
+    "marketPrice": 0.16,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-094",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-033",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
-    "cardCode": "FB02-132",
+    "cardCode": "FB02-046",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-074",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
-    "cardCode": "FB02-135",
+    "cardCode": "FB02-132",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-106",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-045",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-046",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-066",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-041",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-063",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-031",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-128",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-066",
+    "marketPrice": 0.13,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-122",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-050",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-059",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-076",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-016",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-080",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-010",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "marketPrice": 0.07,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-111",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-035",
+    "marketPrice": 0.12,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-039",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-047",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-088",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-123",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-078",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-020",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-082",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-035",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-126",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-019",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-067",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-056",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-034",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-114",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-093",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-030",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-087",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-017",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-118",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-107",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-127",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-129",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-138",
+    "marketPrice": 0.09,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-005",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-071",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-072",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-062",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-103",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-120",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-009",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-138",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-113",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-011",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-112",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
-    "cardCode": "FB02-051",
+    "cardCode": "FB02-120",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-069",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-053",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-025",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-073",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-006",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-090",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-003",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-121",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-051",
+    "marketPrice": 0.07,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-117",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-124",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-131",
+    "marketPrice": 0.07,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-125",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-100",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-108",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
+  },
+  {
+    "cardCode": "FB02-134",
+    "marketPrice": 0.06,
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-021",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-008",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-014",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-057",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-097",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-131",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-099",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-048",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-079",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-002",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-083",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-037",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-028",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
-  },
-  {
-    "cardCode": "FB02-134",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-065",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-064",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-038",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-027",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-032",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB02-081",
     "marketPrice": 0.03,
-    "timestamp": "2026-04-14T14:23:20.139Z"
+    "timestamp": "2026-04-18T20:05:18.512Z"
   },
   {
     "cardCode": "FB03-140",
-    "marketPrice": 11.6,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 11.32,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-139",
-    "marketPrice": 8.28,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 7.83,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-104",
     "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-089",
     "marketPrice": 0.76,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-027",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-001",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-064",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.3,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-053",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.23,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-078",
     "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-070",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-009",
-    "marketPrice": 0.4,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.41,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-039",
-    "marketPrice": 0.7,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.69,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-121",
-    "marketPrice": 2.33,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 2.02,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-020",
-    "marketPrice": 0.59,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.57,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-093",
     "marketPrice": 0.83,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-042",
     "marketPrice": 0.68,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-111",
-    "marketPrice": 0.83,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.81,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-125",
-    "marketPrice": 0.67,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.66,
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-123",
+    "marketPrice": 2.14,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-016",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-123",
-    "marketPrice": 1.91,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-102",
-    "marketPrice": 1.31,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 1.3,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-137",
     "marketPrice": 0.48,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-047",
-    "marketPrice": 0.37,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.35,
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-132",
+    "marketPrice": 0.31,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-023",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-087",
     "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-132",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-127",
     "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-110",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-128",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.14,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-014",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-110",
+    "marketPrice": 0.25,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-026",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "marketPrice": 0.13,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-085",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-050",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-096",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-066",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-049",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-135",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-033",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-066",
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-011",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-037",
     "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-136",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-018",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-046",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-071",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-052",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-108",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
-    "cardCode": "FB03-056",
+    "cardCode": "FB03-022",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-004",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-008",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-081",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
-    "cardCode": "FB03-022",
+    "cardCode": "FB03-056",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-019",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-084",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-077",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-040",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-101",
+    "marketPrice": 0.15,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-099",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-106",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-002",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-073",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-076",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-065",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-080",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
-    "cardCode": "FB03-101",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "cardCode": "FB03-010",
+    "marketPrice": 0.15,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-045",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-021",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-061",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-075",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-030",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-005",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-067",
+    "marketPrice": 0.14,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-069",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-103",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-118",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-119",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-012",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-105",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-072",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-095",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-010",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-122",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-082",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-013",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-054",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-092",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-067",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-100",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-097",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
-    "cardCode": "FB03-112",
+    "cardCode": "FB03-119",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-029",
     "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-059",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-083",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-025",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-028",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-091",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-094",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-086",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-114",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-063",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-079",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-088",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-090",
     "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-006",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-131",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-057",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-124",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-074",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-112",
+    "marketPrice": 0.11,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-015",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-098",
     "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-035",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-068",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-060",
+    "marketPrice": 0.1,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-115",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-138",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-055",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-003",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-113",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-024",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-060",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-107",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-051",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
-    "cardCode": "FB03-044",
+    "cardCode": "FB03-134",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-043",
     "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-120",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-007",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-134",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-048",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-044",
+    "marketPrice": 0.08,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-038",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-036",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-041",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
-  },
-  {
-    "cardCode": "FB03-130",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-129",
     "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-058",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-031",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-126",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
+  },
+  {
+    "cardCode": "FB03-130",
+    "marketPrice": 0.07,
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-117",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-017",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-034",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-116",
     "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-062",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-109",
     "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB03-133",
     "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:24:28.256Z"
+    "timestamp": "2026-04-18T20:06:23.890Z"
   },
   {
     "cardCode": "FB04-129",
-    "marketPrice": 8.65,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 8.64,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-001",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.17,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-051",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 30.8,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-026",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-130",
-    "marketPrice": 7.08,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 6.84,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-103",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-077",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-033",
     "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-059",
     "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-012",
-    "marketPrice": 3.01,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 2.75,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-094",
-    "marketPrice": 0.4,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.41,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-093",
-    "marketPrice": 2.38,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 2.31,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-114",
-    "marketPrice": 0.46,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.47,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-018",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.26,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-052",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.27,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-108",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-064",
-    "marketPrice": 0.65,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.73,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-104",
     "marketPrice": 0.31,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-045",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.25,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-105",
     "marketPrice": 0.36,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-008",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.3,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-081",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-100",
     "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-091",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-096",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-044",
     "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-067",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.28,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-080",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.22,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-028",
     "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-043",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.23,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-004",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-030",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-007",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.17,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-109",
     "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-113",
     "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-110",
     "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-085",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-095",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "marketPrice": 0.22,
+    "timestamp": "2026-04-18T20:06:57.572Z"
+  },
+  {
+    "cardCode": "FB04-102",
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:57.572Z"
+  },
+  {
+    "cardCode": "FB04-053",
+    "marketPrice": 0.2,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-073",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-102",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-032",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-126",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-089",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-046",
     "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-053",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-036",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-120",
     "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-117",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-060",
     "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-098",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-022",
+    "marketPrice": 0.13,
+    "timestamp": "2026-04-18T20:06:57.572Z"
+  },
+  {
+    "cardCode": "FB04-021",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-003",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-111",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
+  },
+  {
+    "cardCode": "FB04-098",
+    "marketPrice": 0.16,
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-061",
     "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:25:27.909Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   },
   {
     "cardCode": "FB04-049",
     "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-076",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-068",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-062",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-021",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-115",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-072",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-084",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-119",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-123",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-047",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-066",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-128",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-037",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-019",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-041",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-002",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-099",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-058",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-125",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-006",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-042",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-124",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-005",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-127",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-107",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-010",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-083",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-097",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-054",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-038",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-040",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-101",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-069",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-057",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-086",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-118",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-112",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-090",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-079",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-088",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-009",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-122",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-048",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-116",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-078",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-075",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-055",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-050",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-092",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-065",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-056",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-035",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-039",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-016",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-017",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-027",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-025",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-074",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-106",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-063",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-070",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-121",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-031",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-023",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-024",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-020",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-082",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-014",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-013",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-011",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-087",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-029",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-071",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-034",
-    "marketPrice": 0.04,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB04-015",
-    "marketPrice": 0.03,
-    "timestamp": "2026-04-14T14:25:27.909Z"
-  },
-  {
-    "cardCode": "FB05-119",
-    "marketPrice": 21.59,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-120",
-    "marketPrice": 7.36,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-095",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-025",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-049",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-030",
-    "marketPrice": 0.6,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-040",
-    "marketPrice": 0.66,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-072",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-001",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-038",
-    "marketPrice": 0.83,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-100",
-    "marketPrice": 0.56,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-006",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-051",
-    "marketPrice": 0.36,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-080",
-    "marketPrice": 1.57,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-084",
-    "marketPrice": 0.36,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-107",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-054",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-009",
-    "marketPrice": 0.38,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-015",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-115",
-    "marketPrice": 0.38,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-046",
-    "marketPrice": 0.35,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-064",
-    "marketPrice": 0.31,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-106",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-083",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-077",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-048",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-008",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-033",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-007",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-113",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-062",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-041",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-039",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-027",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-087",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-036",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-022",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-031",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-116",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-110",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-073",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-018",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-017",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-056",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-067",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-085",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-103",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-053",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-099",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-114",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-076",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-117",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-091",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-045",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-098",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-057",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-118",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-112",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-094",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-086",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-042",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-013",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-060",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-010",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-063",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-074",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-071",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-019",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-089",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-047",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-052",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-023",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-024",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-055",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-090",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-034",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-011",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-069",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-105",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-029",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-070",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-028",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-097",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-043",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-068",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-066",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-079",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-004",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-014",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-032",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-104",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-111",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-037",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-081",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-058",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-061",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-109",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-078",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-020",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-021",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-050",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-075",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-026",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-065",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-082",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-012",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-003",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-088",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-044",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-016",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-102",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-035",
-    "marketPrice": 0.07,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-005",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-002",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-059",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-096",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-101",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-093",
-    "marketPrice": 0.06,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-092",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB05-108",
-    "marketPrice": 0.05,
-    "timestamp": "2026-04-14T14:26:27.138Z"
-  },
-  {
-    "cardCode": "FB06-120",
-    "marketPrice": 29.96,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-119",
-    "marketPrice": 15.45,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-048",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-103",
-    "marketPrice": 16.68,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-025",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-097",
-    "marketPrice": 8.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-001",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-009",
-    "marketPrice": 4.21,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-095",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-032",
-    "marketPrice": 0.96,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-055",
-    "marketPrice": 0.85,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-071",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-063",
-    "marketPrice": 1.08,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-084",
-    "marketPrice": 0.48,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-109",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-029",
-    "marketPrice": 0.74,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-072",
-    "marketPrice": 0.44,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-002",
-    "marketPrice": 0.45,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-076",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-064",
-    "marketPrice": 0.49,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-004",
-    "marketPrice": 0.43,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-018",
-    "marketPrice": 0.42,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-052",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-090",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-013",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-062",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-027",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-012",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-077",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-094",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-067",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-068",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-092",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-086",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-059",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-065",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-061",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-041",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-010",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-044",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-049",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-112",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-093",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-082",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-051",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-073",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-108",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-113",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-070",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-056",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-100",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-019",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-066",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-085",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-075",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-053",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-101",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-020",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-060",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-028",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-087",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-033",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-036",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-047",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-006",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-011",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-015",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-026",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-022",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-054",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-045",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-117",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-024",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-057",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-079",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-102",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-016",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-035",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-031",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-099",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-080",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-115",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-021",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-091",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-083",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-050",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-116",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-088",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-040",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-058",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-114",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-042",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-046",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-030",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-043",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-037",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-007",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-008",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-014",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-005",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-034",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-081",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-089",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-069",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-003",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-038",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-111",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-107",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-110",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-098",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-104",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-105",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-074",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-078",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-106",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-118",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-023",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-096",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-039",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB06-017",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:27:26.796Z"
-  },
-  {
-    "cardCode": "FB07-122",
-    "marketPrice": 25.79,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-121",
-    "marketPrice": 52.7,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-113",
-    "marketPrice": 1.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-105",
-    "marketPrice": 0.84,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-097",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-009",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-049",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-058",
-    "marketPrice": 9.24,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-025",
-    "marketPrice": 0.47,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-057",
-    "marketPrice": 0.3,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-114",
-    "marketPrice": 2.57,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-073",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-010",
-    "marketPrice": 0.95,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-106",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-051",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-104",
-    "marketPrice": 1.23,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-026",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-078",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-088",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-001",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-033",
-    "marketPrice": 0.33,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-079",
-    "marketPrice": 0.6,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-021",
-    "marketPrice": 0.49,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-030",
-    "marketPrice": 2.04,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-052",
-    "marketPrice": 1.57,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-003",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-093",
-    "marketPrice": 1.97,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-066",
-    "marketPrice": 0.74,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-035",
-    "marketPrice": 1.8,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-034",
-    "marketPrice": 0.59,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-083",
-    "marketPrice": 0.32,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-017",
-    "marketPrice": 0.37,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-027",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-063",
-    "marketPrice": 0.46,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-044",
-    "marketPrice": 0.35,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-050",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-119",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-109",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-060",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-101",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-086",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-110",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-053",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-100",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-103",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-039",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-069",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-011",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-016",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-056",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-108",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-115",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-068",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-047",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-099",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-008",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-055",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-077",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-120",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-032",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-091",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-065",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-007",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-089",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-102",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-080",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-118",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-096",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-005",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-046",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-111",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-020",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-040",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-098",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-112",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-107",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-061",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-045",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-071",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-090",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-031",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-037",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-043",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-084",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-081",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-117",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-006",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-095",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-092",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-024",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-036",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-014",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-116",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-002",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-023",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-048",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-041",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-038",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-072",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-013",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-004",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-018",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-067",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-076",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-087",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-054",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-042",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-064",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-022",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-028",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-029",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-059",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-012",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-062",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-070",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-019",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-082",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-075",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-085",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-074",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-094",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB07-015",
-    "marketPrice": 0.08,
-    "timestamp": "2026-04-14T14:28:25.464Z"
-  },
-  {
-    "cardCode": "FB08-121",
-    "marketPrice": 37.79,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-073",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-106",
-    "marketPrice": 1.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-001",
-    "marketPrice": 0.3,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-088",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-122",
-    "marketPrice": 17.75,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-087",
-    "marketPrice": 0.51,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-019",
-    "marketPrice": 0.54,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-007",
-    "marketPrice": 1.06,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-097",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-025",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-076",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-049",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-111",
-    "marketPrice": 0.51,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-026",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-040",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-012",
-    "marketPrice": 3.23,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-009",
-    "marketPrice": 0.61,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-112",
-    "marketPrice": 8.27,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-065",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-056",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-102",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-034",
-    "marketPrice": 2.76,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-016",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-092",
-    "marketPrice": 0.51,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-029",
-    "marketPrice": 3.42,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-100",
-    "marketPrice": 0.63,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-055",
-    "marketPrice": 0.55,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-032",
-    "marketPrice": 1.19,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-084",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-051",
-    "marketPrice": 0.4,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-059",
-    "marketPrice": 0.36,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-101",
-    "marketPrice": 0.42,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-006",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-008",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-011",
-    "marketPrice": 0.27,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-013",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-048",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-072",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-090",
-    "marketPrice": 0.17,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-033",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-071",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-058",
-    "marketPrice": 0.16,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-027",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-047",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-031",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-054",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-037",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-077",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-015",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-028",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-043",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-035",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-002",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-109",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-057",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-021",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-022",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-085",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-086",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-110",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-060",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-095",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-099",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-096",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-030",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-091",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-113",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-068",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-107",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-010",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-108",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-103",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-104",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-024",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-116",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-075",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-050",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-081",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-052",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-038",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-042",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-023",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-063",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-070",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-003",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-067",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-045",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-079",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-114",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-082",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-039",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-041",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-094",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-046",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-036",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-105",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-062",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-014",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-089",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-018",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-066",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-005",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-074",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-044",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-061",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-004",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-119",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-069",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-098",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-053",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-093",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-120",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-080",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-017",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-078",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-083",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-020",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-064",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-118",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-117",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB08-115",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:29:25.398Z"
-  },
-  {
-    "cardCode": "FB09-123",
-    "marketPrice": 41.81,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-025",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-121",
-    "marketPrice": 34.64,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-001",
-    "marketPrice": 0.63,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-097",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-073",
-    "marketPrice": 0.55,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-122",
-    "marketPrice": 36.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-049",
-    "marketPrice": 0.37,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-060",
-    "marketPrice": 1.31,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-011",
-    "marketPrice": 2.41,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-100",
-    "marketPrice": 7.65,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-037",
-    "marketPrice": 2.88,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-117",
-    "marketPrice": 2.66,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-013",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-045",
-    "marketPrice": 1.69,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-072",
-    "marketPrice": 1.06,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-114",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-005",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-105",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-096",
-    "marketPrice": 2.04,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-082",
-    "marketPrice": 6.88,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-093",
-    "marketPrice": 0.34,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-110",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-044",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-088",
-    "marketPrice": 0.41,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-007",
-    "marketPrice": 1.01,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-036",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-091",
-    "marketPrice": 1.49,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-068",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-064",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-112",
-    "marketPrice": 2.27,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-012",
-    "marketPrice": 0.98,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-051",
-    "marketPrice": 0.62,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-055",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-029",
-    "marketPrice": 0.4,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-031",
-    "marketPrice": 1.05,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-080",
-    "marketPrice": 0.96,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-078",
-    "marketPrice": 0.76,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-120",
-    "marketPrice": 0.31,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-092",
-    "marketPrice": 0.64,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-077",
-    "marketPrice": 0.63,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-106",
-    "marketPrice": 0.57,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-079",
-    "marketPrice": 0.45,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-030",
-    "marketPrice": 0.5,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-069",
-    "marketPrice": 0.47,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-047",
-    "marketPrice": 0.43,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-119",
-    "marketPrice": 0.43,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-039",
-    "marketPrice": 0.42,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-006",
-    "marketPrice": 0.37,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-046",
-    "marketPrice": 0.32,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-041",
-    "marketPrice": 0.31,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-052",
-    "marketPrice": 0.3,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-059",
-    "marketPrice": 0.28,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-050",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-098",
-    "marketPrice": 0.26,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-002",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-075",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-027",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-109",
-    "marketPrice": 0.25,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-026",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-095",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-085",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-067",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-035",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-021",
-    "marketPrice": 0.24,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-004",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-104",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-032",
-    "marketPrice": 0.23,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-015",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-089",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-081",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-102",
-    "marketPrice": 0.22,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-058",
-    "marketPrice": 0.21,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-010",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-111",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-070",
-    "marketPrice": 0.2,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-054",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-009",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-019",
-    "marketPrice": 0.19,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-071",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-023",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-016",
-    "marketPrice": 0.18,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-008",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-020",
-    "marketPrice": 0.15,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-074",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-101",
-    "marketPrice": 0.14,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-113",
-    "marketPrice": 0.13,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-028",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-099",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-057",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-094",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-062",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-018",
-    "marketPrice": 0.12,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-048",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-115",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-107",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-061",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-040",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-024",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-053",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-063",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-066",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-084",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-103",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-034",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-108",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-042",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-017",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-087",
-    "marketPrice": 0.11,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-056",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-014",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-090",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-038",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-118",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-022",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-076",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-033",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-086",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-116",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-065",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-003",
-    "marketPrice": 0.1,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-083",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:30:33.925Z"
-  },
-  {
-    "cardCode": "FB09-043",
-    "marketPrice": 0.09,
-    "timestamp": "2026-04-14T14:30:33.925Z"
+    "timestamp": "2026-04-18T20:06:57.572Z"
   }
 ]
