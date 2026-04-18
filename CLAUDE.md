@@ -493,10 +493,10 @@ These are the project's codified decision-making templates. Always prefer invoki
 
 ## 8.5 Open questions (explicit "needs confirmation" list)
 
-1. **Has the weekly `update-prices.yml` actually run on schedule?** The only existing price file is from 2026-04-14; need to confirm subsequent Mondays fired and committed.
-2. **Has the monthly `update-cards.yml` run successfully** at least once autonomously (not manually dispatched)? The 2026-04-13/14 commits look like manual runs.
+1. **Has the weekly `update-prices.yml` actually run on schedule?** **VERIFIED 2026-04-18:** Total runs = **0**. The workflow was wired 2026-04-13 but has not yet reached its first Monday 05:00 UTC firing window. Next scheduled run: **2026-04-20 05:00 UTC**. Every existing `livePrices.json` commit was human-authored, not bot-authored. `JUSTTCG_API_KEY` has never been exercised by CI — first live test is Monday.
+2. **Has the monthly `update-cards.yml` run successfully** at least once autonomously? **VERIFIED 2026-04-18:** Total runs = **0**. First scheduled run: **2026-05-01 04:00 UTC**. All `cardData.json` commits were manual.
 3. ~~**Is `accumulate-prices.js` wired into any workflow?**~~ **RESOLVED 2026-04-17 by fresh-session cross-check:** `update-prices.yml` lines 22–23 already invoke `node scripts/accumulate-prices.js` BEFORE the JustTCG fetch, and line 33 already commits `src/priceHistory.json` alongside `src/livePrices.json`. The reason `priceHistory.json` is still `{}` is therefore **not** a missing wiring — it's that the weekly workflow has either not fired yet, has fired but had nothing to archive on the first run, or has fired and failed silently. This folds entirely into open question #1 below.
-4. **Does Vercel receive the upstream `workflow_run` triggers?** `deploy.yml` claims to but has never been end-to-end traced from a cron-driven commit in the audit window.
+4. **Does Vercel receive the upstream `workflow_run` triggers?** **PARTIALLY VERIFIED 2026-04-18:** `deploy.yml` has 1 successful push-triggered run (2026-04-13). The `workflow_run` path has never fired because `update-prices.yml` and `update-cards.yml` have zero runs. Will be verifiable after 2026-04-20.
 5. **Is the JustTCG dataset consistent with TCGPlayer / PriceCharting?** A spot-check of 5–10 known market-price cards would either confirm or caveat the calibration.
 6. **Are there any console errors in production on iOS Safari / Android Chrome?** No telemetry, so unknown.
 7. **Does Plausible get turned on for launch?** The `<script>` is commented in `index.html` with a `DOMAIN` placeholder.
