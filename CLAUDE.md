@@ -722,7 +722,7 @@ Grounded honest summary of likely state as of 2026-04-17.
 
 ## 12.3 What is likely unfinished (medium confidence)
 
-- `priceHistory.json` is empty → real price-history sparklines do not yet exist.
+- `priceHistory.json` has **1 real snapshot** (2026-04-18, 1,156 cards). Need ≥4 weekly snapshots before switching UI sparklines from synthetic to real.
 - `accumulate-prices.js` exists but probably is not wired into any workflow.
 - A chunk of cards (~102) lack live prices; most cards lack real imagery.
 - SPR base price is extrapolated; UC base is smoothed — both are "best-effort" values.
