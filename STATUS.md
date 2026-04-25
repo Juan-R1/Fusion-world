@@ -59,10 +59,11 @@ A failure here blocks the build and the deploy.
 
 ## Yellow flags worth tracking
 
-- **Live-price coverage regressed.** Was 1,156 entries before the first cron run;
-  is now **475**. Likely JustTCG free-tier rate-limit truncation mid-run. Data
-  quality is fine, breadth dropped. Action: inspect next Monday's run logs;
-  consider a "minimum entries" guard before the bot commits.
+- **Live-price coverage was briefly wobbly.** First cron run (Apr 18) wrote only
+  475 entries — likely JustTCG free-tier rate-limit truncation mid-run. The next
+  bot run (Apr 25) recovered to the full **1,156**. The smoke test passed in both
+  cases, so CI didn't catch the dip. Worth adding a "minimum entries" guard so
+  the bot refuses to commit a partial dataset.
 - **`priceHistory.json` has 1 real snapshot.** Sparklines in `CardDetail` are
   still mostly synthetic. They become trustworthy after ~4 weekly snapshots —
   earliest week of May 2026. Until then, do not market "real price history."
