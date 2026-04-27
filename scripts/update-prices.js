@@ -51,13 +51,12 @@ async function fetchWithRetry(url, options, retries = 4) {
   throw new Error(`Failed after ${retries} retries: ${url}`)
 }
 
-// Pick the best price variant: Near Mint Normal > Near Mint > first available
-function bestPrice(variants) {
+// Pick the best variant: Near Mint Normal > Near Mint > first available
+function bestVariant(variants) {
   if (!Array.isArray(variants) || variants.length === 0) return null
   const nmNormal = variants.find(v => v.condition === 'Near Mint' && v.printing === 'Normal')
   const nm       = variants.find(v => v.condition === 'Near Mint')
-  const variant  = nmNormal ?? nm ?? variants[0]
-  return variant?.price ?? null
+  return nmNormal ?? nm ?? variants[0]
 }
 
 async function fetchAllCards(slug) {
@@ -68,6 +67,7 @@ async function fetchAllCards(slug) {
 
   while (true) {
     const url = `${BASE_URL}/cards?set=${encodeURIComponent(slug)}&limit=${limit}&offset=${offset}`
+                + `&include_price_history=true&priceHistoryDuration=30d`
     const res = await fetchWithRetry(url, { headers })
 
     if (!res.ok) {
@@ -95,27 +95,33 @@ async function fetchSetPrices(setCode, slug) {
     return []
   }
 
-  // De-duplicate by code: keep lowest Near Mint Normal price (base card, not alt art)
-  const priceMap = new Map()  // code → price
+  // De-duplicate by code: keep lowest Near Mint Normal price (base card, not alt art).
+  // Each entry stores marketPrice plus the chosen variant's priceHistory ({p, t}[]).
+  const entryMap = new Map()  // code → { marketPrice, history }
 
   for (const card of allCards) {
     const code = card.number
     if (!code || code === 'N/A') continue        // skip sealed products
     if (!LOCAL_MAP.has(code)) continue           // skip codes not in our dataset
 
-    const price = bestPrice(card.variants)
-    if (price == null) continue
+    const variant = bestVariant(card.variants)
+    if (variant?.price == null) continue
+
+    const price   = +Number(variant.price).toFixed(2)
+    const history = Array.isArray(variant.priceHistory) ? variant.priceHistory : []
 
     // If same code appears multiple times (alt art), keep the lowest price
-    if (!priceMap.has(code) || price < priceMap.get(code))
-      priceMap.set(code, price)
+    const existing = entryMap.get(code)
+    if (!existing || price < existing.marketPrice)
+      entryMap.set(code, { marketPrice: price, history })
   }
 
   const ts      = new Date().toISOString()
-  const results = [...priceMap.entries()].map(([code, price]) => ({
+  const results = [...entryMap.entries()].map(([code, { marketPrice, history }]) => ({
     cardCode:    code,
-    marketPrice: +Number(price).toFixed(2),
+    marketPrice,
     timestamp:   ts,
+    history,
   }))
 
   console.log(`[${setCode}] matched ${results.length} / ${allCards.length} entries`)

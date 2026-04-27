@@ -77,4 +77,20 @@ for (const e of live) {
     fail(`invalid marketPrice ${JSON.stringify(p)} on entry ${JSON.stringify(e).slice(0, 120)}`)
 }
 
-console.log(`✓ ${cards.length} cards, ${live.length} live prices, 7 invariants passed`)
+// ── Invariant 8: livePrices history schema (when present) ───────────────────
+// Each entry's `history` is an optional array of { p: number, t: number } points.
+// Empty arrays are allowed (a card may have no JustTCG history yet).
+for (const e of live) {
+  if (e.history == null) continue
+  if (!Array.isArray(e.history))
+    fail(`livePrices entry ${e.cardCode}: "history" is not an array`)
+  for (const h of e.history) {
+    if (typeof h?.p !== 'number' || !Number.isFinite(h.p) || h.p <= 0)
+      fail(`livePrices entry ${e.cardCode}: invalid history price ${JSON.stringify(h)}`)
+    if (typeof h?.t !== 'number' || !Number.isFinite(h.t) || h.t <= 0)
+      fail(`livePrices entry ${e.cardCode}: invalid history timestamp ${JSON.stringify(h)}`)
+  }
+}
+
+const withHistory = live.filter(e => Array.isArray(e.history) && e.history.length > 0).length
+console.log(`✓ ${cards.length} cards, ${live.length} live prices (${withHistory} with history), 8 invariants passed`)
