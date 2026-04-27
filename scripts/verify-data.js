@@ -61,7 +61,11 @@ for (const c of cards) {
     fail(`invalid set "${c.set}" on card ${c.code}`)
 }
 
-// ── Invariant 6: livePrices.json parses and has > 0 entries ─────────────────
+// ── Invariant 6: livePrices.json parses and meets the coverage floor ────────
+// The floor (1121 = 97% of the 1156 known-good baseline) catches partial
+// JustTCG runs that truncate mid-fetch. The pipeline guard in update-prices.js
+// is the first line of defence; this is the CI gate.
+const MIN_LIVE_PRICES = 1121
 let live
 try {
   live = JSON.parse(fs.readFileSync(LIVE_PATH, 'utf8'))
@@ -69,7 +73,8 @@ try {
   fail(`livePrices.json failed to parse — ${err.message}`)
 }
 if (!Array.isArray(live)) fail('livePrices.json is not an array')
-if (live.length === 0)    fail('livePrices.json is empty — HAS_LIVE_PRICES would be false')
+if (live.length < MIN_LIVE_PRICES)
+  fail(`livePrices.json has ${live.length} entries — below coverage floor of ${MIN_LIVE_PRICES} (97% of 1156 baseline). Likely a partial JustTCG run.`)
 
 // ── Invariant 7: every marketPrice is a finite positive number ──────────────
 for (const e of live) {

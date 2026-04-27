@@ -145,6 +145,71 @@ async function main() {
     await new Promise(r => setTimeout(r, 3000))
   }
 
+  // ── Coverage regression guard ───────────────────────────────────────────
+  // Refuse to write files when this run's coverage is materially below the
+  // last known-good baseline. Two checks:
+  //   1. Absolute floor: total ≥ MIN_TOTAL (97% of the 1,156-card baseline).
+  //   2. Per-set floor: each set ≥ 90% of the previous file's per-set count.
+  // If either fails, log loudly, exit non-zero, do NOT touch the JSON files.
+  // The bot's add-and-commit step will see no changes and skip its commit.
+  const MIN_TOTAL          = 1121          // 1156 × 0.97 = 1121.32 → floor 1121
+  const PER_SET_FLOOR_RATIO = 0.90
+
+  const livePath    = path.join(__dirname, '..', 'src', 'livePrices.json')
+  const historyPath = path.join(__dirname, '..', 'public', 'priceHistory30d.json')
+
+  // Read the previous on-disk livePrices for per-set baseline.
+  const prevPerSet = {}
+  let prevTotal    = 0
+  if (fs.existsSync(livePath)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(livePath, 'utf8'))
+      if (Array.isArray(prev)) {
+        prevTotal = prev.length
+        for (const e of prev) {
+          const s = e.cardCode?.split('-')[0]
+          if (s) prevPerSet[s] = (prevPerSet[s] ?? 0) + 1
+        }
+      }
+    } catch { /* unreadable prev file: treat as no baseline; absolute floor still applies */ }
+  }
+
+  const newPerSet = {}
+  for (const e of allPrices) {
+    const s = e.cardCode?.split('-')[0]
+    if (s) newPerSet[s] = (newPerSet[s] ?? 0) + 1
+  }
+
+  console.log('\n── Coverage guard ─────────────────────────────────────────')
+  console.log(`Previous file count: ${prevTotal}`)
+  console.log(`Current run count:   ${allPrices.length}`)
+  console.log(`Minimum required:    ${MIN_TOTAL}  (97% of 1156 baseline)`)
+
+  const failures = []
+  if (allPrices.length < MIN_TOTAL) {
+    failures.push(`total ${allPrices.length} < minimum ${MIN_TOTAL}`)
+  }
+
+  console.log('Per-set check (must be ≥ 90% of previous):')
+  const sets = new Set([...Object.keys(prevPerSet), ...Object.keys(newPerSet)])
+  for (const s of [...sets].sort()) {
+    const prev   = prevPerSet[s] ?? 0
+    const curr   = newPerSet[s]  ?? 0
+    const minSet = Math.floor(prev * PER_SET_FLOOR_RATIO)
+    const ok     = curr >= minSet
+    console.log(`  ${s}: prev=${prev}  curr=${curr}  min=${minSet}  ${ok ? '✓' : '✗'}`)
+    if (!ok) failures.push(`set ${s}: ${curr} < ${minSet} (90% of ${prev})`)
+  }
+
+  if (failures.length > 0) {
+    console.error('\n✗ Coverage guard FAILED — refusing to write degraded files:')
+    for (const f of failures) console.error(`    ${f}`)
+    console.error('\nNo files were written. The bot will see no diff and skip commit.')
+    process.exit(1)
+  }
+
+  console.log('\n✓ Coverage guard PASSED — writing files.')
+
   // Split persistence:
   //   src/livePrices.json          → bundled, current prices only (no history)
   //   public/priceHistory30d.json  → static asset, lazy-fetched by CardDetail
@@ -161,10 +226,7 @@ async function main() {
     }
   }
 
-  const livePath    = path.join(__dirname, '..', 'src', 'livePrices.json')
-  const historyPath = path.join(__dirname, '..', 'public', 'priceHistory30d.json')
   fs.mkdirSync(path.dirname(historyPath), { recursive: true })
-
   fs.writeFileSync(livePath,    JSON.stringify(livePrices, null, 2))
   fs.writeFileSync(historyPath, JSON.stringify(historyMap, null, 2))
 
