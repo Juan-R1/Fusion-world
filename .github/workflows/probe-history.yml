@@ -1,0 +1,43 @@
+name: Probe JustTCG Price History
+
+# One-shot diagnostic. Manual trigger only — no schedule, no push trigger.
+# Uses the existing JUSTTCG_API_KEY repo secret. The key is never echoed.
+# After we have the answer we either delete this workflow or harden it
+# into a proper recurring diagnostics job.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run probe
+        env:
+          JUSTTCG_API_KEY: ${{ secrets.JUSTTCG_API_KEY }}
+        run: node scripts/probe-history.js
+
+      - name: Paste-back checklist
+        if: always()
+        run: |
+          echo ""
+          echo "================================================================================"
+          echo "PASTE-BACK CHECKLIST — copy ONLY these from the 'Run probe' step output above:"
+          echo "================================================================================"
+          echo "  1. The SUMMARY block (the final object printed near the end)"
+          echo "  2. One full card result IF any variant returned a non-empty priceHistory"
+          echo "  3. Any card result where cardsFound is 0 or the returned number is mismatched"
+          echo ""
+          echo "Do NOT paste the API key. The probe script does not print it; just be careful"
+          echo "if you copy unrelated log lines."
+          echo "================================================================================"
