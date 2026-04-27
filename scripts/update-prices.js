@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
  * scripts/update-prices.js
- * Fetches live market prices from JustTCG API → writes src/livePrices.json
+ * Fetches live market prices + 30d priceHistory from JustTCG → writes:
+ *   src/livePrices.json          (current prices only — bundled)
+ *   public/priceHistory30d.json  (cardCode → [{p,t}] — lazy-fetched by UI)
  * Run AFTER accumulate-prices.js in CI.
  * Usage: JUSTTCG_API_KEY=tcg_xxx node scripts/update-prices.js
  */
@@ -143,9 +145,31 @@ async function main() {
     await new Promise(r => setTimeout(r, 3000))
   }
 
-  const outPath = path.join(__dirname, '..', 'src', 'livePrices.json')
-  fs.writeFileSync(outPath, JSON.stringify(allPrices, null, 2))
-  console.log(`\nWrote ${allPrices.length} live prices → src/livePrices.json`)
+  // Split persistence:
+  //   src/livePrices.json          → bundled, current prices only (no history)
+  //   public/priceHistory30d.json  → static asset, lazy-fetched by CardDetail
+  const livePrices = allPrices.map(({ cardCode, marketPrice, timestamp }) => ({
+    cardCode,
+    marketPrice,
+    timestamp,
+  }))
+
+  const historyMap = {}
+  for (const { cardCode, history } of allPrices) {
+    if (Array.isArray(history) && history.length > 0) {
+      historyMap[cardCode] = history
+    }
+  }
+
+  const livePath    = path.join(__dirname, '..', 'src', 'livePrices.json')
+  const historyPath = path.join(__dirname, '..', 'public', 'priceHistory30d.json')
+  fs.mkdirSync(path.dirname(historyPath), { recursive: true })
+
+  fs.writeFileSync(livePath,    JSON.stringify(livePrices, null, 2))
+  fs.writeFileSync(historyPath, JSON.stringify(historyMap, null, 2))
+
+  console.log(`\nWrote ${livePrices.length} live prices → src/livePrices.json`)
+  console.log(`Wrote ${Object.keys(historyMap).length} history entries → public/priceHistory30d.json`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

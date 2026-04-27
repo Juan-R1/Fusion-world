@@ -11,8 +11,9 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT      = path.join(__dirname, '..')
 
-const CARDS_PATH = path.join(ROOT, 'src', 'cardData.json')
-const LIVE_PATH  = path.join(ROOT, 'src', 'livePrices.json')
+const CARDS_PATH   = path.join(ROOT, 'src', 'cardData.json')
+const LIVE_PATH    = path.join(ROOT, 'src', 'livePrices.json')
+const HISTORY_PATH = path.join(ROOT, 'public', 'priceHistory30d.json')
 
 const VALID_RARITIES = new Set(['L', 'C', 'UC', 'R', 'SR', 'SCR', 'SPR'])
 const SET_PATTERN    = /^FB0[1-9]$/
@@ -77,20 +78,86 @@ for (const e of live) {
     fail(`invalid marketPrice ${JSON.stringify(p)} on entry ${JSON.stringify(e).slice(0, 120)}`)
 }
 
-// ── Invariant 8: livePrices history schema (when present) ───────────────────
-// Each entry's `history` is an optional array of { p: number, t: number } points.
-// Empty arrays are allowed (a card may have no JustTCG history yet).
-for (const e of live) {
-  if (e.history == null) continue
-  if (!Array.isArray(e.history))
-    fail(`livePrices entry ${e.cardCode}: "history" is not an array`)
-  for (const h of e.history) {
+// ── Invariants 8 & 9 (TRANSITIONAL — see TODO below) ────────────────────────
+// History is moving from inline (livePrices.json entries) to a separate
+// asset (public/priceHistory30d.json). During the split, accept either
+// shape so the dev branch is not broken between the script change and the
+// bot's first regenerated commit.
+//
+// TODO(post-split-tighten): once the bot has committed both new files at
+// least once, tighten these to:
+//   - livePrices entries MUST NOT contain a `history` field
+//   - public/priceHistory30d.json MUST exist
+//   - every key in priceHistory30d.json must be present in livePrices.json
+// Any inline history detected at that point should be a hard fail.
+
+// Inline history schema — old shape (kept lenient during transition).
+function validateInlineHistory(entry) {
+  if (entry.history == null) return false
+  if (!Array.isArray(entry.history))
+    fail(`livePrices entry ${entry.cardCode}: "history" is not an array`)
+  for (const h of entry.history) {
     if (typeof h?.p !== 'number' || !Number.isFinite(h.p) || h.p <= 0)
-      fail(`livePrices entry ${e.cardCode}: invalid history price ${JSON.stringify(h)}`)
+      fail(`livePrices entry ${entry.cardCode}: invalid history price ${JSON.stringify(h)}`)
     if (typeof h?.t !== 'number' || !Number.isFinite(h.t) || h.t <= 0)
-      fail(`livePrices entry ${e.cardCode}: invalid history timestamp ${JSON.stringify(h)}`)
+      fail(`livePrices entry ${entry.cardCode}: invalid history timestamp ${JSON.stringify(h)}`)
   }
+  return entry.history.length > 0
 }
 
-const withHistory = live.filter(e => Array.isArray(e.history) && e.history.length > 0).length
-console.log(`✓ ${cards.length} cards, ${live.length} live prices (${withHistory} with history), 8 invariants passed`)
+// External history schema — new shape (cardCode → [{p,t}]).
+function validateExternalHistory(historyMap, liveCardCodes) {
+  if (typeof historyMap !== 'object' || historyMap === null || Array.isArray(historyMap))
+    fail('priceHistory30d.json is not a plain object')
+  let count = 0
+  for (const [code, hist] of Object.entries(historyMap)) {
+    if (!liveCardCodes.has(code))
+      fail(`priceHistory30d.json contains cardCode "${code}" not in livePrices.json`)
+    if (!Array.isArray(hist))
+      fail(`priceHistory30d.json[${code}]: not an array`)
+    for (const h of hist) {
+      if (typeof h?.p !== 'number' || !Number.isFinite(h.p) || h.p <= 0)
+        fail(`priceHistory30d.json[${code}]: invalid price ${JSON.stringify(h)}`)
+      if (typeof h?.t !== 'number' || !Number.isFinite(h.t) || h.t <= 0)
+        fail(`priceHistory30d.json[${code}]: invalid timestamp ${JSON.stringify(h)}`)
+    }
+    if (hist.length > 0) count++
+  }
+  return count
+}
+
+let inlineCount  = 0
+let externalCount = 0
+let shapeLabel   = ''
+
+const hasInlineHistory   = live.some(e => Array.isArray(e.history))
+const hasExternalHistory = fs.existsSync(HISTORY_PATH)
+
+// Invariant 8: at least one history source must exist
+if (!hasInlineHistory && !hasExternalHistory) {
+  fail('no priceHistory found — neither inline in livePrices.json nor at public/priceHistory30d.json')
+}
+
+// Invariant 9: whichever sources exist, their schemas must validate
+if (hasInlineHistory) {
+  for (const e of live) {
+    if (validateInlineHistory(e)) inlineCount++
+  }
+}
+if (hasExternalHistory) {
+  let externalHistory
+  try {
+    externalHistory = JSON.parse(fs.readFileSync(HISTORY_PATH, 'utf8'))
+  } catch (err) {
+    fail(`priceHistory30d.json failed to parse — ${err.message}`)
+  }
+  const liveCardCodes = new Set(live.map(e => e.cardCode))
+  externalCount = validateExternalHistory(externalHistory, liveCardCodes)
+}
+
+if (hasInlineHistory && hasExternalHistory) shapeLabel = 'BOTH shapes (transitional)'
+else if (hasExternalHistory)                shapeLabel = 'split shape'
+else                                        shapeLabel = 'inline shape (transitional)'
+
+const totalHistory = inlineCount + externalCount
+console.log(`✓ ${cards.length} cards, ${live.length} live prices (${totalHistory} with history, ${shapeLabel}), 9 invariants passed`)
