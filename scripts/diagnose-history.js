@@ -1,8 +1,16 @@
-// scripts/probe-history.js
-// One-shot diagnostic. Do not commit permanently unless useful.
+// scripts/diagnose-history.js
+//
+// Re-runnable diagnostic: probes JustTCG /v1/cards for DBFW priceHistory
+// shape and coverage. The trust fix (2026-04-25) confirmed JustTCG returns
+// 30d daily history for DBFW; this script exists so we can re-confirm that
+// any time JustTCG's response shape changes, a weekly cron looks suspicious,
+// or a new set is added to the catalog.
+//
+// Not part of CI. Run on demand from a developer machine.
+//
 // Usage:
-//   JUSTTCG_API_KEY=your_key node scripts/probe-history.js
-//   JUSTTCG_API_KEY=your_key node scripts/probe-history.js FB01-001 FB05-120 FB09-121
+//   JUSTTCG_API_KEY=tcg_xxx node scripts/diagnose-history.js
+//   JUSTTCG_API_KEY=tcg_xxx node scripts/diagnose-history.js FB01-001 FB05-120 FB09-121
 const API_KEY = process.env.JUSTTCG_API_KEY;
 const GAME = "dragon-ball-super-fusion-world";
 const BASE_URL = "https://api.justtcg.com/v1/cards";
