@@ -29,13 +29,22 @@ function summarizeHistory(history) {
       sample: []
     };
   }
-  const dates = history
-    .map((p) => p.date || p.timestamp || p.createdAt || p.day)
-    .filter(Boolean);
+  // JustTCG history points use { p: price, t: unixSeconds }.
+  // Older shapes (date / timestamp / createdAt / day) are tried as a fallback.
+  const toIso = (point) => {
+    const raw = point.t ?? point.timestamp ?? point.date ?? point.createdAt ?? point.day;
+    if (raw == null) return null;
+    if (typeof raw === "number") {
+      const ms = raw > 1e12 ? raw : raw * 1000;
+      return new Date(ms).toISOString();
+    }
+    return String(raw);
+  };
+  const dates = history.map(toIso).filter(Boolean);
   return {
     points: history.length,
-    firstDate: dates[0] || null,
-    lastDate: dates[dates.length - 1] || null,
+    firstDate: dates[0] ?? null,
+    lastDate: dates[dates.length - 1] ?? null,
     sample: history.slice(0, 3)
   };
 }
