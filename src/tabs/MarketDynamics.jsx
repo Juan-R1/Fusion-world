@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { T }         from '../theme.js'
 import { SETS, RARITIES } from '../data.js'
 import RarityBadge   from '../components/RarityBadge.jsx'
-import Sparkline     from '../components/Sparkline.jsx'
 
 // ── Quadrant scatter map ──────────────────────────────────────────────────────
 function QuadrantMap({ cards }) {
@@ -132,11 +131,9 @@ function SetHealthCards({ cards }) {
         const avgDP = sc.reduce((s, c) => s + c.demandPressure, 0) / sc.length
         const avgSS = sc.reduce((s, c) => s + c.supplySaturation, 0) / sc.length
 
-        // 30-day demand trend: average demandHistory[day] across all cards in set
-        const DAYS = sc[0].demandHistory.length
-        const demandTrend = Array.from({ length: DAYS }, (_, d) =>
-          sc.reduce((sum, c) => sum + c.demandHistory[d], 0) / sc.length
-        )
+        // Demand-trend sparkline removed (rule 4: no synthetic movement).
+        // The Heating/Stable/Cooling label below is derived from static
+        // avgDP/avgSS thresholds — those are real aggregates, not a fake series.
 
         const trend =
           avgDP > 0.65 && avgSS < 1.0  ? 'Heating'    :
@@ -187,7 +184,7 @@ function SetHealthCards({ cards }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <span
                 style={{
                   background: `${tCol}22`, color: tCol,
@@ -197,7 +194,6 @@ function SetHealthCards({ cards }) {
               >
                 {trend}
               </span>
-              <Sparkline data={demandTrend} color={tCol} height={28} width={80} fill />
             </div>
           </div>
         )

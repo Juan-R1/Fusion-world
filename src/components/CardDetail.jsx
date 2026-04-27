@@ -187,9 +187,39 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           <div style={{ fontSize: 11, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             Price History
           </div>
-          <RangeToggle range={range} setRange={setRange} />
+          {card.historyState === 'real' && (
+            <RangeToggle range={range} setRange={setRange} />
+          )}
         </div>
-        <Sparkline data={card.priceHistory.slice(-range)} color={T.orange} height={60} width={chartWidth} fill />
+        {card.historyState !== 'none' ? (
+          <>
+            <Sparkline
+              data={card.priceHistory.slice(-range).map(p => p.price)}
+              color={T.orange}
+              height={60}
+              width={chartWidth}
+              fill
+            />
+            <div style={{ fontSize: 10, color: T.dim, marginTop: 6, fontFamily: T.mono }}>
+              {card.historyState === 'real'
+                ? `30d JustTCG history · ${card.priceHistory.length} points`
+                : `Limited history · ${card.priceHistory.length} point${card.priceHistory.length === 1 ? '' : 's'}`}
+            </div>
+          </>
+        ) : (
+          <div
+            style={{
+              background: T.s2, borderRadius: 8, padding: '18px 16px',
+              height: 60, display: 'flex',
+              alignItems: 'center', justifyContent: 'center',
+              border: `1px dashed ${T.border}`,
+            }}
+          >
+            <span style={{ fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+              Not enough JustTCG history
+            </span>
+          </div>
+        )}
       </div>
 
       {/* ── Desirability breakdown ── */}
@@ -256,16 +286,9 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
         </div>
       </div>
 
-      {/* ── Demand trend sparkline ── */}
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <div style={{ fontSize: 11, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            Demand Trend
-          </div>
-          <RangeToggle range={range} setRange={setRange} />
-        </div>
-        <Sparkline data={card.demandHistory.slice(-range)} color={dpColor} height={40} width={chartWidth} fill />
-      </div>
+      {/* Demand-trend sparkline removed: there is no real time series for
+          demand pressure. The gauge ring above already conveys the static
+          score; rule 4 of the trust fix forbids synthetic movement. */}
     </div>
   )
 }

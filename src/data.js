@@ -1,6 +1,11 @@
 import RAW      from './cardData.json'     assert { type: 'json' }
 import LIVE_RAW from './livePrices.json'   assert { type: 'json' }
-import HIST_RAW from './priceHistory.json' assert { type: 'json' }
+
+// priceHistory.json is no longer imported here — JustTCG now serves 30d history
+// natively (see scripts/update-prices.js). The accumulator pipeline still
+// writes priceHistory.json on every weekly run; it is kept as a possible
+// long-term archive layer and will be reconsidered after JustTCG history is
+// stable for several cycles. See CLAUDE.md §10 P2 for cleanup status.
 
 // ── Sets (FB01–FB09) ─────────────────────────────────────────────────────────
 export const SETS = [
@@ -26,11 +31,10 @@ export const RARITIES = [
   { code: 'SPR', name: 'Special Rare',  pullRate: 0.003, color: '#dc2626' },
 ]
 
-// ── Live price maps ───────────────────────────────────────────────────────────
-// LIVE_RAW: [{cardCode, marketPrice, timestamp}]
-// HIST_RAW: {[cardCode]: [{price, timestamp}]}
-const LIVE_MAP = new Map(LIVE_RAW.map(e => [e.cardCode, e.marketPrice]))
-const HIST_MAP = HIST_RAW
+// ── Live price map ───────────────────────────────────────────────────────────
+// LIVE_RAW: [{cardCode, marketPrice, timestamp, history: [{p, t}]}]
+// LIVE_MAP keys by cardCode → full entry so we can read both price and history.
+const LIVE_MAP = new Map(LIVE_RAW.map(e => [e.cardCode, e]))
 
 export const HAS_LIVE_PRICES = LIVE_MAP.size > 0
 
@@ -51,7 +55,9 @@ const MEAN_CHAR_PREMIUM = 5.9386   // global mean charPremium across 1,156 price
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-// Seeded PRNG (mulberry32) — reproducible, no external deps
+// Seeded PRNG (mulberry32) — reproducible, no external deps. Used for non-price
+// synthetic fields (artScore, totalSupply, absorbed, supplySaturation) which are
+// internal mechanics, not visualized as time series.
 function mkRng(seed) {
   let s = seed | 0
   return () => {
@@ -72,11 +78,28 @@ const pullCostOf = pullRate =>
 // Character premium: googleTrends 100 → 10, 0 → 1
 const charPremiumOf = googleTrends => Math.max(1, Math.min(10, (googleTrends / 100) * 9 + 1))
 
-function makeSparkline(rng, base, n, vol) {
-  const d = [base]
-  for (let i = 1; i < n; i++)
-    d.push(Math.max(0.001, d[i - 1] * (1 + (rng() - 0.5) * 2 * vol)))
-  return d
+// History state classification — the contract the UI reads off each card.
+// Keep these strings stable; CardDetail and Sparkline branch on them.
+//   'real'    >= 7 valid points  → render real sparkline + "30d JustTCG history"
+//   'limited' 1–6 valid points   → render observed points + "Limited history (N points)"
+//   'none'    0 points            → render placeholder + "Not enough JustTCG history"
+function historyStateOf(points) {
+  if (points >= 7) return 'real'
+  if (points >= 1) return 'limited'
+  return 'none'
+}
+
+// Normalize a JustTCG {p, t} history array into UI-friendly {price, ts}, sorted
+// oldest → newest, dropping any malformed points.
+function normalizeHistory(raw) {
+  if (!Array.isArray(raw)) return []
+  return raw
+    .filter(h =>
+      typeof h?.p === 'number' && Number.isFinite(h.p) && h.p > 0 &&
+      typeof h?.t === 'number' && Number.isFinite(h.t) && h.t > 0
+    )
+    .map(h => ({ price: h.p, ts: h.t }))
+    .sort((a, b) => a.ts - b.ts)
 }
 
 // ── Apply analytics model to each real card ───────────────────────────────────
@@ -92,31 +115,31 @@ export const CARDS = RAW.map((raw, idx) => {
   const rarityBase      = RARITY_BASE_PRICE[raw.rarity] ?? RARITY_BASE_PRICE['C']
   const predictedPrice  = rarityBase * Math.exp(CHAR_PREMIUM_BETA * (charPremium - MEAN_CHAR_PREMIUM))
 
-  // rng #2: ALWAYS consumed regardless of live data — preserves RNG stability
-  // for all downstream calls (totalSupply, absorbed, supplySaturation, sparklines)
-  const syntheticNoise  = 0.7 + rng() * 0.6
-  const syntheticPrice  = predictedPrice * syntheticNoise
+  // Live data wins. For estimated cards (no live price), the model price is the
+  // best honest estimate — no RNG noise. delta is therefore 0 for estimated.
+  const liveEntry  = LIVE_MAP.get(raw.code) ?? null
+  const livePrice  = liveEntry?.marketPrice ?? null
+  const marketPrice = livePrice ?? predictedPrice
+  const delta      = ((marketPrice - predictedPrice) / predictedPrice) * 100
 
-  const livePrice       = LIVE_MAP.get(raw.code) ?? null
-  const marketPrice     = livePrice ?? syntheticPrice
-  const delta           = ((marketPrice - predictedPrice) / predictedPrice) * 100
+  const totalSupply      = Math.floor(100 + rng() * 1400)                  // rng #2
+  const absorbed         = Math.floor(totalSupply * (0.15 + rng() * 0.80)) // rng #3
+  const demandPressure   = absorbed / totalSupply
+  const supplySaturation = 0.4 + rng() * 1.7                               // rng #4
 
-  const totalSupply     = Math.floor(100 + rng() * 1400)          // rng #3
-  const absorbed        = Math.floor(totalSupply * (0.15 + rng() * 0.80)) // rng #4
-  const demandPressure  = absorbed / totalSupply
-  const supplySaturation = 0.4 + rng() * 1.7                      // rng #5
+  // Real history pulled from JustTCG. May be empty for cards JustTCG hasn't
+  // sampled yet (currently rare — 1156/1156 priced cards have history as of
+  // 2026-04-25, but the UI must handle the 0-point case anyway).
+  const priceHistory = normalizeHistory(liveEntry?.history)
+  const historyState = historyStateOf(priceHistory.length)
 
-  // rng #6–34: always generated — do NOT skip even when live price exists
-  const syntheticPriceHistory = makeSparkline(rng, syntheticPrice, 30, 0.06)
-
-  // Graft real historical prices onto the tail of the synthetic sparkline
-  const realPrices = (HIST_MAP[raw.code] ?? []).map(e => e.price)
-  const priceHistory = realPrices.length > 0
-    ? [...syntheticPriceHistory.slice(0, 30 - realPrices.length), ...realPrices]
-    : syntheticPriceHistory
-
-  // rng #35–63: always generated
-  const demandHistory = makeSparkline(rng, demandPressure, 30, 0.05)
+  // Trust labels surfaced to the UI:
+  //   priceStatus: 'live' (real market price) | 'estimated' (model fallback)
+  //   confidence:  'high' (live + ≥7 history) | 'medium' (live, <7 history) | 'low' (estimated)
+  const priceStatus = livePrice !== null ? 'live' : 'estimated'
+  const confidence  = priceStatus === 'live'
+    ? (historyState === 'real' ? 'high' : 'medium')
+    : 'low'
 
   return {
     id:              idx,
@@ -146,8 +169,10 @@ export const CARDS = RAW.map((raw, idx) => {
     absorbed,
     demandPressure:    +demandPressure.toFixed(3),
     supplySaturation:  +supplySaturation.toFixed(3),
-    hasLivePrice:    livePrice !== null,
-    priceHistory,
-    demandHistory,
+    priceStatus,           // 'live' | 'estimated'
+    historyState,          // 'real' | 'limited' | 'none'
+    confidence,            // 'high' | 'medium' | 'low'
+    hasLivePrice:    livePrice !== null,  // legacy alias used by Watchlist/BoxEV/ValueScanner LIVE chip
+    priceHistory,          // [{price, ts}] sorted oldest→newest, may be empty
   }
 })

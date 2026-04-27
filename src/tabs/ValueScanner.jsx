@@ -38,12 +38,17 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
   const [page,      setPage]      = useState(0)
   const isMobile = useIsMobile()
 
+  const isRankingSort = sort === 'undervalued' || sort === 'overvalued'
+
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
     let r = cards
     if (q)               r = r.filter(c => c.character.toLowerCase().includes(q) || c.name.toLowerCase().includes(q))
     if (setFilter !== 'ALL') r = r.filter(c => c.set === setFilter)
     if (rarFilter !== 'ALL') r = r.filter(c => c.rarity === rarFilter)
+    // Rule 7: estimated cards stay visible elsewhere, but rankings (undervalued
+    // / overvalued) are live-only — model-vs-model has zero signal.
+    if (isRankingSort) r = r.filter(c => c.priceStatus === 'live')
     return r.slice().sort((a, b) => {
       switch (sort) {
         case 'undervalued':  return a.delta - b.delta
@@ -54,7 +59,7 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
         default: return 0
       }
     })
-  }, [cards, search, setFilter, rarFilter, sort])
+  }, [cards, search, setFilter, rarFilter, sort, isRankingSort])
 
   const totalPages  = Math.ceil(filtered.length / PAGE_SIZE)
   const clampedPage = Math.min(page, Math.max(0, totalPages - 1))
@@ -196,8 +201,10 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
                         <RarityBadge rarity={card.rarity} color={card.rarityColor} />
                         <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
-                        {card.hasLivePrice && (
-                          <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>LIVE</span>
+                        {card.priceStatus === 'live' ? (
+                          <span title="Live JustTCG market price" style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>LIVE</span>
+                        ) : (
+                          <span title="Model estimate — no live price available" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.35)', color: '#eab308', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>EST</span>
                         )}
                       </div>
                     </div>
