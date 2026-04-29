@@ -1,11 +1,22 @@
 #!/usr/bin/env node
 /**
  * scripts/update-prices.js
- * Fetches live market prices + 30d priceHistory from JustTCG → writes:
- *   src/livePrices.json          (current prices only — bundled)
- *   public/priceHistory30d.json  (cardCode → [{p,t}] — lazy-fetched by UI)
- * Run AFTER accumulate-prices.js in CI.
- * Usage: JUSTTCG_API_KEY=tcg_xxx node scripts/update-prices.js
+ * Quota-safe JustTCG price refresh with set rotation + merge.
+ *
+ * Modes (env UPDATE_MODE, default 'rotation'):
+ *   rotation  Fetch only the target sets, merge into the previous known-good
+ *             snapshot, carry forward all other sets unchanged. ~21–25 reqs.
+ *             Auto-picks group A/B/C from ISO week unless UPDATE_SETS is set.
+ *   full      Fetch all 9 sets. ~67 reqs. Quota-risky on the free tier.
+ *
+ * Target sets (env UPDATE_SETS, e.g. "FB01,FB02"):
+ *   When provided in rotation mode, overrides ISO-week auto-rotation.
+ *   Ignored in full mode.
+ *
+ * Outputs (only when the merged-output coverage guard passes):
+ *   src/livePrices.json          current prices, no inline history
+ *   public/priceHistory30d.json  cardCode → [{p,t}] (lazy-fetched by UI)
+ *   public/priceUpdateLog.json   metadata: which sets refreshed and when
  */
 import fs   from 'fs'
 import path from 'path'
@@ -20,7 +31,6 @@ if (!API_KEY) {
   process.exit(1)
 }
 
-// JustTCG set slugs — confirmed from /v1/sets?game=dragon-ball-super-fusion-world
 const SET_SLUGS = {
   FB01: 'awakened-pulse-dragon-ball-super-fusion-world',
   FB02: 'blazing-aura-dragon-ball-super-fusion-world',
@@ -31,6 +41,14 @@ const SET_SLUGS = {
   FB07: 'wish-for-shenron-dragon-ball-super-fusion-world',
   FB08: 'saiyan-s-pride-dragon-ball-super-fusion-world',   // apostrophe → -s-
   FB09: 'dual-evolution-dragon-ball-super-fusion-world',
+}
+const ALL_SETS = Object.keys(SET_SLUGS)
+
+// Rotation groups — 3 sets per group → ~21–25 requests per run, 3-week cycle.
+const ROTATION_GROUPS = {
+  A: ['FB01', 'FB02', 'FB03'],
+  B: ['FB04', 'FB05', 'FB06'],
+  C: ['FB07', 'FB08', 'FB09'],
 }
 
 // Load local card index — keyed by full code "FB01-001"
@@ -44,19 +62,16 @@ class RateLimitedError extends Error { constructor(m)         { super(m); this.n
 class ApiError         extends Error { constructor(m, status) { super(m); this.name = 'ApiError'; this.status = status } }
 
 // ── Single global request queue ──────────────────────────────────────────────
-// All API calls go through request(). It is the ONLY place that owns spacing
-// and retry logic, so set-level and run-level loops cannot accidentally diverge.
 const MIN_SPACING_MS         = 8000
 const RATE_LIMIT_BACKOFFS_MS = [90_000, 180_000, 360_000]   // up to 3 retries on 429
 const TRANSIENT_BACKOFFS_MS  = [15_000, 30_000]             // up to 2 retries on 5xx / network
 
 let nextAllowedAt  = 0
 let requestCounter = 0
-let totalRequests  = 0   // populated at the start of main()
+let totalRequests  = 0
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
-// Retry-After can be seconds (integer) or an HTTP-date. Returns ms or null.
 function parseRetryAfter(headerVal) {
   if (!headerVal) return null
   const seconds = Number(headerVal)
@@ -74,7 +89,6 @@ async function request(url, { setCode, offset }) {
   let transientAttempt = 0
 
   while (true) {
-    // Global spacing
     const wait = Math.max(0, nextAllowedAt - Date.now())
     if (wait > 0) await sleep(wait)
 
@@ -85,7 +99,6 @@ async function request(url, { setCode, offset }) {
         headers: { 'x-api-key': API_KEY, 'Accept': 'application/json' },
       })
     } catch (err) {
-      // Network / DNS failure
       if (transientAttempt < TRANSIENT_BACKOFFS_MS.length) {
         const backoff = TRANSIENT_BACKOFFS_MS[transientAttempt++]
         console.warn(`${tag} ${setCode} offset=${offset} → NETWORK_ERROR retry=${transientAttempt} wait=${backoff/1000}s (${err.message})`)
@@ -98,7 +111,6 @@ async function request(url, { setCode, offset }) {
     const status = res.status
     const cycleS = ((Date.now() - cycleStart) / 1000).toFixed(1)
 
-    // 2xx
     if (res.ok) {
       const totalRetries = rateLimitAttempt + transientAttempt
       const retryNote    = totalRetries > 0 ? ` retry=${totalRetries}` : ''
@@ -107,13 +119,11 @@ async function request(url, { setCode, offset }) {
       return res
     }
 
-    // 401 / 403 — auth, do not retry, abort run
     if (status === 401 || status === 403) {
       console.error(`${tag} ${setCode} offset=${offset} → ${status} AUTH_ERROR — no retry`)
       throw new AuthError(`HTTP ${status} on ${url}`)
     }
 
-    // 429 — rate limited
     if (status === 429) {
       if (rateLimitAttempt >= RATE_LIMIT_BACKOFFS_MS.length) {
         console.error(`${tag} ${setCode} offset=${offset} → 429 after ${RATE_LIMIT_BACKOFFS_MS.length} retries — RATE_LIMITED`)
@@ -129,7 +139,6 @@ async function request(url, { setCode, offset }) {
       continue
     }
 
-    // 5xx — transient server error
     if (status >= 500) {
       if (transientAttempt >= TRANSIENT_BACKOFFS_MS.length) {
         console.error(`${tag} ${setCode} offset=${offset} → ${status} after ${TRANSIENT_BACKOFFS_MS.length} retries`)
@@ -141,7 +150,6 @@ async function request(url, { setCode, offset }) {
       continue
     }
 
-    // Any other 4xx — unexpected, no retry
     console.error(`${tag} ${setCode} offset=${offset} → ${status} unexpected`)
     throw new ApiError(`HTTP ${status} on ${url}`, status)
   }
@@ -158,7 +166,7 @@ function bestVariant(variants) {
 async function fetchAllCards(setCode, slug) {
   const cards = []
   let offset  = 0
-  const limit = 20   // free tier max
+  const limit = 20
 
   while (true) {
     const url = `${BASE_URL}/cards?set=${encodeURIComponent(slug)}&limit=${limit}&offset=${offset}`
@@ -184,14 +192,11 @@ async function fetchSetPrices(setCode, slug) {
     return []
   }
 
-  // De-duplicate by code: keep lowest Near Mint Normal price (base card, not alt art).
-  // Each entry stores marketPrice plus the chosen variant's priceHistory ({p, t}[]).
   const entryMap = new Map()  // code → { marketPrice, history }
-
   for (const card of allCards) {
     const code = card.number
-    if (!code || code === 'N/A') continue        // skip sealed products
-    if (!LOCAL_MAP.has(code)) continue           // skip codes not in our dataset
+    if (!code || code === 'N/A') continue
+    if (!LOCAL_MAP.has(code)) continue
 
     const variant = bestVariant(card.variants)
     if (variant?.price == null) continue
@@ -199,7 +204,6 @@ async function fetchSetPrices(setCode, slug) {
     const price   = +Number(variant.price).toFixed(2)
     const history = Array.isArray(variant.priceHistory) ? variant.priceHistory : []
 
-    // If same code appears multiple times (alt art), keep the lowest price
     const existing = entryMap.get(code)
     if (!existing || price < existing.marketPrice)
       entryMap.set(code, { marketPrice: price, history })
@@ -217,40 +221,127 @@ async function fetchSetPrices(setCode, slug) {
   return results
 }
 
-// Estimate total page-requests for the log header. Based on local cardData
-// counts; the actual count may differ by a page or two if JustTCG's catalog
-// for a set doesn't perfectly match ours.
-function estimateTotalRequests() {
+// ── Rotation / target-set resolution ─────────────────────────────────────────
+function getISOWeek(date) {
+  const d = new Date(date.getTime())
+  d.setUTCHours(0, 0, 0, 0)
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7))
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+}
+
+function pickRotationGroup(date = new Date()) {
+  const week = getISOWeek(date)
+  const idx  = ((week - 1) % 3 + 3) % 3
+  return ['A', 'B', 'C'][idx]
+}
+
+function parseSetsEnv(envVal) {
+  if (!envVal) return null
+  const requested = envVal.split(',').map(s => s.trim()).filter(Boolean)
+  if (requested.length === 0) return null
+  const invalid = requested.filter(s => !SET_SLUGS[s])
+  if (invalid.length > 0) {
+    throw new Error(`Unknown set codes in UPDATE_SETS: ${invalid.join(', ')}. Valid: ${ALL_SETS.join(', ')}`)
+  }
+  return requested
+}
+
+function resolveTargetSets() {
+  const mode     = (process.env.UPDATE_MODE || 'rotation').toLowerCase()
+  const explicit = parseSetsEnv(process.env.UPDATE_SETS)
+
+  if (mode === 'full') {
+    return { mode: 'full', group: null, targetSets: ALL_SETS }
+  }
+  if (mode === 'rotation') {
+    if (explicit) return { mode: 'rotation', group: 'manual', targetSets: explicit }
+    const group = pickRotationGroup()
+    return { mode: 'rotation', group, targetSets: ROTATION_GROUPS[group] }
+  }
+  throw new Error(`Unknown UPDATE_MODE: "${mode}" (expected 'rotation' or 'full')`)
+}
+
+function estimateTotalRequests(targetSets) {
   const bySet = {}
   for (const c of localCards) bySet[c.set] = (bySet[c.set] ?? 0) + 1
   let total = 0
-  for (const setCode of Object.keys(SET_SLUGS)) {
+  for (const setCode of targetSets) {
     total += Math.max(1, Math.ceil((bySet[setCode] ?? 0) / 20))
   }
   return total
 }
 
+// ── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
-  const allPrices = []
-  let abortReason = null
+  const { mode, group, targetSets } = resolveTargetSets()
+  const targetSetSet = new Set(targetSets)
 
-  totalRequests = estimateTotalRequests()
-  console.log('── JustTCG full refresh ───────────────────────────────────')
-  console.log(`Estimated requests:  ${totalRequests}  (limit=20 across 9 sets)`)
+  const livePath      = path.join(__dirname, '..', 'src', 'livePrices.json')
+  const historyPath   = path.join(__dirname, '..', 'public', 'priceHistory30d.json')
+  const updateLogPath = path.join(__dirname, '..', 'public', 'priceUpdateLog.json')
+
+  // Load previous live prices (mandatory for rotation; recommended for full)
+  let previousLive = []
+  if (fs.existsSync(livePath)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(livePath, 'utf8'))
+      if (Array.isArray(parsed)) previousLive = parsed
+    } catch { /* treat as missing */ }
+  }
+  if (mode === 'rotation' && previousLive.length === 0) {
+    console.error('Rotation mode requires a previous src/livePrices.json baseline.')
+    console.error('Run with UPDATE_MODE=full once to bootstrap, then return to rotation.')
+    process.exit(1)
+  }
+
+  // Load (or bootstrap) previous history map
+  let previousHistory = {}
+  let historySource   = 'none'
+  if (fs.existsSync(historyPath)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(historyPath, 'utf8'))
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        previousHistory = parsed
+        historySource = 'public/priceHistory30d.json'
+      }
+    } catch { /* fall through to bootstrap */ }
+  }
+  if (historySource === 'none' && previousLive.some(e => Array.isArray(e.history) && e.history.length > 0)) {
+    for (const e of previousLive) {
+      if (Array.isArray(e.history) && e.history.length > 0) {
+        previousHistory[e.cardCode] = e.history
+      }
+    }
+    historySource = 'bootstrapped from inline history in src/livePrices.json'
+  }
+
+  totalRequests = estimateTotalRequests(targetSets)
+
+  const carrySets = ALL_SETS.filter(s => !targetSetSet.has(s))
+  console.log('── JustTCG quota-safe refresh ─────────────────────────────')
+  console.log(`Mode:                ${mode}${group ? `  (group ${group})` : ''}`)
+  console.log(`Refresh targets:     ${targetSets.join(', ')}`)
+  console.log(`Carry forward:       ${carrySets.length > 0 ? carrySets.join(', ') : '(none — full refresh)'}`)
+  console.log(`Estimated requests:  ${totalRequests}  (limit=20)`)
   console.log(`Min request spacing: ${MIN_SPACING_MS}ms`)
-  console.log(`Rate-limit retries:  ${RATE_LIMIT_BACKOFFS_MS.length} (waits: ${RATE_LIMIT_BACKOFFS_MS.map(n => n/1000 + 's').join(', ')}, Retry-After honored)`)
+  console.log(`History source:      ${historySource}`)
   console.log('')
 
-  for (const [setCode, slug] of Object.entries(SET_SLUGS)) {
+  // Fetch only the target sets
+  const fetchedPrices = []
+  let abortReason = null
+
+  for (const setCode of targetSets) {
     if (abortReason) {
       console.log(`Skipping ${setCode}: ${abortReason}`)
       continue
     }
-
+    const slug = SET_SLUGS[setCode]
     console.log(`Fetching ${setCode}...`)
     try {
       const prices = await fetchSetPrices(setCode, slug)
-      allPrices.push(...prices)
+      fetchedPrices.push(...prices)
     } catch (err) {
       if (err instanceof RateLimitedError) {
         console.error(`\n[${setCode}] ${err.message}`)
@@ -262,7 +353,6 @@ async function main() {
         abortReason = `auth error on ${setCode}`
         break
       }
-      // ApiError or unexpected — log and continue with remaining sets
       console.error(`\n[${setCode}] ${err.message}`)
     }
   }
@@ -272,59 +362,70 @@ async function main() {
     console.error('Coverage guard will run anyway and likely fail, protecting existing files.')
   }
 
-  // ── Coverage regression guard ───────────────────────────────────────────
-  // Refuse to write files when this run's coverage is materially below the
-  // last known-good baseline. Two checks:
-  //   1. Absolute floor: total ≥ MIN_TOTAL (97% of the 1,156-card baseline).
-  //   2. Per-set floor: each set ≥ 90% of the previous file's per-set count.
-  // If either fails, log loudly, exit non-zero, do NOT touch the JSON files.
-  // The bot's add-and-commit step will see no changes and skip its commit.
-  const MIN_TOTAL          = 1121          // 1156 × 0.97 = 1121.32 → floor 1121
-  const PER_SET_FLOOR_RATIO = 0.90
+  // ── Merge: carry-forward + freshly fetched ─────────────────────────────
+  const carryForward = previousLive.filter(e => {
+    const s = e.cardCode?.split('-')[0]
+    return s && !targetSetSet.has(s)
+  })
 
-  const livePath    = path.join(__dirname, '..', 'src', 'livePrices.json')
-  const historyPath = path.join(__dirname, '..', 'public', 'priceHistory30d.json')
-
-  // Read the previous on-disk livePrices for per-set baseline.
-  const prevPerSet = {}
-  let prevTotal    = 0
-  if (fs.existsSync(livePath)) {
-    try {
-      const prev = JSON.parse(fs.readFileSync(livePath, 'utf8'))
-      if (Array.isArray(prev)) {
-        prevTotal = prev.length
-        for (const e of prev) {
-          const s = e.cardCode?.split('-')[0]
-          if (s) prevPerSet[s] = (prevPerSet[s] ?? 0) + 1
-        }
-      }
-    } catch { /* unreadable prev file: treat as no baseline; absolute floor still applies */ }
+  // Final livePrices: split shape, no inline history
+  const merged = []
+  for (const e of carryForward) {
+    merged.push({ cardCode: e.cardCode, marketPrice: e.marketPrice, timestamp: e.timestamp })
+  }
+  for (const e of fetchedPrices) {
+    merged.push({ cardCode: e.cardCode, marketPrice: e.marketPrice, timestamp: e.timestamp })
   }
 
+  // Final historyMap: carry-forward history for non-target sets, fresh for target
+  const mergedHistory = {}
+  for (const [code, hist] of Object.entries(previousHistory)) {
+    const s = code.split('-')[0]
+    if (!targetSetSet.has(s) && Array.isArray(hist) && hist.length > 0) {
+      mergedHistory[code] = hist
+    }
+  }
+  for (const e of fetchedPrices) {
+    if (Array.isArray(e.history) && e.history.length > 0) {
+      mergedHistory[e.cardCode] = e.history
+    }
+  }
+
+  // ── Coverage regression guard (validates the merged output) ────────────
+  const MIN_TOTAL          = 1121          // 1156 × 0.97 floor
+  const PER_SET_FLOOR_RATIO = 0.90
+
+  const prevPerSet = {}
+  for (const e of previousLive) {
+    const s = e.cardCode?.split('-')[0]
+    if (s) prevPerSet[s] = (prevPerSet[s] ?? 0) + 1
+  }
   const newPerSet = {}
-  for (const e of allPrices) {
+  for (const e of merged) {
     const s = e.cardCode?.split('-')[0]
     if (s) newPerSet[s] = (newPerSet[s] ?? 0) + 1
   }
 
-  console.log('\n── Coverage guard ─────────────────────────────────────────')
-  console.log(`Previous file count: ${prevTotal}`)
-  console.log(`Current run count:   ${allPrices.length}`)
+  console.log('\n── Coverage guard (merged output) ─────────────────────────')
+  console.log(`Refreshed entries:   ${fetchedPrices.length}  (sets: ${targetSets.join(', ')})`)
+  console.log(`Carried forward:     ${carryForward.length}`)
+  console.log(`Merged total:        ${merged.length}`)
   console.log(`Minimum required:    ${MIN_TOTAL}  (97% of 1156 baseline)`)
 
   const failures = []
-  if (allPrices.length < MIN_TOTAL) {
-    failures.push(`total ${allPrices.length} < minimum ${MIN_TOTAL}`)
+  if (merged.length < MIN_TOTAL) {
+    failures.push(`merged total ${merged.length} < minimum ${MIN_TOTAL}`)
   }
 
   console.log('Per-set check (must be ≥ 90% of previous):')
-  const sets = new Set([...Object.keys(prevPerSet), ...Object.keys(newPerSet)])
-  for (const s of [...sets].sort()) {
+  const allUnion = new Set([...Object.keys(prevPerSet), ...Object.keys(newPerSet)])
+  for (const s of [...allUnion].sort()) {
     const prev   = prevPerSet[s] ?? 0
     const curr   = newPerSet[s]  ?? 0
     const minSet = Math.floor(prev * PER_SET_FLOOR_RATIO)
     const ok     = curr >= minSet
-    console.log(`  ${s}: prev=${prev}  curr=${curr}  min=${minSet}  ${ok ? '✓' : '✗'}`)
+    const note   = targetSetSet.has(s) ? '(refreshed)' : '(carried forward)'
+    console.log(`  ${s}: prev=${prev}  curr=${curr}  min=${minSet}  ${ok ? '✓' : '✗'} ${note}`)
     if (!ok) failures.push(`set ${s}: ${curr} < ${minSet} (90% of ${prev})`)
   }
 
@@ -337,28 +438,41 @@ async function main() {
 
   console.log('\n✓ Coverage guard PASSED — writing files.')
 
-  // Split persistence:
-  //   src/livePrices.json          → bundled, current prices only (no history)
-  //   public/priceHistory30d.json  → static asset, lazy-fetched by CardDetail
-  const livePrices = allPrices.map(({ cardCode, marketPrice, timestamp }) => ({
-    cardCode,
-    marketPrice,
-    timestamp,
-  }))
-
-  const historyMap = {}
-  for (const { cardCode, history } of allPrices) {
-    if (Array.isArray(history) && history.length > 0) {
-      historyMap[cardCode] = history
-    }
-  }
-
+  // ── Write outputs ──────────────────────────────────────────────────────
   fs.mkdirSync(path.dirname(historyPath), { recursive: true })
-  fs.writeFileSync(livePath,    JSON.stringify(livePrices, null, 2))
-  fs.writeFileSync(historyPath, JSON.stringify(historyMap, null, 2))
+  fs.writeFileSync(livePath,    JSON.stringify(merged,         null, 2))
+  fs.writeFileSync(historyPath, JSON.stringify(mergedHistory,  null, 2))
 
-  console.log(`\nWrote ${livePrices.length} live prices → src/livePrices.json`)
-  console.log(`Wrote ${Object.keys(historyMap).length} history entries → public/priceHistory30d.json`)
+  // Update log (capped at 12 entries)
+  const runRecord = {
+    runAt:    new Date().toISOString(),
+    mode,
+    group:    group ?? 'manual',
+    sets:     targetSets,
+    fetched:  fetchedPrices.length,
+    merged:   merged.length,
+  }
+  let log = { history: [] }
+  if (fs.existsSync(updateLogPath)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(updateLogPath, 'utf8'))
+      if (parsed && typeof parsed === 'object') log = parsed
+      if (!Array.isArray(log.history)) log.history = []
+    } catch { /* start fresh */ }
+  }
+  log.lastRunAt          = runRecord.runAt
+  log.lastMode           = runRecord.mode
+  log.lastGroup          = runRecord.group
+  log.lastRefreshedSets  = runRecord.sets
+  log.lastFetchedCount   = runRecord.fetched
+  log.lastMergedCount    = runRecord.merged
+  log.history.unshift(runRecord)
+  log.history = log.history.slice(0, 12)
+  fs.writeFileSync(updateLogPath, JSON.stringify(log, null, 2))
+
+  console.log(`\nWrote ${merged.length} live prices → src/livePrices.json (split shape, no inline history)`)
+  console.log(`Wrote ${Object.keys(mergedHistory).length} history entries → public/priceHistory30d.json`)
+  console.log(`Wrote refresh metadata → public/priceUpdateLog.json`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

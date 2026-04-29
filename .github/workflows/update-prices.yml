@@ -3,7 +3,19 @@ name: Update Live Prices
 on:
   schedule:
     - cron: '0 5 * * 1'   # Every Monday at 05:00 UTC
-  workflow_dispatch:        # Manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'rotation (3 sets, ~25 reqs, quota-safe) or full (all 9 sets, ~67 reqs, quota-risky)'
+        type: choice
+        options:
+          - rotation
+          - full
+        default: rotation
+      sets:
+        description: 'Optional explicit set list (e.g. "FB01,FB02,FB03"). Overrides ISO-week auto-rotation. Ignored when mode=full.'
+        required: false
+        default: ''
 
 jobs:
   update:
@@ -27,11 +39,13 @@ jobs:
       - name: Fetch latest prices from JustTCG
         env:
           JUSTTCG_API_KEY: ${{ secrets.JUSTTCG_API_KEY }}
+          UPDATE_MODE:     ${{ inputs.mode || 'rotation' }}
+          UPDATE_SETS:     ${{ inputs.sets || '' }}
         run: node scripts/update-prices.js
 
       - name: Commit updated price files
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'src/livePrices.json src/priceHistory.json public/priceHistory30d.json'
+          add: 'src/livePrices.json src/priceHistory.json public/priceHistory30d.json public/priceUpdateLog.json'
           message: 'chore: weekly price update'
           default_author: github_actions
