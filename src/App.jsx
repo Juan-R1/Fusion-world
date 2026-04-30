@@ -8,6 +8,7 @@ import PricingModel     from './tabs/PricingModel.jsx'
 import MarketDynamics   from './tabs/MarketDynamics.jsx'
 import BoxEV            from './tabs/BoxEV.jsx'
 import Watchlist        from './tabs/Watchlist.jsx'
+import Methodology      from './tabs/Methodology.jsx'
 import ProvenanceFooter from './components/ProvenanceFooter.jsx'
 
 const TABS = [
@@ -16,6 +17,7 @@ const TABS = [
   { id: 'dynamics',  label: '🌊 Market Dynamics', short: '🌊 Market'   },
   { id: 'boxev',     label: '📦 Box EV',          short: '📦 Box EV'   },
   { id: 'watchlist', label: '⭐ Watchlist',        short: '⭐ Watch'    },
+  { id: 'method',    label: '📘 Methodology',     short: '📘 Method'   },
 ]
 
 export default function App() {
@@ -112,6 +114,7 @@ export default function App() {
         {tab === 'dynamics'  && <MarketDynamics cards={CARDS} />}
         {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
         {tab === 'watchlist' && <Watchlist      cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} onClear={clear} />}
+        {tab === 'method'    && <Methodology cards={CARDS} />}
         <ProvenanceFooter />
       </main>
     </div>
