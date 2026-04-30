@@ -1,120 +1,95 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-04-27
+**Date:** 2026-04-30
 **Branch:** `claude/dbfw-market-analytics-1qh5D`
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Operate & Harden (post-MVP)
+**Phase:** Trust-complete MVP foundation; honest product / analytics expansion next
 
 ---
 
 ## TL;DR
 
-The dashboard is live and feature-complete. The build phase ended at v1.0; we're
-hardening the foundations so the data is trustworthy and the platform is
-operationally dependable. The weekly automation now fires successfully, the CI
-safety net is in place, and the trust fix shipped: synthetic sparklines have
-been replaced with real JustTCG 30d priceHistory across the UI.
+FusionMetrics now has a durable trust foundation. The app uses real JustTCG
+live prices, real JustTCG 30d history, visible provenance, per-card freshness,
+and a Methodology & Data Sources page. The next work should improve user-facing
+analytics without overstating precision.
 
 ---
 
-## What's healthy
+## Stable checkpoint
 
-| Area | Status | Evidence |
-|------|--------|----------|
-| Public site | Live | `fusion-metrics-jet.vercel.app` (Vercel deploy on push to `main`) |
-| Card database | 1,258 cards, ~92% verified | `src/cardData.json`, last refreshed `4dd6c62` |
-| Live pricing | Active, weekly cron firing | `6878660` (first bot commit), `c8bcab7` (latest) |
-| Price history | Real JustTCG 30d, 1,156 / 1,156 priced cards | `c8bcab7`; fetched via `priceHistoryDuration=30d` |
-| Sparklines | Real history only — synthetic generation removed | `3d0aa52 feat: replace synthetic sparklines with real JustTCG priceHistory` |
-| Trust labels | `priceStatus` (live/estimated) and `historyState` (real/limited/none) on every card | `src/data.js` |
-| CI gate | Build + 8-invariant data check on every push/PR | `.github/workflows/ci.yml`, `scripts/verify-data.js` |
-| Analytics | Plausible enabled for production domain | `index.html:43` |
-
----
-
-## Recent commits (most recent first)
-
-| SHA | Subject |
-|-----|---------|
-| `bd2aec9` | chore: retire one-shot probe; rename probe-history → diagnose-history |
-| `3d0aa52` | feat: replace synthetic sparklines with real JustTCG priceHistory |
-| `c8bcab7` | chore: weekly price update (bot, after workflow_dispatch) |
-| `beb4e0b` | feat: fetch JustTCG priceHistory in update-prices and verify schema |
-| `7c7f5e6` | fix: probe-history.js — recognize JustTCG `{p, t}` priceHistory format |
-| `01daa2e` | chore: enable Plausible analytics for production domain |
-| `ce448ae` | chore: add data-integrity smoke test to CI |
-| `897b1c1` | chore: add CI build-check workflow |
-
-Each commit is small, single-purpose, and reversible. CI runs on each.
+| Area | Current state |
+|------|---------------|
+| Card scope | 1,258 cards across FB01–FB09 |
+| Live prices | Known-good baseline: 1,156 |
+| Coverage guards | Absolute floor 1,121; per-set floor 90% of previous count |
+| Price file | `src/livePrices.json` contains current prices only |
+| History file | `public/priceHistory30d.json` contains real JustTCG 30d history |
+| Refresh metadata | `public/priceUpdateLog.json` powers provenance UI |
+| Price history UI | `CardDetail` lazy-loads `/priceHistory30d.json` and caches it |
+| Provenance | Footer/status chip and modal complete |
+| Per-card freshness | Badge complete, based on each card's live price timestamp |
+| Methodology | Methodology & Data Sources tab complete |
+| Data verification | `scripts/verify-data.js` requires split shape only |
+| Bundle | Roughly 627–631 kB raw after split-history migration |
+| External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 
 ---
 
-## The smoke test (CI gate)
+## Data contract
 
-`scripts/verify-data.js` runs before every build and asserts eight invariants:
-
-1. `cardData.json` parses and has exactly 1,258 entries
-2. Every card has a non-empty `code`, `set`, and `rarity` string
-3. No duplicate `code` values
-4. Every rarity is one of `L / C / UC / R / SR / SCR / SPR`
-5. Every set matches `/^FB0[1-9]$/`
-6. `livePrices.json` parses and has > 0 entries (keeps `HAS_LIVE_PRICES` truthy)
-7. Every `marketPrice` is a finite positive number — no NaN, Infinity, null, or zeros
-8. Every `history` entry (when present) is an array of `{p, t}` points where both fields are finite positive numbers
-
-A failure here blocks the build and the deploy.
+- `src/livePrices.json` is machine-generated current price data only.
+- `public/priceHistory30d.json` is machine-generated public 30d JustTCG
+  history.
+- `public/priceUpdateLog.json` is machine-generated refresh metadata.
+- Legacy accumulator output has been retired. Do not recreate it without an
+  approved long-term-history design.
+- Estimated cards remain visible but are excluded from undervalued and
+  overvalued rankings.
+- Character, demand, supply, and desirability scores are model heuristics, not
+  observed demand time series.
 
 ---
 
-## Yellow flags worth tracking
+## Non-negotiables
 
-- **Bundle size jumped to 1,351 kB / 132 kB gzip** (was 640 / 89 before history
-  was bundled). The 30d `priceHistory` arrays now live inside `livePrices.json`,
-  which is inlined into the bundle. Lazy-loading or splitting live price data is
-  the next technical-debt item — mobile users on slow connections will feel the
-  current size. Out of scope for the trust fix; queued for the next cleanup pass.
-- **Live-price coverage was briefly wobbly.** First cron run (Apr 18) wrote only
-  475 entries — likely JustTCG free-tier rate-limit truncation mid-run. The next
-  bot run (Apr 25) recovered to the full **1,156** and now carries 30d history.
-  The smoke test passed in both cases, so CI didn't catch the dip. Worth adding
-  a "minimum entries" guard so the bot refuses to commit a partial dataset.
-- **No type system, no test suite.** The CI gate is build + 8 invariants only.
-  A logic regression in `data.js` would still ship.
-- **`priceHistory.json` and `accumulate-prices.js` are now redundant** for
-  sparklines (JustTCG serves history natively). Kept in place as a possible
-  long-term archive layer; will be re-evaluated after several cycles of stable
-  JustTCG history.
+- Make FusionMetrics unable to lie by accident.
+- Do not add synthetic price history, synthetic market movement, fake trend
+  visuals, or RNG pricing noise.
+- Do not weaken `scripts/verify-data.js`, the 1,121 coverage guard, or the
+  per-set guard.
+- Do not manually edit generated JSON data.
+- Do not write partial degraded data.
+- Assume the JustTCG free tier unless the operator explicitly says otherwise.
+- Rotation mode is the default update strategy. Full refresh remains manual
+  and quota-risky.
 
 ---
 
-## What's queued next (per CLAUDE.md §10)
+## Recommended next sequence
 
-**Done in P1:**
-- ✅ CI build-check workflow
-- ✅ Data-integrity smoke test
-- ✅ Plausible analytics enabled
-- ✅ Real JustTCG priceHistory replaces synthetic sparklines
-- ✅ Estimated cards excluded from undervalued/overvalued rankings
-
-**Still in P1:**
-- [ ] Cross-reference spot-check: 10 cards JustTCG vs. TCGPlayer/PriceCharting
-
-**P2 (next 2–4 weeks):**
-- [ ] Lazy-load / code-split `livePrices.json` (bundle size now 1,351 kB)
-- [ ] Scraper reliability pass (retry, backoff, "minimum entries" guard)
-- [ ] Image coverage (~40 cards have real images today)
-- [ ] In-app data-provenance panel
-- [ ] "About the model" page
-
-**Resist:** new tabs, new analytics models, new dependencies. The product is
-feature-complete; the work right now is trust, not novelty.
+1. Internal docs / skills cleanup.
+2. Set-level analytics upgrade: Set Detail or Set Rankings, chase dependency,
+   set value summaries, live-price coverage per set, freshness warnings.
+3. Box EV methodology tightening: clearer assumptions, pull-rate caveats, less
+   fake precision.
+4. Watchlist v2 planning: quantity, entry price, local P/L, CSV export later.
+5. Image coverage strategy: research source and safe pipeline before touching
+   generated data.
+6. README / public launch package: screenshots, setup, data caveats, portfolio
+   narrative.
+7. Later only: eBay sold comps, manipulation / outlier detection, long-term
+   history archive, paid API tier, accounts, alerts.
 
 ---
 
-## How to resume in a fresh session
+## Resume checklist
 
 1. `git checkout claude/dbfw-market-analytics-1qh5D && git pull`
-2. Read `CLAUDE.md` (full continuity document)
-3. Pick up at `§10 P1` (cross-reference spot-check is next)
-4. For any commit/push, follow the `.claude/skills/fusion-git-flow` skill
-5. For pre-commit verification, run `npm run build && node scripts/verify-data.js`
+2. Read `AGENTS.md`.
+3. Use `.claude/skills/fusionmetrics-pipeline/SKILL.md` for data pipeline
+   tasks.
+4. Use `.claude/skills/fusionmetrics-qa/SKILL.md` for validation tasks.
+5. Use `.claude/skills/fusionmetrics-product/SKILL.md` for product and
+   analytics planning.
+6. Before code commits, run `npm run build` and `node scripts/verify-data.js`.

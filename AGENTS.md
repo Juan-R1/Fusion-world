@@ -14,9 +14,9 @@ behaviour; `CLAUDE.md` remains the long-form project-history doc.
 
 **FusionMetrics** is a market-analytics dashboard for the Dragon Ball Super:
 Fusion World TCG. It tracks 1,258 cards across sets FB01–FB09 with live prices
-and 30-day price history sourced from JustTCG. The product is feature-complete
-v1; the active phase is **operate & harden** — making the data trustworthy and
-the pipeline durable.
+and 30-day price history sourced from JustTCG. The trust-complete MVP
+foundation is in place; the active phase is **honest product / analytics
+expansion**.
 
 - **Stack:** React 18, Vite 5, plain JavaScript, JSON data files, GitHub
   Actions, Vercel deployment.
@@ -34,11 +34,15 @@ the pipeline durable.
 | Live price coverage (known-good baseline) | 1,156 / 1,258 |
 | Coverage guard floor | 1,121 (97% of 1,156) |
 | Per-set guard | 90% of previous per-set count |
-| Data shape | **split** — `src/livePrices.json` (current prices only) + `public/priceHistory30d.json` (cardCode → `[{p,t}]`) |
+| Data shape | **split shape required** — `src/livePrices.json` (current prices only) + `public/priceHistory30d.json` (cardCode → `[{p,t}]`) |
 | Refresh metadata | `public/priceUpdateLog.json` |
 | Pipeline mode | Rotation (3 sets/run, ~25 reqs) is default; full mode (~67 reqs) is manual override |
-| CardDetail price history | Lazy-loaded via `fetch('/priceHistory30d.json')`, cached in-memory |
-| Initial JS bundle | ~622 kB raw / ~88 kB gzip |
+| CardDetail price history | Lazy-loaded via `fetch('/priceHistory30d.json')`, proven, cached in-memory |
+| Provenance / freshness | Footer + modal complete; per-card freshness badge complete |
+| Methodology | Methodology & Data Sources tab complete |
+| External spot-check | 10 cards checked: 9 aligned, 1 unclear due to variant ambiguity |
+| Retired legacy files | old accumulator script and legacy bundled history file are deleted |
+| Initial JS bundle | ~627–631 kB raw / ~89–90 kB gzip |
 
 ---
 
@@ -88,8 +92,8 @@ Operating principle: **make FusionMetrics unable to lie by accident.**
 
 ```bash
 # Local validation — run BOTH before any commit that touches code:
-npm run build              # Vite build; bundle should stay ~622 kB raw
-node scripts/verify-data.js   # 9 invariants; must say "split shape, 9 invariants passed"
+npm run build                 # Vite build; bundle should stay ~627–631 kB raw
+node scripts/verify-data.js   # 9 invariants; must say "split shape required"
 
 # Optional dev server for UI smoke tests:
 npm run dev
@@ -120,9 +124,14 @@ when possible:**
 
 - `src/cardData.json`
 - `src/livePrices.json`
-- `src/priceHistory.json`
 - `public/priceHistory30d.json`
 - `public/priceUpdateLog.json`
+
+**Retired / deleted legacy outputs:**
+
+- old accumulator script — do not recreate without a new long-term-history plan.
+- old bundled history file — no longer active; history lives in
+  `public/priceHistory30d.json`.
 
 **Touch only when the task explicitly names them:**
 
@@ -195,18 +204,21 @@ and what was reverted, then ask before retrying.
 
 In strict order. Do one task per commit; stop after each.
 
-1. **Tighten `verify-data.js` to require split shape.** Drop the transitional
-   "either inline or split" branch — split shape is now reality.
-2. **Data provenance footer chip.** Reads `public/priceUpdateLog.json`,
-   surfaces "last refreshed: N days ago · last group: A". UI-only; no data
-   work.
-3. **Per-card "last refreshed" badge in CardDetail.** Reads `priceTimestamp`
-   from each card; colour-codes by age. Trust signal for set rotation's
-   inherent staleness skew.
-4. **Cross-reference spot-check.** 10 cards JustTCG vs.
-   TCGPlayer/PriceCharting; document findings.
-5. **Reconsider the dormant `accumulate-prices.js` / `priceHistory.json`
-   pipeline.** After 4+ stable rotation cycles, decide: retire or repurpose.
+1. **Internal docs / skills cleanup.** Keep this file, `STATUS.md`, and
+   `.claude/skills/` aligned with the trust-complete checkpoint.
+2. **Set-level analytics upgrade.** Improve Set Detail / Set Rankings with
+   chase dependency, set value summaries, live-price coverage per set, and
+   freshness warnings.
+3. **Box EV methodology tightening.** Clarify assumptions, pull-rate caveats,
+   and avoid fake precision.
+4. **Watchlist v2 planning.** Quantity, entry price, local P/L, and CSV export
+   later.
+5. **Image coverage strategy.** Research source and safe pipeline before
+   touching generated data.
+6. **README / public launch package.** Screenshots, setup, data caveats, and
+   portfolio narrative.
+7. **Later only:** eBay sold comps, manipulation / outlier detection,
+   long-term history archive, paid API tier, accounts, and alerts.
 
-Anything past step 5 — Collectrics roadmap, EV depth, Watchlist P/L,
-"About the model" page — waits.
+Do not frame the next phase as copying another product. The next phase is
+honest product / analytics expansion built on the trust model above.

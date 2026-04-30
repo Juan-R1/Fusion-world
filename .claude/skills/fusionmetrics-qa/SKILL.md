@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-qa
 description: Use when validating FusionMetrics changes, reviewing terminal output, checking build results, smoke-testing UI, verifying lazy-loaded history, or deciding if a task is complete. Triggers — verify, smoke test, before commit, build result, lazy-load, "does this work", validate.
-version: 1.0.0
+version: 1.1.0
 category: QA
 triggers:
   - verify
@@ -19,119 +19,80 @@ triggers:
 ## When to use
 
 - Before any commit that changes code.
-- After receiving terminal output from the operator (build logs, workflow
-  logs, verify output) — to interpret it correctly.
-- When deciding whether a task is "done" or has a hidden regression.
-- When the operator asks "does this actually work?" or pastes a network
-  error / stack trace.
+- After build logs, workflow logs, verify output, or browser smoke-test notes.
+- When deciding whether a task is actually done.
+- When checking trust surfaces: provenance, freshness, Methodology copy, or
+  price-history states.
 
-## Validation commands
+## Required local checks
 
-Always run **both** locally before committing app or pipeline code:
+For code or pipeline changes, run both:
 
 ```bash
 node scripts/verify-data.js
 npm run build
 ```
 
-Optional but recommended for UI work:
+For docs-only changes, `node scripts/verify-data.js` is enough unless the
+change affects app imports or visible UI.
 
-```bash
-npm run dev
-# then DevTools → Network → click around
-```
-
-### What "passing" looks like
+Healthy outputs:
 
 | Check | Healthy output |
 |-------|----------------|
-| `node scripts/verify-data.js` | `✓ 1258 cards, 1156 live prices (1156 with history, split shape), 9 invariants passed` |
-| `npm run build` | `✓ built in <2s` with `dist/assets/index-*.js` around **622 kB raw / 88 kB gzip** (the 600 kB chunk warning is expected and acceptable) |
-| `git status` after push | `nothing to commit, working tree clean` |
+| `node scripts/verify-data.js` | `✓ 1258 cards, 1156 live prices (1156 with history, split shape required), 9 invariants passed` |
+| `npm run build` | `✓ built in <2s`; `dist/assets/index-*.js` around 627–631 kB raw / 89–90 kB gzip |
+| `git status` after commit | clean except expected ahead-of-origin commits |
 
-### What "failing" looks like and what it means
+## Trust smoke-test checklist
 
-| Symptom | Likely cause |
-|---------|--------------|
-| `verify-data` says `inline shape (transitional)` | livePrices.json reverted to a pre-split state — investigate before continuing |
-| `verify-data` says `< 1121 entries` | Coverage guard would block the bot. If we're in this state locally, livePrices.json is corrupted; restore from a previous bot commit |
-| Bundle jumps back above ~700 kB | `priceHistory30d.json` accidentally bundled — check `src/data.js` for a static `import` of it (must be `fetch()` only) |
-| `gh run list` shows the latest run **failed** with "Coverage guard FAILED" in logs | Pipeline did its job; do not weaken the guard. Diagnose JustTCG side instead |
-| Workflow log shows `RATE_LIMITED` or `AUTH_ERROR` | Free-tier quota hit. Wait for 00:00 UTC reset; do not retry today |
-| `gh run list` shows success but no `chore: weekly price update` commit | Coverage guard refused to write — bot saw no diff. Existing files preserved. This is correct behaviour |
+Use `npm run dev` only when UI behavior needs manual confirmation.
 
-## UI smoke-test checklist
+- [ ] Header and existing tabs render without console errors.
+- [ ] Methodology tab is visible and readable on desktop and mobile.
+- [ ] Methodology copy separates JustTCG data from model estimates and says
+      this is not financial advice.
+- [ ] Provenance footer/status chip is visible.
+- [ ] Provenance modal opens and shows mode, group, refreshed sets, fetched
+      count, merged count, and timestamps.
+- [ ] CardDetail opens from Value Scanner.
+- [ ] Live cards show `Source: JustTCG · refreshed <relative time>`.
+- [ ] Estimated cards show model-estimate / no live JustTCG timestamp copy.
+- [ ] CardDetail price history still loads from `/priceHistory30d.json`.
+- [ ] "Price history unavailable" is distinct from "Not enough JustTCG
+      history."
 
-Run `npm run dev`, open DevTools (Network + Console). On both desktop width
-and mobile width (≤375 px):
+## Data and ranking checks
 
-- [ ] All 5 tabs render without console errors.
-- [ ] **Value Scanner**: 1,258 cards visible by default. LIVE chip on priced
-      rows; EST chip on the rest. Sort = "Most Undervalued" filters out EST
-      cards (count drops to ~1,156). Clicking a row opens CardDetail.
-- [ ] **Pricing Model**: scatter plot renders, no NaN axis labels.
-- [ ] **Market Dynamics**: set-health cards show trend chip + bars; no
-      sparkline (synthetic demand series was removed).
-- [ ] **Box EV**: positive EV for SR-heavy sets; data-quality badge if a set
-      is thin.
-- [ ] **Watchlist**: empty state if 0 starred; aggregates correct after
-      starring 3 cards; persists across hard reload (`fw-watchlist-v1` in
-      localStorage).
-- [ ] Header LIVE badge visible.
-
-## Lazy-loading checklist (CardDetail price history)
-
-- [ ] Initial page load shows **no** `priceHistory30d.json` request in
-      Network tab.
-- [ ] First click on a priced card → exactly **one** `/priceHistory30d.json`
-      request (~150 kB gzip). Brief "Loading 30d history…" placeholder, then
-      sparkline + "30d JustTCG history · N points".
-- [ ] Click a different priced card → **no** new fetch (in-memory cache).
-- [ ] Click an unpriced card (EST chip) → "Not enough JustTCG history"
-      placeholder.
-- [ ] Throttle network to **Offline**, hard-reload, click a card → "Price
-      history unavailable" placeholder. **Distinct copy** from "Not enough
-      history".
-- [ ] Set network back to **Online**, click another card → fetch retries
-      and succeeds.
-
-## Data pipeline checklist
-
-After any operator-triggered workflow run:
-
-- [ ] `gh run watch` shows ✓ on every step including "Commit updated price
-      files".
-- [ ] If a `chore: weekly price update` commit landed: `git pull` then
-      `node scripts/verify-data.js` passes with `(N with history, split
-      shape)`.
-- [ ] `cat public/priceUpdateLog.json | jq '{lastMode, lastGroup,
-      lastRefreshedSets, lastMergedCount}'` shows expected values.
-- [ ] `lastMergedCount >= 1121`.
-- [ ] No machine-generated JSON has been hand-edited.
+- [ ] `src/livePrices.json` contains current prices only.
+- [ ] `public/priceHistory30d.json` exists and is a cardCode-keyed object of
+      `{p,t}` arrays.
+- [ ] `public/priceUpdateLog.json` exists and powers provenance.
+- [ ] Estimated cards remain visible.
+- [ ] Estimated cards are excluded from undervalued / overvalued rankings.
+- [ ] No synthetic price history, market movement, or demand trend visual has
+      been introduced.
+- [ ] `docs/price-spot-check-2026-04-30.md` exists and records the 9/10
+      aligned, 1 unclear external price spot-check result.
 
 ## Common failure meanings
 
-- **`Cannot find module …`** at build time → check the import path; the
-  static analyzer treats `assert { type: 'json' }` imports as bundled, while
-  `fetch('/foo.json')` does not.
-- **`unavailable`** state showing for every card during dev → the dev server
-  isn't serving `public/priceHistory30d.json` (file missing, or you're on a
-  branch where it hasn't been generated yet).
-- **Sparkline renders but the date range toggle is missing** → card is in
-  `limited` state (1–6 points). Range toggle only shows for `real` (≥7).
-- **Bundle warning at 600 kB** → expected. We're at ~622 kB; the warning is
-  just over the configured threshold and is documented in the "harden phase".
+| Symptom | Likely cause / response |
+|---------|-------------------------|
+| `verify-data` fails split-shape checks | Data contract has been broken; stop and inspect generated files and recent commits. |
+| `< 1121 live prices` | Known-good coverage floor was breached; do not weaken the guard. |
+| Bundle jumps materially above the current range | Price history or another large file may have been bundled accidentally. |
+| Every card shows history unavailable | Dev server is not serving `public/priceHistory30d.json`, or the fetch path was changed. |
+| Workflow shows 401/403/429 | Auth or quota issue. Wait for operator direction; do not retry blindly. |
+| Workflow succeeds but no data commit lands | No diff or guard-protected write; verify before assuming failure. |
 
 ## Final response format
 
-When validating someone else's work or your own pre-commit, end with:
+When validating work, end with:
 
-1. Pass/fail summary line per check (verify, build, smoke test).
-2. The exact `verify-data` line (paste it; don't paraphrase).
-3. The exact `dist/assets/index-*.js` size (raw + gzip).
-4. Anything unexpected — even a yellow flag — clearly called out, not
-   buried.
-5. A clear go/no-go: "ready to commit" or "block: \<reason\>".
-
-If the operator pastes terminal output asking "is this OK?", reply with the
-same 5-item structure rather than a freeform answer.
+1. Pass/fail summary per check.
+2. Exact `verify-data` line.
+3. Exact bundle size if build was run.
+4. Manual smoke-test notes if performed.
+5. Anything unexpected or risky.
+6. Clear go/no-go.
