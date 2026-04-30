@@ -26,6 +26,15 @@ const sections = [
     ],
   },
   {
+    title: 'Set-Level Analytics',
+    items: [
+      'Set live value is calculated from live-priced cards only; estimated cards are excluded.',
+      'Chase Dependency is a concentration-risk metric based on top 1, top 3, and top 10 live-priced value share.',
+      'A higher Chase Dependency means set value depends more on a few chase cards; it is not an investment rating.',
+      'Set freshness reflects rotation and carried-forward prices, which remain visible with their timestamps.',
+    ],
+  },
+  {
     title: 'Model Limits',
     items: [
       'Character, demand, supply, and desirability metrics are model heuristics.',
