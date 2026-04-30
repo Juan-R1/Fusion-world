@@ -4,10 +4,6 @@ import LIVE_RAW from './livePrices.json'   assert { type: 'json' }
 // 30d priceHistory is now lazy-loaded from public/priceHistory30d.json by
 // CardDetail (see loadPriceHistory30d below). It is no longer bundled into
 // the main JS chunk, which keeps initial app load small.
-//
-// The accumulator pipeline in scripts/accumulate-prices.js still writes
-// src/priceHistory.json on every weekly run; that file is dormant for the
-// UI and will be reconsidered in a future cleanup commit.
 
 // ── Sets (FB01–FB09) ─────────────────────────────────────────────────────────
 export const SETS = [
