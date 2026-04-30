@@ -1,0 +1,26 @@
+{
+  "history": [
+    {
+      "runAt": "2026-04-30T00:33:45.119Z",
+      "mode": "rotation",
+      "group": "manual",
+      "sets": [
+        "FB01",
+        "FB02",
+        "FB03"
+      ],
+      "fetched": 419,
+      "merged": 1156
+    }
+  ],
+  "lastRunAt": "2026-04-30T00:33:45.119Z",
+  "lastMode": "rotation",
+  "lastGroup": "manual",
+  "lastRefreshedSets": [
+    "FB01",
+    "FB02",
+    "FB03"
+  ],
+  "lastFetchedCount": 419,
+  "lastMergedCount": 1156
+}
