@@ -120,80 +120,209 @@ function QuadrantMap({ cards }) {
   )
 }
 
-// ── Set health cards ──────────────────────────────────────────────────────────
-function SetHealthCards({ cards }) {
+// ── Set-level analytics ───────────────────────────────────────────────────────
+const DAY_MS = 24 * 60 * 60 * 1000
+
+const money = v => `$${v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+const pct = v => `${(v * 100).toFixed(0)}%`
+
+function median(values) {
+  if (!values.length) return 0
+  const sorted = values.slice().sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+}
+
+function timestampMs(value, now) {
+  const ms = typeof value === 'number'
+    ? value
+    : typeof value === 'string'
+      ? Date.parse(value)
+      : NaN
+  return Number.isFinite(ms) && ms > 0 && ms <= now ? ms : null
+}
+
+function ageText(days) {
+  if (days == null) return 'Unknown'
+  if (days < 1) return '<1d avg'
+  return `${Math.round(days)}d avg`
+}
+
+function chaseMeta(score) {
+  if (score >= 70) return { label: 'High concentration', color: T.red }
+  if (score >= 50) return { label: 'Concentrated', color: T.orange }
+  if (score >= 35) return { label: 'Moderate', color: T.yellow }
+  return { label: 'Balanced', color: T.green }
+}
+
+function freshnessMeta(avgAgeDays, missingCount, liveCount) {
+  if (!liveCount || missingCount === liveCount) {
+    return { label: 'Unknown', color: T.dim, sub: 'No live timestamps' }
+  }
+  if (missingCount > 0) {
+    return { label: 'Mixed', color: T.yellow, sub: `${missingCount} missing timestamp${missingCount === 1 ? '' : 's'}` }
+  }
+  if (avgAgeDays < 7) return { label: 'Fresh', color: T.green, sub: ageText(avgAgeDays) }
+  if (avgAgeDays <= 21) return { label: 'Aging', color: T.yellow, sub: ageText(avgAgeDays) }
+  return { label: 'Stale', color: T.red, sub: ageText(avgAgeDays) }
+}
+
+function barColor(value) {
+  if (value >= 0.7) return T.red
+  if (value >= 0.45) return T.orange
+  return T.green
+}
+
+function setMetrics(cards) {
+  const now = Date.now()
+
+  return SETS.map(set => {
+    const setCards = cards.filter(c => c.set === set.code)
+    const liveCards = setCards.filter(c => c.hasLivePrice)
+    const prices = liveCards
+      .map(c => c.marketPrice)
+      .filter(p => Number.isFinite(p) && p > 0)
+      .sort((a, b) => b - a)
+
+    const totalValue = prices.reduce((s, p) => s + p, 0)
+    const top1Value = prices[0] || 0
+    const top3Value = prices.slice(0, 3).reduce((s, p) => s + p, 0)
+    const top10Value = prices.slice(0, 10).reduce((s, p) => s + p, 0)
+    const top1Share = totalValue > 0 ? top1Value / totalValue : 0
+    const top3Share = totalValue > 0 ? top3Value / totalValue : 0
+    const top10Share = totalValue > 0 ? top10Value / totalValue : 0
+    const chaseScore = Math.min(100, (top1Share * 50) + (top3Share * 30) + (top10Share * 20))
+
+    const validTimestamps = liveCards
+      .map(c => timestampMs(c.priceTimestamp, now))
+      .filter(Boolean)
+    const ageDays = validTimestamps.map(ts => (now - ts) / DAY_MS)
+    const avgAgeDays = ageDays.length ? ageDays.reduce((s, d) => s + d, 0) / ageDays.length : null
+    const stale7Share = liveCards.length ? ageDays.filter(d => d > 7).length / liveCards.length : 0
+    const stale21Share = liveCards.length ? ageDays.filter(d => d > 21).length / liveCards.length : 0
+    const missingTimestamps = liveCards.length - validTimestamps.length
+
+    const avgDemand = setCards.length
+      ? setCards.reduce((s, c) => s + c.demandPressure, 0) / setCards.length
+      : 0
+    const avgSupply = setCards.length
+      ? setCards.reduce((s, c) => s + c.supplySaturation, 0) / setCards.length
+      : 0
+
+    return {
+      ...set,
+      totalCards: setCards.length,
+      liveCards: liveCards.length,
+      coverage: setCards.length ? liveCards.length / setCards.length : 0,
+      totalValue,
+      medianPrice: median(prices),
+      top1Share,
+      top3Share,
+      top10Share,
+      chaseScore,
+      avgAgeDays,
+      stale7Share,
+      stale21Share,
+      missingTimestamps,
+      avgDemand,
+      avgSupply,
+    }
+  })
+}
+
+function Metric({ label, value, sub, color = T.text }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 12 }}>
-      {SETS.map(set => {
-        const sc = cards.filter(c => c.set === set.code)
-        if (!sc.length) return null
+    <div style={{ background: T.s2, border: `1px solid ${T.border}`, borderRadius: 6, padding: '10px 12px', minWidth: 0 }}>
+      <div style={{ fontSize: 10, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+        {label}
+      </div>
+      <div style={{ fontSize: 16, color, fontFamily: T.mono, fontWeight: 800 }}>
+        {value}
+      </div>
+      {sub && <div style={{ fontSize: 10, color: T.dim, marginTop: 3 }}>{sub}</div>}
+    </div>
+  )
+}
 
-        const avgDP = sc.reduce((s, c) => s + c.demandPressure, 0) / sc.length
-        const avgSS = sc.reduce((s, c) => s + c.supplySaturation, 0) / sc.length
+function ShareBar({ label, value }) {
+  const color = barColor(value)
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, gap: 10 }}>
+        <span style={{ fontSize: 11, color: T.dim }}>{label}</span>
+        <span style={{ fontSize: 11, color, fontFamily: T.mono, fontWeight: 700 }}>{pct(value)}</span>
+      </div>
+      <div style={{ height: 6, background: T.border2, borderRadius: 4, overflow: 'hidden' }}>
+        <div style={{ width: `${Math.min(value * 100, 100)}%`, height: '100%', background: color }} />
+      </div>
+    </div>
+  )
+}
 
-        // Demand-trend sparkline removed (rule 4: no synthetic movement).
-        // The Heating/Stable/Cooling label below is derived from static
-        // avgDP/avgSS thresholds — those are real aggregates, not a fake series.
+function SetLevelAnalytics({ cards }) {
+  const metrics = setMetrics(cards)
 
-        const trend =
-          avgDP > 0.65 && avgSS < 1.0  ? 'Heating'    :
-          avgDP > 0.55 && avgSS > 1.0  ? 'Overheated' :
-          avgDP < 0.40 && avgSS > 1.2  ? 'Cold'       :
-          avgSS > 1.1                   ? 'Cooling'    : 'Stable'
-
-        const tCol = {
-          Heating: T.orange, Overheated: T.red, Cold: T.dim, Cooling: T.blue, Stable: T.green,
-        }[trend]
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: 12 }}>
+      {metrics.map(set => {
+        const chase = chaseMeta(set.chaseScore)
+        const fresh = freshnessMeta(set.avgAgeDays, set.missingTimestamps, set.liveCards)
 
         return (
           <div
             key={set.code}
             style={{
-              background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, padding: 16,
-              borderTop: `3px solid ${tCol}`,
+              background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: 16,
+              borderTop: `3px solid ${chase.color}`,
             }}
           >
-            <div style={{ fontSize: 13, fontWeight: 800, color: T.text, fontFamily: T.display }}>
-              {set.code}
-            </div>
-            <div style={{ fontSize: 11, color: T.muted, marginBottom: 14 }}>{set.name}</div>
-
-            {/* Avg Demand bar */}
-            <div style={{ marginBottom: 10 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                <span style={{ fontSize: 11, color: T.dim }}>Avg Demand</span>
-                <span style={{ fontSize: 11, fontFamily: T.mono, color: T.orange }}>
-                  {(avgDP * 100).toFixed(1)}%
-                </span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 800, color: T.text, fontFamily: T.display }}>
+                  {set.code}
+                </div>
+                <div style={{ fontSize: 11, color: T.muted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{set.name}</div>
               </div>
-              <div style={{ width: '100%', height: 5, background: T.border2, borderRadius: 3, overflow: 'hidden' }}>
-                <div style={{ width: `${Math.min(avgDP * 100, 100)}%`, height: '100%', background: T.orange }} />
-              </div>
-            </div>
-
-            {/* Supply saturation bar */}
-            <div style={{ marginBottom: 14 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                <span style={{ fontSize: 11, color: T.dim }}>Supply Sat.</span>
-                <span style={{ fontSize: 11, fontFamily: T.mono, color: avgSS > 1 ? T.red : T.green }}>
-                  {avgSS.toFixed(2)}
-                </span>
-              </div>
-              <div style={{ width: '100%', height: 5, background: T.border2, borderRadius: 3, overflow: 'hidden' }}>
-                <div style={{ width: `${Math.min((avgSS / 2) * 100, 100)}%`, height: '100%', background: avgSS > 1 ? T.red : T.green }} />
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <span
+                title="Average live price age for this set"
                 style={{
-                  background: `${tCol}22`, color: tCol,
-                  padding: '3px 10px', borderRadius: 20,
-                  fontSize: 11, fontWeight: 700,
+                  alignSelf: 'flex-start', background: `${fresh.color}22`, border: `1px solid ${fresh.color}66`,
+                  color: fresh.color, borderRadius: 6, padding: '3px 8px', fontSize: 10,
+                  fontWeight: 800, fontFamily: T.mono, whiteSpace: 'nowrap',
                 }}
               >
-                {trend}
+                {fresh.label}
               </span>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8, marginBottom: 12 }}>
+              <Metric label="Live coverage" value={pct(set.coverage)} sub={`${set.liveCards}/${set.totalCards} cards`} color={set.coverage >= 0.9 ? T.green : set.coverage >= 0.75 ? T.yellow : T.red} />
+              <Metric label="Live value" value={money(set.totalValue)} sub="excludes EST" color={T.orange} />
+              <Metric label="Median live" value={money(set.medianPrice)} />
+              <Metric label="Chase dependency" value={set.chaseScore.toFixed(0)} sub={chase.label} color={chase.color} />
+            </div>
+
+            <div style={{ display: 'grid', gap: 9, marginBottom: 12 }}>
+              <ShareBar label="Top 1 concentration" value={set.top1Share} />
+              <ShareBar label="Top 3 concentration" value={set.top3Share} />
+              <ShareBar label="Top 10 concentration" value={set.top10Share} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8, marginBottom: 12 }}>
+              <Metric label="Freshness" value={ageText(set.avgAgeDays)} sub={fresh.sub} color={fresh.color} />
+              <Metric label=">7d stale" value={pct(set.stale7Share)} color={set.stale7Share > 0 ? T.yellow : T.green} />
+              <Metric label=">21d stale" value={pct(set.stale21Share)} color={set.stale21Share > 0 ? T.red : T.green} />
+            </div>
+
+            <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 10, display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+              <div>
+                <div style={{ fontSize: 10, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Model demand</div>
+                <div style={{ fontSize: 12, color: T.orange, fontFamily: T.mono, fontWeight: 700 }}>{(set.avgDemand * 100).toFixed(0)}%</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Model supply sat.</div>
+                <div style={{ fontSize: 12, color: set.avgSupply > 1 ? T.red : T.green, fontFamily: T.mono, fontWeight: 700 }}>{set.avgSupply.toFixed(2)}</div>
+              </div>
             </div>
           </div>
         )
@@ -228,12 +357,17 @@ export default function MarketDynamics({ cards }) {
         </div>
       </div>
 
-      {/* Set health dashboard */}
+      {/* Set-level analytics */}
       <div>
         <div style={{ fontSize: 16, fontWeight: 800, color: T.text, fontFamily: T.display, marginBottom: 14 }}>
-          Set Health Dashboard
+          Set-Level Analytics
         </div>
-        <SetHealthCards cards={cards} />
+        <p style={{ fontSize: 12, color: T.muted, lineHeight: 1.7, margin: '0 0 14px' }}>
+          Live value excludes estimated cards. Demand and supply saturation are model heuristics, not observed
+          time series. Chase Dependency measures value concentration risk from the top 1, 3, and 10 live-priced
+          cards; it is not expected profit or an investment rating.
+        </p>
+        <SetLevelAnalytics cards={cards} />
       </div>
     </div>
   )
