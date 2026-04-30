@@ -49,7 +49,14 @@ Use this checklist before public demos, release pushes, or major analytics work.
 - [ ] Chase Dependency copy uses risk / concentration language, not investment-rating language.
 - [ ] Demand and supply are labeled as model heuristics.
 
-## 8. Mobile
+## 8. Box EV
+
+- [ ] Assumptions and input-quality copy are visible.
+- [ ] LIVE and EST chips appear correctly in top EV rows.
+- [ ] Chase-driven warning appears for concentrated sets.
+- [ ] Verdict copy uses model/approximate language, not certain-profit language.
+
+## 9. Mobile
 
 - [ ] Narrow viewport renders without overlapping text.
 - [ ] CardDetail modal is readable.

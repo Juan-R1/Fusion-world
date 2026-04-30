@@ -39,7 +39,8 @@ const sections = [
     items: [
       'Character, demand, supply, and desirability metrics are model heuristics.',
       'Demand and supply scores are not observed market time series.',
-      'Box EV is approximate and depends on simplified pull-rate and set-composition assumptions.',
+      'Box EV is approximate and may include model-estimated prices when live prices are missing.',
+      'Box EV does not model variant-specific odds, fees, taxes, shipping, liquidity, or sealed-product variance.',
     ],
   },
 ]

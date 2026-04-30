@@ -11,6 +11,8 @@ import CardImage     from '../components/CardImage.jsx'
 
 const PACKS_PER_BOX  = 24
 const CARDS_PER_PACK = 12
+const DAY_MS         = 24 * 60 * 60 * 1000
+const CHASE_EV_WARN  = 45
 
 // ── Shared input style ────────────────────────────────────────────────────────
 const INP = {
@@ -43,12 +45,72 @@ function Bar({ pct, color }) {
   )
 }
 
+function pctText(value) {
+  return `${Math.round(value * 100)}%`
+}
+
+function ageText(days) {
+  if (days == null) return 'Unknown'
+  if (days < 1) return '<1d avg'
+  return `${Math.round(days)}d avg`
+}
+
+function timestampMs(value, now) {
+  const ms = typeof value === 'number'
+    ? value
+    : typeof value === 'string'
+      ? Date.parse(value)
+      : NaN
+  return Number.isFinite(ms) && ms > 0 && ms <= now ? ms : null
+}
+
+function freshnessMeta(avgAgeDays, stale7Share, stale21Share, missingTimestampCount, liveCount) {
+  if (!liveCount) return { label: 'Unknown', color: T.dim, sub: 'No live prices' }
+  if (missingTimestampCount === liveCount) return { label: 'Unknown', color: T.dim, sub: 'No live timestamps' }
+  if (stale21Share > 0) return { label: 'Stale', color: T.red, sub: `${ageText(avgAgeDays)} · ${pctText(stale21Share)} >21d` }
+  if (stale7Share > 0) return { label: 'Aging', color: T.yellow, sub: `${ageText(avgAgeDays)} · ${pctText(stale7Share)} >7d` }
+  if (missingTimestampCount > 0) return { label: 'Mixed', color: T.yellow, sub: `${missingTimestampCount} missing timestamp${missingTimestampCount === 1 ? '' : 's'}` }
+  return { label: 'Fresh', color: T.green, sub: ageText(avgAgeDays) }
+}
+
+function inputQualityMeta({ liveCoverage, estimatedCount, stale7Share, stale21Share, missingTimestampCount, dataQuality }) {
+  const low =
+    liveCoverage < 0.8 ||
+    dataQuality === 'low' ||
+    stale21Share > 0.25 ||
+    missingTimestampCount > 20
+  const medium =
+    liveCoverage < 0.95 ||
+    estimatedCount > 0 ||
+    dataQuality === 'partial' ||
+    stale7Share > 0 ||
+    missingTimestampCount > 0
+
+  if (low) return { label: 'Low confidence', color: T.red }
+  if (medium) return { label: 'Medium confidence', color: T.yellow }
+  return { label: 'High confidence', color: T.green }
+}
+
+function MiniMetric({ label, value, sub, color = T.text }) {
+  return (
+    <div style={{ background: T.s2, border: `1px solid ${T.border}`, borderRadius: 6, padding: '9px 11px', minWidth: 0 }}>
+      <div style={{ fontSize: 10, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{label}</div>
+      <div style={{ fontSize: 14, color, fontFamily: T.mono, fontWeight: 800 }}>{value}</div>
+      {sub && <div style={{ fontSize: 10, color: T.dim, marginTop: 2 }}>{sub}</div>}
+    </div>
+  )
+}
+
 export default function BoxEV({ cards }) {
   const [setCode, setSetCode] = useState('FB01')
   const [boxCost, setBoxCost] = useState(80)
 
   const result = useMemo(() => {
     const setCards = cards.filter(c => c.set === setCode)
+    const liveCards = setCards.filter(c => c.hasLivePrice)
+    const liveCount = liveCards.length
+    const estimatedCount = setCards.length - liveCount
+    const liveCoverage = setCards.length ? liveCount / setCards.length : 0
 
     // ── Data quality check ────────────────────────────────────────────────────
     const verifiedCount  = setCards.filter(c => c.verified).length
@@ -111,28 +173,55 @@ export default function BoxEV({ cards }) {
     // ── Singles comparison ────────────────────────────────────────────────────
     // Top N singles cost vs portion of box EV they represent
     const top5  = cardRows.slice(0, 5)
+    const top3  = cardRows.slice(0, 3)
     const top10 = cardRows.slice(0, 10)
     const top5Cost   = +top5.reduce((s, c) => s + c.marketPrice, 0).toFixed(2)
     const top10Cost  = +top10.reduce((s, c) => s + c.marketPrice, 0).toFixed(2)
+    const top3EVShare  = evPerBox > 0 ? top3.reduce((s, c) => s + c.boxEV, 0) / evPerBox * 100 : 0
     const top5EVShare  = evPerBox > 0 ? top5.reduce((s, c) => s + c.boxEV, 0) / evPerBox * 100 : 0
     const top10EVShare = evPerBox > 0 ? top10.reduce((s, c) => s + c.boxEV, 0) / evPerBox * 100 : 0
 
+    // ── Input confidence metadata ─────────────────────────────────────────────
+    const now = Date.now()
+    const validTimestamps = liveCards
+      .map(c => timestampMs(c.priceTimestamp, now))
+      .filter(Boolean)
+    const ageDays = validTimestamps.map(ts => (now - ts) / DAY_MS)
+    const avgFreshnessDays = ageDays.length ? ageDays.reduce((s, d) => s + d, 0) / ageDays.length : null
+    const stale7Share = liveCount ? ageDays.filter(d => d > 7).length / liveCount : 0
+    const stale21Share = liveCount ? ageDays.filter(d => d > 21).length / liveCount : 0
+    const missingTimestampCount = liveCount - validTimestamps.length
+    const freshness = freshnessMeta(avgFreshnessDays, stale7Share, stale21Share, missingTimestampCount, liveCount)
+    const inputQuality = inputQualityMeta({
+      liveCoverage,
+      estimatedCount,
+      stale7Share,
+      stale21Share,
+      missingTimestampCount,
+      dataQuality,
+    })
+
     return {
       setCards, cardRows, evPerBox, evPerPack, roi, rarityRows,
-      top5Cost, top10Cost, top5EVShare, top10EVShare,
+      top3EVShare, top5Cost, top10Cost, top5EVShare, top10EVShare,
       verifiedCount, distinctRars, dataQuality,
+      liveCount, estimatedCount, liveCoverage,
+      stale7Share, stale21Share, freshness, inputQuality,
     }
   }, [cards, setCode, boxCost])
 
   const {
     cardRows, evPerBox, evPerPack, roi, rarityRows,
-    top5Cost, top10Cost, top5EVShare, top10EVShare,
+    top3EVShare, top5Cost, top10Cost, top5EVShare, top10EVShare,
     verifiedCount, distinctRars, dataQuality,
+    liveCount, estimatedCount, liveCoverage,
+    stale7Share, stale21Share, freshness, inputQuality,
   } = result
 
-  const roiColor = roi >= 0 ? T.green : T.red
-  const verdict  = roi >= 0 ? 'Opening is +EV' : 'Buy singles'
-  const verdictColor = roi >= 0 ? T.green : T.orange
+  const nearBreakEven = Math.abs(roi) < 5
+  const roiColor = nearBreakEven ? T.yellow : roi >= 0 ? T.green : T.red
+  const verdict  = nearBreakEven ? 'Near break-even' : roi >= 0 ? 'Model leans open' : 'Model leans singles'
+  const verdictColor = nearBreakEven ? T.yellow : roi >= 0 ? T.green : T.orange
 
   return (
     <div style={{ height: 'calc(100vh - 136px)', overflowY: 'auto', paddingBottom: 32 }}>
@@ -175,13 +264,65 @@ export default function BoxEV({ cards }) {
         )}
       </div>
 
+      {/* ── Assumptions and input confidence ───────────────────────────────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 10, marginBottom: 14 }}>
+        <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: 14 }}>
+          <div style={{ fontSize: 11, fontWeight: 800, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>
+            Approximate assumptions
+          </div>
+          <div style={{ fontSize: 12, color: T.muted, lineHeight: 1.65 }}>
+            Uses simplified rarity pull assumptions, {PACKS_PER_BOX} packs per box, {CARDS_PER_PACK} cards per pack,
+            current card prices, and model-estimated prices when live JustTCG prices are missing. Variant-specific
+            odds, fees, taxes, shipping, liquidity, and sealed variance are not modeled.
+          </div>
+        </div>
+
+        <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: 14 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center', marginBottom: 10 }}>
+            <div style={{ fontSize: 11, fontWeight: 800, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              Input quality
+            </div>
+            <span style={{
+              background: `${inputQuality.color}22`, border: `1px solid ${inputQuality.color}66`,
+              color: inputQuality.color, borderRadius: 6, padding: '3px 8px',
+              fontSize: 10, fontWeight: 800, fontFamily: T.mono, whiteSpace: 'nowrap',
+            }}>
+              {inputQuality.label}
+            </span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(96px, 1fr))', gap: 8 }}>
+            <MiniMetric label="Live prices" value={pctText(liveCoverage)} sub={`${liveCount}/${result.setCards.length}`} color={liveCoverage >= 0.95 ? T.green : liveCoverage >= 0.8 ? T.yellow : T.red} />
+            <MiniMetric label="Estimates" value={estimatedCount} sub="included" color={estimatedCount > 0 ? T.yellow : T.green} />
+            <MiniMetric label="Freshness" value={freshness.label} sub={freshness.sub} color={freshness.color} />
+            <MiniMetric label=">7d stale" value={pctText(stale7Share)} sub="of live" color={stale7Share > 0 ? T.yellow : T.green} />
+            <MiniMetric label=">21d stale" value={pctText(stale21Share)} sub="of live" color={stale21Share > 0 ? T.red : T.green} />
+            <MiniMetric label="Rarity data" value={dataQuality} sub={`${distinctRars} rarities`} color={dataQuality === 'good' ? T.green : dataQuality === 'partial' ? T.yellow : T.red} />
+          </div>
+        </div>
+      </div>
+
+      {top3EVShare >= CHASE_EV_WARN && (
+        <div style={{
+          marginBottom: 14, background: 'rgba(249,115,22,0.08)',
+          border: '1px solid rgba(249,115,22,0.28)', borderRadius: 8,
+          padding: '10px 14px', fontSize: 12, color: T.orange, lineHeight: 1.6,
+        }}>
+          Chase-driven EV: the top 3 cards contribute {top3EVShare.toFixed(0)}% of modeled box EV. Actual outcomes may vary heavily if those cards are missed or their prices move.
+        </div>
+      )}
+
       {/* ── Summary stats ────────────────────────────────────────────────────── */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
-        <Stat label="EV per Pack"   value={`$${evPerPack.toFixed(2)}`}  sub={`of ${CARDS_PER_PACK} cards`} />
-        <Stat label="EV per Box"    value={`$${evPerBox.toFixed(2)}`}   sub={`${PACKS_PER_BOX} packs`} />
-        <Stat label="Box ROI"       value={`${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%`}  sub={`at $${boxCost} box price`} color={roiColor} />
-        <Stat label="Break-even"    value={`$${evPerBox.toFixed(0)}`}   sub="max box price to be +EV" color={T.orange} highlight />
-        <Stat label="Verdict"       value={verdict}                     sub={roi >= 0 ? `$${(evPerBox - boxCost).toFixed(2)} expected profit` : `save $${(boxCost - evPerBox).toFixed(2)} vs opening`} color={verdictColor} />
+        <Stat label="Approx. EV per Pack" value={`$${evPerPack.toFixed(2)}`} sub={`of ${CARDS_PER_PACK} cards`} />
+        <Stat label="Approx. EV per Box"  value={`$${evPerBox.toFixed(2)}`}  sub={`${PACKS_PER_BOX} packs`} />
+        <Stat label="Model ROI"           value={`${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%`} sub={`at $${boxCost} box price`} color={roiColor} />
+        <Stat label="Model Break-even"    value={`$${evPerBox.toFixed(0)}`}  sub="box price where model is even" color={T.orange} highlight />
+        <Stat
+          label="Model Verdict"
+          value={verdict}
+          sub={nearBreakEven ? `within ${Math.abs(roi).toFixed(1)}% at this price` : roi >= 0 ? `$${(evPerBox - boxCost).toFixed(2)} modeled edge before costs` : `$${(boxCost - evPerBox).toFixed(2)} below box price before costs`}
+          color={verdictColor}
+        />
       </div>
 
       {/* ── Main two-column layout ───────────────────────────────────────────── */}
@@ -216,10 +357,10 @@ export default function BoxEV({ cards }) {
             ))}
           </div>
 
-          {/* Buy singles vs open */}
+          {/* Singles vs open */}
           <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, padding: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-              Buy Singles vs Open Box
+              Singles vs Open Box
             </div>
 
             {[
@@ -227,19 +368,19 @@ export default function BoxEV({ cards }) {
                 label: 'Top 5 singles',
                 cost:  top5Cost,
                 share: top5EVShare,
-                desc:  'guaranteed',
+                desc:  'direct purchase',
               },
               {
                 label: 'Top 10 singles',
                 cost:  top10Cost,
                 share: top10EVShare,
-                desc:  'guaranteed',
+                desc:  'direct purchase',
               },
               {
                 label: `Open a box ($${boxCost})`,
                 cost:  boxCost,
                 share: 100,
-                desc:  'expected',
+                desc:  'modeled outcome',
                 isBox: true,
               },
             ].map(({ label, cost, share, desc, isBox }) => (
@@ -260,11 +401,13 @@ export default function BoxEV({ cards }) {
             ))}
 
             {/* Verdict summary */}
-            <div style={{ marginTop: 12, padding: 10, borderRadius: 6, background: roi >= 0 ? 'rgba(34,197,94,0.08)' : 'rgba(249,115,22,0.08)', border: `1px solid ${roi >= 0 ? 'rgba(34,197,94,0.25)' : 'rgba(249,115,22,0.25)'}` }}>
-              <div style={{ fontSize: 11, color: roi >= 0 ? T.green : T.orange, lineHeight: 1.6 }}>
-                {roi >= 0
-                  ? `Opening is +EV at $${boxCost}. Each box yields ~$${(evPerBox - boxCost).toFixed(2)} expected profit.`
-                  : `Top 5 singles ($${top5Cost.toFixed(2)}) capture ${top5EVShare.toFixed(0)}% of box EV at ${((top5Cost / boxCost) * 100).toFixed(0)}% of box cost. Buy singles.`
+            <div style={{ marginTop: 12, padding: 10, borderRadius: 6, background: `${verdictColor}14`, border: `1px solid ${verdictColor}44` }}>
+              <div style={{ fontSize: 11, color: verdictColor, lineHeight: 1.6 }}>
+                {nearBreakEven
+                  ? `Model is near break-even at $${boxCost}. Small price or input changes could flip the conclusion.`
+                  : roi >= 0
+                    ? `Model leans open at $${boxCost}. The modeled edge is ~$${(evPerBox - boxCost).toFixed(2)} before fees, taxes, shipping, liquidity, and variance.`
+                    : `Model leans singles at $${boxCost}. Top 5 singles ($${top5Cost.toFixed(2)}) capture ${top5EVShare.toFixed(0)}% of modeled box EV; opening remains variance-heavy.`
                 }
               </div>
             </div>
@@ -320,8 +463,10 @@ export default function BoxEV({ cards }) {
                     <div style={{ display: 'flex', gap: 5, alignItems: 'center', marginTop: 2 }}>
                       <RarityBadge rarity={card.rarity} color={card.rarityColor} />
                       <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
-                      {card.hasLivePrice && (
-                        <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>LIVE</span>
+                      {card.hasLivePrice ? (
+                        <span title="Live JustTCG market price" style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>LIVE</span>
+                      ) : (
+                        <span title="Model-estimated price included in approximate EV" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.35)', color: T.yellow, borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>EST</span>
                       )}
                     </div>
                   </div>
