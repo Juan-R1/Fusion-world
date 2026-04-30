@@ -37,6 +37,37 @@ function RangeToggle({ range, setRange }) {
   )
 }
 
+function priceFreshnessOf(card) {
+  const fallback = {
+    text: 'Source: Model estimate · no live JustTCG timestamp',
+    color: T.dim,
+  }
+  if (!card.hasLivePrice || typeof card.priceTimestamp !== 'string') return fallback
+
+  const refreshedAt = Date.parse(card.priceTimestamp)
+  const ageMs = Date.now() - refreshedAt
+  if (!Number.isFinite(refreshedAt) || ageMs < 0) return fallback
+
+  const hours = Math.floor(ageMs / 3_600_000)
+  const days = Math.floor(ageMs / 86_400_000)
+  const relative = hours < 1
+    ? 'Just now'
+    : hours < 24
+      ? `${hours} hour${hours === 1 ? '' : 's'} ago`
+      : `${days} day${days === 1 ? '' : 's'} ago`
+
+  const color = days > 21
+    ? T.red
+    : days >= 7
+      ? T.yellow
+      : T.muted
+
+  return {
+    text: `Source: JustTCG · refreshed ${relative}`,
+    color,
+  }
+}
+
 export default function CardDetail({ card, onClose, watched = false, onToggleWatch = null }) {
   const [range, setRange] = useState(30)
   const isMobile = useIsMobile()
@@ -70,6 +101,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
       ? 'loading'
       : historyStateOf(historyEntries.length)
   const historyCount = Array.isArray(historyEntries) ? historyEntries.length : 0
+  const priceFreshness = priceFreshnessOf(card)
 
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
   const ssColor = card.supplySaturation > 1 ? T.red : T.green
@@ -209,6 +241,9 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
               ? 'Overvalued — exercise caution'
               : 'Fairly priced — near model value'}
           </span>
+        </div>
+        <div style={{ fontSize: 11, color: priceFreshness.color, marginTop: 10, fontFamily: T.mono }}>
+          {priceFreshness.text}
         </div>
       </div>
 

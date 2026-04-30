@@ -167,6 +167,7 @@ export const CARDS = RAW.map((raw, idx) => {
   //   upgraded confidence locally from the loaded points if it ever needs to.
   const priceStatus = livePrice !== null ? 'live' : 'estimated'
   const confidence  = priceStatus === 'live' ? 'medium' : 'low'
+  const priceTimestamp = priceStatus === 'live' ? (liveEntry?.timestamp ?? null) : null
 
   return {
     id:              idx,
@@ -199,5 +200,6 @@ export const CARDS = RAW.map((raw, idx) => {
     priceStatus,           // 'live' | 'estimated'
     confidence,            // 'medium' (live) | 'low' (estimated)
     hasLivePrice:    livePrice !== null,  // legacy alias used by Watchlist/BoxEV/ValueScanner LIVE chip
+    priceTimestamp,         // JustTCG price timestamp for per-card freshness UI
   }
 })
