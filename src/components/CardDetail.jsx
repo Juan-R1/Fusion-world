@@ -1,6 +1,7 @@
-import { useState }  from 'react'
+import { useState, useEffect } from 'react'
 import { T }         from '../theme.js'
 import { useIsMobile } from '../hooks/useIsMobile.js'
+import { loadPriceHistory30d, normalizeHistory, historyStateOf } from '../data.js'
 import Sparkline     from './Sparkline.jsx'
 import GaugeRing     from './GaugeRing.jsx'
 import MiniBar       from './MiniBar.jsx'
@@ -39,6 +40,36 @@ function RangeToggle({ range, setRange }) {
 export default function CardDetail({ card, onClose, watched = false, onToggleWatch = null }) {
   const [range, setRange] = useState(30)
   const isMobile = useIsMobile()
+
+  // Lazy-loaded price history.
+  //   historyEntries === null && !historyError  → loading
+  //   historyEntries  is array (any length)     → loaded; classify with historyStateOf
+  //   historyError    === true                  → fetch failed → 'unavailable'
+  const [historyEntries, setHistoryEntries] = useState(null)
+  const [historyError,   setHistoryError]   = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    setHistoryEntries(null)
+    setHistoryError(false)
+    loadPriceHistory30d()
+      .then(map => {
+        if (cancelled) return
+        setHistoryEntries(normalizeHistory(map[card.cardCode]))
+      })
+      .catch(() => {
+        if (cancelled) return
+        setHistoryError(true)
+      })
+    return () => { cancelled = true }
+  }, [card.cardCode])
+
+  const historyState = historyError
+    ? 'unavailable'
+    : historyEntries === null
+      ? 'loading'
+      : historyStateOf(historyEntries.length)
+  const historyCount = Array.isArray(historyEntries) ? historyEntries.length : 0
 
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
   const ssColor = card.supplySaturation > 1 ? T.red : T.green
@@ -181,32 +212,65 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
         </div>
       </div>
 
-      {/* ── Price history sparkline ── */}
+      {/* ── Price history sparkline (lazy-loaded from /priceHistory30d.json) ── */}
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
           <div style={{ fontSize: 11, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             Price History
           </div>
-          {card.historyState === 'real' && (
+          {historyState === 'real' && (
             <RangeToggle range={range} setRange={setRange} />
           )}
         </div>
-        {card.historyState !== 'none' ? (
+
+        {(historyState === 'real' || historyState === 'limited') && historyCount >= 2 && (
           <>
             <Sparkline
-              data={card.priceHistory.slice(-range).map(p => p.price)}
+              data={historyEntries.slice(-range).map(p => p.price)}
               color={T.orange}
               height={60}
               width={chartWidth}
               fill
             />
             <div style={{ fontSize: 10, color: T.dim, marginTop: 6, fontFamily: T.mono }}>
-              {card.historyState === 'real'
-                ? `30d JustTCG history · ${card.priceHistory.length} points`
-                : `Limited history · ${card.priceHistory.length} point${card.priceHistory.length === 1 ? '' : 's'}`}
+              {historyState === 'real'
+                ? `30d JustTCG history · ${historyCount} points`
+                : `Limited history · ${historyCount} points`}
             </div>
           </>
-        ) : (
+        )}
+
+        {historyState === 'limited' && historyCount < 2 && (
+          <div
+            style={{
+              background: T.s2, borderRadius: 8, padding: '18px 16px',
+              height: 60, display: 'flex',
+              alignItems: 'center', justifyContent: 'center',
+              border: `1px dashed ${T.border}`,
+            }}
+          >
+            <span style={{ fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+              Limited history · 1 point
+            </span>
+          </div>
+        )}
+
+        {historyState === 'loading' && (
+          <div
+            style={{
+              background: T.s2, borderRadius: 8, padding: '18px 16px',
+              height: 60, display: 'flex',
+              alignItems: 'center', justifyContent: 'center',
+              border: `1px dashed ${T.border}`,
+            }}
+          >
+            <span style={{ fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+              Loading 30d history…
+            </span>
+          </div>
+        )}
+
+        {historyState === 'none' && (
           <div
             style={{
               background: T.s2, borderRadius: 8, padding: '18px 16px',
@@ -217,6 +281,23 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           >
             <span style={{ fontSize: 11, color: T.dim, fontFamily: T.mono }}>
               Not enough JustTCG history
+            </span>
+          </div>
+        )}
+
+        {historyState === 'unavailable' && (
+          <div
+            style={{
+              background: T.s2, borderRadius: 8, padding: '14px 16px',
+              display: 'flex', flexDirection: 'column', gap: 4,
+              border: `1px dashed ${T.border}`,
+            }}
+          >
+            <span style={{ fontSize: 12, color: T.text, fontFamily: T.mono, fontWeight: 600 }}>
+              Price history unavailable
+            </span>
+            <span style={{ fontSize: 11, color: T.dim, lineHeight: 1.5 }}>
+              Unable to load JustTCG history right now. Current price is still available.
             </span>
           </div>
         )}

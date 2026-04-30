@@ -1,11 +1,13 @@
 import RAW      from './cardData.json'     assert { type: 'json' }
 import LIVE_RAW from './livePrices.json'   assert { type: 'json' }
 
-// priceHistory.json is no longer imported here — JustTCG now serves 30d history
-// natively (see scripts/update-prices.js). The accumulator pipeline still
-// writes priceHistory.json on every weekly run; it is kept as a possible
-// long-term archive layer and will be reconsidered after JustTCG history is
-// stable for several cycles. See CLAUDE.md §10 P2 for cleanup status.
+// 30d priceHistory is now lazy-loaded from public/priceHistory30d.json by
+// CardDetail (see loadPriceHistory30d below). It is no longer bundled into
+// the main JS chunk, which keeps initial app load small.
+//
+// The accumulator pipeline in scripts/accumulate-prices.js still writes
+// src/priceHistory.json on every weekly run; that file is dormant for the
+// UI and will be reconsidered in a future cleanup commit.
 
 // ── Sets (FB01–FB09) ─────────────────────────────────────────────────────────
 export const SETS = [
@@ -32,8 +34,8 @@ export const RARITIES = [
 ]
 
 // ── Live price map ───────────────────────────────────────────────────────────
-// LIVE_RAW: [{cardCode, marketPrice, timestamp, history: [{p, t}]}]
-// LIVE_MAP keys by cardCode → full entry so we can read both price and history.
+// Split shape: LIVE_RAW entries are { cardCode, marketPrice, timestamp } only.
+// The 30d history lives in public/priceHistory30d.json (lazy-fetched).
 const LIVE_MAP = new Map(LIVE_RAW.map(e => [e.cardCode, e]))
 
 export const HAS_LIVE_PRICES = LIVE_MAP.size > 0
@@ -78,20 +80,21 @@ const pullCostOf = pullRate =>
 // Character premium: googleTrends 100 → 10, 0 → 1
 const charPremiumOf = googleTrends => Math.max(1, Math.min(10, (googleTrends / 100) * 9 + 1))
 
-// History state classification — the contract the UI reads off each card.
-// Keep these strings stable; CardDetail and Sparkline branch on them.
-//   'real'    >= 7 valid points  → render real sparkline + "30d JustTCG history"
-//   'limited' 1–6 valid points   → render observed points + "Limited history (N points)"
-//   'none'    0 points            → render placeholder + "Not enough JustTCG history"
-function historyStateOf(points) {
+// ── History helpers (exported for CardDetail) ────────────────────────────────
+// historyStateOf classifies a card by its loaded history-point count.
+//   'real'    >= 7 valid points
+//   'limited' 1–6 valid points
+//   'none'    0 valid points
+// CardDetail also owns a fourth state, 'unavailable', for fetch failure.
+export function historyStateOf(points) {
   if (points >= 7) return 'real'
   if (points >= 1) return 'limited'
   return 'none'
 }
 
-// Normalize a JustTCG {p, t} history array into UI-friendly {price, ts}, sorted
-// oldest → newest, dropping any malformed points.
-function normalizeHistory(raw) {
+// Normalize a JustTCG {p, t} array into UI-friendly {price, ts}, sorted
+// oldest → newest, dropping malformed points.
+export function normalizeHistory(raw) {
   if (!Array.isArray(raw)) return []
   return raw
     .filter(h =>
@@ -102,7 +105,36 @@ function normalizeHistory(raw) {
     .sort((a, b) => a.ts - b.ts)
 }
 
+// ── Lazy loader for public/priceHistory30d.json ──────────────────────────────
+// Cached for the rest of the session on success; resets on failure so a
+// later CardDetail open can retry. Throws on fetch / HTTP failure so callers
+// can route to the 'unavailable' UI state — distinct from 'none'.
+let cachedHistory = null
+let inFlight      = null
+
+export async function loadPriceHistory30d() {
+  if (cachedHistory) return cachedHistory
+  if (inFlight)       return inFlight
+  inFlight = (async () => {
+    try {
+      const res = await fetch('/priceHistory30d.json')
+      if (!res.ok) throw new Error(`HTTP ${res.status} fetching priceHistory30d.json`)
+      const data = await res.json()
+      const map = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {}
+      cachedHistory = map
+      return map
+    } finally {
+      inFlight = null
+    }
+  })()
+  return inFlight
+}
+
 // ── Apply analytics model to each real card ───────────────────────────────────
+// History is intentionally NOT computed here — it lives in a separate static
+// asset and is fetched on demand by CardDetail. priceStatus and confidence are
+// preserved on every card for tabs that filter on them (e.g. ValueScanner
+// rankings excluding 'estimated').
 export const CARDS = RAW.map((raw, idx) => {
   const rng = mkRng(idx * 7919 + 42)
 
@@ -127,19 +159,14 @@ export const CARDS = RAW.map((raw, idx) => {
   const demandPressure   = absorbed / totalSupply
   const supplySaturation = 0.4 + rng() * 1.7                               // rng #4
 
-  // Real history pulled from JustTCG. May be empty for cards JustTCG hasn't
-  // sampled yet (currently rare — 1156/1156 priced cards have history as of
-  // 2026-04-25, but the UI must handle the 0-point case anyway).
-  const priceHistory = normalizeHistory(liveEntry?.history)
-  const historyState = historyStateOf(priceHistory.length)
-
   // Trust labels surfaced to the UI:
   //   priceStatus: 'live' (real market price) | 'estimated' (model fallback)
-  //   confidence:  'high' (live + ≥7 history) | 'medium' (live, <7 history) | 'low' (estimated)
+  //   confidence:  simplified — 'medium' for live, 'low' for estimated.
+  //   The previous 'high' tier required >=7 history points; with history now
+  //   lazy-loaded it is unknown at build time and CardDetail can derive an
+  //   upgraded confidence locally from the loaded points if it ever needs to.
   const priceStatus = livePrice !== null ? 'live' : 'estimated'
-  const confidence  = priceStatus === 'live'
-    ? (historyState === 'real' ? 'high' : 'medium')
-    : 'low'
+  const confidence  = priceStatus === 'live' ? 'medium' : 'low'
 
   return {
     id:              idx,
@@ -170,9 +197,7 @@ export const CARDS = RAW.map((raw, idx) => {
     demandPressure:    +demandPressure.toFixed(3),
     supplySaturation:  +supplySaturation.toFixed(3),
     priceStatus,           // 'live' | 'estimated'
-    historyState,          // 'real' | 'limited' | 'none'
-    confidence,            // 'high' | 'medium' | 'low'
+    confidence,            // 'medium' (live) | 'low' (estimated)
     hasLivePrice:    livePrice !== null,  // legacy alias used by Watchlist/BoxEV/ValueScanner LIVE chip
-    priceHistory,          // [{price, ts}] sorted oldest→newest, may be empty
   }
 })
