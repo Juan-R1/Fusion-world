@@ -8,6 +8,7 @@ import PricingModel     from './tabs/PricingModel.jsx'
 import MarketDynamics   from './tabs/MarketDynamics.jsx'
 import BoxEV            from './tabs/BoxEV.jsx'
 import Watchlist        from './tabs/Watchlist.jsx'
+import ProvenanceFooter from './components/ProvenanceFooter.jsx'
 
 const TABS = [
   { id: 'scanner',   label: '🔍 Value Scanner',   short: '🔍 Scanner'  },
@@ -111,6 +112,7 @@ export default function App() {
         {tab === 'dynamics'  && <MarketDynamics cards={CARDS} />}
         {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
         {tab === 'watchlist' && <Watchlist      cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} onClear={clear} />}
+        <ProvenanceFooter />
       </main>
     </div>
   )
