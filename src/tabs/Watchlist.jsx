@@ -1,16 +1,16 @@
 // src/tabs/Watchlist.jsx
-// Portfolio / Watchlist tab — shows starred cards with aggregate stats.
+// Local-only portfolio / Watchlist tab.
 
 import { useState, useMemo } from 'react'
 import { T }         from '../theme.js'
 import { useIsMobile } from '../hooks/useIsMobile.js'
-import DeltaBadge    from '../components/DeltaBadge.jsx'
-import MiniBar       from '../components/MiniBar.jsx'
 import RarityBadge   from '../components/RarityBadge.jsx'
 import CardDetail    from '../components/CardDetail.jsx'
 import CardImage     from '../components/CardImage.jsx'
 
 const SORT_OPTS = [
+  { value: 'pl',           label: 'Highest P/L'      },
+  { value: 'value',        label: 'Current Value'     },
   { value: 'undervalued',  label: 'Most Undervalued'  },
   { value: 'overvalued',   label: 'Most Overvalued'   },
   { value: 'price',        label: 'Highest Price'     },
@@ -24,31 +24,146 @@ const INP = {
   fontFamily: "'Outfit', system-ui, sans-serif",
 }
 
-export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear }) {
-  const [sort,     setSort]     = useState('undervalued')
+const FIELD = {
+  ...INP,
+  width: '100%',
+  minWidth: 0,
+  padding: '6px 8px',
+  fontSize: 12,
+  fontFamily: T.mono,
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000
+
+function money(value) {
+  const n = Number(value)
+  return `$${(Number.isFinite(n) ? n : 0).toFixed(2)}`
+}
+
+function signedMoney(value) {
+  const n = Number(value)
+  const safe = Number.isFinite(n) ? n : 0
+  return `${safe >= 0 ? '+' : '-'}$${Math.abs(safe).toFixed(2)}`
+}
+
+function plColor(value) {
+  if (value > 0) return T.green
+  if (value < 0) return T.red
+  return T.muted
+}
+
+function priceFreshness(card, now) {
+  if (!card?.hasLivePrice || !card.priceTimestamp) {
+    return { label: 'Unknown', detail: card?.hasLivePrice ? 'No timestamp' : 'EST price', color: T.dim, border: 'rgba(100,116,139,0.35)', bg: 'rgba(100,116,139,0.12)' }
+  }
+
+  const ts = new Date(card.priceTimestamp).getTime()
+  if (!Number.isFinite(ts) || ts > now) {
+    return { label: 'Unknown', detail: 'Bad timestamp', color: T.dim, border: 'rgba(100,116,139,0.35)', bg: 'rgba(100,116,139,0.12)' }
+  }
+
+  const ageDays = (now - ts) / DAY_MS
+  if (ageDays < 7) return { label: 'Fresh', detail: '<7 days', color: T.green, border: 'rgba(34,197,94,0.38)', bg: 'rgba(34,197,94,0.12)' }
+  if (ageDays <= 21) return { label: 'Aging', detail: '7-21 days', color: T.yellow, border: 'rgba(234,179,8,0.38)', bg: 'rgba(234,179,8,0.12)' }
+  return { label: 'Stale', detail: '>21 days', color: T.red, border: 'rgba(220,38,38,0.38)', bg: 'rgba(220,38,38,0.12)' }
+}
+
+function SourceChip({ live }) {
+  return (
+    <span style={{
+      background: live ? 'rgba(16,185,129,0.15)' : 'rgba(148,163,184,0.12)',
+      border: live ? '1px solid rgba(16,185,129,0.4)' : '1px solid rgba(148,163,184,0.35)',
+      color: live ? '#10b981' : T.muted,
+      borderRadius: 3,
+      padding: '0px 4px',
+      fontSize: 9,
+      fontWeight: 700,
+      letterSpacing: '0.04em',
+    }}>
+      {live ? 'LIVE' : 'EST'}
+    </span>
+  )
+}
+
+export default function Watchlist({
+  cards,
+  watchedCodes,
+  watchlistItems = {},
+  onToggleWatch,
+  onUpdateItem = () => {},
+  onRemove,
+  onClear,
+}) {
+  const [sort,     setSort]     = useState('pl')
   const [selected, setSelected] = useState(null)
   const isMobile = useIsMobile()
+  const now = Date.now()
 
-  const watched = useMemo(() => {
-    const wCards = cards.filter(c => watchedCodes.has(c.cardCode))
-    return wCards.slice().sort((a, b) => {
+  const positions = useMemo(() => {
+    const rows = cards
+      .filter(c => watchedCodes.has(c.cardCode))
+      .map(card => {
+        const item = watchlistItems[card.cardCode] ?? {}
+        const quantity = Number.isFinite(Number(item.quantity)) && Number(item.quantity) >= 1
+          ? Math.floor(Number(item.quantity))
+          : 1
+        const entryPrice = Number.isFinite(Number(item.entryPrice)) && Number(item.entryPrice) >= 0
+          ? Number(item.entryPrice)
+          : 0
+        const currentValue = quantity * card.marketPrice
+        const costBasis = quantity * entryPrice
+        const pl = currentValue - costBasis
+        const plPct = costBasis > 0 ? (pl / costBasis) * 100 : null
+
+        return {
+          card,
+          quantity,
+          entryPrice,
+          currentValue,
+          costBasis,
+          pl,
+          plPct,
+          freshness: priceFreshness(card, now),
+        }
+      })
+
+    return rows.sort((a, b) => {
       switch (sort) {
-        case 'undervalued':  return a.delta - b.delta
-        case 'overvalued':   return b.delta - a.delta
-        case 'price':        return b.marketPrice - a.marketPrice
-        case 'desirability': return b.desirability - a.desirability
-        case 'name':         return a.name.localeCompare(b.name)
+        case 'pl':           return b.pl - a.pl
+        case 'value':        return b.currentValue - a.currentValue
+        case 'undervalued':  return a.card.delta - b.card.delta
+        case 'overvalued':   return b.card.delta - a.card.delta
+        case 'price':        return b.card.marketPrice - a.card.marketPrice
+        case 'desirability': return b.card.desirability - a.card.desirability
+        case 'name':         return a.card.name.localeCompare(b.card.name)
         default: return 0
       }
     })
-  }, [cards, watchedCodes, sort])
+  }, [cards, watchedCodes, watchlistItems, sort, now])
 
   const selCard = selected != null ? cards.find(c => c.id === selected) : null
 
-  const totalMarket = watched.reduce((s, c) => s + c.marketPrice,   0)
-  const totalModel  = watched.reduce((s, c) => s + c.predictedPrice, 0)
-  const avgDelta    = watched.length ? watched.reduce((s, c) => s + c.delta, 0) / watched.length : 0
-  const buySignals  = watched.filter(c => c.delta < -15).length
+  const totalCost = positions.reduce((s, row) => s + row.costBasis, 0)
+  const totalCurrent = positions.reduce((s, row) => s + row.currentValue, 0)
+  const totalPL = totalCurrent - totalCost
+  const liveCount = positions.filter(row => row.card.hasLivePrice).length
+  const liveCoverage = positions.length ? (liveCount / positions.length) * 100 : 0
+
+  const handleClear = () => {
+    if (window.confirm('Clear all local watchlist positions? This removes saved quantities and entry prices from this browser.')) {
+      onClear()
+      setSelected(null)
+    }
+  }
+
+  const removeCard = cardCode => {
+    if (onRemove) onRemove(cardCode)
+    else onToggleWatch(cardCode)
+    setSelected(prev => {
+      const card = cards.find(c => c.cardCode === cardCode)
+      return card?.id === prev ? null : prev
+    })
+  }
 
   // ── Empty state ───────────────────────────────────────────────────────────
   if (watchedCodes.size === 0) {
@@ -62,15 +177,15 @@ export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear 
           <div style={{ fontSize: 13, color: T.dim, lineHeight: 1.7 }}>
             Tap the <span style={{ color: T.yellow }}>☆</span> star next to any card in
             the <strong style={{ color: T.text }}>Value Scanner</strong> to add it here.
-            Your watchlist is saved automatically and persists across sessions.
+            Your watchlist is saved locally in this browser.
           </div>
         </div>
       </div>
     )
   }
 
-  const gridCols = '2fr 1fr 1fr 1fr 1fr 36px'
-  const tableMinWidth = isMobile ? 640 : 'auto'
+  const gridCols = '2fr 0.7fr 0.9fr 0.95fr 1fr 0.9fr 36px'
+  const tableMinWidth = isMobile ? 860 : 'auto'
 
   return (
     <div style={{
@@ -94,11 +209,11 @@ export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear 
           gap: 10, marginBottom: 14,
         }}>
           {[
-            { label: 'Watching',     value: watched.length,                                    color: T.text   },
-            { label: 'Market Value', value: `$${totalMarket.toFixed(2)}`,                      color: T.orange },
-            { label: 'Model Value',  value: `$${totalModel.toFixed(2)}`,                       color: T.muted  },
-            { label: 'Avg Delta',    value: `${avgDelta >= 0 ? '+' : ''}${avgDelta.toFixed(1)}%`, color: avgDelta < 0 ? T.green : T.red },
-            { label: 'Buy Signals',  value: buySignals,                                        color: T.green  },
+            { label: 'Positions',      value: positions.length,                 color: T.text },
+            { label: 'Total Cost',     value: money(totalCost),                 color: T.muted },
+            { label: 'Current Value',  value: money(totalCurrent),              color: T.orange },
+            { label: 'Unrealized P/L', value: signedMoney(totalPL),             color: plColor(totalPL) },
+            { label: 'Live Coverage',  value: `${liveCoverage.toFixed(0)}%`,    color: liveCoverage >= 80 ? T.green : T.yellow },
           ].map(({ label, value, color }) => (
             <div key={label} style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: '8px 14px' }}>
               <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>{label}</div>
@@ -112,9 +227,17 @@ export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear 
           <select style={{ ...INP, cursor: 'pointer', flex: isMobile ? '1 1 auto' : '0 0 auto' }} value={sort} onChange={e => setSort(e.target.value)}>
             {SORT_OPTS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
+          <div style={{
+            fontSize: 11,
+            color: T.dim,
+            lineHeight: 1.5,
+            flex: '1 1 260px',
+          }}>
+            Unrealized P/L is based on current FusionMetrics price. EST rows use model-estimated prices.
+          </div>
           {!isMobile && <div style={{ flex: 1 }} />}
           <button
-            onClick={onClear}
+            onClick={handleClear}
             style={{
               background: 'none', border: `1px solid ${T.border}`, color: T.dim,
               cursor: 'pointer', borderRadius: 6, padding: '8px 14px', fontSize: 13,
@@ -139,16 +262,17 @@ export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear 
               letterSpacing: '0.06em', position: 'sticky', top: 0, background: T.bg, zIndex: 1,
             }}>
               <span>Card</span>
-              <span style={{ textAlign: 'right' }}>Market $</span>
-              <span style={{ textAlign: 'right' }}>Model $</span>
-              <span style={{ textAlign: 'right' }}>Delta</span>
-              <span style={{ textAlign: 'center' }}>Demand</span>
+              <span style={{ textAlign: 'right' }}>Qty</span>
+              <span style={{ textAlign: 'right' }}>Entry $</span>
+              <span style={{ textAlign: 'right' }}>Current</span>
+              <span style={{ textAlign: 'right' }}>Unrealized P/L</span>
+              <span style={{ textAlign: 'center' }}>Freshness</span>
               <span />
             </div>
 
-            {watched.map(card => {
+            {positions.map(row => {
+              const { card, freshness } = row
               const active = selected === card.id
-              const dpCol  = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
 
               return (
                 <div
@@ -176,32 +300,63 @@ export default function Watchlist({ cards, watchedCodes, onToggleWatch, onClear 
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
                         <RarityBadge rarity={card.rarity} color={card.rarityColor} />
                         <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
-                        {card.hasLivePrice && (
-                          <span style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>LIVE</span>
-                        )}
+                        <SourceChip live={card.hasLivePrice} />
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 13, fontWeight: 600, color: T.text }}>
-                    ${card.marketPrice.toFixed(2)}
-                  </div>
-                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, color: T.muted }}>
-                    ${card.predictedPrice.toFixed(2)}
+                  <div style={{ textAlign: 'right' }}>
+                    <input
+                      type="number"
+                      min="1"
+                      step="1"
+                      value={row.quantity}
+                      onClick={e => e.stopPropagation()}
+                      onChange={e => onUpdateItem(card.cardCode, { quantity: e.target.value })}
+                      aria-label={`${card.name} quantity`}
+                      style={{ ...FIELD, textAlign: 'right' }}
+                    />
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <DeltaBadge delta={card.delta} />
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={row.entryPrice}
+                      onClick={e => e.stopPropagation()}
+                      onChange={e => onUpdateItem(card.cardCode, { entryPrice: e.target.value })}
+                      aria-label={`${card.name} entry price`}
+                      style={{ ...FIELD, textAlign: 'right' }}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                    <MiniBar value={card.demandPressure} max={1} color={dpCol} w={60} />
-                    <span style={{ fontSize: 10, fontFamily: T.mono, color: T.dim }}>
-                      {(card.demandPressure * 100).toFixed(0)}%
+                  <div style={{ textAlign: 'right', fontFamily: T.mono }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: T.text }}>{money(row.currentValue)}</div>
+                    <div style={{ fontSize: 10, color: T.dim }}>now</div>
+                  </div>
+                  <div style={{ textAlign: 'right', fontFamily: T.mono }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: plColor(row.pl) }}>{signedMoney(row.pl)}</div>
+                    <div style={{ fontSize: 10, color: T.dim }}>
+                      {row.plPct == null ? 'No cost basis' : `${row.plPct >= 0 ? '+' : ''}${row.plPct.toFixed(1)}%`}
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                    <span style={{
+                      border: `1px solid ${freshness.border}`,
+                      background: freshness.bg,
+                      color: freshness.color,
+                      borderRadius: 4,
+                      padding: '2px 6px',
+                      fontSize: 10,
+                      fontWeight: 700,
+                    }}>
+                      {freshness.label}
                     </span>
+                    <span style={{ fontSize: 10, color: T.dim }}>{freshness.detail}</span>
                   </div>
 
                   {/* Unwatch button */}
                   <button
-                    onClick={e => { e.stopPropagation(); onToggleWatch(card.cardCode) }}
+                    onClick={e => { e.stopPropagation(); removeCard(card.cardCode) }}
                     title="Remove from watchlist"
                     style={{
                       background: 'none', border: 'none', cursor: 'pointer',

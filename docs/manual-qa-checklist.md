@@ -56,7 +56,15 @@ Use this checklist before public demos, release pushes, or major analytics work.
 - [ ] Chase-driven warning appears for concentrated sets.
 - [ ] Verdict copy uses model/approximate language, not certain-profit language.
 
-## 9. Mobile
+## 9. Watchlist
+
+- [ ] Existing `fw-watchlist-v1` saved card codes migrate into `fw-watchlist-v2`.
+- [ ] Quantity and entry price edits persist after reload.
+- [ ] Summary cards show positions, total cost, current value, Unrealized P/L, and live coverage.
+- [ ] Rows show LIVE/EST chips and freshness labels.
+- [ ] Clear all removes both v1 and v2 localStorage keys after confirmation.
+
+## 10. Mobile
 
 - [ ] Narrow viewport renders without overlapping text.
 - [ ] CardDetail modal is readable.

@@ -22,7 +22,7 @@ const TABS = [
 
 export default function App() {
   const [tab, setTab] = useState('scanner')
-  const { watchedCodes, toggle, clear } = useWatchlist()
+  const { watchedCodes, watchlistItems, toggle, remove, updateItem, clear } = useWatchlist(CARDS)
   const isMobile = useIsMobile()
 
   const sidePad   = isMobile ? 12 : 32
@@ -113,7 +113,17 @@ export default function App() {
         {tab === 'model'     && <PricingModel   cards={CARDS} />}
         {tab === 'dynamics'  && <MarketDynamics cards={CARDS} />}
         {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
-        {tab === 'watchlist' && <Watchlist      cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} onClear={clear} />}
+        {tab === 'watchlist' && (
+          <Watchlist
+            cards={CARDS}
+            watchedCodes={watchedCodes}
+            watchlistItems={watchlistItems}
+            onToggleWatch={toggle}
+            onUpdateItem={updateItem}
+            onRemove={remove}
+            onClear={clear}
+          />
+        )}
         {tab === 'method'    && <Methodology cards={CARDS} />}
         <ProvenanceFooter />
       </main>
