@@ -309,7 +309,7 @@ function SetLevelAnalytics({ cards }) {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8, marginBottom: 12 }}>
-              <Metric label="Freshness" value={ageText(set.avgAgeDays)} sub={fresh.sub} color={fresh.color} />
+              <Metric label="Freshness" value={fresh.label} sub={fresh.sub} color={fresh.color} />
               <Metric label=">7d stale" value={pct(set.stale7Share)} color={set.stale7Share > 0 ? T.yellow : T.green} />
               <Metric label=">21d stale" value={pct(set.stale21Share)} color={set.stale21Share > 0 ? T.red : T.green} />
             </div>
@@ -339,10 +339,10 @@ export default function MarketDynamics({ cards }) {
       {/* Quadrant map section */}
       <div>
         <p style={{ fontSize: 13, color: T.muted, marginBottom: 12, lineHeight: 1.75 }}>
-          Each dot represents a card. <strong style={{ color: T.text }}>X-axis</strong> = supply saturation
-          (above 1.0 means supply is outpacing demand — loosening).{' '}
-          <strong style={{ color: T.text }}>Y-axis</strong> = demand pressure (% of total supply already
-          absorbed by the market). Dots are colored by rarity tier.
+          Each dot represents a card. <strong style={{ color: T.text }}>X-axis</strong> = model supply
+          saturation (above 1.0 suggests looser supply in the heuristic).{' '}
+          <strong style={{ color: T.text }}>Y-axis</strong> = model demand pressure. These are model
+          heuristics, not observed supply or demand time series. Dots are colored by rarity tier.
         </p>
         <QuadrantMap cards={cards} />
 
