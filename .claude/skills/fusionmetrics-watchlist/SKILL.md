@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-watchlist
 description: Use when working on FusionMetrics Watchlist localStorage, portfolio fields, migration, entry price, quantity, local P/L, clear-all behavior, or local-only portfolio constraints.
-version: 1.0.0
+version: 1.1.0
 category: Product
 triggers:
   - watchlist
@@ -61,6 +61,12 @@ Use this skill for changes involving:
 npm run build
 node scripts/verify-data.js
 ```
+
+## Demo data
+
+For portfolio screenshots, use `docs/watchlist-demo-data.md`. Demo positions
+must be browser-local only, use the `fw-watchlist-v2` schema, and be cleared
+after capture. Do not write demo positions into generated JSON or app source.
 
 ## Final response format
 

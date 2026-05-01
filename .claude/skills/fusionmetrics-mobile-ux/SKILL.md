@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-mobile-ux
 description: Use when checking FusionMetrics mobile or narrow-width layout, table overflow, modal readability, footer overlap, responsive cards, or public-demo visual polish.
-version: 1.0.0
+version: 1.1.0
 category: QA
 triggers:
   - mobile
@@ -44,7 +44,9 @@ Use this skill for mobile or narrow-width work in:
 4. Check Watchlist summary, table, inputs, and clear-all button.
 5. Check Methodology cards and Provenance modal.
 6. Confirm footer does not block important content.
-7. Update `docs/manual-qa-checklist.md` only when a manual or implementation
+7. Check narrow desktop widths, not just phone width; the Box EV fix was a
+   narrow-window breakpoint issue.
+8. Update `docs/manual-qa-checklist.md` only when a manual or implementation
    check materially changes.
 
 ## Validation commands

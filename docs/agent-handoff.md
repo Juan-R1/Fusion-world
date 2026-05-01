@@ -45,6 +45,16 @@ v2 local portfolio fields are all in place.
 Later only: eBay sold comps, manipulation / outlier detection, long-term
 history archive, paid API tier, accounts, alerts, and AI prediction.
 
+## Tool routing
+
+| Tool / plugin | Use now | Use later | Do not do |
+|---------------|---------|-----------|-----------|
+| Codex / repo tools | Repo inspection, docs, validation, small safe commits | Narrow implementation and QA tasks | Edit generated data or pipeline files outside scope |
+| Browser / preview | Local visual QA, screenshot capture, mobile/narrow checks | Production smoke tests after deploy | Call external pricing APIs or scrape sites |
+| GitHub | Push approved commits, review repo state, open issues if requested | Release checklist, PR review | Run Actions workflows without operator approval |
+| Vercel | Read-only production status after approval | Deployment status and build-log review | Trigger deploys without explicit approval |
+| Figma | Do not use yet | Portfolio deck, screenshot framing, case-study visuals, design-system polish | Generate files before screenshots are captured and approved |
+
 ## Division of labor
 
 - **Claude Code:** higher-context implementation and multi-file product work.

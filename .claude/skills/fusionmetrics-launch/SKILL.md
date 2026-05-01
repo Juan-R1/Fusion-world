@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-launch
 description: Use when preparing FusionMetrics portfolio launch, screenshots, README, demo script, public-demo checklist, case study, recruiter-facing story, or deployment-readiness review.
-version: 1.1.0
+version: 1.2.0
 category: Launch
 triggers:
   - launch
@@ -56,6 +56,30 @@ Use this skill for launch and portfolio artifacts:
 6. Current limitations mention free-tier quota, image coverage, approximate EV,
    no accounts/alerts, and no cross-source pricing.
 7. Public claims stay conservative and verifiable.
+
+## Launch execution order
+
+1. Run `node scripts/verify-data.js`, `npm run build`, and `git status`.
+2. Start `npm run dev` only for local screenshot or visual QA work.
+3. Capture screenshots from `docs/screenshot-plan.md`.
+4. Seed Watchlist demo data only from `docs/watchlist-demo-data.md`, refresh,
+   capture Watchlist, then reset localStorage.
+5. Use `docs/demo-script.md` for the 60-second and 3-minute walkthroughs.
+6. Use `docs/deployment-check.md` only after an approved deploy or read-only
+   production review.
+
+## Tool routing
+
+- **Codex / repo tools:** docs, validation, branch status, narrow commits.
+- **Browser / preview:** screenshot capture, local visual QA, narrow-width
+  checks around both phone width and narrow desktop windows.
+- **GitHub:** push, issue, PR, or release workflow only when requested; never
+  run Actions workflows as part of launch prep.
+- **Vercel:** read-only deployment status or production smoke checks after
+  approval; do not deploy without explicit approval.
+- **Figma:** later only, after screenshots are captured, for portfolio deck,
+  screenshot framing, case-study visuals, UI concept mockups, or design-system
+  polish.
 
 ## Validation commands
 

@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-qa
 description: Use when validating FusionMetrics changes, reviewing terminal output, checking build results, smoke-testing UI, verifying lazy-loaded history, or deciding if a task is complete. Triggers — verify, smoke test, before commit, build result, lazy-load, "does this work", validate.
-version: 1.1.0
+version: 1.2.0
 category: QA
 triggers:
   - verify
@@ -70,6 +70,17 @@ Use `npm run dev` only when UI behavior needs manual confirmation.
       confirmation.
 - [ ] Watchlist P/L copy stays cautious: current value is based on current
       FusionMetrics price, and EST rows use model-estimated prices.
+
+## Public-demo smoke checklist
+
+- [ ] Capture or inspect the screenshot set in `docs/screenshot-plan.md`.
+- [ ] Seed Watchlist demo data only from `docs/watchlist-demo-data.md`, refresh,
+      verify the Watchlist screenshot state, then clear demo data.
+- [ ] Verify Box EV at desktop width, narrow desktop width, and 390-430 px
+      width; Top Cards must not be squeezed into a side column.
+- [ ] Verify Methodology and provenance stay visible in screenshots.
+- [ ] If production is being reviewed, follow `docs/deployment-check.md`;
+      do not trigger deploys or workflows from QA.
 
 ## Data and ranking checks
 
