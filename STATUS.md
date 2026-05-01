@@ -1,18 +1,19 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-04-30
+**Date:** 2026-05-01
 **Branch:** `claude/dbfw-market-analytics-1qh5D`
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Trust-complete MVP foundation; honest product / analytics expansion next
+**Phase:** Final MVP polish; portfolio/public-demo preparation
 
 ---
 
 ## TL;DR
 
-FusionMetrics now has a durable trust foundation. The app uses real JustTCG
-live prices, real JustTCG 30d history, visible provenance, per-card freshness,
-and a Methodology & Data Sources page. The next work should improve user-facing
-analytics without overstating precision.
+FusionMetrics now has a durable trust foundation and the first honest product
+expansion pass. The app uses real JustTCG live prices, real JustTCG 30d
+history, visible provenance, per-card freshness, Methodology copy, Set-Level
+Analytics, tightened Box EV language, and Watchlist v2 local portfolio fields.
+The next work should finish demo QA and public launch packaging.
 
 ---
 
@@ -30,8 +31,11 @@ analytics without overstating precision.
 | Provenance | Footer/status chip and modal complete |
 | Per-card freshness | Badge complete, based on each card's live price timestamp |
 | Methodology | Methodology & Data Sources tab complete |
+| Set analytics | Market Dynamics includes live value, coverage, freshness, and Chase Dependency |
+| Box EV | Approximate assumptions, input quality, and cautious model verdict copy complete |
+| Watchlist | Local v2 portfolio fields: quantity, entry price, current value, Unrealized P/L |
 | Data verification | `scripts/verify-data.js` requires split shape only |
-| Bundle | Roughly 627–631 kB raw after split-history migration |
+| Bundle | Roughly 648 kB raw / 95 kB gzip after final MVP UI polish |
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 
 ---
@@ -68,18 +72,15 @@ analytics without overstating precision.
 
 ## Recommended next sequence
 
-1. Internal docs / skills cleanup.
-2. Set-level analytics upgrade: Set Detail or Set Rankings, chase dependency,
-   set value summaries, live-price coverage per set, freshness warnings.
-3. Box EV methodology tightening: clearer assumptions, pull-rate caveats, less
-   fake precision.
-4. Watchlist v2 planning: quantity, entry price, local P/L, CSV export later.
-5. Image coverage strategy: research source and safe pipeline before touching
+1. Finish public-demo QA: mobile pass, search smoke, CardDetail history cache,
+   Watchlist clear-all, and provenance modal.
+2. Capture portfolio screenshots and record a short demo flow.
+3. Image coverage strategy: research source and safe pipeline before touching
    generated data.
-6. README / public launch package: screenshots, setup, data caveats, portfolio
-   narrative.
-7. Later only: eBay sold comps, manipulation / outlier detection, long-term
-   history archive, paid API tier, accounts, alerts.
+4. Focused automated UI smoke tests after explicit approval.
+5. Later only: CSV export, eBay sold comps, manipulation / outlier detection,
+   long-term history archive, paid API tier, accounts, alerts, and AI
+   prediction.
 
 ---
 
