@@ -50,5 +50,9 @@ history archive, paid API tier, accounts, alerts, and AI prediction.
 - **Codex:** audits, cleanup, QA, narrow code changes, and validation.
 - **ChatGPT:** strategy, copy, prompts, product review, and roadmap framing.
 
+Useful focused skills now include `fusionmetrics-qa`, `fusionmetrics-product`,
+`fusionmetrics-pipeline`, `fusionmetrics-watchlist`,
+`fusionmetrics-mobile-ux`, and `fusionmetrics-launch`.
+
 Use one small task, one file cluster, one commit. Stop after each task and
 report validation.
