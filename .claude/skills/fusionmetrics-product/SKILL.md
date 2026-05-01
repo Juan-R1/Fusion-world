@@ -32,15 +32,23 @@ analytics that imply stronger evidence than FusionMetrics has.
 - Treat JustTCG as directionally trustworthy for MVP, not as a perfect market
   oracle.
 
+## Completed product foundations
+
+- Set-Level Analytics: live value, coverage, freshness, and Chase Dependency.
+- Box EV methodology tightening: assumptions, confidence copy, and safer
+  labels.
+- Watchlist v2: local quantity, entry price, current value, and cautious
+  Unrealized P/L.
+
 ## Good next work
 
-1. Set-level analytics: set value summaries, chase dependency, live-price
-   coverage per set, freshness warnings.
-2. Box EV methodology tightening: assumptions, pull-rate caveats, and clearer
-   confidence language.
-3. Watchlist v2 planning: quantity, entry price, local P/L, CSV export later.
-4. Image coverage strategy: research source and safe ingestion plan first.
-5. Public launch package: screenshots, setup, caveats, portfolio narrative.
+1. Public-demo QA: search/filter smoke, Watchlist clear-all, CardDetail
+   history cache, and mobile readability.
+2. Public launch package: screenshots, setup, caveats, portfolio narrative.
+3. Image coverage strategy: research source and safe ingestion plan first.
+4. Watchlist refinements: CSV export later if still local-only and clearly
+   labeled.
+5. Focused automated smoke tests after approval.
 
 ## Do not start without approval
 

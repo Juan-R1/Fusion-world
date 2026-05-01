@@ -41,7 +41,7 @@ Healthy outputs:
 | Check | Healthy output |
 |-------|----------------|
 | `node scripts/verify-data.js` | `✓ 1258 cards, 1156 live prices (1156 with history, split shape required), 9 invariants passed` |
-| `npm run build` | `✓ built in <2s`; `dist/assets/index-*.js` around 627–631 kB raw / 89–90 kB gzip |
+| `npm run build` | `✓ built in <2s`; `dist/assets/index-*.js` around 645–646 kB raw / 94–95 kB gzip |
 | `git status` after commit | clean except expected ahead-of-origin commits |
 
 ## Trust smoke-test checklist
@@ -49,6 +49,10 @@ Healthy outputs:
 Use `npm run dev` only when UI behavior needs manual confirmation.
 
 - [ ] Header and existing tabs render without console errors.
+- [ ] Value Scanner search works for empty search, card name, character, and
+      card code.
+- [ ] Value Scanner search does not crash when a card field such as
+      `character` is missing, null, or undefined.
 - [ ] Methodology tab is visible and readable on desktop and mobile.
 - [ ] Methodology copy separates JustTCG data from model estimates and says
       this is not financial advice.
@@ -61,6 +65,11 @@ Use `npm run dev` only when UI behavior needs manual confirmation.
 - [ ] CardDetail price history still loads from `/priceHistory30d.json`.
 - [ ] "Price history unavailable" is distinct from "Not enough JustTCG
       history."
+- [ ] Watchlist v2 migrates `fw-watchlist-v1`, persists quantity / entry
+      price edits, and clear-all removes both v1 and v2 keys after
+      confirmation.
+- [ ] Watchlist P/L copy stays cautious: current value is based on current
+      FusionMetrics price, and EST rows use model-estimated prices.
 
 ## Data and ranking checks
 

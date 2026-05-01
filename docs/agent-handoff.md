@@ -4,7 +4,8 @@
 
 FusionMetrics has a trust-complete MVP foundation. Real JustTCG prices, real
 JustTCG 30d history, provenance, per-card freshness, split-shape verification,
-and Methodology copy are all in place.
+Methodology copy, Set-Level Analytics, tightened Box EV language, and Watchlist
+v2 local portfolio fields are all in place.
 
 ## Active data contract
 
@@ -15,6 +16,8 @@ and Methodology copy are all in place.
 - `scripts/verify-data.js`: requires split shape and 9 invariants.
 - `scripts/accumulate-prices.js`: deleted.
 - `src/priceHistory.json`: deleted.
+- `fw-watchlist-v2`: active localStorage key for local-only Watchlist
+  positions; `fw-watchlist-v1` is read only for migration.
 
 ## What not to do
 
@@ -29,16 +32,17 @@ and Methodology copy are all in place.
 
 ## Next recommended tasks
 
-1. Set-level analytics upgrade: Set Detail / Set Rankings, chase dependency,
-   set value summaries, live-price coverage per set, freshness warnings.
-2. Box EV methodology tightening: clearer assumptions and pull-rate caveats.
-3. Watchlist v2 planning: quantity, entry price, local P/L, CSV export later.
-4. Image coverage strategy before touching generated data.
-5. README / public launch package with screenshots, setup, caveats, and
+1. Public-demo QA: search/filter browser smoke, CardDetail history cache,
+   Watchlist clear-all, and mobile readability.
+2. README / public launch package with screenshots, setup, caveats, and
    portfolio narrative.
+3. Image coverage strategy before touching generated data.
+4. Focused automated UI smoke tests after explicit approval.
+5. Watchlist refinements such as CSV export later, still local-only unless
+   accounts are approved.
 
 Later only: eBay sold comps, manipulation / outlier detection, long-term
-history archive, paid API tier, accounts, alerts.
+history archive, paid API tier, accounts, alerts, and AI prediction.
 
 ## Division of labor
 

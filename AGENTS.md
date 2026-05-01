@@ -42,7 +42,7 @@ expansion**.
 | Methodology | Methodology & Data Sources tab complete |
 | External spot-check | 10 cards checked: 9 aligned, 1 unclear due to variant ambiguity |
 | Retired legacy files | old accumulator script and legacy bundled history file are deleted |
-| Initial JS bundle | ~627–631 kB raw / ~89–90 kB gzip |
+| Current JS bundle | ~646 kB raw / ~95 kB gzip after Watchlist v2 |
 
 ---
 
@@ -92,7 +92,7 @@ Operating principle: **make FusionMetrics unable to lie by accident.**
 
 ```bash
 # Local validation — run BOTH before any commit that touches code:
-npm run build                 # Vite build; bundle should stay ~627–631 kB raw
+npm run build                 # Vite build; bundle should stay ~645–646 kB raw
 node scripts/verify-data.js   # 9 invariants; must say "split shape required"
 
 # Optional dev server for UI smoke tests:
@@ -204,21 +204,19 @@ and what was reverted, then ask before retrying.
 
 In strict order. Do one task per commit; stop after each.
 
-1. **Internal docs / skills cleanup.** Keep this file, `STATUS.md`, and
-   `.claude/skills/` aligned with the trust-complete checkpoint.
-2. **Set-level analytics upgrade.** Improve Set Detail / Set Rankings with
-   chase dependency, set value summaries, live-price coverage per set, and
-   freshness warnings.
-3. **Box EV methodology tightening.** Clarify assumptions, pull-rate caveats,
-   and avoid fake precision.
-4. **Watchlist v2 planning.** Quantity, entry price, local P/L, and CSV export
-   later.
-5. **Image coverage strategy.** Research source and safe pipeline before
+1. **Finish public-demo QA.** Search/filter smoke tests, CardDetail history
+   cache check, Watchlist clear-all, and mobile modal/readability pass.
+2. **Public launch package.** Screenshots, setup polish, caveats, and portfolio
+   narrative.
+3. **Image coverage strategy.** Research source and safe pipeline before
    touching generated data.
-6. **README / public launch package.** Screenshots, setup, data caveats, and
-   portfolio narrative.
-7. **Later only:** eBay sold comps, manipulation / outlier detection,
-   long-term history archive, paid API tier, accounts, and alerts.
+4. **Automated UI smoke tests.** Add only with explicit approval; keep focused
+   on app load, tabs, CardDetail, provenance, and Watchlist localStorage.
+5. **Watchlist refinements.** CSV export and small local-only UX improvements
+   later, without accounts or cloud sync.
+6. **Later only:** eBay sold comps, manipulation / outlier detection,
+   long-term history archive, paid API tier, accounts, alerts, and AI
+   prediction.
 
 Do not frame the next phase as copying another product. The next phase is
 honest product / analytics expansion built on the trust model above.
