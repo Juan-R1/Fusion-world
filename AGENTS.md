@@ -197,6 +197,8 @@ and what was reverted, then ask before retrying.
 - Do **not** run `mode=full` price refreshes.
 - Do **not** add secrets to any committed file.
 - Do **not** commit generated data changes from local development runs.
+- Phase 2 data expansion work must consult and update
+  `docs/phase-2-execution-checklist.md`.
 
 ---
 

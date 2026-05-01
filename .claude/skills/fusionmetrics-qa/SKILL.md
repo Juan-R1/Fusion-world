@@ -26,6 +26,10 @@ triggers:
 
 ## Required local checks
 
+For Phase 2 data expansion tasks, confirm
+`docs/phase-2-execution-checklist.md` was read and updated before marking the
+task complete.
+
 For code or pipeline changes, run both:
 
 ```bash

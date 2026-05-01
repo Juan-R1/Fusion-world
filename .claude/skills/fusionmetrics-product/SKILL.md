@@ -42,6 +42,9 @@ analytics that imply stronger evidence than FusionMetrics has.
 
 ## Good next work
 
+For Phase 2 data expansion, read and update
+`docs/phase-2-execution-checklist.md` before moving to a new task.
+
 1. Public-demo QA: search/filter smoke, Watchlist clear-all, CardDetail
    history cache, and mobile readability.
 2. Public launch package: screenshots, setup, caveats, portfolio narrative.

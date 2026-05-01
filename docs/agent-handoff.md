@@ -32,6 +32,9 @@ v2 local portfolio fields are all in place.
 
 ## Next recommended tasks
 
+Before any Phase 2 data expansion work, read
+`docs/phase-2-execution-checklist.md` and update it after each Phase 2 task.
+
 1. Public-demo QA: search/filter browser smoke, CardDetail history cache,
    Watchlist clear-all, and mobile readability.
 2. Capture screenshots using `docs/screenshot-plan.md` and seed local
