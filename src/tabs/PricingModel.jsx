@@ -169,7 +169,9 @@ export default function PricingModel({ cards }) {
           Cards below the model may be worth a closer look; cards above it may need extra assumption review.
         </div>
 
-        <ScatterPlot cards={cards} />
+        <div style={{ maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
+          <ScatterPlot cards={cards} />
+        </div>
 
         {/* Legend */}
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginTop: 12, flexWrap: 'wrap' }}>

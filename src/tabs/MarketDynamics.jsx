@@ -344,7 +344,9 @@ export default function MarketDynamics({ cards }) {
           <strong style={{ color: T.text }}>Y-axis</strong> = model demand pressure. These are model
           heuristics, not observed supply or demand time series. Dots are colored by rarity tier.
         </p>
-        <QuadrantMap cards={cards} />
+        <div style={{ maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
+          <QuadrantMap cards={cards} />
+        </div>
 
         {/* Rarity legend */}
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 12 }}>
