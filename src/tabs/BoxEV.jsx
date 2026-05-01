@@ -178,6 +178,7 @@ export default function BoxEV({ cards }) {
   const [setCode, setSetCode] = useState('FB01')
   const [boxCost, setBoxCost] = useState(80)
   const isMobile = useIsMobile()
+  const isNarrowLayout = useIsMobile(1120)
 
   const result = useMemo(() => {
     const setCards = cards.filter(c => c.set === setCode)
@@ -302,7 +303,7 @@ export default function BoxEV({ cards }) {
 
       {/* ── Controls ─────────────────────────────────────────────────────────── */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-        <select style={{ ...INP, cursor: 'pointer', minWidth: isMobile ? 0 : 230, flex: isMobile ? '1 1 100%' : '0 0 auto' }} value={setCode} onChange={e => setSetCode(e.target.value)}>
+        <select style={{ ...INP, cursor: 'pointer', minWidth: isNarrowLayout ? 0 : 230, flex: isNarrowLayout ? '1 1 100%' : '0 0 auto' }} value={setCode} onChange={e => setSetCode(e.target.value)}>
           {SETS.map(s => <option key={s.code} value={s.code}>{s.code} — {s.name}</option>)}
         </select>
 
@@ -400,7 +401,7 @@ export default function BoxEV({ cards }) {
       </div>
 
       {/* ── Main two-column layout ───────────────────────────────────────────── */}
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '320px 1fr', gap: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isNarrowLayout ? '1fr' : '320px minmax(0, 1fr)', gap: 14 }}>
 
         {/* ── Left column ──────────────────────────────────────────────────── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -458,14 +459,14 @@ export default function BoxEV({ cards }) {
                 isBox: true,
               },
             ].map(({ label, cost, share, desc, isBox }) => (
-              <div key={label} style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'stretch' : 'flex-start', gap: isMobile ? 6 : 12, padding: '9px 0', borderBottom: `1px solid ${T.border}` }}>
+              <div key={label} style={{ display: 'flex', flexDirection: isNarrowLayout ? 'column' : 'row', justifyContent: 'space-between', alignItems: isNarrowLayout ? 'stretch' : 'flex-start', gap: isNarrowLayout ? 6 : 12, padding: '9px 0', borderBottom: `1px solid ${T.border}` }}>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: 12, color: T.text, fontWeight: isBox ? 700 : 400 }}>{label}</div>
                   <div style={{ fontSize: 10, color: T.dim, marginTop: 2 }}>
                     {share.toFixed(0)}% of box EV · {desc}
                   </div>
                 </div>
-                <div style={{ textAlign: isMobile ? 'left' : 'right', flexShrink: 0 }}>
+                <div style={{ textAlign: isNarrowLayout ? 'left' : 'right', flexShrink: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, fontFamily: T.mono, color: T.text }}>${cost.toFixed(2)}</div>
                   <div style={{ fontSize: 10, color: T.dim, marginTop: 1 }}>
                     ${(cost / share * 100).toFixed(2)} / 1% EV
@@ -490,7 +491,7 @@ export default function BoxEV({ cards }) {
 
         {/* ── Right column: top cards by box EV ────────────────────────────── */}
         <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, overflow: 'hidden', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          <div style={{ padding: '11px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 8, flexWrap: 'wrap', flexShrink: 0 }}>
+          <div style={{ padding: '11px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: isNarrowLayout ? 'flex-start' : 'center', gap: 8, flexWrap: 'wrap', flexShrink: 0 }}>
             <span style={{ fontSize: 11, fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Top Cards by Box EV
             </span>
@@ -500,7 +501,7 @@ export default function BoxEV({ cards }) {
           </div>
 
           {/* Table header */}
-          {!isMobile && (
+          {!isNarrowLayout && (
             <div style={{
               display: 'grid', gridTemplateColumns: '2fr 0.65fr 0.75fr 0.75fr 0.75fr',
               gap: 8, padding: '6px 14px', fontSize: 10, color: T.dim,
@@ -518,7 +519,7 @@ export default function BoxEV({ cards }) {
           {/* Card rows */}
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {cardRows.slice(0, 40).map((card, i) => (
-              isMobile ? (
+              isNarrowLayout ? (
                 <MobileTopCard key={card.id} card={card} index={i} />
               ) : (
                 <div
