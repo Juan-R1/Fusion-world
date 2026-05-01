@@ -30,6 +30,8 @@ Screenshots are not committed yet. Before a public portfolio post, capture:
 - Watchlist v2 with sample local positions.
 - Methodology & Data Sources.
 
+See `docs/screenshot-plan.md` for the full capture list and framing notes.
+
 ## Data And Trust Notes
 
 - Current live prices come from JustTCG.
@@ -76,3 +78,8 @@ npm run build
 - Box EV is approximate and depends on simplified pull-rate and set-composition assumptions.
 - There are no user accounts, alerts, or cloud-synced watchlists yet.
 - Cross-source pricing, eBay sold comps, and long-term history archives are future work, not current production inputs.
+
+## Portfolio Notes
+
+- `docs/portfolio-case-study.md` summarizes the product problem, technical architecture, trust model, and roadmap.
+- `docs/demo-script.md` provides 60-second and 3-minute walkthroughs.

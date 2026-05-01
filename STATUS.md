@@ -3,17 +3,18 @@
 **Date:** 2026-05-01
 **Branch:** `claude/dbfw-market-analytics-1qh5D`
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Final MVP polish; portfolio/public-demo preparation
+**Phase:** Portfolio launch package; public-beta gap planning
 
 ---
 
 ## TL;DR
 
-FusionMetrics now has a durable trust foundation and the first honest product
-expansion pass. The app uses real JustTCG live prices, real JustTCG 30d
-history, visible provenance, per-card freshness, Methodology copy, Set-Level
-Analytics, tightened Box EV language, and Watchlist v2 local portfolio fields.
-The next work should finish demo QA and public launch packaging.
+FusionMetrics now has a durable trust foundation, the first honest product
+expansion pass, and a clean final visual QA pass for portfolio demo. The app
+uses real JustTCG live prices, real JustTCG 30d history, visible provenance,
+per-card freshness, Methodology copy, Set-Level Analytics, tightened Box EV
+language, and Watchlist v2 local portfolio fields. The next work is portfolio
+assets and public-beta gap closure.
 
 ---
 
@@ -72,9 +73,8 @@ The next work should finish demo QA and public launch packaging.
 
 ## Recommended next sequence
 
-1. Finish public-demo QA: mobile pass, search smoke, CardDetail history cache,
-   Watchlist clear-all, and provenance modal.
-2. Capture portfolio screenshots and record a short demo flow.
+1. Capture portfolio screenshots and record a short demo flow.
+2. Prepare Watchlist demo-local data for screenshots.
 3. Image coverage strategy: research source and safe pipeline before touching
    generated data.
 4. Focused automated UI smoke tests after explicit approval.

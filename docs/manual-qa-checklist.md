@@ -79,7 +79,10 @@ need a targeted pass. The Value Scanner missing-field search crash was fixed in
 
 ## 11. Mobile
 
-- [ ] Narrow viewport renders without overlapping text.
-- [ ] CardDetail modal is readable.
-- [ ] Provenance modal is readable.
-- [ ] Footer does not block important content.
+- [x] Narrow viewport renders without overlapping text.
+- [x] CardDetail modal is readable.
+- [x] Provenance modal is readable.
+- [x] Footer does not block important content.
+
+QA note, 2026-05-01: final portfolio-demo visual QA found no P0 desktop or
+narrow-width blockers after the Box EV stacking fix in `5d1b7fb`.
