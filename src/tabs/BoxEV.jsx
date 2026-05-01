@@ -8,6 +8,7 @@ import { T }         from '../theme.js'
 import { SETS, RARITIES } from '../data.js'
 import RarityBadge   from '../components/RarityBadge.jsx'
 import CardImage     from '../components/CardImage.jsx'
+import { useIsMobile } from '../hooks/useIsMobile.js'
 
 const PACKS_PER_BOX  = 24
 const CARDS_PER_PACK = 12
@@ -27,10 +28,10 @@ function Stat({ label, value, sub, color = T.text, highlight = false }) {
     <div style={{
       background: highlight ? 'rgba(249,115,22,0.08)' : T.s1,
       border: `1px solid ${highlight ? 'rgba(249,115,22,0.35)' : T.border}`,
-      borderRadius: 8, padding: '12px 18px', flex: 1,
+      borderRadius: 8, padding: '12px 18px', flex: '1 1 150px', minWidth: 0,
     }}>
       <div style={{ fontSize: 10, color: T.dim, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</div>
-      <div style={{ fontSize: 22, fontWeight: 800, color, fontFamily: T.mono }}>{value}</div>
+      <div style={{ fontSize: 22, fontWeight: 800, color, fontFamily: T.mono, overflowWrap: 'anywhere' }}>{value}</div>
       {sub && <div style={{ fontSize: 11, color: T.dim, marginTop: 3 }}>{sub}</div>}
     </div>
   )
@@ -101,9 +102,82 @@ function MiniMetric({ label, value, sub, color = T.text }) {
   )
 }
 
+function SourceChip({ live }) {
+  return live ? (
+    <span title="Live JustTCG market price" style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, flexShrink: 0 }}>
+      LIVE
+    </span>
+  ) : (
+    <span title="Model-estimated price included in approximate EV" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.35)', color: T.yellow, borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, flexShrink: 0 }}>
+      EST
+    </span>
+  )
+}
+
+function TopCardIdentity({ card, mobile = false }) {
+  return (
+    <div style={{ display: 'flex', alignItems: mobile ? 'flex-start' : 'center', gap: mobile ? 10 : 8, minWidth: 0 }}>
+      {card.image
+        ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={mobile ? 38 : 28} height={mobile ? 54 : 40} radius={2} />
+        : <span style={{ fontSize: mobile ? 22 : 18, flexShrink: 0 }}>{card.icon}</span>
+      }
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div style={{
+          fontSize: mobile ? 13 : 12,
+          fontWeight: 700,
+          color: T.text,
+          overflow: mobile ? 'visible' : 'hidden',
+          textOverflow: mobile ? 'clip' : 'ellipsis',
+          whiteSpace: mobile ? 'normal' : 'nowrap',
+          lineHeight: 1.25,
+        }}>
+          {card.name}
+        </div>
+        <div style={{ display: 'flex', gap: 5, alignItems: 'center', marginTop: 4, flexWrap: 'wrap' }}>
+          <RarityBadge rarity={card.rarity} color={card.rarityColor} />
+          <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
+          <SourceChip live={card.hasLivePrice} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MobileTopCard({ card, index }) {
+  const metrics = [
+    { label: 'Price', value: `$${card.marketPrice.toFixed(2)}`, color: T.text },
+    { label: 'Copies/Box', value: `${card.boxCopies.toFixed(2)}x`, color: T.dim },
+    { label: 'Packs to Hit', value: card.packsToHit < 1000 ? `~${Math.round(card.packsToHit)}` : '—', color: T.dim },
+    { label: 'Box EV', value: `$${card.boxEV.toFixed(2)}`, color: card.boxEV >= 1 ? T.orange : card.boxEV >= 0.1 ? T.text : T.dim },
+  ]
+
+  return (
+    <div style={{
+      padding: 12,
+      borderBottom: `1px solid ${T.border}`,
+      background: index < 5 ? 'rgba(249,115,22,0.04)' : 'transparent',
+    }}>
+      <TopCardIdentity card={card} mobile />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8, marginTop: 10 }}>
+        {metrics.map(metric => (
+          <div key={metric.label} style={{ background: T.s2, border: `1px solid ${T.border}`, borderRadius: 6, padding: '8px 9px', minWidth: 0 }}>
+            <div style={{ fontSize: 9, color: T.dim, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 3 }}>
+              {metric.label}
+            </div>
+            <div style={{ fontFamily: T.mono, fontSize: 12, fontWeight: 800, color: metric.color, overflowWrap: 'anywhere' }}>
+              {metric.value}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function BoxEV({ cards }) {
   const [setCode, setSetCode] = useState('FB01')
   const [boxCost, setBoxCost] = useState(80)
+  const isMobile = useIsMobile()
 
   const result = useMemo(() => {
     const setCards = cards.filter(c => c.set === setCode)
@@ -224,15 +298,15 @@ export default function BoxEV({ cards }) {
   const verdictColor = nearBreakEven ? T.yellow : roi >= 0 ? T.green : T.orange
 
   return (
-    <div style={{ height: 'calc(100vh - 136px)', overflowY: 'auto', paddingBottom: 32 }}>
+    <div style={{ height: isMobile ? 'auto' : 'calc(100vh - 136px)', overflowY: 'auto', paddingBottom: 32 }}>
 
       {/* ── Controls ─────────────────────────────────────────────────────────── */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-        <select style={{ ...INP, cursor: 'pointer', minWidth: 230 }} value={setCode} onChange={e => setSetCode(e.target.value)}>
+        <select style={{ ...INP, cursor: 'pointer', minWidth: isMobile ? 0 : 230, flex: isMobile ? '1 1 100%' : '0 0 auto' }} value={setCode} onChange={e => setSetCode(e.target.value)}>
           {SETS.map(s => <option key={s.code} value={s.code}>{s.code} — {s.name}</option>)}
         </select>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <label style={{ fontSize: 12, color: T.dim, whiteSpace: 'nowrap' }}>Box price $</label>
           <input
             type="number" min={1} max={999} step={5}
@@ -249,7 +323,7 @@ export default function BoxEV({ cards }) {
         {/* Data quality badge */}
         {dataQuality !== 'good' && (
           <div style={{
-            fontSize: 11, padding: '4px 10px', borderRadius: 5,
+            fontSize: 11, padding: '4px 10px', borderRadius: 5, lineHeight: 1.45, maxWidth: '100%',
             background: dataQuality === 'partial' ? 'rgba(234,179,8,0.12)' : 'rgba(220,38,38,0.12)',
             border: `1px solid ${dataQuality === 'partial' ? 'rgba(234,179,8,0.35)' : 'rgba(220,38,38,0.35)'}`,
             color: dataQuality === 'partial' ? T.yellow : T.red,
@@ -326,7 +400,7 @@ export default function BoxEV({ cards }) {
       </div>
 
       {/* ── Main two-column layout ───────────────────────────────────────────── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '320px 1fr', gap: 14 }}>
 
         {/* ── Left column ──────────────────────────────────────────────────── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -384,14 +458,14 @@ export default function BoxEV({ cards }) {
                 isBox: true,
               },
             ].map(({ label, cost, share, desc, isBox }) => (
-              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '9px 0', borderBottom: `1px solid ${T.border}` }}>
-                <div>
+              <div key={label} style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'stretch' : 'flex-start', gap: isMobile ? 6 : 12, padding: '9px 0', borderBottom: `1px solid ${T.border}` }}>
+                <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: 12, color: T.text, fontWeight: isBox ? 700 : 400 }}>{label}</div>
                   <div style={{ fontSize: 10, color: T.dim, marginTop: 2 }}>
                     {share.toFixed(0)}% of box EV · {desc}
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: isMobile ? 'left' : 'right', flexShrink: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, fontFamily: T.mono, color: T.text }}>${cost.toFixed(2)}</div>
                   <div style={{ fontSize: 10, color: T.dim, marginTop: 1 }}>
                     ${(cost / share * 100).toFixed(2)} / 1% EV
@@ -415,79 +489,66 @@ export default function BoxEV({ cards }) {
         </div>
 
         {/* ── Right column: top cards by box EV ────────────────────────────── */}
-        <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '11px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+        <div style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, overflow: 'hidden', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <div style={{ padding: '11px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 8, flexWrap: 'wrap', flexShrink: 0 }}>
             <span style={{ fontSize: 11, fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Top Cards by Box EV
             </span>
-            <span style={{ fontSize: 11, color: T.dim }}>
+            <span style={{ fontSize: 11, color: T.dim, lineHeight: 1.4 }}>
               expected value from one full box
             </span>
           </div>
 
           {/* Table header */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: '2fr 0.65fr 0.75fr 0.75fr 0.75fr',
-            gap: 8, padding: '6px 14px', fontSize: 10, color: T.dim,
-            borderBottom: `1px solid ${T.border}`, textTransform: 'uppercase', letterSpacing: '0.05em',
-            flexShrink: 0,
-          }}>
-            <span>Card</span>
-            <span style={{ textAlign: 'right' }}>Price</span>
-            <span style={{ textAlign: 'right' }}>Copies/Box</span>
-            <span style={{ textAlign: 'right' }}>Packs to Hit</span>
-            <span style={{ textAlign: 'right' }}>Box EV</span>
-          </div>
+          {!isMobile && (
+            <div style={{
+              display: 'grid', gridTemplateColumns: '2fr 0.65fr 0.75fr 0.75fr 0.75fr',
+              gap: 8, padding: '6px 14px', fontSize: 10, color: T.dim,
+              borderBottom: `1px solid ${T.border}`, textTransform: 'uppercase', letterSpacing: '0.05em',
+              flexShrink: 0,
+            }}>
+              <span>Card</span>
+              <span style={{ textAlign: 'right' }}>Price</span>
+              <span style={{ textAlign: 'right' }}>Copies/Box</span>
+              <span style={{ textAlign: 'right' }}>Packs to Hit</span>
+              <span style={{ textAlign: 'right' }}>Box EV</span>
+            </div>
+          )}
 
           {/* Card rows */}
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {cardRows.slice(0, 40).map((card, i) => (
-              <div
-                key={card.id}
-                style={{
-                  display: 'grid', gridTemplateColumns: '2fr 0.65fr 0.75fr 0.75fr 0.75fr',
-                  gap: 8, padding: '8px 14px', alignItems: 'center',
-                  borderBottom: `1px solid ${T.border}`,
-                  background: i < 5 ? 'rgba(249,115,22,0.04)' : 'transparent',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                  {card.image
-                    ? <CardImage src={card.image} cardCode={card.cardCode} alt={card.name} width={28} height={40} radius={2} />
-                    : <span style={{ fontSize: 18, flexShrink: 0 }}>{card.icon}</span>
-                  }
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {card.name}
-                    </div>
-                    <div style={{ display: 'flex', gap: 5, alignItems: 'center', marginTop: 2 }}>
-                      <RarityBadge rarity={card.rarity} color={card.rarityColor} />
-                      <span style={{ fontSize: 10, color: T.dim, fontFamily: T.mono }}>{card.cardCode}</span>
-                      {card.hasLivePrice ? (
-                        <span title="Live JustTCG market price" style={{ background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>LIVE</span>
-                      ) : (
-                        <span title="Model-estimated price included in approximate EV" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.35)', color: T.yellow, borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700 }}>EST</span>
-                      )}
-                    </div>
+              isMobile ? (
+                <MobileTopCard key={card.id} card={card} index={i} />
+              ) : (
+                <div
+                  key={card.id}
+                  style={{
+                    display: 'grid', gridTemplateColumns: '2fr 0.65fr 0.75fr 0.75fr 0.75fr',
+                    gap: 8, padding: '8px 14px', alignItems: 'center',
+                    borderBottom: `1px solid ${T.border}`,
+                    background: i < 5 ? 'rgba(249,115,22,0.04)' : 'transparent',
+                  }}
+                >
+                  <TopCardIdentity card={card} />
+
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 600, color: T.text }}>
+                    ${card.marketPrice.toFixed(2)}
+                  </div>
+
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 11, color: T.dim }}>
+                    {card.boxCopies.toFixed(2)}x
+                  </div>
+
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 11, color: T.dim }}>
+                    {card.packsToHit < 1000 ? `~${Math.round(card.packsToHit)}` : '—'}
+                  </div>
+
+                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 700, color: card.boxEV >= 1 ? T.orange : card.boxEV >= 0.1 ? T.text : T.dim }}>
+                    ${card.boxEV.toFixed(2)}
                   </div>
                 </div>
-
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 600, color: T.text }}>
-                  ${card.marketPrice.toFixed(2)}
-                </div>
-
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 11, color: T.dim }}>
-                  {card.boxCopies.toFixed(2)}×
-                </div>
-
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 11, color: T.dim }}>
-                  {card.packsToHit < 1000 ? `~${Math.round(card.packsToHit)}` : '—'}
-                </div>
-
-                <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 700, color: card.boxEV >= 1 ? T.orange : card.boxEV >= 0.1 ? T.text : T.dim }}>
-                  ${card.boxEV.toFixed(2)}
-                </div>
-              </div>
+              )
             ))}
           </div>
         </div>
