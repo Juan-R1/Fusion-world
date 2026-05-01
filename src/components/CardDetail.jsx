@@ -236,10 +236,10 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           <DeltaBadge delta={card.delta} />
           <span style={{ fontSize: 12, color: T.dim }}>
             {card.delta < -15
-              ? 'Undervalued — potential buy signal'
+              ? 'Below model — possible value signal'
               : card.delta > 15
-              ? 'Overvalued — exercise caution'
-              : 'Fairly priced — near model value'}
+              ? 'Above model — review assumptions'
+              : 'Near model value'}
           </span>
         </div>
         <div style={{ fontSize: 11, color: priceFreshness.color, marginTop: 10, fontFamily: T.mono }}>

@@ -166,7 +166,7 @@ export default function PricingModel({ cards }) {
           <strong style={{ color: T.text }}>Pull Cost</strong> (rarity-derived scarcity, 1–10) and{' '}
           <strong style={{ color: T.text }}>Desirability Index</strong> (character premium 45%, art/hype 45%,
           universal appeal 10%) — to predict expected market price via exponential regression.
-          Cards trading below the model may represent value; cards above may be overbought.
+          Cards below the model may be worth a closer look; cards above it may need extra assumption review.
         </div>
 
         <ScatterPlot cards={cards} />
