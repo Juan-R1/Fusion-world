@@ -1,7 +1,7 @@
 ---
 name: fusionmetrics-launch
 description: Use when preparing FusionMetrics portfolio launch, screenshots, README, demo script, public-demo checklist, case study, recruiter-facing story, or deployment-readiness review.
-version: 1.0.0
+version: 1.1.0
 category: Launch
 triggers:
   - launch
@@ -23,6 +23,10 @@ Use this skill for launch and portfolio artifacts:
 - `README.md`
 - `STATUS.md`
 - `docs/demo-script.md`
+- `docs/portfolio-case-study.md`
+- `docs/screenshot-plan.md`
+- `docs/watchlist-demo-data.md`
+- `docs/public-beta-backlog.md`
 - `docs/manual-qa-checklist.md`
 - `docs/agent-handoff.md`
 - screenshot or case-study planning
@@ -43,10 +47,15 @@ Use this skill for launch and portfolio artifacts:
    limitations.
 2. Demo script shows Value Scanner, CardDetail, Market Dynamics, Box EV,
    Watchlist, Methodology, and Provenance.
-3. Screenshot plan includes desktop and mobile Box EV after the responsive fix.
-4. Current limitations mention free-tier quota, image coverage, approximate EV,
+3. Screenshot plan includes desktop and mobile Box EV after the responsive fix,
+   plus Watchlist v2 with local demo positions.
+4. Watchlist demo data is clearly browser-local and resettable; it must not be
+   described as real holdings or app-generated data.
+5. Public-beta backlog separates P0 public-demo tasks, P1 public-beta work, P2
+   later work, and monetization prerequisites.
+6. Current limitations mention free-tier quota, image coverage, approximate EV,
    no accounts/alerts, and no cross-source pricing.
-5. Public claims stay conservative and verifiable.
+7. Public claims stay conservative and verifiable.
 
 ## Validation commands
 
