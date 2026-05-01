@@ -34,11 +34,12 @@ v2 local portfolio fields are all in place.
 
 1. Public-demo QA: search/filter browser smoke, CardDetail history cache,
    Watchlist clear-all, and mobile readability.
-2. README / public launch package with screenshots, setup, caveats, and
-   portfolio narrative.
-3. Image coverage strategy before touching generated data.
-4. Focused automated UI smoke tests after explicit approval.
-5. Watchlist refinements such as CSV export later, still local-only unless
+2. Capture screenshots using `docs/screenshot-plan.md` and seed local
+   Watchlist demo data with `docs/watchlist-demo-data.md`.
+3. Review `docs/public-beta-backlog.md` before approving public-beta work.
+4. Image coverage strategy before touching generated data.
+5. Focused automated UI smoke tests after explicit approval.
+6. Watchlist refinements such as CSV export later, still local-only unless
    accounts are approved.
 
 Later only: eBay sold comps, manipulation / outlier detection, long-term

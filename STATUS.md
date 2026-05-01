@@ -75,10 +75,11 @@ assets and public-beta gap closure.
 
 1. Capture portfolio screenshots and record a short demo flow.
 2. Prepare Watchlist demo-local data for screenshots.
-3. Image coverage strategy: research source and safe pipeline before touching
+3. Review `docs/public-beta-backlog.md` before approving public-beta work.
+4. Image coverage strategy: research source and safe pipeline before touching
    generated data.
-4. Focused automated UI smoke tests after explicit approval.
-5. Later only: CSV export, eBay sold comps, manipulation / outlier detection,
+5. Focused automated UI smoke tests after explicit approval.
+6. Later only: CSV export, eBay sold comps, manipulation / outlier detection,
    long-term history archive, paid API tier, accounts, alerts, and AI
    prediction.
 

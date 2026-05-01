@@ -83,3 +83,4 @@ npm run build
 
 - `docs/portfolio-case-study.md` summarizes the product problem, technical architecture, trust model, and roadmap.
 - `docs/demo-script.md` provides 60-second and 3-minute walkthroughs.
+- `docs/public-beta-backlog.md` tracks remaining public-beta and monetization gaps.
