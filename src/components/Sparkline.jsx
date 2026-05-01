@@ -1,11 +1,14 @@
 export default function Sparkline({ data, color = '#f97316', height = 40, width = 120, fill = false }) {
-  if (!data || data.length < 2) return null
-  const mn  = Math.min(...data)
-  const mx  = Math.max(...data)
+  const values = Array.isArray(data)
+    ? data.map(Number).filter(Number.isFinite)
+    : []
+  if (values.length < 2) return null
+  const mn  = Math.min(...values)
+  const mx  = Math.max(...values)
   const rng = mx - mn || 1
   const pad = height * 0.08
-  const pts = data.map((v, i) => [
-    (i / (data.length - 1)) * width,
+  const pts = values.map((v, i) => [
+    (i / (values.length - 1)) * width,
     height - pad - ((v - mn) / rng) * (height - pad * 2),
   ])
   const line = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')

@@ -1,7 +1,9 @@
 import { T } from '../theme.js'
 
 export default function GaugeRing({ value, max = 1, color = '#f97316', size = 80, label = '' }) {
-  const pct  = Math.min(Math.max(value / max, 0), 1)
+  const safeValue = Number.isFinite(Number(value)) ? Number(value) : 0
+  const safeMax = Number.isFinite(Number(max)) && Number(max) > 0 ? Number(max) : 1
+  const pct  = Math.min(Math.max(safeValue / safeMax, 0), 1)
   const r    = (size - 14) / 2
   const circ = 2 * Math.PI * r
   const cx   = size / 2

@@ -135,7 +135,7 @@ export default function Watchlist({
         case 'overvalued':   return b.card.delta - a.card.delta
         case 'price':        return b.card.marketPrice - a.card.marketPrice
         case 'desirability': return b.card.desirability - a.card.desirability
-        case 'name':         return a.card.name.localeCompare(b.card.name)
+        case 'name':         return String(a.card.name ?? '').localeCompare(String(b.card.name ?? ''))
         default: return 0
       }
     })
