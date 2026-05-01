@@ -77,3 +77,6 @@ Then smoke-test:
 Use `docs/screenshot-plan.md` for the capture list. For a tight portfolio post,
 lead with Value Scanner + CardDetail, then Market Dynamics, Box EV, Watchlist,
 and Methodology.
+
+For the Watchlist screenshot, use `docs/watchlist-demo-data.md` to seed local
+browser-only demo positions. Reset the data after capture.

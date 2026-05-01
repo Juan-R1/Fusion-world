@@ -76,6 +76,7 @@ need a targeted pass. The Value Scanner missing-field search crash was fixed in
 - [x] Summary cards show positions, total cost, current value, Unrealized P/L, and live coverage.
 - [x] Rows show LIVE/EST chips and freshness labels.
 - [ ] Clear all removes both v1 and v2 localStorage keys after confirmation.
+- [ ] Optional demo setup: seed local-only positions from `docs/watchlist-demo-data.md`, refresh, capture screenshot, then clear both keys.
 
 ## 11. Mobile
 
