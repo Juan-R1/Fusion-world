@@ -29,6 +29,22 @@ const INP = {
   fontFamily: "'Outfit', system-ui, sans-serif",
 }
 
+const searchableText = card => [
+  card.name,
+  card.character,
+  card.cardCode,
+  card.setName,
+  card.trait,
+  card.rarity,
+  card.color,
+  card.cardColor,
+  card.type,
+  card.cardType,
+]
+  .filter(Boolean)
+  .map(value => String(value).toLowerCase())
+  .join(' ')
+
 export default function ValueScanner({ cards, watchedCodes = new Set(), onToggleWatch = () => {} }) {
   const [search,    setSearch]    = useState('')
   const [setFilter, setSetFilter] = useState('ALL')
@@ -41,9 +57,9 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
   const isRankingSort = sort === 'undervalued' || sort === 'overvalued'
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase()
+    const q = String(search ?? '').toLowerCase().trim()
     let r = cards
-    if (q)               r = r.filter(c => c.character.toLowerCase().includes(q) || c.name.toLowerCase().includes(q))
+    if (q)               r = r.filter(c => searchableText(c).includes(q))
     if (setFilter !== 'ALL') r = r.filter(c => c.set === setFilter)
     if (rarFilter !== 'ALL') r = r.filter(c => c.rarity === rarFilter)
     // Rule 7: estimated cards stay visible elsewhere, but rankings (undervalued
