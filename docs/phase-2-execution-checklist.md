@@ -52,7 +52,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | P2-007 | Complete | Design source confidence scoring spec | ChatGPT plan, Codex docs | `docs/source-confidence-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Source agreement, variance, stale, low-volume, variant ambiguity, and manipulation-risk rules are documented. | Completed as docs only. Must not imply certainty. |
 | P2-008 | Complete | Design graded comps spec | ChatGPT plan, Codex docs | `docs/graded-comps-spec.md` | `git diff --check`; `node scripts/verify-data.js` | PSA/BGS/CGC/TAG fields, grade normalization, raw/graded split, population notes, and confidence rules are documented. | Completed as docs only. No graded UI yet. |
 | P2-009 | Complete | Design sealed products spec | ChatGPT plan, Codex docs | `docs/sealed-products-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Product codes, set links, product type, source fields, price timestamp, and Box EV caveats are documented. | Completed as docs only. No formula changes. |
-| P2-010 | Not started | Design validation guard plan for expanded data | Codex/Claude | `docs/expanded-data-validation-plan.md` | `git diff --check`; `node scripts/verify-data.js` | Validator requirements for premium metadata, comps, graded data, sealed products, and source confidence are documented. | Required before generated artifacts. |
+| P2-010 | Complete | Design validation guard plan for expanded data | Codex/Claude | `docs/expanded-data-validation-plan.md` | `git diff --check`; `node scripts/verify-data.js` | Validator requirements for premium metadata, comps, graded data, sealed products, and source confidence are documented. | Completed as docs only. Required before generated artifacts. |
 | P2-011 | Needs user approval | Add staging directory structure, docs only first | Codex/Claude | New docs-approved staging paths only | `git diff --check`; `node scripts/verify-data.js` | Empty or README-only staging structure exists and explains that no generated data is active yet. | Wait for user approval after specs. |
 | P2-012 | Needs user approval | Build sample premium metadata file only after approval | Claude/Codex | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Tiny sample fixture exists and validates. | Do not edit `src/cardData.json`. |
 | P2-013 | Needs user approval | Build sample eBay CSV fixture only after approval | Codex | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Manual sample fixture exists with source URLs and confidence labels. | No scraping. |
@@ -73,7 +73,8 @@ Phase 2 is about stronger data first, not stronger claims first.
 | 2026-05-01 | P2-006 | `0b70442` | Added `docs/ebay-comps-import-spec.md` and marked P2-006 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines manual eBay sold-comp CSV fields, matching rules, raw/graded separation, outlier handling, confidence labels, source URL requirements, and automation stop conditions. |
 | 2026-05-01 | P2-007 | `63a7dec` | Added `docs/source-confidence-spec.md` and marked P2-007 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines source-confidence labels, component dimensions, flags, scoring guardrails, validation requirements, and UI stop conditions. |
 | 2026-05-01 | P2-008 | `fcb13cf` | Added `docs/graded-comps-spec.md` and marked P2-008 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines graded comp fields, grade normalization, raw/graded separation, population notes, confidence rules, validation requirements, and stop conditions. |
-| 2026-05-01 | P2-009 | Current docs commit | Added `docs/sealed-products-spec.md` and marked P2-009 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines sealed product fields, product-code rules, source/confidence requirements, Box EV caveats, validation requirements, and stop conditions. |
+| 2026-05-01 | P2-009 | `252c3c3` | Added `docs/sealed-products-spec.md` and marked P2-009 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines sealed product fields, product-code rules, source/confidence requirements, Box EV caveats, validation requirements, and stop conditions. |
+| 2026-05-01 | P2-010 | Current docs commit | Added `docs/expanded-data-validation-plan.md` and marked P2-010 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines validator layers, failure behavior, per-artifact guard requirements, generated artifact checks, app-contract validation, and stop conditions. |
 
 ## 6. Forbidden Files Until Approval
 
@@ -148,7 +149,7 @@ Data-artifact tasks later:
 
 ## 10. Next Recommended Task
 
-Next recommended task: `P2-010 Design validation guard plan for expanded data`.
+Next recommended task: `P2-011 Add staging directory structure, docs only first` after explicit user approval.
 
 Do not start implementation, generated data, scraping, backend work, or UI
 badges until the relevant spec tasks are complete and the user approves the
