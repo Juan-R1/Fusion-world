@@ -48,7 +48,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | P2-003 | Complete | Design v2 data model spec | ChatGPT plan, Codex docs | `docs/data-model-v2.md` | `git diff --check`; `node scripts/verify-data.js` | Entity definitions, field types, required/optional fields, source ownership, and migration notes are documented. | Completed as docs only. |
 | P2-004 | Complete | Design premium metadata schema | ChatGPT plan, Codex docs | `docs/premium-metadata-schema.md` | `git diff --check`; `node scripts/verify-data.js` | `premiumFlags`, `collectorTags`, `riskTags`, `gradeUpside`, examples, and anti-hype rules are documented. | Completed as docs only. No UI until metadata exists. |
 | P2-005 | Complete | Design SB01/SB02 staging schema | ChatGPT plan, Claude/Codex docs | `docs/sb-set-staging-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Starter-set fields, set-code rules, card-code assumptions, validation needs, and source requirements are documented. | Completed as docs only. No generated card edits yet. |
-| P2-006 | Not started | Design manual eBay sold comps CSV spec | ChatGPT plan, Codex docs | `docs/ebay-comps-import-spec.md` | `git diff --check`; `node scripts/verify-data.js` | CSV fields, matching rules, raw/graded separation, variant flags, outlier flags, confidence levels, and source URL requirements are documented. | Manual research only; no scraping. |
+| P2-006 | Complete | Design manual eBay sold comps CSV spec | ChatGPT plan, Codex docs | `docs/ebay-comps-import-spec.md` | `git diff --check`; `node scripts/verify-data.js` | CSV fields, matching rules, raw/graded separation, variant flags, outlier flags, confidence levels, and source URL requirements are documented. | Completed as docs only. Manual research only; no scraping. |
 | P2-007 | Not started | Design source confidence scoring spec | ChatGPT plan, Codex docs | `docs/source-confidence-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Source agreement, variance, stale, low-volume, variant ambiguity, and manipulation-risk rules are documented. | Must not imply certainty. |
 | P2-008 | Not started | Design graded comps spec | ChatGPT plan, Codex docs | `docs/graded-comps-spec.md` | `git diff --check`; `node scripts/verify-data.js` | PSA/BGS/CGC/TAG fields, grade normalization, raw/graded split, population notes, and confidence rules are documented. | No graded UI yet. |
 | P2-009 | Not started | Design sealed products spec | ChatGPT plan, Codex docs | `docs/sealed-products-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Product codes, set links, product type, source fields, price timestamp, and Box EV caveats are documented. | No formula changes. |
@@ -69,7 +69,8 @@ Phase 2 is about stronger data first, not stronger claims first.
 | 2026-05-01 | P2-002 | `ee6b6c4` | Added `docs/phase-2-execution-checklist.md`. | `git diff --check`; `node scripts/verify-data.js` | Establishes Phase 2 task ledger and guardrails for future agents. |
 | 2026-05-01 | P2-003 | `553400c` | Added `docs/data-model-v2.md` and marked P2-003 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines v2 entities, field types, source ownership, artifact strategy, migration path, and validation expectations. |
 | 2026-05-01 | P2-004 | `4770375` | Added `docs/premium-metadata-schema.md` and marked P2-004 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines premium flags, collector/risk tags, grade-upside shape, examples, validation rules, and UI guardrails. |
-| 2026-05-01 | P2-005 | Current docs commit | Added `docs/sb-set-staging-spec.md` and marked P2-005 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines SB set/card staging fields, set-code rules, reprint/variant handling, source requirements, validation needs, and stop conditions. |
+| 2026-05-01 | P2-005 | `5b1f7a8` | Added `docs/sb-set-staging-spec.md` and marked P2-005 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines SB set/card staging fields, set-code rules, reprint/variant handling, source requirements, validation needs, and stop conditions. |
+| 2026-05-01 | P2-006 | Current docs commit | Added `docs/ebay-comps-import-spec.md` and marked P2-006 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines manual eBay sold-comp CSV fields, matching rules, raw/graded separation, outlier handling, confidence labels, source URL requirements, and automation stop conditions. |
 
 ## 6. Forbidden Files Until Approval
 
@@ -144,7 +145,7 @@ Data-artifact tasks later:
 
 ## 10. Next Recommended Task
 
-Next recommended task: `P2-006 Design manual eBay sold comps CSV spec`.
+Next recommended task: `P2-007 Design source confidence scoring spec`.
 
 Do not start implementation, generated data, scraping, backend work, or UI
 badges until the relevant spec tasks are complete and the user approves the
