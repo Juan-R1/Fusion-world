@@ -33,8 +33,8 @@ Be concise. Plans should be ~200-400 words. Do not write the code itself - that 
   builder: {
     name: 'Builder (Codex/OpenAI)',
     provider: 'openai',
-    model: process.env.BUILDER_MODEL || 'gpt-4o',
-    maxTokens: 8192,
+    model: process.env.BUILDER_MODEL || 'o1',
+    maxTokens: 16384,
     system: `You are the BUILDER on a 3-AI team. The Architect produced a plan. Your job: produce the actual code.
 
 For each file in the plan, output:
@@ -48,8 +48,8 @@ Do not review your own code - that is the Reviewer's job.`,
   reviewer: {
     name: 'Reviewer (ChatGPT/QA)',
     provider: 'openai',
-    model: process.env.REVIEWER_MODEL || 'gpt-4o',
-    maxTokens: 4096,
+    model: process.env.REVIEWER_MODEL || 'o1',
+    maxTokens: 8192,
     system: `You are the REVIEWER/QA on a 3-AI team. The Architect produced a plan, the Builder produced code. Your job: critique.
 
 Review for:
@@ -67,9 +67,9 @@ End with one of these verdicts on its own line:
 };
 
 const RETRY = {
-  maxAttempts: parseInt(process.env.MAX_RETRIES || '5', 10),
+  maxAttempts: parseInt(process.env.MAX_RETRIES || '20', 10),
   baseDelayMs: 30_000,
-  maxDelayMs: 600_000,
+  maxBackoffMs: 600_000,
 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -87,17 +87,28 @@ async function ensureDirs() {
 }
 
 function parseRetryAfter(headers) {
-  const ra = headers.get('retry-after');
-  if (ra) {
-    const n = parseFloat(ra);
-    if (!isNaN(n)) return n * 1000;
-  }
   const raMs = headers.get('retry-after-ms');
   if (raMs) {
     const n = parseInt(raMs, 10);
     if (!isNaN(n)) return n;
   }
+  const ra = headers.get('retry-after');
+  if (ra) {
+    const n = parseFloat(ra);
+    if (!isNaN(n)) return n * 1000;
+    const date = Date.parse(ra);
+    if (!isNaN(date)) {
+      const delta = date - Date.now();
+      if (delta > 0) return delta;
+    }
+  }
   return null;
+}
+
+// Reasoning models (o1, o3, o4, gpt-5+) need different API fields and do not
+// accept a 'system' role - the system prompt is prepended to the user message.
+function isReasoningModel(model) {
+  return /^o\d/i.test(model) || /^gpt-5/i.test(model);
 }
 
 async function callAnthropic({ model, maxTokens, system, messages }) {
@@ -134,9 +145,24 @@ async function callOpenAI({ model, maxTokens, system, messages }) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY not set');
 
-  const fullMessages = system
-    ? [{ role: 'system', content: system }, ...messages]
-    : messages;
+  const reasoning = isReasoningModel(model);
+
+  let fullMessages;
+  if (reasoning && system) {
+    // Prepend system prompt to first user message; reasoning models reject 'system'.
+    fullMessages = messages.map((m, i) =>
+      i === 0 && m.role === 'user'
+        ? { role: 'user', content: `${system}\n\n---\n\n${m.content}` }
+        : m,
+    );
+  } else if (system) {
+    fullMessages = [{ role: 'system', content: system }, ...messages];
+  } else {
+    fullMessages = messages;
+  }
+
+  const body = { model, messages: fullMessages };
+  body[reasoning ? 'max_completion_tokens' : 'max_tokens'] = maxTokens;
 
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -144,11 +170,7 @@ async function callOpenAI({ model, maxTokens, system, messages }) {
       Authorization: `Bearer ${apiKey}`,
       'content-type': 'application/json',
     },
-    body: JSON.stringify({
-      model,
-      messages: fullMessages,
-      max_tokens: maxTokens,
-    }),
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {
@@ -180,13 +202,15 @@ async function callWithRetry(role, messages) {
       lastErr = err;
       const retriable = err.status === 429 || err.status === 529 || err.status === 503;
       if (!retriable || attempt === RETRY.maxAttempts) throw err;
+      // If the API tells us when to retry, honor it exactly (no cap).
+      // If not, exponential backoff with a cap so we don't loop forever on a stuck endpoint.
       const delay =
-        err.retryAfter ??
-        Math.min(RETRY.baseDelayMs * 2 ** (attempt - 1), RETRY.maxDelayMs);
+        err.retryAfter != null
+          ? err.retryAfter
+          : Math.min(RETRY.baseDelayMs * 2 ** (attempt - 1), RETRY.maxBackoffMs);
+      const source = err.retryAfter != null ? 'API said wait' : 'backing off';
       log(
-        `! rate limit on ${role.name} (status ${err.status}). pausing ${Math.round(
-          delay / 1000,
-        )}s before retry...`,
+        `! ${role.name} hit ${err.status}. ${source} ${Math.round(delay / 1000)}s, retry ${attempt + 1}/${RETRY.maxAttempts}...`,
       );
       await sleep(delay);
     }
@@ -322,7 +346,7 @@ Env vars:
   ARCHITECT_MODEL     optional - override Claude model
   BUILDER_MODEL       optional - override Builder OpenAI model
   REVIEWER_MODEL      optional - override Reviewer OpenAI model
-  MAX_RETRIES         optional - retry attempts on rate-limit (default 5)
+  MAX_RETRIES         optional - retry attempts on rate-limit (default 20, honors API retry-after fully)
 
 Output:
   log/<task-id>.md     full transcript
