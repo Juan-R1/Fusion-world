@@ -58,11 +58,17 @@ Every risk row in § 4–7 cites where it came from:
   or hard-fail.
 - **Likelihood:** High — every future validator hits at least one drift.
 - **Owner:** Codex or Claude (mechanical doc-edit task, ≈2 commits).
-- **Mitigation:** Run P2-018 spec-tightening pass per CLA-01 § 9 before
-  P2-014 (importer) work begins.
-- **Residual risk after mitigation:** Low — annotation gaps remain but
-  drift is closed.
-- **Status:** open.
+- **Mitigation:** P2-018 spec-tightening pass shipped 2026-05-07.
+  Closing commits: `0522bb8` (A1/A2/B1/B2/E1), `110d895` (D1),
+  `234672c` (C1/C2 + H2 cross-refs), `b844e00` (F1),
+  `9ef2135` (H1). See `docs/phase-2-consistency-audit.md` § 8
+  "Resolution status" table and the new P2-018 row in
+  `docs/phase-2-execution-checklist.md` § 4.
+- **Residual risk after mitigation:** Low. The 8 documented drift items
+  are closed. Future drift remains a watch item; every new spec edit
+  must keep cross-references consistent. No active validator failure
+  surface today.
+- **Status:** mitigated.
 
 ### R-002 — Agent reality-drift (claimed-done vs actually-done)
 - **Sources:** new (observed in May 2026 review sessions)
@@ -470,26 +476,29 @@ Every risk row in § 4–7 cites where it came from:
 
 | Tier | Open | Monitored | Mitigated | Closed | Total |
 |------|-----:|----------:|----------:|-------:|------:|
-| P0 | 1 | 2 | 0 | 0 | 3 |
+| P0 | 0 | 2 | 1 | 0 | 3 |
 | P1 | 3 | 4 | 5 | 0 | 12 |
 | P2 | 1 | 3 | 5 | 0 | 9 |
 | P3 | 1 | 1 | 1 | 2 | 5 |
-| **Total** | **6** | **10** | **11** | **2** | **29** |
+| **Total** | **5** | **10** | **12** | **2** | **29** |
 
 ## 9. Top 5 risks to act on this cycle
 
-In recommended order of address:
+In recommended order of address (R-001 closed via P2-018 spec-tightening; R-036 closed via Codex commit `02e9733` Methodology disclosures):
 
-1. **R-001** — Phase 2 spec drift. Blocks every downstream validator.
-   Resolution is mechanical doc edits; could ship same-day.
-2. **R-002** — Agent reality-drift. Process discipline issue. Mitigation
-   is preflight checks already in `AGENTS.md`; needs enforcement.
-3. **R-017** — Image licensing exposure. Strategy spec is queued;
+1. **R-002** — Agent reality-drift. Process discipline issue. Mitigation
+   is preflight checks already in `AGENTS.md`; needs enforcement on every
+   review session.
+2. **R-017** — Image licensing exposure. Strategy spec is queued;
    blocking visual polish past current state.
-4. **R-020** — Plausible analytics blind spot. First read takes 15
+3. **R-020** — Plausible analytics blind spot. First read takes 15
    minutes; blocks honest user-behavior decisions.
-5. **R-036** — Methodology disclosure gaps. CLA-10 will surface
-   specific edits; implementation is a tiny copy change.
+4. **R-036** — Methodology disclosure gaps. **Closed** by Codex commit
+   `02e9733` (the post-CLA-10 prompt). Tracked here as closed-this-cycle
+   for visibility.
+5. **Monitor P2-011 work once approved.** Staging-directory scaffold is
+   the next unblocked task; ensure scope stays docs-only and no
+   fixtures land without the dedicated validator path.
 
 ## 10. What this register did NOT include
 
