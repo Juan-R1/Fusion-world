@@ -500,15 +500,63 @@ expiry trigger fires.
 - **Related commits:** `a55378d`.
 - **Status:** active.
 
+### D-033 — Canonical premium-flag name `winnerPromo` (not `winner`)
+- **Date:** 2026-05-07
+- **Decision:** Across all Phase 2 specs and future validators, the
+  premium flag for a winner-stamped / winner-distribution promo card is
+  `winnerPromo`. The bare `winner` name is retired.
+- **Alternatives:** Keep `winner` (shorter); use `winnerStamped`.
+- **Rationale:** `winnerPromo` reads as a clear classification, pairs
+  with `eventPromo` semantically, and matches the canonical schema in
+  `docs/premium-metadata-schema.md` § 5. The bare `winner` would
+  collide with English-prose uses.
+- **Owner:** Premium metadata schema; trust contract.
+- **Expiry trigger:** Never under current scope.
+- **Related commits:** `0522bb8`.
+- **Status:** active.
+
+### D-034 — Canonical risk-tag name `rawGradedContamination` (not `gradedContamination`)
+- **Date:** 2026-05-07
+- **Decision:** The risk tag that flags rows where raw and graded sales
+  may be mixed is `rawGradedContamination`. The shorter
+  `gradedContamination` name is retired.
+- **Alternatives:** Keep `gradedContamination` (shorter); use
+  `rawVsGradedMix`.
+- **Rationale:** `rawGradedContamination` is symmetric — it doesn't
+  imply graded is the contaminant — and matches the canonical schema
+  in `docs/premium-metadata-schema.md` § 7 and
+  `docs/source-confidence-spec.md` § 8.
+- **Owner:** Risk-tag vocabulary.
+- **Expiry trigger:** Never under current scope.
+- **Related commits:** `0522bb8`.
+- **Status:** active.
+
+### D-035 — Canonical field name `gradeCompany` (not `company`) for grading-company identifier
+- **Date:** 2026-05-07
+- **Decision:** Across all comps entities (`ebay_sold_comps`,
+  `graded_comps`), the field identifying the grading company
+  (PSA/BGS/CGC/TAG/other) is named `gradeCompany`.
+- **Alternatives:** Keep `company` (shorter, was used in
+  `graded-comps-spec.md`); use `grader`.
+- **Rationale:** `gradeCompany` is explicit and consistent with the
+  related `grade`, `gradeNumeric`, `gradeLabel` fields. The previous
+  `graded_comps.company` would have collided with English uses of
+  "company" and made cross-row joins to `ebay_sold_comps.gradeCompany`
+  awkward.
+- **Owner:** Comps schema.
+- **Expiry trigger:** Never under current scope.
+- **Related commits:** `110d895`.
+- **Status:** active.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 32 |
+| active | 35 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **32** |
+| **Total** | **35** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
