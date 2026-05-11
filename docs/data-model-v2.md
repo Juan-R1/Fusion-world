@@ -122,9 +122,9 @@ Premium chase metadata. This is not a buy/sell score.
 | Field | Type | Required | Source owner | Notes |
 |-------|------|----------|--------------|-------|
 | `cardCode` | string | Yes | Manual metadata | Must exist in `cards`. |
-| `premiumFlags` | array<enum> | Yes | Manual metadata | Suggested flags: `manga`, `mangaAdjacent`, `godRare`, `gdr`, `altArt`, `sealedChase`, `gogetaChase`, `eventPromo`, `winner`, `serialized`. |
+| `premiumFlags` | array<enum> | Yes | Manual metadata | See `docs/premium-metadata-schema.md` § 5 for the canonical vocabulary. |
 | `collectorTags` | array<string> | Optional | Manual metadata | Character tier, art appeal, nostalgia, fusion, villain/hero, set chase role. |
-| `riskTags` | array<enum> | Optional | Manual/derived | Suggested flags: `variantAmbiguity`, `lowVolume`, `stalePrice`, `reprintRisk`, `gradedContamination`, `sourceDisagreement`. |
+| `riskTags` | array<enum> | Optional | Manual/derived | See `docs/premium-metadata-schema.md` § 7 for the canonical vocabulary. |
 | `gradeUpside` | object | Optional | Graded comps later | Raw/graded spread references and confidence; no guarantee language. |
 | `confidence` | enum[`high`, `medium`, `low`] | Yes | Manual metadata | Confidence in metadata classification, not price outcome. |
 | `sourceRefs` | array<string> | Required | Manual metadata | At least one source reference. |
@@ -227,7 +227,7 @@ or entered manually.
 | `currency` | string | Yes | Manual/importer | ISO currency code. |
 | `saleDate` | isoDate | Yes | Manual/importer | Sale date. |
 | `source` | string | Yes | Manual/importer | eBay, PriceCharting, etc. |
-| `sourceUrl` | nullable<string> | Recommended | Manual/importer | Required when manually reviewed. |
+| `sourceUrl` | string | Yes | Manual/importer | Required for traceability. |
 | `confidence` | enum[`high`, `medium`, `low`, `excluded`] | Yes | Manual/QA | Match confidence. |
 | `variantMatch` | enum[`exact`, `likely`, `ambiguous`, `mismatch`, `excluded`] | Yes | Manual/QA | Variant confidence. |
 

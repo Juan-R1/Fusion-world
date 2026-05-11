@@ -244,8 +244,7 @@ Premium chase data should be metadata first, not a hype score.
 
 Suggested fields:
 
-- `premiumFlags`: `manga`, `mangaAdjacent`, `godRare`, `gdr`, `altArt`,
-  `sealedChase`, `gogetaChase`, `eventPromo`, `winner`, `serialized`.
+- `premiumFlags`: see `docs/premium-metadata-schema.md` § 5 for the canonical vocabulary.
 - `collectorTags`: character tier, fan-demand tier, art appeal, set chase role,
   nostalgia tag, fusion tag.
 - `riskTags`: variant ambiguity, low volume, stale price, reprint risk, graded
