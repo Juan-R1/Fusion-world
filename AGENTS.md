@@ -43,6 +43,8 @@ expansion**.
 | External spot-check | 10 cards checked: 9 aligned, 1 unclear due to variant ambiguity |
 | Retired legacy files | old accumulator script and legacy bundled history file are deleted |
 | Current JS bundle | ~646 kB raw / ~95 kB gzip after Watchlist v2 |
+| Phase 2 progress | 10 / 17 tasks complete; P2-011 awaiting operator approval |
+| In-flight work dashboard | `docs/phase-2-dashboard.md` (canonical daily heads-up) |
 
 ---
 
@@ -185,6 +187,13 @@ and what was reverted, then ask before retrying.
 
 ## 9. What not to do without explicit approval
 
+- **Reality verification first.** Before any review, audit, or "what's
+  the state" task, run `git fetch --all`, `git pull --ff-only` if your
+  local branch is behind origin, then `git status` and
+  `git log --oneline -10`. Operator prompt memory is not canonical;
+  the repo is. Two May 2026 review sessions described work that
+  existed on origin but not locally — confirm before drawing
+  conclusions.
 - Do **not** trigger `gh workflow run` on any workflow.
 - Do **not** push to `main` or any branch other than the active dev branch.
 - Do **not** force-push, amend pushed commits, or skip pre-commit hooks.
@@ -203,6 +212,11 @@ and what was reverted, then ask before retrying.
 ---
 
 ## 10. Current recommended task sequence
+
+> **Source of truth for in-flight work:** `docs/phase-2-dashboard.md`.
+> If an operator prompt conflicts with the dashboard, the dashboard
+> wins. If the dashboard conflicts with `docs/phase-2-execution-checklist.md`,
+> the checklist wins.
 
 In strict order. Do one task per commit; stop after each.
 
