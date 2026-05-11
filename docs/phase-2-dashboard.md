@@ -1,8 +1,8 @@
 # Phase 2 Progress Dashboard
 
-**Last refreshed:** 2026-05-07
+**Last refreshed:** 2026-05-07 (post-P2-018)
 **Audit task:** CLA-05 of the Claude Code architectural-audit run
-**Snapshot baseline:** `3f39d23 docs: add bundle audit and reduction proposals`
+**Snapshot baseline:** `482455f docs: open-questions — note P2-018 did not resolve any open question`
 
 > Designed as the operator's daily heads-up display. Replaces the need
 > to grep `phase-2-execution-checklist.md` to find out "what's next."
@@ -13,13 +13,13 @@
 
 | Metric | Value |
 |--------|------:|
-| Phase 2 tasks total | 17 |
-| Complete | **10** |
+| Phase 2 tasks total | 18 |
+| Complete | **11** |
 | Needs user approval | **7** |
 | Blocked | 0 |
 | Skipped | 0 |
 | **Next-up** | **P2-011** (staging directory scaffold — docs-only) |
-| Proposed new tasks (post-CLA-01) | 1 (P2-018 spec-tightening) |
+| Most recent closure | P2-018 spec-tightening (closed R-001) |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
 Bundle 647.93 kB raw / 94.94 kB gzip.
@@ -54,7 +54,7 @@ canonical checklist row.
 
 | ID | Status | Task | Source | Owner | Validation |
 |----|--------|------|--------|-------|------------|
-| P2-018 | 🟢 Proposed | Phase 2 spec-tightening pass (resolves R-001 drift) | `docs/phase-2-consistency-audit.md` § 9 | Codex (mechanical) or Claude (structural) | docs-only; verify-data ✓ |
+| P2-018 | ✅ Complete | Phase 2 spec-tightening pass (resolves R-001 drift) | `docs/phase-2-consistency-audit.md` § 8–9 | Claude | `0522bb8`, `110d895`, `234672c`, `b844e00`, `9ef2135` (5-commit run) | docs-only; verify-data ✓ |
 
 ## 3. Dependency graph
 
@@ -86,8 +86,9 @@ P2-017 (backend) ← independently gated by Backend Trigger Checklist
                    in phase-2-execution-checklist.md § 7
 ```
 
-**Proposed P2-018** should land before P2-014 (importer) because the
-validator code will reference the canonical names settled by P2-018.
+**P2-018 (Complete 2026-05-07)** closed the drift that would have
+contaminated P2-014. The validator code in P2-014 can now reference the
+canonical names settled by P2-018 without doing its own reconciliation.
 
 ## 4. Approval-gate cluster
 
@@ -107,26 +108,32 @@ prerequisite conditions.
 ## 5. Audit findings from CLA-XX (this run)
 
 The architectural-audit run that produced this dashboard also produced
-four other docs that should be consulted alongside it.
+these docs:
 
 | Doc | What it tells you |
 |-----|------------------|
-| [`docs/phase-2-consistency-audit.md`](./phase-2-consistency-audit.md) | 12 inter-spec inconsistencies (8 drift, 1 divergence, 2 annotation gaps); recommends P2-018. |
-| [`docs/risk-register.md`](./risk-register.md) | 29 ranked risks (3 P0, 12 P1, 9 P2, 5 P3). Top-5 acts surfaced. |
+| [`docs/phase-2-consistency-audit.md`](./phase-2-consistency-audit.md) | 12 inter-spec inconsistencies — **all resolved as of 2026-05-07 via P2-018**; see § 8 "Resolution status" table. |
+| [`docs/risk-register.md`](./risk-register.md) | 29 ranked risks; R-001 closed by P2-018 and R-036 closed by Codex `02e9733`. P0 open count is now **0**. |
 | [`docs/test-coverage-gap-analysis.md`](./test-coverage-gap-analysis.md) | 20 proposed Vitest cases, tiered P3 until operator-approved. |
 | [`docs/bundle-audit-2026-05-07.md`](./bundle-audit-2026-05-07.md) | 5 reduction strategies; recommends S2 (code-split tabs) as the near-term move. |
+| [`docs/decision-log.md`](./decision-log.md) | 35 architectural decisions (32 from prior sessions + D-033/D-034/D-035 from P2-018). |
+| [`docs/open-questions.md`](./open-questions.md) | 22 unresolved questions; none closed by P2-018; the 3 P0 questions still depend on ChatGPT/Codex strategy plus operator decision. |
+| [`docs/methodology-review.md`](./methodology-review.md) | 10 trust-disclosure gaps; **all 6 proposed edits shipped by Codex commit `02e9733`**. |
 
 ## 6. Top-3 risks (from risk register)
 
 Live state pulled from `docs/risk-register.md` § 9:
 
-1. **R-001** Phase 2 spec drift → P0 → blocks every downstream validator
-   → mitigation = P2-018.
-2. **R-002** Agent reality-drift (claimed vs actually done) → P0 →
+1. **R-002** Agent reality-drift (claimed vs actually done) → P0 →
    mitigation = checklist as source of truth + `git fetch --all`
-   preflight.
-3. **R-017** Image licensing exposure → P1 → mitigation = image
+   preflight. Active.
+2. **R-017** Image licensing exposure → P1 → mitigation = image
    coverage strategy spec (queued in Codex's CDX-03 prompt).
+3. **R-020** Plausible analytics blind spot → P1 → mitigation = 15-minute
+   weekly read of the Plausible dashboard; nothing automated yet.
+
+R-001 (Phase 2 spec drift) is **closed** by P2-018. R-036 (Methodology
+disclosure gaps) is **closed** by Codex commit `02e9733`.
 
 ## 7. How to read this dashboard
 
