@@ -42,19 +42,15 @@ starts. They are not independent: variant matching is the through-line.
   is ingested.
 
 ### Q-002 — Image coverage strategy
-- **Sources:** `data-model-v2.md` § 18 q3, `sb-set-staging-spec.md`
-  § 14 (image licensing), `risk-register.md` R-017
-- **Question:** Which image source is rights-safe enough for public
-  beta? Options include Bandai mirror (potential IP risk),
-  scrape-and-host (storage + licensing risk), third-party rights-cleared
-  source (cost), icons-only (lowest visual quality).
-- **What it blocks:**
-  - Public-beta visual credibility.
-  - Portfolio-grade screenshots in `docs/screenshot-plan.md`.
-  - SB-set image fields (`sb-set-staging-spec.md` § 7 `imageUrl`).
-- **Recommended resolver:** Operator + ChatGPT GPT-01 strategy
-  output + Codex CDX-03 spec doc.
-- **Status:** open.
+- **Status:** **PROPOSAL PENDING OPERATOR REVIEW (2026-05-11).** See
+  `docs/image-coverage-strategy.md`. Claude-authored recommendation
+  is icons-only for portfolio-MVP and first month of public beta;
+  upgrade to a third-party rights-cleared API (TCGplayer or
+  PriceCharting) when any of three triggers fire. Mirror Bandai and
+  hot-link options explicitly rejected due to copyright exposure.
+- **Operator action:** confirm or counter-propose per the doc's § 11.
+  When confirmed, add D-038 to `docs/decision-log.md` and close this
+  question.
 
 ### Q-003 — Cross-source variance threshold for `sourcesAgree = false`
 - **Status:** **CLOSED 2026-05-11.** See
