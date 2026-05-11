@@ -14,12 +14,12 @@
 | Metric | Value |
 |--------|------:|
 | Phase 2 tasks total | 18 |
-| Complete | **12** |
-| Needs user approval | **6** |
+| Complete | **13** |
+| Needs user approval | **5** |
 | Blocked | 0 |
 | Skipped | 0 |
-| **Next-up** | **P2-012** (sample premium metadata fixture — approval required) |
-| Most recent closure | P2-011 staging directory scaffold |
+| **Next-up** | **P2-013** (sample eBay sold comps CSV fixture — approval required) |
+| Most recent closure | P2-012 premium metadata fixture + validator |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
 Bundle 647.93 kB raw / 94.94 kB gzip.
@@ -43,7 +43,7 @@ canonical checklist row.
 | P2-009 | ✅ Complete | Sealed products spec | `docs/sealed-products-spec.md` | ChatGPT plan, Codex docs | `252c3c3` | docs-only; verify-data ✓ |
 | P2-010 | ✅ Complete | Expanded data validation plan | `docs/expanded-data-validation-plan.md` | Codex/Claude | `b979b72` | docs-only; verify-data ✓ |
 | **P2-011** | ✅ Complete | Staging directory scaffold (docs only) | — | Codex/Claude | Current docs commit | docs-only; verify-data ✓ |
-| P2-012 | 🟡 Needs user approval | Sample premium metadata fixture | premium-metadata-schema.md | Claude/Codex | — | dedicated validator + verify-data |
+| P2-012 | ✅ Complete | Sample premium metadata fixture + validator | premium-metadata-schema.md | Claude | Current docs commit | `node scripts/validate-premium-metadata.js` (6 items validated); verify-data ✓ |
 | P2-013 | 🟡 Needs user approval | Sample eBay CSV fixture | ebay-comps-import-spec.md | Codex | — | dedicated validator + verify-data |
 | P2-014 | 🟡 Needs user approval | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | — | `node --check`, validator, verify-data, `npm run build` |
 | P2-015 | 🟡 Needs user approval | UI badges/filters (after metadata) | premium-metadata-schema.md § 12 | Claude/Codex | — | `npm run build` + verify-data |
@@ -97,7 +97,6 @@ prerequisite conditions.
 
 | Task | Approval prerequisites |
 |------|------------------------|
-| P2-012 | Premium metadata fixture path + validator file path agreed; sample card count (~5–10 illustrative rows) decided. |
 | P2-013 | eBay CSV fixture path agreed; sample listing source (manual research, no scraping) and row count decided. |
 | P2-014 | Importer language/style decided (script vs. build step). Validator must exist (P2-012/P2-013 fixtures imply this). R-001 drift should be resolved (P2-018) before this lands. |
 | P2-015 | Premium metadata artifact must exist on disk (post P2-012). UI copy reviewed against the forbidden-language list. |
