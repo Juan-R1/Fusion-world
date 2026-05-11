@@ -1,6 +1,18 @@
 {
   "history": [
     {
+      "runAt": "2026-05-11T08:29:57.942Z",
+      "mode": "rotation",
+      "group": "B",
+      "sets": [
+        "FB04",
+        "FB05",
+        "FB06"
+      ],
+      "fetched": 370,
+      "merged": 1156
+    },
+    {
       "runAt": "2026-05-04T07:52:53.251Z",
       "mode": "rotation",
       "group": "A",
@@ -25,14 +37,14 @@
       "merged": 1156
     }
   ],
-  "lastRunAt": "2026-05-04T07:52:53.251Z",
+  "lastRunAt": "2026-05-11T08:29:57.942Z",
   "lastMode": "rotation",
-  "lastGroup": "A",
+  "lastGroup": "B",
   "lastRefreshedSets": [
-    "FB01",
-    "FB02",
-    "FB03"
+    "FB04",
+    "FB05",
+    "FB06"
   ],
-  "lastFetchedCount": 419,
+  "lastFetchedCount": 370,
   "lastMergedCount": 1156
 }
