@@ -57,19 +57,16 @@ starts. They are not independent: variant matching is the through-line.
 - **Status:** open.
 
 ### Q-003 — Cross-source variance threshold for `sourcesAgree = false`
-- **Sources:** `data-model-v2.md` § 18 q5, `source-confidence-spec.md`
-  § 7 "thresholds are starting points and must be revisited after real
-  fixtures"
-- **Question:** At what `sourceVariance` does `sourcesAgree = false`?
-  Current placeholder is 15% / 35%. Should it be per-rarity (e.g. a $0.20
-  common's 20% spread is noise; a $200 SCR's 5% spread is a real
-  disagreement)? Should there be a sample-size minimum?
-- **What it blocks:**
-  - Source confidence implementation (P2-007 follow-up).
-  - First cross-source data ingestion (P2-013 onward).
-- **Recommended resolver:** Operator + ChatGPT GPT-03 with reasoning
-  examples; revisit after first comps fixture lands.
-- **Status:** open (placeholder thresholds documented).
+- **Status:** **CLOSED 2026-05-11.** See
+  `docs/cross-source-threshold-decision.md` and
+  `docs/decision-log.md` D-037.
+- **Resolution:** Base bands `< 15 % aligned`, `15–35 % mixed`,
+  `> 35 % disagree`, with per-rarity adjustments (lower-priced cards
+  loosen to 30 %/60 %; higher-priced cards tighten to 10 %/25 %).
+  Minimum sample size 3 eligible observations; observations > 30 days
+  excluded; `disagree` joins the existing hard-block flags for
+  `overall = high`. Validator and UI implementation deferred to
+  P2-014+.
 
 ## 4. P1 — Blocking a specific upcoming P2 task
 
@@ -291,18 +288,20 @@ starts. They are not independent: variant matching is the through-line.
 
 | Priority | Open | Closed | IDs |
 |----------|-----:|-------:|-----|
-| P0 | 2 | 1 | open: Q-002, Q-003 · closed: Q-001 |
+| P0 | 1 | 2 | open: Q-002 · closed: Q-001, Q-003 |
 | P1 | 6 | 0 | Q-010 .. Q-015 |
 | P2 | 5 | 0 | Q-020 .. Q-024 |
 | P3 | 8 | 0 | Q-030 .. Q-037 |
-| **Total** | **21** | **1** | — |
+| **Total** | **20** | **2** | — |
 
-As of 2026-05-11, Q-001 (promo namespace) is closed by Claude's
-"take charge" run — see `docs/promo-namespace-decision.md` and
-`docs/decision-log.md` D-036. Remaining P0 questions: Q-002 (image
-strategy — Claude-authored decision pending operator review in this
-same run) and Q-003 (cross-source threshold — Claude-authored decision
-pending operator review in this same run).
+As of 2026-05-11, Q-001 (promo namespace) and Q-003 (cross-source
+threshold) are closed by Claude's "take charge" run — see
+`docs/promo-namespace-decision.md`, `docs/cross-source-threshold-decision.md`,
+and `docs/decision-log.md` D-036 / D-037. The only remaining P0 is
+Q-002 (image strategy), which is being authored as a Claude
+recommendation in this same run; it lands at
+`docs/image-coverage-strategy.md` and stays "active proposal" until
+the operator confirms or counter-proposes.
 
 ## 8. Cross-reference to other audit docs
 

@@ -572,21 +572,48 @@ expiry trigger fires.
 - **Expiry trigger:** Bandai publishes a base SB card whose code
   collides with the `<SET>-P###` pattern (would force a different
   promo suffix).
-- **Related commits:** (current docs commit, to be filled in by the
-  closing commit SHA in the next P2 dashboard refresh).
+- **Related commits:** `c2c7ae2` (decision doc) and follow-on commits.
 - **Status:** active. Validator update deferred until first promo
   card is ingested; full migration plan in
   `docs/promo-namespace-decision.md` § 7.
+
+### D-037 — Cross-source variance thresholds for `sourceAgreement`
+- **Date:** 2026-05-11
+- **Decision:** Base bands `< 15 %` → `aligned`, `15–35 %` → `mixed`,
+  `> 35 %` → `disagree`, computed as `(max − min) / median` over
+  eligible observations. Per-rarity adjustments by median market price:
+  `< $1.00` loosens to 30 %/60 %; `$1.00–$4.99` to 25 %/50 %;
+  `$5.00–$19.99` to 20 %/40 %; `$20–$99.99` is the default
+  15 %/35 %; `≥ $100` tightens to 10 %/25 %. Minimum 3 eligible
+  observations; observations > 30 days excluded. `disagree` is a hard
+  block on `overall = high`.
+- **Alternatives:** uniform thresholds across rarities (rejected: same
+  variance means different things at $0.50 vs $300); no minimum sample
+  size (rejected: 2 observations is false precision); time-weighted
+  variance (deferred to v2 when sample counts grow).
+- **Rationale:** matches the placeholder thresholds in
+  `docs/source-confidence-spec.md` § 7 while adding the per-rarity
+  band and sample-size minimum that real TCG market noise demands.
+  Defensible from day one of multi-source ingestion.
+- **Owner:** Source-confidence model.
+- **Expiry trigger:** > 100 cards with ≥ 10 cross-source observations
+  each (revisit thresholds against measured distribution);
+  observed false-positive `disagree` rate > 10 %; observed
+  false-negative `aligned` rate visible in QA.
+- **Related commits:** `c2c7ae2` (decision doc) and follow-on commits.
+- **Status:** active. Validator and UI implementation deferred to
+  P2-014+; full thresholds documented in
+  `docs/cross-source-threshold-decision.md`.
 
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 36 |
+| active | 37 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **36** |
+| **Total** | **37** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
