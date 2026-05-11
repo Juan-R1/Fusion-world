@@ -14,12 +14,12 @@
 | Metric | Value |
 |--------|------:|
 | Phase 2 tasks total | 18 |
-| Complete | **11** |
-| Needs user approval | **7** |
+| Complete | **12** |
+| Needs user approval | **6** |
 | Blocked | 0 |
 | Skipped | 0 |
-| **Next-up** | **P2-011** (staging directory scaffold — docs-only) |
-| Most recent closure | P2-018 spec-tightening (closed R-001) |
+| **Next-up** | **P2-012** (sample premium metadata fixture — approval required) |
+| Most recent closure | P2-011 staging directory scaffold |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
 Bundle 647.93 kB raw / 94.94 kB gzip.
@@ -42,7 +42,7 @@ canonical checklist row.
 | P2-008 | ✅ Complete | Graded comps spec | `docs/graded-comps-spec.md` | ChatGPT plan, Codex docs | `fcb13cf` | docs-only; verify-data ✓ |
 | P2-009 | ✅ Complete | Sealed products spec | `docs/sealed-products-spec.md` | ChatGPT plan, Codex docs | `252c3c3` | docs-only; verify-data ✓ |
 | P2-010 | ✅ Complete | Expanded data validation plan | `docs/expanded-data-validation-plan.md` | Codex/Claude | `b979b72` | docs-only; verify-data ✓ |
-| **P2-011** | 🟡 **Needs user approval** | Staging directory scaffold (docs only) | — | Codex/Claude | — | docs-only; verify-data ✓ |
+| **P2-011** | ✅ Complete | Staging directory scaffold (docs only) | — | Codex/Claude | Current docs commit | docs-only; verify-data ✓ |
 | P2-012 | 🟡 Needs user approval | Sample premium metadata fixture | premium-metadata-schema.md | Claude/Codex | — | dedicated validator + verify-data |
 | P2-013 | 🟡 Needs user approval | Sample eBay CSV fixture | ebay-comps-import-spec.md | Codex | — | dedicated validator + verify-data |
 | P2-014 | 🟡 Needs user approval | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | — | `node --check`, validator, verify-data, `npm run build` |
@@ -92,12 +92,11 @@ canonical names settled by P2-018 without doing its own reconciliation.
 
 ## 4. Approval-gate cluster
 
-Seven tasks sit at "Needs user approval." Each gate has different
+Six tasks sit at "Needs user approval." Each gate has different
 prerequisite conditions.
 
 | Task | Approval prerequisites |
 |------|------------------------|
-| **P2-011** | Operator confirms staging path (`data-staging/`), `.gitignore` policy, and that no fixtures land in this commit. Single docs-only step; lowest-risk approval. |
 | P2-012 | Premium metadata fixture path + validator file path agreed; sample card count (~5–10 illustrative rows) decided. |
 | P2-013 | eBay CSV fixture path agreed; sample listing source (manual research, no scraping) and row count decided. |
 | P2-014 | Importer language/style decided (script vs. build step). Validator must exist (P2-012/P2-013 fixtures imply this). R-001 drift should be resolved (P2-018) before this lands. |

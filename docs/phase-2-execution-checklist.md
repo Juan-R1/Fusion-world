@@ -53,7 +53,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | P2-008 | Complete | Design graded comps spec | ChatGPT plan, Codex docs | `docs/graded-comps-spec.md` | `git diff --check`; `node scripts/verify-data.js` | PSA/BGS/CGC/TAG fields, grade normalization, raw/graded split, population notes, and confidence rules are documented. | Completed as docs only. No graded UI yet. |
 | P2-009 | Complete | Design sealed products spec | ChatGPT plan, Codex docs | `docs/sealed-products-spec.md` | `git diff --check`; `node scripts/verify-data.js` | Product codes, set links, product type, source fields, price timestamp, and Box EV caveats are documented. | Completed as docs only. No formula changes. |
 | P2-010 | Complete | Design validation guard plan for expanded data | Codex/Claude | `docs/expanded-data-validation-plan.md` | `git diff --check`; `node scripts/verify-data.js` | Validator requirements for premium metadata, comps, graded data, sealed products, and source confidence are documented. | Completed as docs only. Required before generated artifacts. |
-| P2-011 | Needs user approval | Add staging directory structure, docs only first | Codex/Claude | New docs-approved staging paths only | `git diff --check`; `node scripts/verify-data.js` | Empty or README-only staging structure exists and explains that no generated data is active yet. | Wait for user approval after specs. |
+| P2-011 | Complete | Add staging directory structure, docs only first | Codex/Claude | New docs-approved staging paths only | `git diff --check`; `node scripts/verify-data.js` | Empty or README-only staging structure exists and explains that no generated data is active yet. | Approved and executed by operator via the post-P2-018 Codex prompt. |
 | P2-012 | Needs user approval | Build sample premium metadata file only after approval | Claude/Codex | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Tiny sample fixture exists and validates. | Do not edit `src/cardData.json`. |
 | P2-013 | Needs user approval | Build sample eBay CSV fixture only after approval | Codex | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Manual sample fixture exists with source URLs and confidence labels. | No scraping. |
 | P2-014 | Needs user approval | Build importer only after fixture/spec approval | Claude | New importer path approved by user | `node --check` for importer; dedicated validator; `node scripts/verify-data.js`; `npm run build` if app contract changes | Importer reads sample fixture and writes only approved generated artifact path. | No active UI consumption until validated. |
@@ -81,6 +81,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | 2026-05-07 | P2-018 | `234672c` | P2-018c: cross-reference and intentional-divergence annotations across 5 specs (premium-metadata, source-confidence, sb-set-staging, ebay-comps, graded-comps). gdr lowercased in graded-comps. | `git diff --check`; `node scripts/verify-data.js` | Closes drift C1 and divergence C2, plus annotation gaps H1/H2 reinforcement. |
 | 2026-05-07 | P2-018 | `b844e00` | P2-018d: data-model-v2 § 13 restructured to mirror source-confidence-spec § 5–8 (overall/components/flags/summary/sourceRefs/updatedAt). | `git diff --check`; `node scripts/verify-data.js` | Closes drift F1. |
 | 2026-05-07 | P2-018 | `9ef2135` | P2-018e: data-model-v2 § 4 — added "Confidence vocabulary by entity" table documenting the intentional enum divergence. | `git diff --check`; `node scripts/verify-data.js` | Closes annotation gap H1. |
+| 2026-05-11 | P2-011 | Current docs commit | Added `data-staging/README.md` and `data-staging/.gitkeep`; marked P2-011 complete. | `git diff --check`; `node scripts/verify-data.js` | Creates the empty staging scaffold only. No fixtures, validators, generated artifacts, external calls, or backend work. |
 
 ## 6. Forbidden Files Until Approval
 
@@ -155,7 +156,7 @@ Data-artifact tasks later:
 
 ## 10. Next Recommended Task
 
-Next recommended task: `P2-011 Add staging directory structure, docs only first` after explicit user approval. P2-018 (spec-tightening) is complete; no further unblocked work remains until P2-011 is approved.
+Next recommended task: `P2-012 Build sample premium metadata fixture (still needs user approval)`.
 
 Do not start implementation, generated data, scraping, backend work, or UI
 badges until the relevant spec tasks are complete and the user approves the
