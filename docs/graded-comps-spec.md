@@ -50,7 +50,7 @@ Rules:
 Recommended header:
 
 ```csv
-compId,cardCode,setCode,title,company,grade,gradeNumeric,gradeLabel,salePrice,shipping,totalPrice,currency,saleDate,source,sourceUrl,listingId,condition,variant,variantMatch,populationKnown,populationCount,certNumberVisible,outlierFlag,confidence,reviewer,reviewedAt,notes
+compId,cardCode,setCode,title,gradeCompany,grade,gradeNumeric,gradeLabel,salePrice,shipping,totalPrice,currency,saleDate,source,sourceUrl,listingId,condition,variant,variantMatch,populationKnown,populationCount,certNumberVisible,outlierFlag,confidence,reviewer,reviewedAt,notes
 ```
 
 ## 6. Field Definitions
@@ -61,7 +61,7 @@ compId,cardCode,setCode,title,company,grade,gradeNumeric,gradeLabel,salePrice,sh
 | `cardCode` | string | Yes | Must match canonical card data or be routed to review. |
 | `setCode` | string | Yes | Card's set/product code. |
 | `title` | string | Yes | Raw listing/source title. |
-| `company` | enum | Yes | `PSA`, `BGS`, `CGC`, `TAG`, or `other`. |
+| `gradeCompany` | enum | Yes | `PSA`, `BGS`, `CGC`, `TAG`, or `other`. |
 | `grade` | string | Yes | Preserve exact grade text from source. |
 | `gradeNumeric` | nullable number | Recommended | Normalized numeric grade when clear, e.g. `10`, `9.5`. |
 | `gradeLabel` | nullable string | Optional | Label such as `Gem Mint`, `Black Label`, `Pristine`. |
@@ -87,6 +87,8 @@ compId,cardCode,setCode,title,company,grade,gradeNumeric,gradeLabel,salePrice,sh
 
 ## 7. Grade Company Vocabulary
 
+Field name on each row: `gradeCompany`. Field name is consistent across eBay sold comps and graded comps specs.
+
 | Value | Meaning | Notes |
 |-------|---------|-------|
 | `PSA` | Professional Sports Authenticator | Preserve exact PSA grade. |
@@ -95,7 +97,7 @@ compId,cardCode,setCode,title,company,grade,gradeNumeric,gradeLabel,salePrice,sh
 | `TAG` | TAG Grading | Preserve grade text and source context. |
 | `other` | Other grading company | Usually lower confidence unless source is reviewed. |
 
-Unknown company values should fail validation.
+Unknown `gradeCompany` values should fail validation.
 
 ## 8. Grade Normalization
 
@@ -222,7 +224,7 @@ A future graded-comps validator must check:
 - Required fields are present.
 - `cardCode` exists or is routed to review.
 - Grade company vocabulary is valid.
-- Grade and company are present for every non-excluded row.
+- Grade and `gradeCompany` are present for every non-excluded row.
 - Numeric prices are finite and positive.
 - Dates are valid.
 - Source URL is present for non-draft rows.
