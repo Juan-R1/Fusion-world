@@ -51,7 +51,7 @@ listingId,cardCode,setCode,title,soldPrice,shipping,totalPrice,currency,soldDate
 | `rawOrGraded` | enum | Yes | `raw`, `graded`, `sealed`, or `unknown`. |
 | `gradeCompany` | nullable enum | Required if graded | `PSA`, `BGS`, `CGC`, `TAG`, `other`, or blank for raw. |
 | `grade` | nullable string | Required if graded | Preserve exact grade text, e.g. `10`, `9.5`, `Black Label`. |
-| `variant` | enum/string | Yes | `base`, `altArt`, `manga`, `godRare`, `gdr`, `promo`, `reprint`, `foil`, `sealed`, `unknown`, or reviewed source wording. |
+| `variant` | enum/string | Yes | `base`, `altArt`, `manga`, `godRare`, `gdr`, `promo`, `reprint`, `foil`, `sealed`, `unknown`, or reviewed source wording. Variant vocabulary here is intentionally broader than `docs/sb-set-staging-spec.md` § 7 because eBay listings carry less structured variant metadata. `gdr` is lowercase to match the `godRare` / `altArt` style. |
 | `variantMatch` | enum | Yes | `exact`, `likely`, `ambiguous`, `mismatch`, or `excluded`. |
 | `quantity` | integer | Yes | Number of cards/products in the listing. Single-card comps should be `1`. |
 | `itemType` | enum | Yes | `single`, `lot`, `sealed`, `gradedCard`, `bundle`, `proxyCustom`, `unknown`. |

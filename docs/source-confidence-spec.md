@@ -183,6 +183,8 @@ Suggested values:
 
 Unknown flags should fail validation.
 
+Premium-card classification risk tags (`variantAmbiguity`, `reprintRisk`, `unverifiedTreatment`, etc.) live in `docs/premium-metadata-schema.md` § 7. Some flag names overlap; the two vocabularies are intentionally distinct.
+
 ## 9. Draft Scoring Model
 
 If a numeric score is used, keep it secondary to labels and flags.

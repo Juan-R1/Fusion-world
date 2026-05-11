@@ -113,6 +113,8 @@ Suggested staging row for `cards.csv`:
 | `reviewStatus` | enum[`draft`, `reviewed`, `approved`] | Yes | Only `approved` can be imported later. |
 | `notes` | string | Optional | Short rationale or caveat. |
 
+Note: the SB staging `variant` vocabulary is intentionally stricter (6 values: `base`, `foil`, `altArt`, `promo`, `reprint`, `unknown`) than the eBay and graded comps specs because SB staging produces canonical card identity, not open source data. Premium treatment classifications (`manga`, `godRare`, `gdr`, etc.) belong in `docs/premium-metadata-schema.md`, not in SB staging.
+
 ## 8. Card-Code Assumptions
 
 SB card codes must be treated as source-backed identifiers, not inferred from

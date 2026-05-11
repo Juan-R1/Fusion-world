@@ -153,6 +153,8 @@ Rules:
 - `variantAmbiguity` should be common until source matching is strong.
 - `manualReviewOnly` rows should not drive rankings.
 
+Source-data-quality flags (`singleSource`, `stalePrice`, `lowVolume`, etc.) live in `docs/source-confidence-spec.md` § 8. These two vocabularies overlap but are not identical — premium `riskTags` describe long-lived classification risk; source-confidence flags describe data-quality at the moment of observation.
+
 ## 8. `gradeUpside` Shape
 
 Grading context is optional and should usually be `unknown` until graded comps

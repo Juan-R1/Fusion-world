@@ -74,7 +74,7 @@ compId,cardCode,setCode,title,gradeCompany,grade,gradeNumeric,gradeLabel,salePri
 | `sourceUrl` | URL | Yes | Required for traceability. |
 | `listingId` | nullable string | Recommended | Source listing ID when available. |
 | `condition` | string | Optional | Usually implied by grade; preserve source text if present. |
-| `variant` | enum/string | Yes | Base, manga, altArt, promo, reprint, GDR, unknown, etc. |
+| `variant` | enum/string | Yes | `base`, `manga`, `altArt`, `promo`, `reprint`, `gdr`, `unknown`, etc. Variant value `gdr` is lowercase across all comps specs (matches `godRare` / `altArt` style). |
 | `variantMatch` | enum | Yes | `exact`, `likely`, `ambiguous`, `mismatch`, or `excluded`. |
 | `populationKnown` | boolean | Yes | Whether a population count is source-backed. |
 | `populationCount` | nullable integer | Optional | Source-backed population count for this card/company/grade if known. |
@@ -129,7 +129,7 @@ Graded cards are especially vulnerable to variant mismatch.
 Rules:
 
 - Exact card code or visible card details should support `variantMatch = exact`.
-- Listing title alone is not enough for high confidence on manga, GDR, promo,
+- Listing title alone is not enough for high confidence on manga, gdr, promo,
   winner-stamped, alt-art, or reprint variants.
 - If the slab image or listing details are unclear, use `ambiguous` or `low`.
 - Do not aggregate base and alternate-art graded sales.
