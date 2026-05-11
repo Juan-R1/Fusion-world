@@ -1,8 +1,8 @@
 # Phase 2 Progress Dashboard
 
-**Last refreshed:** 2026-05-07 (post-P2-018)
-**Audit task:** CLA-05 of the Claude Code architectural-audit run
-**Snapshot baseline:** `482455f docs: open-questions — note P2-018 did not resolve any open question`
+**Last refreshed:** 2026-05-11 (post-P2-012 / P2-013 / Q-001 / Q-003)
+**Audit task:** CLA-05 of the Claude Code architectural-audit run; refreshed CLA-22 + CLA-34
+**Snapshot baseline:** `68946c9 docs: Q-002 image strategy proposal (icons-only default, Option C upgrade path)`
 
 > Designed as the operator's daily heads-up display. Replaces the need
 > to grep `phase-2-execution-checklist.md` to find out "what's next."
@@ -121,16 +121,21 @@ these docs:
 
 Live state pulled from `docs/risk-register.md` § 9:
 
-1. **R-002** Agent reality-drift (claimed vs actually done) → P0 →
+1. **R-020** Plausible analytics blind spot → P1 → mitigation = 15-minute
+   weekly read of the Plausible dashboard; nothing automated yet. Now
+   the top open risk after R-001, R-017 (proposal), and R-036 closed.
+2. **R-002** Agent reality-drift (claimed vs actually done) → P0 →
    mitigation = checklist as source of truth + `git fetch --all`
-   preflight. Active.
-2. **R-017** Image licensing exposure → P1 → mitigation = image
-   coverage strategy spec (queued in Codex's CDX-03 prompt).
-3. **R-020** Plausible analytics blind spot → P1 → mitigation = 15-minute
-   weekly read of the Plausible dashboard; nothing automated yet.
+   preflight. Active discipline issue.
+3. **Open questions Q-002** Image strategy proposal pending operator
+   confirmation. Defaults to icons-only via
+   `docs/image-coverage-strategy.md` until operator confirms or
+   counter-proposes.
 
-R-001 (Phase 2 spec drift) is **closed** by P2-018. R-036 (Methodology
-disclosure gaps) is **closed** by Codex commit `02e9733`.
+Closed this cycle: R-001 (P2-018), R-036 (Codex `02e9733`),
+Q-001 (D-036), Q-003 (D-037). R-017 image-licensing exposure is
+**mitigated by proposal** in `docs/image-coverage-strategy.md` (icons-
+only default); status reverts to fully closed when operator confirms.
 
 ## 7. How to read this dashboard
 
