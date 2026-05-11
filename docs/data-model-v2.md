@@ -71,6 +71,24 @@ model fields, not source card metadata.
 | `array<T>` | Array of values of type `T`. |
 | `nullable<T>` | `T` or `null`. |
 
+### Confidence vocabulary by entity
+
+The `confidence` enum varies intentionally by entity. Premium metadata uses 3 values; comps entities (eBay, graded) add `excluded`; sealed-products adds both `excluded` and `unknown`; source-confidence uses `unknown` instead of `excluded` because it is itself a derived label, not a row. The differences are intentional, not drift.
+
+| Entity | Spec source | `high` | `medium` | `low` | `excluded` | `unknown` |
+|---|---|:-:|:-:|:-:|:-:|:-:|
+| `premium_metadata` | `premium-metadata-schema.md` § 4 | ✓ | ✓ | ✓ | — | — |
+| `card_market_snapshots` | `data-model-v2.md` § 8 | ✓ | ✓ | ✓ | ✓ | — |
+| `price_history` | `data-model-v2.md` § 9 | ✓ | ✓ | ✓ | — | — |
+| `ebay_sold_comps` | `ebay-comps-import-spec.md` § 5; `data-model-v2.md` § 10 | ✓ | ✓ | ✓ | ✓ | — |
+| `graded_comps` | `graded-comps-spec.md` § 6; `data-model-v2.md` § 11 | ✓ | ✓ | ✓ | ✓ | — |
+| `sealed_products` | `sealed-products-spec.md` § 6; `data-model-v2.md` § 12 | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `source_confidence.overall` | `source-confidence-spec.md` § 5–6; `data-model-v2.md` § 13 | ✓ | ✓ | ✓ | — | ✓ |
+
+Semantic legend:
+- `excluded` = row exists but **must not** be used in aggregates.
+- `unknown` = insufficient info to assign a confidence label.
+
 ## 5. Entity: `cards`
 
 Canonical card identity and static metadata.
