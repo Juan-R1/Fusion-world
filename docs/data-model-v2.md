@@ -255,25 +255,26 @@ Rules:
 
 ## 13. Entity: `source_confidence`
 
-Derived summary describing how trustworthy a card's market picture is.
+Derived summary describing how trustworthy a card's market picture is. Canonical schema lives in `docs/source-confidence-spec.md`; this section is a summary view.
 
 | Field | Type | Required | Source owner | Notes |
 |-------|------|----------|--------------|-------|
 | `cardCode` | string | Yes | Derived validator/importer | Must exist in `cards`. |
-| `sourcesAgree` | boolean | Yes | Derived | True only when comparable sources are close enough. |
-| `sourceVariance` | nullable<number> | Recommended | Derived | Percent spread across comparable sources. |
-| `lowVolumeFlag` | boolean | Yes | Derived | True when comp count/velocity is low. |
-| `staleFlag` | boolean | Yes | Derived | True when latest source data is old. |
-| `variantAmbiguityFlag` | boolean | Yes | Derived | True when sources may mix variants. |
-| `manipulationRisk` | enum[`low`, `medium`, `high`, `unknown`] | Yes | Derived | Must be conservative. |
-| `notes` | nullable<string> | Optional | Derived/QA | Short explanation. |
-| `updatedAt` | isoDateTime | Yes | Derived | Calculation time. |
+| `overall` | enum[`high`, `medium`, `low`, `unknown`] | Yes | Derived/QA | User-facing confidence label. |
+| `score` | integer 0–100 | Optional | Derived | Internal display helper. Must be paired with label and flags. |
+| `components` | object | Yes | Derived | Breakdown with `sourceAgreement`, `freshness`, `volume`, `variantClarity`, `outlierRisk`. See `docs/source-confidence-spec.md` § 7 for the per-component enums. |
+| `flags` | array<enum> | Yes | Derived/QA | Specific cautions. See `docs/source-confidence-spec.md` § 8 for the canonical vocabulary. |
+| `summary` | string | Recommended | Derived/QA | Short human-readable reason. |
+| `sourceRefs` | array<string> | Recommended | Derived/QA | Source IDs/artifacts used to compute confidence; required for manual-source rows. |
+| `updatedAt` | isoDateTime | Yes | Derived | Last computation or review timestamp. |
 
 Rules:
 
-- Source confidence is not investment quality.
-- `unknown` is better than fake certainty.
-- Do not compute manipulation risk without enough sale observations.
+- Source confidence is data-quality, not investment-quality.
+- Hard-block flags prevent `overall = high` — see `docs/source-confidence-spec.md` § 9 for the list.
+- Manual-source rows require `sourceRefs`.
+
+See `docs/source-confidence-spec.md` for the full vocabulary, scoring model, and validation requirements.
 
 ## 14. Entity: `watchlist_positions`
 
