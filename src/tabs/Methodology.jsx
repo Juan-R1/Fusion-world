@@ -4,7 +4,8 @@ const sections = [
   {
     title: 'Price Sources',
     items: [
-      'Current live prices come from JustTCG market data.',
+      'Current live prices come from JustTCG market data. JustTCG is currently the only live source; FusionMetrics does not yet cross-check against TCGplayer, eBay sold comps, or other marketplaces.',
+      'Card metadata (names, rarities, colors, traits) comes from Bandai\'s official Fusion World card list.',
       'Estimated prices are model-derived fallbacks for cards without a live JustTCG price.',
       'Estimated cards remain visible, but they are excluded from undervalued and overvalued rankings.',
     ],
@@ -13,6 +14,7 @@ const sections = [
     title: 'Freshness',
     items: [
       'Each live card carries its own JustTCG price timestamp.',
+      'The refresh cycle is three weeks: groups A (FB01–FB03), B (FB04–FB06), and C (FB07–FB09) each refresh on a rolling schedule.',
       'The refresh pipeline uses set rotation, so some sets update sooner than others.',
       'Carried-forward data preserves the last known-good price until that set refreshes again.',
     ],
@@ -23,6 +25,17 @@ const sections = [
       '30d history is real JustTCG history loaded from /priceHistory30d.json when CardDetail opens.',
       '"Price history unavailable" means the history file could not be loaded.',
       '"Not enough price history" means the file loaded, but that card has too few usable points.',
+    ],
+  },
+  {
+    title: 'Pricing Model',
+    items: [
+      'When a card lacks a live JustTCG price, FusionMetrics uses a model estimate based on the card\'s rarity and a character-popularity score.',
+      'The model is a rarity-stratified regression calibrated against ~1,156 real prices. R² ≈ 0.32 — about two-thirds of per-card variance is unexplained.',
+      'The Uncommon (UC) rarity baseline is smoothed upward because the natural UC sample was noisy and produced a lower price than Common.',
+      'The Special Rare (SPR) baseline is extrapolated because no live SPR samples were available; SPR predictions are the least trustworthy.',
+      'Estimated cards therefore have a meaningful confidence floor; that is why they are excluded from undervalued / overvalued rankings.',
+      '"Delta" on every card is calculated as (Market Price − Model Price) ÷ Model Price × 100. Negative deltas mean the live price is below the model; positive means above.',
     ],
   },
   {
@@ -70,6 +83,16 @@ export default function Methodology({ cards = [] }) {
     { label: 'Live prices', value: `${liveCount.toLocaleString()} / ${cards.length.toLocaleString()}` },
     { label: 'History', value: 'Real 30d data' },
   ]
+  const coverageSection = {
+    title: 'Coverage',
+    items: [
+      `FusionMetrics covers ${liveCount.toLocaleString()} live-priced cards out of ${cards.length.toLocaleString()} total. The pipeline refuses to publish a refresh that drops below 1,121 live prices, to prevent silent coverage degradation.`,
+      'Cards without a live price still appear in the dashboard with model-estimated values, clearly labeled.',
+    ],
+  }
+  const visibleSections = sections.flatMap(section =>
+    section.title === 'Pricing Model' ? [section, coverageSection] : [section]
+  )
 
   return (
     <div style={{ maxWidth: 980, margin: '0 auto', paddingBottom: 32 }}>
@@ -99,7 +122,7 @@ export default function Methodology({ cards = [] }) {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14 }}>
-        {sections.map(section => (
+        {visibleSections.map(section => (
           <InfoSection key={section.title} {...section} />
         ))}
       </div>
@@ -110,6 +133,12 @@ export default function Methodology({ cards = [] }) {
         </h2>
         <p style={{ margin: 0, fontSize: 13, color: T.muted, lineHeight: 1.7 }}>
           A 10-card public market spot check found 9 of 10 JustTCG prices directionally aligned with external sources. One card was unclear because public sources split or mix base, promo, reprint, and alternate-art variants.
+        </p>
+      </section>
+
+      <section style={{ marginTop: 14, background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: 18 }}>
+        <p style={{ margin: 0, fontSize: 13, color: T.muted, lineHeight: 1.7 }}>
+          Not financial advice. FusionMetrics is a research tool. Prices are observations from a single source (JustTCG) plus a transparent model. Treat all values as approximate and never as a buy or sell recommendation.
         </p>
       </section>
     </div>
