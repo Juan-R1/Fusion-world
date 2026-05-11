@@ -14,12 +14,12 @@
 | Metric | Value |
 |--------|------:|
 | Phase 2 tasks total | 18 |
-| Complete | **13** |
-| Needs user approval | **5** |
+| Complete | **14** |
+| Needs user approval | **4** |
 | Blocked | 0 |
 | Skipped | 0 |
-| **Next-up** | **P2-013** (sample eBay sold comps CSV fixture — approval required) |
-| Most recent closure | P2-012 premium metadata fixture + validator |
+| **Next-up** | **P2-014** (importer — approval required; biggest remaining gate) |
+| Most recent closure | P2-013 eBay sold comps fixture + validator |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
 Bundle 647.93 kB raw / 94.94 kB gzip.
@@ -44,7 +44,7 @@ canonical checklist row.
 | P2-010 | ✅ Complete | Expanded data validation plan | `docs/expanded-data-validation-plan.md` | Codex/Claude | `b979b72` | docs-only; verify-data ✓ |
 | **P2-011** | ✅ Complete | Staging directory scaffold (docs only) | — | Codex/Claude | Current docs commit | docs-only; verify-data ✓ |
 | P2-012 | ✅ Complete | Sample premium metadata fixture + validator | premium-metadata-schema.md | Claude | Current docs commit | `node scripts/validate-premium-metadata.js` (6 items validated); verify-data ✓ |
-| P2-013 | 🟡 Needs user approval | Sample eBay CSV fixture | ebay-comps-import-spec.md | Codex | — | dedicated validator + verify-data |
+| P2-013 | ✅ Complete | Sample eBay CSV fixture + validator | ebay-comps-import-spec.md | Claude | Current docs commit | `node scripts/validate-ebay-comps.js` (6 rows validated); verify-data ✓ |
 | P2-014 | 🟡 Needs user approval | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | — | `node --check`, validator, verify-data, `npm run build` |
 | P2-015 | 🟡 Needs user approval | UI badges/filters (after metadata) | premium-metadata-schema.md § 12 | Claude/Codex | — | `npm run build` + verify-data |
 | P2-016 | 🟡 Needs user approval | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16 | Claude/Codex | — | `npm run build` + verify-data |
@@ -97,8 +97,7 @@ prerequisite conditions.
 
 | Task | Approval prerequisites |
 |------|------------------------|
-| P2-013 | eBay CSV fixture path agreed; sample listing source (manual research, no scraping) and row count decided. |
-| P2-014 | Importer language/style decided (script vs. build step). Validator must exist (P2-012/P2-013 fixtures imply this). R-001 drift should be resolved (P2-018) before this lands. |
+| P2-014 | Importer language/style decided (script vs. build step). Validators already exist (`scripts/validate-premium-metadata.js`, `scripts/validate-ebay-comps.js`). R-001 drift was resolved by P2-018. Largest remaining gate — touches generated-artifact path. |
 | P2-015 | Premium metadata artifact must exist on disk (post P2-012). UI copy reviewed against the forbidden-language list. |
 | P2-016 | Comps artifact must exist on disk (post P2-013). Raw/graded separation enforced in UI. |
 | P2-017 | At least one Backend Trigger Checklist item (`phase-2-execution-checklist.md` § 7) must be true. None are true today. |
