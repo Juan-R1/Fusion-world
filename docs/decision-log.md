@@ -548,15 +548,45 @@ expiry trigger fires.
 - **Related commits:** `110d895`.
 - **Status:** active.
 
+### D-036 — Promo / event-card cardCode namespace (three-tier scheme)
+- **Date:** 2026-05-11
+- **Decision:** Promos are identified via a three-tier scheme:
+  1. Promo-treatment of an existing base card keeps the base `cardCode`
+     and records treatment via `premium_metadata.premiumFlags`
+     (`winnerPromo`, `eventPromo`, `altArt`, etc.).
+  2. Promo tied to a specific base set with a new identity uses
+     `<SET>-P###` (e.g. `FB01-P001`, `SB02-P003`).
+  3. Standalone cross-set promo uses the `PR##` namespace
+     (`PR01-001`).
+- **Alternatives:** all-as-treatment (rejected: can't represent new
+  promo-only identities); all-as-`PR##` (rejected: loses set
+  affiliation); per-set-suffix-only (rejected: cross-set programs need
+  a separate anchor); alias table (rejected: too heavy for current
+  scope; adds join layer to every lookup).
+- **Rationale:** keeps `cardCode` lookups direct, preserves set
+  affiliation where it matters, uses the existing
+  `premium_metadata.premiumFlags` vocabulary for the treatment
+  dimension, and pushes validator changes to the moment of first
+  ingestion rather than now.
+- **Owner:** Data model.
+- **Expiry trigger:** Bandai publishes a base SB card whose code
+  collides with the `<SET>-P###` pattern (would force a different
+  promo suffix).
+- **Related commits:** (current docs commit, to be filled in by the
+  closing commit SHA in the next P2 dashboard refresh).
+- **Status:** active. Validator update deferred until first promo
+  card is ingested; full migration plan in
+  `docs/promo-namespace-decision.md` § 7.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 35 |
+| active | 36 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **35** |
+| **Total** | **36** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.

@@ -31,23 +31,15 @@ These three should be answered before P2-011 → P2-014 implementation
 starts. They are not independent: variant matching is the through-line.
 
 ### Q-001 — Promo / event-card cardCode namespace
-- **Sources:** `data-model-v2.md` § 18 q2, `premium-metadata-schema.md`
-  § 14 q3
-- **Question:** Do promos live under their printed `cardCode`, under
-  a separate promo set namespace (`PR##`), under a per-set promo
-  suffix (`FB01-P###`), or via an alias table?
-- **What it blocks:**
-  - SB-set staging (P2-005 / P2-012): SB cards have known reprint /
-    promo overlap.
-  - eBay comps matching (P2-006 / P2-013): titles regularly say
-    "winner promo" / "event promo" without a printed cardCode.
-  - Premium metadata `eventPromo` / `winnerPromo` flags
-    (P2-004 / P2-012): cannot reference promo cards if they have no
-    canonical code.
-  - Future Set Rankings UX: promos vs base in the same set view.
-- **Recommended resolver:** Operator decision, informed by
-  ChatGPT GPT-02 strategy output and Codex CDX-04 doc once they land.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-11.** See `docs/promo-namespace-decision.md`
+  and `docs/decision-log.md` D-036.
+- **Resolution:** Three-tier scheme. (1) Promo-treatment of an existing
+  base card keeps the base `cardCode` and records treatment via
+  `premium_metadata.premiumFlags`. (2) Promo tied to a specific base set
+  with a new identity uses `<SET>-P###` (e.g. `FB01-P001`).
+  (3) Standalone cross-set promo uses the `PR##` namespace
+  (`PR01-001`). Validator changes deferred until the first promo card
+  is ingested.
 
 ### Q-002 — Image coverage strategy
 - **Sources:** `data-model-v2.md` § 18 q3, `sb-set-staging-spec.md`
@@ -297,15 +289,20 @@ starts. They are not independent: variant matching is the through-line.
 
 ## 7. P-prioritized summary
 
-| Priority | Count | IDs |
-|----------|------:|-----|
-| P0 | 3 | Q-001, Q-002, Q-003 |
-| P1 | 6 | Q-010 .. Q-015 |
-| P2 | 5 | Q-020 .. Q-024 |
-| P3 | 8 | Q-030 .. Q-037 |
-| **Total** | **22** | — |
+| Priority | Open | Closed | IDs |
+|----------|-----:|-------:|-----|
+| P0 | 2 | 1 | open: Q-002, Q-003 · closed: Q-001 |
+| P1 | 6 | 0 | Q-010 .. Q-015 |
+| P2 | 5 | 0 | Q-020 .. Q-024 |
+| P3 | 8 | 0 | Q-030 .. Q-037 |
+| **Total** | **21** | **1** | — |
 
-As of 2026-05-07, no open questions have been resolved by the P2-018 spec-tightening pass. The 22-question count is unchanged; tightening fixed naming drift (D-033, D-034, D-035) and structural drift in `data-model-v2.md` § 13, but did not answer any open design question. The three P0 questions (promo namespace, image strategy, cross-source threshold) all still depend on ChatGPT/Codex strategy output plus an operator decision.
+As of 2026-05-11, Q-001 (promo namespace) is closed by Claude's
+"take charge" run — see `docs/promo-namespace-decision.md` and
+`docs/decision-log.md` D-036. Remaining P0 questions: Q-002 (image
+strategy — Claude-authored decision pending operator review in this
+same run) and Q-003 (cross-source threshold — Claude-authored decision
+pending operator review in this same run).
 
 ## 8. Cross-reference to other audit docs
 
