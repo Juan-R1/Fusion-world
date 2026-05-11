@@ -741,3 +741,99 @@ Grounded honest summary of likely state as of 2026-04-17.
 
 **End of continuity document.** Any future session: you have what you need to resume safely. Begin at §10 P0 item 1 unless the user says otherwise.
 
+---
+
+## Phase 2 progress snapshot (2026-05-11)
+
+This addendum captures state that landed AFTER the 2026-04-17 continuity document above. Read sections §1–§12 first for foundational history; this section is purely a "what happened between then and now" delta.
+
+### Trust foundation completed
+
+The §10 P0 / P1 priorities are largely closed:
+
+- ✅ **CI build-check workflow + 9-invariant data-integrity smoke test** — `897b1c1`, `ce448ae`.
+- ✅ **Plausible analytics** tag enabled in `index.html` — `01daa2e`. (Read of the dashboard is still pending; see R-020 in `docs/risk-register.md`.)
+- ✅ **Real JustTCG 30d price history** — confirmed via diagnostic probe; pipeline switched from synthetic to real history in `3d0aa52`.
+- ✅ **Rate-limit-aware fetch + quota-safe rotation** — `8c0f262`, `a55378d`. Pipeline now uses ISO-week rotation with `UPDATE_SETS` override.
+- ✅ **Coverage regression guard** — `f57b56c`. Floor 1,121 + per-set 90%; rejects partial degraded writes.
+- ✅ **Split data shape** — `b371e43`, `1aa72f8`. `src/livePrices.json` carries current prices only; `public/priceHistory30d.json` is lazy-fetched.
+- ✅ **CardDetail lazy-load** — `9433602`. Bundle dropped from ~1.35 MB to ~648 kB raw.
+- ✅ **Provenance footer + modal** — `4514983`.
+- ✅ **Per-card freshness badge** — `fc0be25`.
+- ✅ **Methodology & Data Sources tab** — `899c098`, then trust-disclosure copy edits in `02e9733` (R²=0.32, smoothed UC, extrapolated SPR, single-source explicitly stated).
+- ✅ **Watchlist v2 portfolio fields + migration** — `2bc9f9b`.
+- ✅ **Multi-agent handoff system** — `fcb0147` (`AGENTS.md`, `fusionmetrics-pipeline`, `fusionmetrics-qa` skills), then expanded with `fusionmetrics-product`, `fusionmetrics-launch`, `fusionmetrics-mobile-ux`, `fusionmetrics-watchlist`.
+- ✅ **Retired legacy files** — `scripts/accumulate-prices.js` and `src/priceHistory.json` deleted in `948e92f`.
+
+### Phase 2 spec layer completed
+
+All 10 Phase 2 specs shipped between 2026-05-01 and 2026-05-07:
+
+- `docs/phase-2-data-expansion-plan.md` (P2-001 / `ee6b6c4`)
+- `docs/phase-2-execution-checklist.md` (P2-002 / `ee6b6c4`)
+- `docs/data-model-v2.md` (P2-003 / `553400c`)
+- `docs/premium-metadata-schema.md` (P2-004 / `4770375`)
+- `docs/sb-set-staging-spec.md` (P2-005 / `5b1f7a8`)
+- `docs/ebay-comps-import-spec.md` (P2-006 / `0b70442`)
+- `docs/source-confidence-spec.md` (P2-007 / `63a7dec`)
+- `docs/graded-comps-spec.md` (P2-008 / `fcb13cf`)
+- `docs/sealed-products-spec.md` (P2-009 / `252c3c3`)
+- `docs/expanded-data-validation-plan.md` (P2-010 / `b979b72`)
+
+### Architectural-audit run outputs
+
+A multi-commit Claude Code audit landed 10 audit/navigation docs in May 2026:
+
+- `docs/phase-2-consistency-audit.md` — 12 inter-spec findings (all resolved by P2-018).
+- `docs/risk-register.md` — 29 ranked risks across P0/P1/P2/P3.
+- `docs/test-coverage-gap-analysis.md` — 20 proposed Vitest cases (P3-tier).
+- `docs/bundle-audit-2026-05-07.md` — 5 reduction strategies.
+- `docs/phase-2-dashboard.md` — operator daily heads-up display.
+- `docs/decision-log.md` — 35 architectural decisions catalogued (D-001 — D-035).
+- `docs/open-questions.md` — 22 unresolved questions ranked.
+- `docs/methodology-review.md` — 10 trust-disclosure gaps (all 6 proposed edits closed by Codex `02e9733`).
+- `docs/operator-handbook.md` — ready-to-paste prompts for operator decisions.
+- `docs/public-beta-backlog.md` (refreshed) — pre-public-beta gap list.
+
+### P2-018 spec-tightening (R-001 closed)
+
+A follow-up 5-commit Claude run closed the 8 drift items the consistency audit surfaced:
+
+- `0522bb8` — canonical naming (`winner` → `winnerPromo`, `gradedContamination` → `rawGradedContamination`); required-field fixes.
+- `110d895` — `gradeCompany` field name standardized in graded-comps spec.
+- `234672c` — cross-reference annotations across 5 specs; `gdr` lowercased.
+- `b844e00` — `data-model-v2.md` § 13 (`source_confidence`) restructured to mirror the canonical spec.
+- `9ef2135` — "Confidence vocabulary by entity" table added to data-model-v2 § 4.
+
+Decision log entries D-033 / D-034 / D-035 record these canonical-name decisions.
+
+### Phase 2 implementation status (12 / 18 complete)
+
+- ✅ **P2-001 — P2-010** all specs.
+- ✅ **P2-011** staging directory scaffold (`dca9b04`). `data-staging/` exists with README + .gitkeep; ready to receive approved fixtures.
+- ✅ **P2-018** spec-tightening (above).
+- 🟡 **P2-012 — P2-017** awaiting operator approval.
+
+**P2-012 is the next gate.** It builds the first premium metadata fixture + validator at `data-staging/premium-metadata/`. The ready-to-paste Codex prompt for it lives in `docs/operator-handbook.md` § 2.
+
+### Where to start next
+
+1. Read `docs/operator-handbook.md` first — it consolidates the next three operator decisions (Plausible review, image strategy, P2-012 approval) into ready-to-paste prompts.
+2. Then `docs/phase-2-dashboard.md` for live task status.
+3. Then `AGENTS.md` for runtime contract (what every agent must respect).
+4. This `CLAUDE.md` remains the long-form history; sections §1–§12 above are the foundational record.
+
+### Cross-references
+
+- `AGENTS.md` — runtime contract for every agent. Tightened with "Reality verification first" rule and dashboard-as-source-of-truth callout.
+- `STATUS.md` — current snapshot (date, branch, commits, healthy areas, yellow flags).
+- `docs/phase-2-dashboard.md` — daily heads-up display; single source of truth for in-flight Phase 2 status.
+- `docs/risk-register.md` — 29 ranked risks; R-001 and R-036 closed in this cycle.
+- `docs/operator-handbook.md` — ready-to-paste prompts for operator decisions.
+
+### Trust-principle preservation
+
+Through everything above, the operating principle held: **make FusionMetrics unable to lie by accident.** No synthetic price history was reintroduced. No synthetic demand sparklines remain. No coverage guard was weakened. No buy/sell/guarantee/profit language landed anywhere. Trust labels (`priceStatus`, `historyState`, `confidence`, `hasLivePrice`) survive every change. Estimated cards remain visible but excluded from rankings; `marketPrice = predictedPrice` exactly for estimated, `delta = 0`.
+
+This is the foundation the next phase builds on.
+
