@@ -60,6 +60,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | P2-015 | Needs user approval | Add UI badges/filters only after metadata exists | Claude/Codex | Specific `src/` files named by user | `npm run build`; `node scripts/verify-data.js` | Premium tags appear with cautious copy and no investment certainty. | Requires metadata artifact first. |
 | P2-016 | Needs user approval | Add CardDetail comps panel only after comps artifact exists | Claude/Codex | Specific `src/` files named by user | `npm run build`; `node scripts/verify-data.js` | Comps panel separates raw/graded, variants, confidence, and outliers. | Requires comps artifact first. |
 | P2-017 | Needs user approval | Consider backend only after trigger criteria are met | ChatGPT plan, Claude later | Docs only until approved | `git diff --check`; `node scripts/verify-data.js` | Backend decision record states trigger met, stack choice, migration plan, cost/risk, and rollback path. | Backend is not approved now. |
+| P2-018 | Complete | Phase 2 spec-tightening pass (drift resolution from consistency audit) | Claude | `docs/data-model-v2.md`, `docs/premium-metadata-schema.md`, `docs/sb-set-staging-spec.md`, `docs/ebay-comps-import-spec.md`, `docs/graded-comps-spec.md`, `docs/phase-2-data-expansion-plan.md` | `git diff --check`; `node scripts/verify-data.js` | All 8 drift items from `docs/phase-2-consistency-audit.md` § 8 resolved (A1, A2, B1, B2, C1, C2, D1, E1, F1, G1, H1, H2 — 8 drift + 1 divergence + 2 annotation gaps). | Authored by the Claude Code architectural-audit run as a follow-up to CLA-01. |
 
 ## 5. Completed Work Ledger
 
@@ -75,6 +76,11 @@ Phase 2 is about stronger data first, not stronger claims first.
 | 2026-05-01 | P2-008 | `fcb13cf` | Added `docs/graded-comps-spec.md` and marked P2-008 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines graded comp fields, grade normalization, raw/graded separation, population notes, confidence rules, validation requirements, and stop conditions. |
 | 2026-05-01 | P2-009 | `252c3c3` | Added `docs/sealed-products-spec.md` and marked P2-009 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines sealed product fields, product-code rules, source/confidence requirements, Box EV caveats, validation requirements, and stop conditions. |
 | 2026-05-01 | P2-010 | Current docs commit | Added `docs/expanded-data-validation-plan.md` and marked P2-010 complete. | `git diff --check`; `node scripts/verify-data.js` | Defines validator layers, failure behavior, per-artifact guard requirements, generated artifact checks, app-contract validation, and stop conditions. |
+| 2026-05-07 | P2-018 | `0522bb8` | P2-018a: data-model-v2 § 7 + phase-2 plan § 8 — canonical naming (winner→winnerPromo, gradedContamination→rawGradedContamination), defer premiumFlags / riskTags lists to schema, graded_comps.sourceUrl Required. | `git diff --check`; `node scripts/verify-data.js` | Closes consistency-audit drift items A1, A2, B1, B2, E1. |
+| 2026-05-07 | P2-018 | `110d895` | P2-018b: graded-comps spec — standardize `gradeCompany` field name (was `company`). | `git diff --check`; `node scripts/verify-data.js` | Closes drift D1. |
+| 2026-05-07 | P2-018 | `234672c` | P2-018c: cross-reference and intentional-divergence annotations across 5 specs (premium-metadata, source-confidence, sb-set-staging, ebay-comps, graded-comps). gdr lowercased in graded-comps. | `git diff --check`; `node scripts/verify-data.js` | Closes drift C1 and divergence C2, plus annotation gaps H1/H2 reinforcement. |
+| 2026-05-07 | P2-018 | `b844e00` | P2-018d: data-model-v2 § 13 restructured to mirror source-confidence-spec § 5–8 (overall/components/flags/summary/sourceRefs/updatedAt). | `git diff --check`; `node scripts/verify-data.js` | Closes drift F1. |
+| 2026-05-07 | P2-018 | `9ef2135` | P2-018e: data-model-v2 § 4 — added "Confidence vocabulary by entity" table documenting the intentional enum divergence. | `git diff --check`; `node scripts/verify-data.js` | Closes annotation gap H1. |
 
 ## 6. Forbidden Files Until Approval
 
@@ -149,7 +155,7 @@ Data-artifact tasks later:
 
 ## 10. Next Recommended Task
 
-Next recommended task: `P2-011 Add staging directory structure, docs only first` after explicit user approval.
+Next recommended task: `P2-011 Add staging directory structure, docs only first` after explicit user approval. P2-018 (spec-tightening) is complete; no further unblocked work remains until P2-011 is approved.
 
 Do not start implementation, generated data, scraping, backend work, or UI
 badges until the relevant spec tasks are complete and the user approves the
