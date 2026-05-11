@@ -305,6 +305,8 @@ starts. They are not independent: variant matching is the through-line.
 | P3 | 8 | Q-030 .. Q-037 |
 | **Total** | **22** | — |
 
+As of 2026-05-07, no open questions have been resolved by the P2-018 spec-tightening pass. The 22-question count is unchanged; tightening fixed naming drift (D-033, D-034, D-035) and structural drift in `data-model-v2.md` § 13, but did not answer any open design question. The three P0 questions (promo namespace, image strategy, cross-source threshold) all still depend on ChatGPT/Codex strategy output plus an operator decision.
+
 ## 8. Cross-reference to other audit docs
 
 | Audit doc | Connection |
