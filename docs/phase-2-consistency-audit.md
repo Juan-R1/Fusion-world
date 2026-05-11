@@ -392,6 +392,27 @@ The audit checked every overlap of the `Required` / `Recommended` /
 
 **Severity counts:** 8 drift items, 1 divergence, 2 annotation gaps.
 
+### Resolution status (added 2026-05-07)
+
+All findings closed by the P2-018 spec-tightening pass.
+
+| ID | Severity | Closed by | Notes |
+|----|----------|-----------|-------|
+| A1 | drift | `0522bb8` (P2-018a) | `winner` → `winnerPromo` in data-model-v2 § 7 + phase-2 plan § 8; canonical form is `winnerPromo` per `premium-metadata-schema.md` § 5. |
+| A2 | drift | `0522bb8` (P2-018a) | `premiumFlags` list in data-model-v2 § 7 + phase-2 plan § 8 now defers to schema doc. |
+| B1 | drift | `0522bb8` (P2-018a) | `gradedContamination` → `rawGradedContamination` in data-model-v2 § 7. |
+| B2 | drift | `0522bb8` (P2-018a) | `riskTags` list in data-model-v2 § 7 now defers to schema doc. |
+| C1 | drift | `234672c` (P2-018c) | `GDR` (uppercase) → `gdr` (lowercase) in graded-comps spec § 6 row and § 9 prose; ebay-comps and graded-comps both annotated with canonical lowercase rule. |
+| C2 | divergence | `234672c` (P2-018c) | SB staging variant vocabulary annotated as intentionally stricter than eBay/graded; eBay annotated as intentionally broader; design intent now auditable in both specs. |
+| D1 | drift | `110d895` (P2-018b) | `company` → `gradeCompany` in graded-comps spec § 5 CSV header, § 6 field table, § 7 vocabulary note, § 15 validator rule. |
+| E1 | drift | `0522bb8` (P2-018a) | `graded_comps.sourceUrl` Required column changed from `Recommended` to `Yes`; type tightened from `nullable<string>` to `string`; Notes simplified. |
+| F1 | drift | `b844e00` (P2-018d) | data-model-v2 § 13 restructured to mirror source-confidence-spec § 5–8 (overall/components/flags/summary/sourceRefs). |
+| G1 | drift | (already resolved) | `data-model-v2.md` § 7 `sourceRefs` was already `Required` on disk; the audit row described a state that no longer existed. No commit needed. |
+| H1 | annotation gap | `9ef2135` (P2-018e) | data-model-v2 § 4 now includes a "Confidence vocabulary by entity" table documenting the intentional `excluded` / `unknown` differences. |
+| H2 | annotation gap | `234672c` (P2-018c) | Cross-references between premium-metadata § 7 riskTags and source-confidence § 8 flags added in both directions. |
+
+All 12 findings (8 drift + 1 divergence + 2 annotation gaps + G1 pre-resolved) now have a closing commit or documented prior-state resolution.
+
 ## 9. Recommended Canonical Resolutions
 
 A future Phase 2 spec-tightening task (call it **P2-018**, post-P2-017
