@@ -14,12 +14,12 @@
 | Metric | Value |
 |--------|------:|
 | Phase 2 tasks total | 18 |
-| Complete | **16** |
-| Needs user approval | **2** |
+| Complete | **17** |
+| Needs user approval | **1** |
 | Blocked | 0 |
 | Skipped | 0 |
-| **Next-up** | **P2-016** (CardDetail comps panel — sample-gated) |
-| Most recent closure | P2-015 premium metadata UI badges |
+| **Next-up** | **P2-017** (backend decision — operator-only gate) |
+| Most recent closure | P2-016 CardDetail eBay sold-comps panel |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
 Bundle 650.02 kB raw / 95.80 kB gzip (sample artifacts under `public/`
@@ -47,8 +47,8 @@ canonical checklist row.
 | P2-012 | ✅ Complete | Sample premium metadata fixture + validator | premium-metadata-schema.md | Claude | Current docs commit | `node scripts/validate-premium-metadata.js` (6 items validated); verify-data ✓ |
 | P2-013 | ✅ Complete | Sample eBay CSV fixture + validator | ebay-comps-import-spec.md | Claude | Current docs commit | `node scripts/validate-ebay-comps.js` (6 rows validated); verify-data ✓ |
 | P2-014 | ✅ Complete (sample-flagged) | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | Current docs commit | importers ✓; verify-data ✓ (9 invariants); `npm run build` ✓ (650 kB raw / 95.8 kB gzip) |
-| P2-015 | ✅ Complete | UI badges/filters (after metadata) | premium-metadata-schema.md § 12; D-043 confidence rule; D-039 GDR; D-040 treatment names | Claude/Codex | Current UI commit | `npm run build` + verify-data. Production path `/premiumMetadata.json`; sample artifact refused. |
-| P2-016 | 🟡 Needs user approval | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16; D-042 manipulation gate; D-046 aggregates on demand | Claude/Codex | — | `npm run build` + verify-data. Must gate on `_isSample === false` AND filename without `.sample.` |
+| P2-015 | ✅ Complete | UI badges/filters (after metadata) | premium-metadata-schema.md § 12; D-043 confidence rule; D-039 GDR; D-040 treatment names | Claude/Codex | `0110c23` | `npm run build` + verify-data. Production path `/premiumMetadata.json`; sample artifact refused. |
+| P2-016 | ✅ Complete | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16; D-042 manipulation gate; D-046 aggregates on demand | Claude/Codex | Current UI commit | `npm run build` + verify-data. Production path `/ebayCompsSummary.json`; sample artifact refused. |
 | P2-017 | 🟡 Needs user approval | Backend (after trigger criteria) | phase-2-data-expansion-plan.md § 9 | ChatGPT plan, Claude later | — | docs-first; verify-data |
 
 **Proposed addition (not yet in checklist):**
@@ -93,12 +93,11 @@ canonical names settled by P2-018 without doing its own reconciliation.
 
 ## 4. Approval-gate cluster
 
-Two tasks sit at "Needs user approval." Each gate has different
+One task sits at "Needs user approval." Its gate has explicit
 prerequisite conditions.
 
 | Task | Approval prerequisites |
 |------|------------------------|
-| P2-016 | **Ready.** Comps sample artifact exists at `public/ebayCompsSummary.sample.json`. UI must implement sample-gate, raw/graded separation, D-042 manipulation-risk gate (≥10 eligible comps before any label other than `unknown`), and D-046 aggregates-on-demand. |
 | P2-017 | At least one Backend Trigger Checklist item (`phase-2-execution-checklist.md` § 7) must be true. None are true today. |
 
 ## 5. Audit findings from CLA-XX (this run)

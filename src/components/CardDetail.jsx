@@ -10,6 +10,7 @@ import DeltaBadge    from './DeltaBadge.jsx'
 import RarityBadge   from './RarityBadge.jsx'
 import CardImage     from './CardImage.jsx'
 import PremiumBadges from './PremiumBadges.jsx'
+import CompsPanel    from './CompsPanel.jsx'
 
 // Small tab-button group for choosing sparkline time window
 function RangeToggle({ range, setRange }) {
@@ -356,6 +357,8 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           </div>
         )}
       </div>
+
+      <CompsPanel cardCode={card.cardCode} />
 
       {/* ── Desirability breakdown ── */}
       <div style={{ marginBottom: 16 }}>
