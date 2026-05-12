@@ -94,11 +94,19 @@ Operating principle: **make FusionMetrics unable to lie by accident.**
 
 ```bash
 # Local validation — run BOTH before any commit that touches code:
-npm run build                 # Vite build; bundle should stay ~645–646 kB raw
+npm run build                 # Vite build; bundle should stay ~660 kB raw
 node scripts/verify-data.js   # 9 invariants; must say "split shape required"
 
 # Optional dev server for UI smoke tests:
 npm run dev
+
+# Session brief — auto-runs via .claude/settings.json SessionStart hook,
+# but you can invoke it manually anytime:
+bash scripts/session-brief.sh
+# Prints: branch + HEAD + drift vs origin/main + verify-data result +
+# recent commits + Phase 3 task counts + sample-gate state. Reading
+# the brief is the cheapest way to ground a session without scrolling
+# git history. (R-002 mitigation.)
 
 # Trigger the price refresh manually (operator only — quota-aware):
 gh workflow run update-prices.yml --ref claude/dbfw-market-analytics-1qh5D \
