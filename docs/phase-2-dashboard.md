@@ -168,3 +168,21 @@ this dashboard mirrors it.
 - It is not a CI status board (CI is on GitHub Actions).
 - It is not a code-review queue.
 - It is not for tracking non-Phase-2 work (use commit history).
+
+## 10. Phase 2 Closed, Phase 3 Active
+
+Phase 2 is closed for active execution. P2-017 remains intentionally gated:
+do **not** start backend work until at least one backend trigger fires and the
+operator explicitly approves it.
+
+Phase 3 is active. Use:
+
+- `docs/phase-3-operate-and-harden.md` for the Phase 3 charter.
+- `docs/phase-3-execution-checklist.md` for the active task ledger.
+
+Immediate Phase 3 order:
+
+1. Complete P3-004 / P3-005 / P3-006 small wins in one additive code commit.
+2. Keep P3-008, P3-010, P3-011, and P3-012 operator-only.
+3. Do not run workflows, JustTCG, marketplace automation, or backend tasks
+   during Phase 3 small-win work.
