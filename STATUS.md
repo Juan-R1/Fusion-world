@@ -3,7 +3,7 @@
 **Date:** 2026-05-12
 **Branch:** `claude/dbfw-market-analytics-1qh5D`
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 2 importer landing (15/18 tasks complete). P2-015 (UI badges) is the next operator gate; Codex handoff prompt staged in `docs/operator-handbook.md`.
+**Phase:** Phase 2 UI consumption landing (17/18 tasks complete). P2-017 (backend decision) remains operator-only and is not approved.
 
 ---
 
@@ -16,13 +16,12 @@ questions closed** plus 10 additional P1/P2 closures from the 2026-05-12
 consolidated decision run (D-038..D-047). The app uses real JustTCG live
 prices, real JustTCG 30d history, visible provenance, per-card freshness,
 Methodology copy disclosing R² = 0.32 plus smoothed UC / extrapolated SPR /
-single-source caveats, Set-Level Analytics, tightened Box EV language, and
-Watchlist v2 local portfolio fields. Phase 2 specs are internally
-consistent (P2-018 closed 8 drift items). Decision log now at 47 entries
-(D-001 — D-047). The next operator gates are **P2-015** (UI badges
-consuming `public/premiumMetadata.sample.json` via sample-gate) and
-**P2-016** (CardDetail comps panel consuming
-`public/ebayCompsSummary.sample.json`) — Codex handoff prompt below.
+single-source caveats, Set-Level Analytics, tightened Box EV language,
+Watchlist v2 local portfolio fields, sample-gated premium metadata badges,
+and a sample-gated CardDetail eBay sold-comps panel. Phase 2 specs are
+internally consistent (P2-018 closed 8 drift items). Decision log now at 47
+entries (D-001 — D-047). The only remaining Phase 2 task is **P2-017**
+(backend decision), and no backend trigger condition has fired.
 
 ---
 
@@ -44,14 +43,16 @@ consuming `public/premiumMetadata.sample.json` via sample-gate) and
 | Box EV | Approximate assumptions, input quality, and cautious model verdict copy complete |
 | Watchlist | Local v2 portfolio fields: quantity, entry price, current value, Unrealized P/L |
 | Data verification | `scripts/verify-data.js` requires split shape only |
-| Bundle | ~650 kB raw / ~95 kB gzip after Codex Methodology disclosures |
+| Bundle | ~660 kB raw / ~99 kB gzip after sample-gated UI consumption layers |
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 | Phase 2 spec drift | **Closed** (P2-018 — 5 commits, all 8 drift items resolved) |
 | Methodology trust disclosures | **Live** (commit `02e9733`) — R², smoothed UC, extrapolated SPR, single-source explicitly stated |
-| Phase 2 progress | **15 / 18 tasks complete**; next-up is P2-015 (UI badges) + P2-016 (comps panel) — Codex handoff |
+| Phase 2 progress | **17 / 18 tasks complete**; next-up is P2-017 (backend decision, operator-only) |
 | Premium metadata fixture | **Live** (`313fa55`) — 6 illustrative rows + `scripts/validate-premium-metadata.js` |
 | eBay sold comps fixture | **Live** (`9153ad6`) — 6 sample rows + `scripts/validate-ebay-comps.js`; no scraping |
 | P2-014 importer | **Live** (`6c24fa1`) — `scripts/import-premium-metadata.js`, `scripts/import-ebay-comps.js` emit `public/premiumMetadata.sample.json` + `public/ebayCompsSummary.sample.json`. Sample-flag contract: `_isSample: true` + `.sample.json` filename gate; production UI must NOT consume. |
+| P2-015 premium metadata UI | **Live** (`0110c23`) — UI fetches `/premiumMetadata.json` only, refuses `_isSample`, and renders no badges until a production artifact exists. |
+| P2-016 eBay comps panel | **Live** (`178a00a`) — CardDetail fetches `/ebayCompsSummary.json` only, refuses `_isSample`, separates raw/graded comps, and renders awaiting-fixture copy until production comps exist. |
 | Promo namespace decision (Q-001) | **Closed D-036** — three-tier scheme; see `docs/promo-namespace-decision.md` |
 | Cross-source variance thresholds (Q-003) | **Closed D-037** — base 15%/35% + per-rarity adjustments; see `docs/cross-source-threshold-decision.md` |
 | Image strategy (Q-002) | **Closed D-038** — icons-only default; Option C upgrade path on three named triggers; see `docs/image-coverage-strategy.md` |
@@ -65,6 +66,8 @@ Most recent first (latest dev-branch head):
 
 | SHA | Subject |
 |-----|---------|
+| `178a00a` | feat: P2-016 — CardDetail eBay sold-comps panel (sample-gated) |
+| `0110c23` | feat: P2-015 — premium metadata UI badges (sample-gated) |
 | `6c24fa1` | feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts |
 | `d429b38` | docs: close Q-002/Q-011..Q-024 — D-038..D-047 consolidated closure |
 | `79cd1c8` | docs: housekeeping refresh post-P2-012/P2-013/Q-001/Q-002/Q-003 |
@@ -96,8 +99,8 @@ Most recent first (latest dev-branch head):
   fires. See `docs/image-coverage-strategy.md`.
 - **R-018 Single-source dependency on JustTCG.** Methodology page now
   discloses this explicitly. D-041 (manual eBay first sold-comp) is the
-  first structural mitigation; implementation gated on P2-015 / P2-016
-  consumption layer.
+  first structural mitigation; the P2-015 / P2-016 consumption layers are
+  complete, but production comps data remains intentionally gated.
 - **R-020 Plausible analytics never reviewed.** Tag has been live since
   `01daa2e`; nobody has read the dashboard. A 15-minute review would
   unblock honest user-behavior decisions.
@@ -136,10 +139,8 @@ Most recent first (latest dev-branch head):
 
 ## Recommended next sequence
 
-1. **Hand the Codex prompt below (`docs/operator-handbook.md` § P2-15/16
-   handoff) to Codex CLI** to build P2-015 (UI badges) and P2-016
-   (CardDetail comps panel). Both consume sample-flagged artifacts
-   under the strict `_isSample === false` + `.sample.` filename gate.
+1. **Do not start P2-017 backend work** unless at least one Backend Trigger
+   Checklist condition fires and the operator explicitly approves it.
 2. **Read Plausible analytics dashboard** once (R-020 mitigation; 15
    minutes). Pre-staged checklist in `docs/operator-handbook.md` § 5.
 3. Capture portfolio screenshots and record a short demo flow.

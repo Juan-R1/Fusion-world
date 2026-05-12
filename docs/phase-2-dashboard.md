@@ -1,6 +1,6 @@
 # Phase 2 Progress Dashboard
 
-**Last refreshed:** 2026-05-12 (post-P2-014 importer + D-038..D-047 closure run)
+**Last refreshed:** 2026-05-12 (post-P2-015 + P2-016 sample-gated UI run)
 **Audit task:** CLA-05 of the Claude Code architectural-audit run; refreshed CLA-22 + CLA-34 + CLA-36
 **Snapshot baseline:** `d429b38 docs: close Q-002/Q-011..Q-024 — D-038..D-047 consolidated closure`
 
@@ -22,8 +22,8 @@
 | Most recent closure | P2-016 CardDetail eBay sold-comps panel |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
-Bundle 650.02 kB raw / 95.80 kB gzip (sample artifacts under `public/`
-are static assets, not bundled).
+Bundle 660.00 kB raw / 98.79 kB gzip after sample-gated UI consumption
+layers. Sample artifacts under `public/` remain static assets, not bundled.
 
 ## 2. Status table
 
@@ -48,7 +48,7 @@ canonical checklist row.
 | P2-013 | ✅ Complete | Sample eBay CSV fixture + validator | ebay-comps-import-spec.md | Claude | Current docs commit | `node scripts/validate-ebay-comps.js` (6 rows validated); verify-data ✓ |
 | P2-014 | ✅ Complete (sample-flagged) | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | Current docs commit | importers ✓; verify-data ✓ (9 invariants); `npm run build` ✓ (650 kB raw / 95.8 kB gzip) |
 | P2-015 | ✅ Complete | UI badges/filters (after metadata) | premium-metadata-schema.md § 12; D-043 confidence rule; D-039 GDR; D-040 treatment names | Claude/Codex | `0110c23` | `npm run build` + verify-data. Production path `/premiumMetadata.json`; sample artifact refused. |
-| P2-016 | ✅ Complete | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16; D-042 manipulation gate; D-046 aggregates on demand | Claude/Codex | Current UI commit | `npm run build` + verify-data. Production path `/ebayCompsSummary.json`; sample artifact refused. |
+| P2-016 | ✅ Complete | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16; D-042 manipulation gate; D-046 aggregates on demand | Claude/Codex | `178a00a` | `npm run build` + verify-data. Production path `/ebayCompsSummary.json`; sample artifact refused. |
 | P2-017 | 🟡 Needs user approval | Backend (after trigger criteria) | phase-2-data-expansion-plan.md § 9 | ChatGPT plan, Claude later | — | docs-first; verify-data |
 
 **Proposed addition (not yet in checklist):**
@@ -127,7 +127,8 @@ Live state pulled from `docs/risk-register.md` § 9:
    preflight. Active discipline issue.
 3. **R-018** Single-source dependency on JustTCG → P2 → monitored;
    D-041 (manual eBay first sold-comp) is the first structural
-   mitigation step. Implementation gated on P2-015 / P2-016.
+   mitigation step. P2-015 / P2-016 consumption layers are complete;
+   production comps data remains intentionally gated.
 
 Closed this cycle: R-001 (P2-018), R-017 (D-038), R-036 (Codex
 `02e9733`); Q-001 (D-036), Q-002 (D-038), Q-003 (D-037),
