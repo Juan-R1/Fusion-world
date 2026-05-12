@@ -1,8 +1,8 @@
 # Phase 2 Progress Dashboard
 
-**Last refreshed:** 2026-05-11 (post-P2-012 / P2-013 / Q-001 / Q-003)
-**Audit task:** CLA-05 of the Claude Code architectural-audit run; refreshed CLA-22 + CLA-34
-**Snapshot baseline:** `68946c9 docs: Q-002 image strategy proposal (icons-only default, Option C upgrade path)`
+**Last refreshed:** 2026-05-12 (post-P2-014 importer + D-038..D-047 closure run)
+**Audit task:** CLA-05 of the Claude Code architectural-audit run; refreshed CLA-22 + CLA-34 + CLA-36
+**Snapshot baseline:** `d429b38 docs: close Q-002/Q-011..Q-024 — D-038..D-047 consolidated closure`
 
 > Designed as the operator's daily heads-up display. Replaces the need
 > to grep `phase-2-execution-checklist.md` to find out "what's next."
@@ -14,15 +14,16 @@
 | Metric | Value |
 |--------|------:|
 | Phase 2 tasks total | 18 |
-| Complete | **14** |
-| Needs user approval | **4** |
+| Complete | **15** |
+| Needs user approval | **3** |
 | Blocked | 0 |
 | Skipped | 0 |
-| **Next-up** | **P2-014** (importer — approval required; biggest remaining gate) |
-| Most recent closure | P2-013 eBay sold comps fixture + validator |
+| **Next-up** | **P2-015** (UI badges — approval required; consumes `public/premiumMetadata.sample.json` only after sample-gate is built) |
+| Most recent closure | P2-014 importer (sample-flagged artifacts) + D-038..D-047 (10 decisions) |
 
 Working tree clean. `verify-data.js` passes (split shape, 9 invariants).
-Bundle 647.93 kB raw / 94.94 kB gzip.
+Bundle 650.02 kB raw / 95.80 kB gzip (sample artifacts under `public/`
+are static assets, not bundled).
 
 ## 2. Status table
 
@@ -45,9 +46,9 @@ canonical checklist row.
 | **P2-011** | ✅ Complete | Staging directory scaffold (docs only) | — | Codex/Claude | Current docs commit | docs-only; verify-data ✓ |
 | P2-012 | ✅ Complete | Sample premium metadata fixture + validator | premium-metadata-schema.md | Claude | Current docs commit | `node scripts/validate-premium-metadata.js` (6 items validated); verify-data ✓ |
 | P2-013 | ✅ Complete | Sample eBay CSV fixture + validator | ebay-comps-import-spec.md | Claude | Current docs commit | `node scripts/validate-ebay-comps.js` (6 rows validated); verify-data ✓ |
-| P2-014 | 🟡 Needs user approval | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | — | `node --check`, validator, verify-data, `npm run build` |
-| P2-015 | 🟡 Needs user approval | UI badges/filters (after metadata) | premium-metadata-schema.md § 12 | Claude/Codex | — | `npm run build` + verify-data |
-| P2-016 | 🟡 Needs user approval | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16 | Claude/Codex | — | `npm run build` + verify-data |
+| P2-014 | ✅ Complete (sample-flagged) | Importer (after fixtures/specs) | expanded-data-validation-plan.md | Claude | Current docs commit | importers ✓; verify-data ✓ (9 invariants); `npm run build` ✓ (650 kB raw / 95.8 kB gzip) |
+| P2-015 | 🟡 Needs user approval | UI badges/filters (after metadata) | premium-metadata-schema.md § 12; D-043 confidence rule; D-039 GDR; D-040 treatment names | Claude/Codex | — | `npm run build` + verify-data. Must gate on `_isSample === false` AND filename without `.sample.` |
+| P2-016 | 🟡 Needs user approval | CardDetail comps panel (after comps) | ebay-comps-import-spec.md § 15, graded-comps-spec.md § 16; D-042 manipulation gate; D-046 aggregates on demand | Claude/Codex | — | `npm run build` + verify-data. Must gate on `_isSample === false` AND filename without `.sample.` |
 | P2-017 | 🟡 Needs user approval | Backend (after trigger criteria) | phase-2-data-expansion-plan.md § 9 | ChatGPT plan, Claude later | — | docs-first; verify-data |
 
 **Proposed addition (not yet in checklist):**
@@ -92,14 +93,13 @@ canonical names settled by P2-018 without doing its own reconciliation.
 
 ## 4. Approval-gate cluster
 
-Six tasks sit at "Needs user approval." Each gate has different
+Three tasks sit at "Needs user approval." Each gate has different
 prerequisite conditions.
 
 | Task | Approval prerequisites |
 |------|------------------------|
-| P2-014 | Importer language/style decided (script vs. build step). Validators already exist (`scripts/validate-premium-metadata.js`, `scripts/validate-ebay-comps.js`). R-001 drift was resolved by P2-018. Largest remaining gate — touches generated-artifact path. |
-| P2-015 | Premium metadata artifact must exist on disk (post P2-012). UI copy reviewed against the forbidden-language list. |
-| P2-016 | Comps artifact must exist on disk (post P2-013). Raw/graded separation enforced in UI. |
+| P2-015 | **Ready.** Premium metadata sample artifact exists at `public/premiumMetadata.sample.json`. UI must implement the sample-gate (`_isSample === false` AND filename without `.sample.`) BEFORE consuming. UI copy must follow forbidden-language list and D-043 two-tier confidence rule. |
+| P2-016 | **Ready.** Comps sample artifact exists at `public/ebayCompsSummary.sample.json`. UI must implement sample-gate, raw/graded separation, D-042 manipulation-risk gate (≥10 eligible comps before any label other than `unknown`), and D-046 aggregates-on-demand. |
 | P2-017 | At least one Backend Trigger Checklist item (`phase-2-execution-checklist.md` § 7) must be true. None are true today. |
 
 ## 5. Audit findings from CLA-XX (this run)
@@ -113,8 +113,8 @@ these docs:
 | [`docs/risk-register.md`](./risk-register.md) | 29 ranked risks; R-001 closed by P2-018 and R-036 closed by Codex `02e9733`. P0 open count is now **0**. |
 | [`docs/test-coverage-gap-analysis.md`](./test-coverage-gap-analysis.md) | 20 proposed Vitest cases, tiered P3 until operator-approved. |
 | [`docs/bundle-audit-2026-05-07.md`](./bundle-audit-2026-05-07.md) | 5 reduction strategies; recommends S2 (code-split tabs) as the near-term move. |
-| [`docs/decision-log.md`](./decision-log.md) | 35 architectural decisions (32 from prior sessions + D-033/D-034/D-035 from P2-018). |
-| [`docs/open-questions.md`](./open-questions.md) | 22 unresolved questions; none closed by P2-018; the 3 P0 questions still depend on ChatGPT/Codex strategy plus operator decision. |
+| [`docs/decision-log.md`](./decision-log.md) | 47 architectural decisions (32 init + D-033..D-035 P2-018 + D-036/D-037 Q-001/Q-003 + D-038..D-047 consolidated closure run 2026-05-12). |
+| [`docs/open-questions.md`](./open-questions.md) | 22 questions tracked: **13 closed** (Q-001, Q-002, Q-003, Q-011..Q-015, Q-020, Q-022..Q-024, Q-035) / **9 open** (Q-010, Q-021, Q-030, Q-031, Q-032, Q-033, Q-034, Q-036, Q-037). All P0 closed. |
 | [`docs/methodology-review.md`](./methodology-review.md) | 10 trust-disclosure gaps; **all 6 proposed edits shipped by Codex commit `02e9733`**. |
 
 ## 6. Top-3 risks (from risk register)
@@ -122,20 +122,21 @@ these docs:
 Live state pulled from `docs/risk-register.md` § 9:
 
 1. **R-020** Plausible analytics blind spot → P1 → mitigation = 15-minute
-   weekly read of the Plausible dashboard; nothing automated yet. Now
-   the top open risk after R-001, R-017 (proposal), and R-036 closed.
+   weekly read of the Plausible dashboard; nothing automated yet. Top
+   open risk.
 2. **R-002** Agent reality-drift (claimed vs actually done) → P0 →
    mitigation = checklist as source of truth + `git fetch --all`
    preflight. Active discipline issue.
-3. **Open questions Q-002** Image strategy proposal pending operator
-   confirmation. Defaults to icons-only via
-   `docs/image-coverage-strategy.md` until operator confirms or
-   counter-proposes.
+3. **R-018** Single-source dependency on JustTCG → P2 → monitored;
+   D-041 (manual eBay first sold-comp) is the first structural
+   mitigation step. Implementation gated on P2-015 / P2-016.
 
-Closed this cycle: R-001 (P2-018), R-036 (Codex `02e9733`),
-Q-001 (D-036), Q-003 (D-037). R-017 image-licensing exposure is
-**mitigated by proposal** in `docs/image-coverage-strategy.md` (icons-
-only default); status reverts to fully closed when operator confirms.
+Closed this cycle: R-001 (P2-018), R-017 (D-038), R-036 (Codex
+`02e9733`); Q-001 (D-036), Q-002 (D-038), Q-003 (D-037),
+Q-011..Q-015 (D-039..D-043), Q-020 (D-044), Q-022..Q-024
+(D-045..D-047). Image-licensing exposure: fully closed under current
+scope; re-opens automatically if any of the three Option-C upgrade
+triggers fires.
 
 ## 7. How to read this dashboard
 

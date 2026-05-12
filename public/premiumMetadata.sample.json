@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "_isSample": true,
+  "_disclaimer": "ILLUSTRATIVE SAMPLE ONLY. Not consumed by production UI. Not financial advice. Every row is manualReviewOnly. See data-staging/premium-metadata/README.md.",
+  "generatedAt": "2026-05-12T06:17:47.615Z",
+  "sourceFixture": "data-staging/premium-metadata/sample.json",
+  "rowCount": 6,
+  "items": {
+    "FB01-001": {
+      "cardCode": "FB01-001",
+      "premiumFlags": [
+        "sealedChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "low",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "unknown",
+        "confidence": "low",
+        "sourceRefs": [],
+        "notes": "No reviewed graded comps yet."
+      },
+      "notes": "Illustrative: Son Goku set-opener Leader from FB01. Sealed-chase context requires source confirmation.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    "FB02-139": {
+      "cardCode": "FB02-139",
+      "premiumFlags": [
+        "secretRareChase",
+        "sealedChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter",
+        "setChase"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "medium",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "unknown",
+        "confidence": "low",
+        "sourceRefs": [],
+        "notes": "No reviewed graded comps yet."
+      },
+      "notes": "Illustrative: Vegito SCR from Blazing Aura. Fusion-character classification supported by card identity.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    "FB03-009": {
+      "cardCode": "FB03-009",
+      "premiumFlags": [
+        "secretRareChase"
+      ],
+      "collectorTags": [
+        "villainCharacter",
+        "setChase"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "thinMarket"
+      ],
+      "confidence": "low",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Population data not reviewed."
+      },
+      "notes": "Illustrative: Jiren SCR from Raging Roar. Thin-market caveat reflects sample-data uncertainty.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    "FB06-001": {
+      "cardCode": "FB06-001",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "fanFavorite"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "low",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "unknown",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "No reviewed graded comps yet."
+      },
+      "notes": "Illustrative: Android 18 Leader from Rivals Clash. Empty premiumFlags demonstrates a negative-review row.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    "FB09-121": {
+      "cardCode": "FB09-121",
+      "premiumFlags": [
+        "gogetaChase",
+        "secretRareChase",
+        "sealedChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter",
+        "setChase",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity",
+        "thinMarket"
+      ],
+      "confidence": "medium",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "candidate",
+        "confidence": "low",
+        "sourceRefs": [
+          "manual-review"
+        ],
+        "notes": "Candidate for grading review once population data is reviewed."
+      },
+      "notes": "Illustrative: Gogeta:BR SCR from Dual Evolution. Multiple chase tags reflect fusion-character + recent-release context.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    "FB09-123": {
+      "cardCode": "FB09-123",
+      "premiumFlags": [
+        "gogetaChase",
+        "secretRareChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter",
+        "nostalgiaAppeal",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "low",
+      "sourceRefs": [
+        "manual-review"
+      ],
+      "gradeUpside": {
+        "status": "unknown",
+        "confidence": "low",
+        "sourceRefs": [],
+        "notes": "No reviewed graded comps yet."
+      },
+      "notes": "Illustrative: Gogeta:GT SCR from Dual Evolution. Nostalgia tag reflects GT subseries context.",
+      "updatedAt": "2026-05-11T00:00:00.000Z"
+    }
+  }
+}

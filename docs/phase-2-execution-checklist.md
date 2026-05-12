@@ -56,7 +56,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | P2-011 | Complete | Add staging directory structure, docs only first | Codex/Claude | New docs-approved staging paths only | `git diff --check`; `node scripts/verify-data.js` | Empty or README-only staging structure exists and explains that no generated data is active yet. | Approved and executed by operator via the post-P2-018 Codex prompt. |
 | P2-012 | Complete | Build sample premium metadata file only after approval | Claude/Codex | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Tiny sample fixture exists and validates. | Approved by operator via operator-handbook § 2. Sample fixture + validator only. Not consumed by app. |
 | P2-013 | Complete | Build sample eBay CSV fixture only after approval | Codex/Claude | Approved staging fixture path only | Dedicated validator required before merge; `node scripts/verify-data.js` | Manual sample fixture exists with source URLs and confidence labels. | Approved by operator via operator-handbook § 3. Sample fixture + validator only. No scraping. Not consumed by app. |
-| P2-014 | Needs user approval | Build importer only after fixture/spec approval | Claude | New importer path approved by user | `node --check` for importer; dedicated validator; `node scripts/verify-data.js`; `npm run build` if app contract changes | Importer reads sample fixture and writes only approved generated artifact path. | No active UI consumption until validated. |
+| P2-014 | Complete (sample-flagged) | Build importer only after fixture/spec approval | Claude | `scripts/import-premium-metadata.js`, `scripts/import-ebay-comps.js`, emitted artifacts at `public/premiumMetadata.sample.json`, `public/ebayCompsSummary.sample.json` | `node --check` (passed); validator subprocess (✓); `node scripts/verify-data.js` (✓ 9 invariants); `npm run build` (✓ 650 kB raw / 95.8 kB gzip — unchanged because `.sample.json` is a static asset, not bundled) | Importer runs upstream validator, reads sample fixture, writes sample-flagged artifact under `public/`. Emitted artifacts carry `_isSample: true` + `_disclaimer` so production UI must NOT consume them. Per D-046 aggregates computed on demand. | Sample artifacts only; production UI consumption blocked by `.sample.` filename gate + `_isSample` field check in P2-015 / P2-016. |
 | P2-015 | Needs user approval | Add UI badges/filters only after metadata exists | Claude/Codex | Specific `src/` files named by user | `npm run build`; `node scripts/verify-data.js` | Premium tags appear with cautious copy and no investment certainty. | Requires metadata artifact first. |
 | P2-016 | Needs user approval | Add CardDetail comps panel only after comps artifact exists | Claude/Codex | Specific `src/` files named by user | `npm run build`; `node scripts/verify-data.js` | Comps panel separates raw/graded, variants, confidence, and outliers. | Requires comps artifact first. |
 | P2-017 | Needs user approval | Consider backend only after trigger criteria are met | ChatGPT plan, Claude later | Docs only until approved | `git diff --check`; `node scripts/verify-data.js` | Backend decision record states trigger met, stack choice, migration plan, cost/risk, and rollback path. | Backend is not approved now. |
@@ -84,6 +84,7 @@ Phase 2 is about stronger data first, not stronger claims first.
 | 2026-05-11 | P2-011 | Current docs commit | Added `data-staging/README.md` and `data-staging/.gitkeep`; marked P2-011 complete. | `git diff --check`; `node scripts/verify-data.js` | Creates the empty staging scaffold only. No fixtures, validators, generated artifacts, external calls, or backend work. |
 | 2026-05-11 | P2-012 | Current docs commit | Added `data-staging/premium-metadata/sample.json`, `data-staging/premium-metadata/README.md`, `scripts/validate-premium-metadata.js`. 6 illustrative rows, all `manualReviewOnly`. | `node scripts/validate-premium-metadata.js` (✓ 6 items validated); `node scripts/verify-data.js` (✓ 9 invariants) | Sample fixture only; not consumed by app. Validator gates all future moves toward generated artifact. |
 | 2026-05-11 | P2-013 | Current docs commit | Added `data-staging/ebay-comps/ebay-sold-comps.csv`, `data-staging/ebay-comps/README.md`, `scripts/validate-ebay-comps.js`. 6 illustrative rows: raw, graded, ambiguous, lot/outlier. Placeholder listingIds and sourceUrls only. | `node scripts/validate-ebay-comps.js` (✓ 6 comp rows validated); `node scripts/verify-data.js` (✓ 9 invariants) | Sample fixture only; not consumed by app. No scraping. Validator enforces raw/graded separation, enum vocabulary, forbidden-language check on notes. |
+| 2026-05-12 | P2-014 | Current docs commit | Added `scripts/import-premium-metadata.js`, `scripts/import-ebay-comps.js`. Emitted `public/premiumMetadata.sample.json` (6 items) + `public/ebayCompsSummary.sample.json` (6 rows across 5 cards). Both artifacts carry `_isSample: true` and `_disclaimer`. Per D-046, aggregates computed on demand by consumer. | `node scripts/import-premium-metadata.js` (✓); `node scripts/import-ebay-comps.js` (✓); `node scripts/verify-data.js` (✓ 9 invariants); `npm run build` (✓ 650 kB raw / 95.8 kB gzip — unchanged) | Sample-flagged artifacts only. Production UI (P2-015 / P2-016) MUST gate on `_isSample === false` AND filename without `.sample.` before consuming. Approved by operator's "approving everything you are capable of implementing" mandate (2026-05-12). |
 
 ## 6. Forbidden Files Until Approval
 
@@ -158,8 +159,15 @@ Data-artifact tasks later:
 
 ## 10. Next Recommended Task
 
-Next recommended task: `P2-014 Build importer only after fixture/spec approval` — still operator-approval-required.
+Next recommended task: **`P2-015` (UI badges/filters) — operator-approval-
+required, Codex handoff prompt staged in `docs/operator-handbook.md`.**
+The sample-flagged artifact `public/premiumMetadata.sample.json` is on
+disk; P2-015 must build the consumption layer in `src/` and the
+production gate (`_isSample === false` + filename without `.sample.`).
+`P2-016` (CardDetail comps panel) follows the same pattern against
+`public/ebayCompsSummary.sample.json`.
 
-Do not start implementation, generated data, scraping, backend work, or UI
-badges until the relevant spec tasks are complete and the user approves the
-next implementation step.
+Do not start production-fixture generated data, scraping, backend
+work, or UI consumption of `.sample.` artifacts until the relevant
+spec tasks are complete and the user approves the next implementation
+step.
