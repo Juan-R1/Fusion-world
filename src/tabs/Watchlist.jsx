@@ -52,6 +52,35 @@ function plColor(value) {
   return T.muted
 }
 
+function csvCell(value) {
+  const text = value == null ? '' : String(value)
+  return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text
+}
+
+function exportWatchlistCsv(positions) {
+  const header = ['cardCode', 'name', 'set', 'rarity', 'quantity', 'entryPrice', 'currentValue', 'pl']
+  const rows = positions.map(row => [
+    row.card.cardCode,
+    row.card.name,
+    row.card.set || row.card.setCode || row.card.cardCode?.split('-')[0] || '',
+    row.card.rarity,
+    row.quantity,
+    row.entryPrice.toFixed(2),
+    row.currentValue.toFixed(2),
+    row.pl.toFixed(2),
+  ])
+  const csv = [header, ...rows].map(row => row.map(csvCell).join(',')).join('\n')
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `fusion-watchlist-${new Date().toISOString().slice(0, 10)}.csv`
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  URL.revokeObjectURL(url)
+}
+
 function priceFreshness(card, now) {
   if (!card?.hasLivePrice || !card.priceTimestamp) {
     return { label: 'Unknown', detail: card?.hasLivePrice ? 'No timestamp' : 'EST price', color: T.dim, border: 'rgba(100,116,139,0.35)', bg: 'rgba(100,116,139,0.12)' }
@@ -179,6 +208,22 @@ export default function Watchlist({
             the <strong style={{ color: T.text }}>Value Scanner</strong> to add it here.
             Your watchlist is saved locally in this browser.
           </div>
+          <button
+            disabled
+            style={{
+              marginTop: 18,
+              background: T.s2,
+              border: `1px solid ${T.border}`,
+              color: T.dim,
+              borderRadius: 6,
+              padding: '8px 14px',
+              fontSize: 13,
+              fontFamily: T.display,
+              opacity: 0.55,
+            }}
+          >
+            Export CSV
+          </button>
         </div>
       </div>
     )
@@ -236,6 +281,24 @@ export default function Watchlist({
             Unrealized P/L is based on current FusionMetrics price. EST rows use model-estimated prices.
           </div>
           {!isMobile && <div style={{ flex: 1 }} />}
+          <button
+            onClick={() => exportWatchlistCsv(positions)}
+            disabled={positions.length === 0}
+            style={{
+              background: positions.length === 0 ? T.s2 : 'rgba(249,115,22,0.12)',
+              border: `1px solid ${positions.length === 0 ? T.border : 'rgba(249,115,22,0.42)'}`,
+              color: positions.length === 0 ? T.dim : T.orange,
+              cursor: positions.length === 0 ? 'not-allowed' : 'pointer',
+              borderRadius: 6,
+              padding: '8px 14px',
+              fontSize: 13,
+              fontFamily: T.display,
+              fontWeight: 700,
+              flexShrink: 0,
+            }}
+          >
+            Export CSV
+          </button>
           <button
             onClick={handleClear}
             style={{
