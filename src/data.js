@@ -36,19 +36,19 @@ const LIVE_MAP = new Map(LIVE_RAW.map(e => [e.cardCode, e]))
 
 export const HAS_LIVE_PRICES = LIVE_MAP.size > 0
 
-// ── Calibrated rarity base prices (geometric means from 1,156 real prices) ──
+// ── Calibrated rarity base prices (geometric means from 1,156 real prices; refreshed 2026-05-12) ──
 // SPR extrapolated via log-linear pull-rate trend (no SPR price data available).
 // UC smoothed upward from noisy 27-card sample to enforce C < UC < R ordering.
 const RARITY_BASE_PRICE = {
-  L:   0.2304,
-  C:   0.1598,
+  L:   0.2255,
+  C:   0.1584,
   UC:  0.2000,   // smoothed (27-card sample was below C; enforced C < UC < R)
-  R:   0.2440,
-  SR:  1.1144,
-  SCR: 12.9869,
+  R:   0.2308,
+  SR:  1.2063,
+  SCR: 12.3184,
   SPR: 24.99,    // extrapolated via log-linear pull-rate trend
 }
-const CHAR_PREMIUM_BETA = 0.0803   // within-rarity charPremium effect (OLS, R²=0.32)
+const CHAR_PREMIUM_BETA = 0.0731   // within-rarity charPremium effect (OLS, R²≈0.32)
 const MEAN_CHAR_PREMIUM = 5.9386   // global mean charPremium across 1,156 priced cards
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
