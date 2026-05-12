@@ -1,25 +1,28 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-11
+**Date:** 2026-05-12
 **Branch:** `claude/dbfw-market-analytics-1qh5D`
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 2 fixture layer landing (14/18 tasks complete). P2-014 importer is the next operator gate.
+**Phase:** Phase 2 importer landing (15/18 tasks complete). P2-015 (UI badges) is the next operator gate; Codex handoff prompt staged in `docs/operator-handbook.md`.
 
 ---
 
 ## TL;DR
 
-FusionMetrics now has a durable trust foundation, the full Phase 2 spec set,
-two sample fixtures with validators in `data-staging/`, and two of three P0
-open questions closed by Claude-authored decisions. The app uses real
-JustTCG live prices, real JustTCG 30d history, visible provenance, per-card
-freshness, Methodology copy disclosing R² = 0.32 plus smoothed UC /
-extrapolated SPR / single-source caveats, Set-Level Analytics, tightened Box
-EV language, and Watchlist v2 local portfolio fields. Phase 2 specs are
-internally consistent (P2-018 closed 8 drift items). Canonical naming
-decisions: D-033 — D-037 in `docs/decision-log.md`. The next operator gate
-is P2-014 (importer) — touches the generated-artifact path, requires
-explicit approval.
+FusionMetrics has a durable trust foundation, the full Phase 2 spec set,
+two sample fixtures with validators in `data-staging/`, the P2-014 importer
+emitting sample-flagged artifacts under `public/`, and **all P0 open
+questions closed** plus 10 additional P1/P2 closures from the 2026-05-12
+consolidated decision run (D-038..D-047). The app uses real JustTCG live
+prices, real JustTCG 30d history, visible provenance, per-card freshness,
+Methodology copy disclosing R² = 0.32 plus smoothed UC / extrapolated SPR /
+single-source caveats, Set-Level Analytics, tightened Box EV language, and
+Watchlist v2 local portfolio fields. Phase 2 specs are internally
+consistent (P2-018 closed 8 drift items). Decision log now at 47 entries
+(D-001 — D-047). The next operator gates are **P2-015** (UI badges
+consuming `public/premiumMetadata.sample.json` via sample-gate) and
+**P2-016** (CardDetail comps panel consuming
+`public/ebayCompsSummary.sample.json`) — Codex handoff prompt below.
 
 ---
 
@@ -45,12 +48,14 @@ explicit approval.
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 | Phase 2 spec drift | **Closed** (P2-018 — 5 commits, all 8 drift items resolved) |
 | Methodology trust disclosures | **Live** (commit `02e9733`) — R², smoothed UC, extrapolated SPR, single-source explicitly stated |
-| Phase 2 progress | **14 / 18 tasks complete**; next-up is P2-014 importer (operator approval required) |
+| Phase 2 progress | **15 / 18 tasks complete**; next-up is P2-015 (UI badges) + P2-016 (comps panel) — Codex handoff |
 | Premium metadata fixture | **Live** (`313fa55`) — 6 illustrative rows + `scripts/validate-premium-metadata.js` |
 | eBay sold comps fixture | **Live** (`9153ad6`) — 6 sample rows + `scripts/validate-ebay-comps.js`; no scraping |
+| P2-014 importer | **Live** (`6c24fa1`) — `scripts/import-premium-metadata.js`, `scripts/import-ebay-comps.js` emit `public/premiumMetadata.sample.json` + `public/ebayCompsSummary.sample.json`. Sample-flag contract: `_isSample: true` + `.sample.json` filename gate; production UI must NOT consume. |
 | Promo namespace decision (Q-001) | **Closed D-036** — three-tier scheme; see `docs/promo-namespace-decision.md` |
 | Cross-source variance thresholds (Q-003) | **Closed D-037** — base 15%/35% + per-rarity adjustments; see `docs/cross-source-threshold-decision.md` |
-| Image strategy proposal (Q-002) | **Active proposal** in `docs/image-coverage-strategy.md`; default = icons-only; awaits operator confirm |
+| Image strategy (Q-002) | **Closed D-038** — icons-only default; Option C upgrade path on three named triggers; see `docs/image-coverage-strategy.md` |
+| P1/P2 decision sweep | **Closed D-039..D-047** (2026-05-12) — GDR is a premiumFlag (Q-011), Bandai canonical for treatment names (Q-012), manual eBay first sold-comp source (Q-013), ≥10 eligible comps for manipulation-risk label (Q-014), two-tier confidence rule for badges (Q-015), `boxTopHit` derived at runtime (Q-020), per-grader public reports + default `populationKnown=false` (Q-022), comps aggregates on demand (Q-023), sealed-price freshness = 30 days (Q-024) |
 
 ---
 
@@ -60,6 +65,9 @@ Most recent first (latest dev-branch head):
 
 | SHA | Subject |
 |-----|---------|
+| `6c24fa1` | feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts |
+| `d429b38` | docs: close Q-002/Q-011..Q-024 — D-038..D-047 consolidated closure |
+| `79cd1c8` | docs: housekeeping refresh post-P2-012/P2-013/Q-001/Q-002/Q-003 |
 | `68946c9` | docs: Q-002 image strategy proposal (icons-only default, Option C upgrade path) |
 | `d26ba1b` | docs: Q-003 closure — cross-source variance thresholds (D-037) |
 | `c2c7ae2` | docs: Q-001 closure — promo namespace decision (D-036) |
@@ -71,7 +79,6 @@ Most recent first (latest dev-branch head):
 | `dca9b04` | chore: approve P2-011 and add staging directory scaffold |
 | `869b3ee` | docs: STATUS.md refresh post-P2-018 |
 | `c00c4a1` | docs: log canonical naming decisions D-033..D-035 |
-| `5749345` | docs: mark Phase 2 consistency-audit findings as resolved |
 | `0522bb8` | docs: P2-018a — canonical naming and required-field fixes |
 | `02e9733` | feat: Methodology — disclose model limits, delta, and coverage |
 
@@ -83,14 +90,14 @@ Most recent first (latest dev-branch head):
   describe completed work that exists on origin but not on the local
   clone. Mitigation: `AGENTS.md` § 9 now requires
   `git fetch --all` before any review.
-- **R-017 Image licensing.** ~40 of 1,258 cards have real Bandai
-  imagery; the rest fall back to icons. **Proposal active** in
-  `docs/image-coverage-strategy.md` (icons-only default, upgrade to a
-  third-party rights-cleared API on demand triggers). Reverts to fully
-  closed when operator confirms.
+- **R-017 Image licensing.** **Closed 2026-05-12 via D-038** — icons-only
+  is the default; Option C upgrade path (third-party rights-cleared API)
+  fires on three named triggers. Re-opens automatically if any trigger
+  fires. See `docs/image-coverage-strategy.md`.
 - **R-018 Single-source dependency on JustTCG.** Methodology page now
-  discloses this explicitly. Multi-source comp ingestion is spec'd
-  (P2-013 onward) but not implemented.
+  discloses this explicitly. D-041 (manual eBay first sold-comp) is the
+  first structural mitigation; implementation gated on P2-015 / P2-016
+  consumption layer.
 - **R-020 Plausible analytics never reviewed.** Tag has been live since
   `01daa2e`; nobody has read the dashboard. A 15-minute review would
   unblock honest user-behavior decisions.
@@ -129,23 +136,20 @@ Most recent first (latest dev-branch head):
 
 ## Recommended next sequence
 
-1. **Read Plausible analytics dashboard** once (R-020 mitigation; 15
+1. **Hand the Codex prompt below (`docs/operator-handbook.md` § P2-15/16
+   handoff) to Codex CLI** to build P2-015 (UI badges) and P2-016
+   (CardDetail comps panel). Both consume sample-flagged artifacts
+   under the strict `_isSample === false` + `.sample.` filename gate.
+2. **Read Plausible analytics dashboard** once (R-020 mitigation; 15
    minutes). Pre-staged checklist in `docs/operator-handbook.md` § 5.
-2. **Confirm or counter-propose the image strategy** in
-   `docs/image-coverage-strategy.md` (Q-002). Default is icons-only;
-   confirm or pick a different option.
-3. **Approve P2-014 (importer)** when ready. This is the next gated
-   task that crosses into generated-artifact territory; needs an
-   explicit operator green-light. P2-012 and P2-013 fixtures are
-   already in `data-staging/` with validators.
-4. Capture portfolio screenshots and record a short demo flow.
-5. Review `docs/public-beta-backlog.md` for the rest of the public-beta
+3. Capture portfolio screenshots and record a short demo flow.
+4. Review `docs/public-beta-backlog.md` for the rest of the public-beta
    prerequisites.
-6. Focused automated UI smoke tests after explicit approval
+5. Focused automated UI smoke tests after explicit approval
    (see `docs/test-coverage-gap-analysis.md` for proposed Vitest suite).
-7. Later only: P2-015 UI badges, P2-016 comps panel, CSV export,
-   manipulation / outlier detection, long-term history archive, paid
-   API tier, accounts, alerts, and AI prediction.
+6. Later only: CSV export, manipulation / outlier detection visible
+   in UI (gated on D-042 ≥10 eligible comps), long-term history
+   archive, paid API tier, accounts, alerts, and AI prediction.
 
 ---
 

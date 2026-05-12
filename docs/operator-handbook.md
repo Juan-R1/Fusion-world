@@ -1,7 +1,7 @@
 # FusionMetrics Operator Handbook
 
-**Last refreshed:** 2026-05-11
-**Baseline commit:** `bcc3dcc docs: refresh public-beta backlog against May 2026 state`
+**Last refreshed:** 2026-05-12
+**Baseline commit:** `6c24fa1 feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts`
 
 > Single doc for the human operator. Every prompt here is ready to paste.
 > If you're reading this and don't know what to do next, jump to § 6
@@ -17,28 +17,28 @@ an open question. Your three real responsibilities going forward:
 
 ### (a) Approve gated Phase 2 tasks
 
-The Phase 2 ladder (`docs/phase-2-execution-checklist.md`) has six tasks
-sitting at "Needs user approval." Each one crosses into territory that
-could ship something user-visible, so they cannot proceed without you.
+The Phase 2 ladder (`docs/phase-2-execution-checklist.md`) has shrunk
+to **three** tasks at "Needs user approval." P2-012, P2-013, and
+P2-014 are all complete as of 2026-05-12.
 
-- **P2-012** — Premium metadata fixture + validator. Prompt in § 2.
-- **P2-013** — eBay sold comps CSV fixture + validator. Prompt in § 3.
-- **P2-014** — Importer. Depends on P2-012 + P2-013.
-- **P2-015** — UI badges/filters. Depends on premium metadata artifact.
-- **P2-016** — CardDetail comps panel. Depends on comps artifact.
-- **P2-017** — Backend decision. Depends on Backend Trigger Checklist.
+- **P2-015** — UI badges/filters. Consumes
+  `public/premiumMetadata.sample.json` via the sample-gate. **Codex
+  handoff prompt staged in § 4a.**
+- **P2-016** — CardDetail comps panel. Consumes
+  `public/ebayCompsSummary.sample.json` via the sample-gate. **Codex
+  handoff prompt staged in § 4a** (same prompt — Codex ships both
+  surfaces in a single run because they share trust guardrails).
+- **P2-017** — Backend decision. Depends on Backend Trigger
+  Checklist. None of the conditions are true today.
 
-### (b) Decide the three P0 open questions
+### (b) Open questions: all P0 closed
 
-From `docs/open-questions.md`:
-
-- **Q-001 — Promo / event-card cardCode namespace.** Blocks SB-set
-  staging, eBay comps matching, premium-metadata `eventPromo` flags.
-  Needs a ChatGPT GPT-2 / Codex CDX-04 spec output + your choice.
-- **Q-002 — Image coverage strategy.** Blocks public-beta visual
-  credibility. Prompt in § 4.
-- **Q-003 — Cross-source variance threshold.** Blocks source-confidence
-  implementation. Needs a ChatGPT GPT-3 spec + your choice.
+`docs/open-questions.md` rollup as of 2026-05-12: **13 questions
+closed (Q-001 / Q-002 / Q-003 / Q-011..Q-015 / Q-020 / Q-022..Q-024 /
+Q-035), 9 open (none P0).** The remaining open questions are either
+operator-only (Q-010 SB rarity, Q-032 paid JustTCG trigger) or
+contingent on later phases (Q-021, Q-030, Q-031, Q-033, Q-034, Q-036,
+Q-037). No question gates current implementation work.
 
 ### (c) Read Plausible analytics weekly
 
@@ -381,6 +381,244 @@ When done, output the full markdown. The operator will copy it,
 review, and either (a) paste into a follow-up Codex prompt that
 commits it verbatim as docs/image-coverage-strategy.md, or
 (b) request revisions.
+```
+
+> **Status note (2026-05-12):** This prompt is **superseded** by D-038
+> in `docs/decision-log.md` and the Claude-authored
+> `docs/image-coverage-strategy.md`. The default posture is Option E
+> (icons-only). Only re-run this prompt if the operator wants a
+> second opinion or wants to pre-stage Option C research before any
+> upgrade trigger fires.
+
+---
+
+## 4a. Ready-to-paste prompt: ship P2-015 + P2-016 (Codex)
+
+Paste this after the P2-014 importer commit (`6c24fa1`) is pushed.
+This is a **single Codex run** that ships both surfaces because they
+share the same sample-gate, copy posture, and trust-contract
+guardrails. Each surface gets its own commit.
+
+```text
+Ship FusionMetrics P2-015 (premium-metadata UI badges) and P2-016
+(CardDetail eBay sold-comps panel) end to end. Two commits, in the
+order P2-015 → P2-016. Operator pre-approved both because the
+sample-flagged artifacts already exist on disk and the consumption
+gate fully prevents production UI from rendering sample data.
+
+Read first:
+- AGENTS.md (the runtime contract; especially § 3 forbidden-language
+  list and § 6 file boundaries)
+- CLAUDE.md (continuity doc; §§ 7.1 non-negotiables + 11 resume
+  instructions)
+- STATUS.md (current snapshot)
+- docs/phase-2-execution-checklist.md (P2-015 + P2-016 rows;
+  Operating Rules; Forbidden Files)
+- docs/phase-2-dashboard.md (approval-gate cluster)
+- docs/decision-log.md (the trust contract decisions you must obey:
+  D-006 trust labels, D-014 only show real data, D-038 image
+  strategy, D-039 GDR is a premiumFlag, D-040 Bandai is canonical
+  for treatment names, D-042 manipulation-risk ≥10 eligible comps,
+  D-043 two-tier confidence rule, D-044 boxTopHit derived at
+  runtime, D-045 populationKnown default false, D-046 aggregates on
+  demand, D-047 sealed freshness 30 days)
+- docs/premium-metadata-schema.md (canonical premiumFlags,
+  collectorTags, riskTags vocabularies; § 12 UI guidance)
+- docs/ebay-comps-import-spec.md (canonical CSV / row shape; § 15
+  UI guidance)
+- docs/source-confidence-spec.md (row-level confidence; manipulation
+  risk; raw/graded separation)
+- public/premiumMetadata.sample.json (artifact you will consume —
+  read it once to confirm shape; note _isSample: true)
+- public/ebayCompsSummary.sample.json (artifact you will consume —
+  note _isSample: true)
+
+Preflight:
+  git fetch --all
+  git pull --ff-only
+  git status
+  node scripts/verify-data.js
+Confirm: clean tree, 9 invariants pass, origin includes
+`6c24fa1 feat: P2-014 importer`. If not, STOP and report.
+
+────────────────────────────────────────────────────────────────────
+COMMIT 1 — P2-015: Premium-metadata UI badges
+────────────────────────────────────────────────────────────────────
+
+Allowed files (P2-015 only):
+- src/lib/premiumMetadata.js (NEW — module-scope lazy-fetched cached
+  loader, mirroring the loadPriceHistory30d pattern in src/data.js)
+- src/components/PremiumBadges.jsx (NEW — pure prop-driven component
+  rendering the surfaced badges for one card)
+- src/components/CardDetail.jsx (EDIT — render <PremiumBadges/>
+  inside the existing badge area; do NOT restructure)
+- src/tabs/ValueScanner.jsx (EDIT — render a compact PremiumBadges
+  micro-row on each card row; respect existing layout)
+- docs/phase-2-execution-checklist.md (EDIT — flip P2-015 to
+  Complete; add a Completed Work Ledger row)
+- docs/phase-2-dashboard.md (EDIT — bump Complete 15 → 16; refresh
+  approval-gate cluster; refresh At-a-glance)
+
+Forbidden: every other file. Especially: src/data.js (the analytics
+engine stays untouched), src/cardData.json, src/livePrices.json,
+public/priceHistory30d.json, public/priceUpdateLog.json,
+scripts/update-prices.js, scripts/verify-data.js, .github/workflows,
+package files.
+
+Sample-gate contract for src/lib/premiumMetadata.js (NON-NEGOTIABLE):
+
+  export async function loadPremiumMetadata() {
+    if (cache) return cache
+    try {
+      const res = await fetch('/premiumMetadata.json')   // production path
+      if (!res.ok) return (cache = { items: {} })
+      const json = await res.json()
+      if (json && json._isSample === true) {
+        // Production UI must NEVER consume sample-flagged artifacts.
+        // Log once for debugging; return empty.
+        if (typeof console !== 'undefined') {
+          console.warn('[premiumMetadata] sample artifact refused; awaiting production fixture')
+        }
+        return (cache = { items: {} })
+      }
+      return (cache = json && json.items ? json : { items: {} })
+    } catch {
+      return (cache = { items: {} })
+    }
+  }
+
+NB: the fetch path is `/premiumMetadata.json` (production), NOT
+`/premiumMetadata.sample.json`. The sample artifact is on disk for
+P2-014 verification only. The UI must look for the production
+filename; until that exists, the loader returns empty and the UI
+shows nothing. THIS IS CORRECT BEHAVIOR.
+
+Confidence-surfacing rule (D-043):
+
+  // Descriptive flags: surface when confidence >= medium
+  const DESCRIPTIVE_FLAGS = new Set([
+    'altArt', 'manga', 'mangaAdjacent', 'parallel', 'gdr', 'godRare',
+    'winnerPromo', 'eventPromo', 'serialized', 'starterDeckChase',
+  ])
+  // Ranking-driving labels: require confidence === high
+  const RANKING_FLAGS = new Set([
+    'secretRareChase', 'specialRareChase', 'sealedChase',
+    'gogetaChase', 'sonGokuChase', 'brolyChase',
+  ])
+  // 'low' confidence NEVER surfaces. Hardcode this.
+
+UI copy rules (strict):
+- Badge labels must be plain English and never imply a buy/sell
+  signal. Examples allowed: "Alt Art", "Manga Style", "Winner
+  Promo", "Secret Rare Chase", "Sealed Chase". Examples forbidden:
+  any mention of "buy", "sell", "guaranteed", "must own", "moonshot",
+  "lock", "profit", "safe investment".
+- riskTags surface as small neutral chips, NOT as red warnings.
+  Example: "Variant ambiguity" (chip), not "DANGER" (red badge).
+- collectorTags surface as muted secondary chips below the primary
+  flag badges.
+- If a card has no surfaceable badges, render NOTHING (no empty
+  placeholder, no "no data" message — the dashboard already has the
+  visual rhythm).
+
+Validation:
+  npm run build         (must succeed; warn at 600 kB still OK)
+  node scripts/verify-data.js   (9 invariants must still pass)
+  Open http://localhost:5173 (or the build preview); click 3 cards
+  in Value Scanner; confirm: no badges render because no
+  /premiumMetadata.json production file exists. This proves the
+  sample-gate is doing its job. THIS IS THE SUCCESS STATE FOR
+  P2-015 UNTIL OPERATOR PROMOTES SAMPLE → PRODUCTION.
+
+Commit message:
+  feat: P2-015 — premium metadata UI badges (sample-gated)
+
+────────────────────────────────────────────────────────────────────
+COMMIT 2 — P2-016: CardDetail eBay sold-comps panel
+────────────────────────────────────────────────────────────────────
+
+Allowed files (P2-016 only):
+- src/lib/ebayComps.js (NEW — same lazy-fetched cached loader
+  pattern; same sample-gate)
+- src/components/CompsPanel.jsx (NEW — renders the raw/graded
+  separated, variant-aware, confidence-aware row list + on-demand
+  aggregates)
+- src/components/CardDetail.jsx (EDIT — render <CompsPanel/> as a
+  new section below the existing price/history block)
+- docs/phase-2-execution-checklist.md (EDIT — flip P2-016 to
+  Complete; ledger row)
+- docs/phase-2-dashboard.md (EDIT — bump Complete 16 → 17)
+
+Forbidden: every other file. Especially src/data.js, all generated
+artifacts, all infra files.
+
+Sample-gate contract for src/lib/ebayComps.js: same shape as
+premiumMetadata.js. Fetch path is `/ebayCompsSummary.json`
+(production); sample artifact is refused.
+
+CompsPanel rules (NON-NEGOTIABLE):
+- Raw rows and graded rows render in SEPARATE sub-sections. Never
+  mix in the same list, never aggregate together.
+- Aggregates (median, trimmed mean, count, IQR) are computed at
+  consumer time from the eligible-row subset (per D-046). Do NOT
+  store them. Eligible = NOT outlierFlag AND NOT itemType='lot' AND
+  NOT itemType='bundle' AND NOT variantMatch='excluded' AND
+  confidence !== 'excluded'.
+- Manipulation-risk badge: ONLY surface a label if the eligible
+  count in the 30-day window is >= 10 (D-042). Below that, the
+  panel shows "Insufficient eligible comps" muted text.
+- Variant-match column always visible; rows with
+  variantMatch='ambiguous' get a small muted chip.
+- Source URL is a small icon link on each row.
+- All copy follows the same forbidden-language list as P2-015.
+
+Validation:
+  npm run build
+  node scripts/verify-data.js
+  Open a card; confirm CompsPanel renders the empty/awaiting-fixture
+  state (no /ebayCompsSummary.json exists). Confirm no console
+  errors. Confirm the rest of CardDetail still renders.
+
+Commit message:
+  feat: P2-016 — CardDetail eBay sold-comps panel (sample-gated)
+
+────────────────────────────────────────────────────────────────────
+FINAL HOUSEKEEPING (same Codex turn, third commit)
+────────────────────────────────────────────────────────────────────
+
+Allowed files:
+- STATUS.md (EDIT — bump Phase 2 progress 15/18 → 17/18; update
+  TL;DR; add P2-015 / P2-016 commit SHAs to the recent-commits
+  table)
+- docs/phase-2-dashboard.md (EDIT — final refresh: Complete 17;
+  Most-recent-closure pointer)
+
+Commit message:
+  docs: housekeeping refresh post-P2-015 + P2-016
+
+Final response (per AGENTS.md § 8):
+1. List the three commit SHAs and subjects.
+2. Confirm: npm run build succeeded; verify-data 9 invariants;
+   sample-gate proven by no /premiumMetadata.json or
+   /ebayCompsSummary.json existing in production.
+3. Note: P2-017 (backend) remains the sole operator-only Phase 2
+   task; no Backend Trigger Checklist condition has fired.
+4. STOP. Do not push (the operator pushes).
+
+STOP CONDITIONS (any one triggers abort + report):
+- Any forbidden file appears in `git diff`.
+- npm run build fails.
+- verify-data.js reports < 9 invariants.
+- Sample artifact is consumed (test: temporarily place a malformed
+  /premiumMetadata.json in dev, confirm UI ignores and renders
+  empty; revert).
+- Any UI copy uses buy/sell/guarantee/profit/moonshot/lock
+  language.
+- src/data.js is modified.
+- Any generated artifact (cardData.json, livePrices.json,
+  priceHistory30d.json, priceUpdateLog.json) is modified.
+- Bundle grows past 750 kB raw (would need an explicit operator
+  decision per bundle-audit-2026-05-07.md).
 ```
 
 ---
