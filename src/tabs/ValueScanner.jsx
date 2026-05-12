@@ -1,12 +1,14 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { T }         from '../theme.js'
 import { SETS, RARITIES } from '../data.js'
+import { loadPremiumMetadata } from '../lib/premiumMetadata.js'
 import { useIsMobile } from '../hooks/useIsMobile.js'
 import DeltaBadge    from '../components/DeltaBadge.jsx'
 import MiniBar       from '../components/MiniBar.jsx'
 import RarityBadge   from '../components/RarityBadge.jsx'
 import CardDetail    from '../components/CardDetail.jsx'
 import CardImage     from '../components/CardImage.jsx'
+import PremiumBadges from '../components/PremiumBadges.jsx'
 
 const PAGE_SIZE = 100
 
@@ -52,7 +54,22 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
   const [sort,      setSort]      = useState('undervalued')
   const [selected,  setSelected]  = useState(null)
   const [page,      setPage]      = useState(0)
+  const [premiumItems, setPremiumItems] = useState({})
   const isMobile = useIsMobile()
+
+  useEffect(() => {
+    let cancelled = false
+    loadPremiumMetadata()
+      .then(data => {
+        if (cancelled) return
+        setPremiumItems(data.items || {})
+      })
+      .catch(() => {
+        if (cancelled) return
+        setPremiumItems({})
+      })
+    return () => { cancelled = true }
+  }, [])
 
   const isRankingSort = sort === 'undervalued' || sort === 'overvalued'
 
@@ -223,6 +240,7 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
                           <span title="Model estimate — no live price available" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.35)', color: '#eab308', borderRadius: 3, padding: '0px 4px', fontSize: 9, fontWeight: 700, letterSpacing: '0.05em' }}>EST</span>
                         )}
                       </div>
+                      <PremiumBadges metadata={premiumItems[card.cardCode]} compact />
                     </div>
                   </div>
 

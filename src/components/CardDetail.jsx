@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { T }         from '../theme.js'
 import { useIsMobile } from '../hooks/useIsMobile.js'
 import { loadPriceHistory30d, normalizeHistory, historyStateOf } from '../data.js'
+import { loadPremiumMetadata } from '../lib/premiumMetadata.js'
 import Sparkline     from './Sparkline.jsx'
 import GaugeRing     from './GaugeRing.jsx'
 import MiniBar       from './MiniBar.jsx'
 import DeltaBadge    from './DeltaBadge.jsx'
 import RarityBadge   from './RarityBadge.jsx'
 import CardImage     from './CardImage.jsx'
+import PremiumBadges from './PremiumBadges.jsx'
 
 // Small tab-button group for choosing sparkline time window
 function RangeToggle({ range, setRange }) {
@@ -78,6 +80,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
   //   historyError    === true                  → fetch failed → 'unavailable'
   const [historyEntries, setHistoryEntries] = useState(null)
   const [historyError,   setHistoryError]   = useState(false)
+  const [premiumItems,   setPremiumItems]   = useState({})
 
   useEffect(() => {
     let cancelled = false
@@ -95,6 +98,20 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
     return () => { cancelled = true }
   }, [card.cardCode])
 
+  useEffect(() => {
+    let cancelled = false
+    loadPremiumMetadata()
+      .then(data => {
+        if (cancelled) return
+        setPremiumItems(data.items || {})
+      })
+      .catch(() => {
+        if (cancelled) return
+        setPremiumItems({})
+      })
+    return () => { cancelled = true }
+  }, [])
+
   const historyState = historyError
     ? 'unavailable'
     : historyEntries === null
@@ -102,6 +119,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
       : historyStateOf(historyEntries.length)
   const historyCount = Array.isArray(historyEntries) ? historyEntries.length : 0
   const priceFreshness = priceFreshnessOf(card)
+  const premiumMetadata = premiumItems[card.cardCode] ?? null
 
   const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
   const ssColor = card.supplySaturation > 1 ? T.red : T.green
@@ -205,6 +223,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
           <span style={{ color: T.muted, fontSize: 12, fontFamily: T.mono }}>{card.cardCode}</span>
           <span style={{ color: T.dim, fontSize: 12 }}>{card.setName}</span>
         </div>
+        <PremiumBadges metadata={premiumMetadata} />
         {card.trait && (
           <div style={{ marginTop: 6, fontSize: 11, color: T.dim, fontFamily: T.mono }}>
             {card.trait}
