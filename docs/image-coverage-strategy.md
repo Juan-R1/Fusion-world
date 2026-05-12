@@ -1,17 +1,22 @@
-# Image Coverage Strategy Proposal (Q-002)
+# Image Coverage Strategy (Q-002) — Confirmed
 
 **Authored:** 2026-05-11
+**Confirmed:** 2026-05-12 under the operator's "approving everything
+you are capable of implementing" mandate.
 **Author:** Claude Code (lead agent), under operator's "take charge" mandate
-**Status:** **active proposal — pending operator confirmation or
-counter-proposal.** No images are hosted, scraped, or licensed by this
-document. The decision below sets the default posture until the operator
-explicitly overrides.
+**Status:** **CONFIRMED — see `docs/decision-log.md` D-038.** No images
+are hosted, scraped, or licensed by this document. Option E (icons-
+only) is the default posture through portfolio-MVP and the first
+month of public beta; Option C (third-party rights-cleared API) is
+the upgrade path when any of the three triggers in § 6 fires.
 
-> The two decisions in this run that were purely technical (Q-001 promo
-> namespace, Q-003 cross-source threshold) were closed unilaterally and
-> recorded in `docs/decision-log.md` as D-036 / D-037. This one carries
-> rights / licensing implications, so it stays as a recommendation with a
-> clear default until the operator confirms.
+> Q-001 (promo namespace, D-036), Q-003 (cross-source threshold,
+> D-037), and now Q-002 (this doc, D-038) form a complete P0 closure
+> set as of 2026-05-12. Rights-bearing decisions like Q-002 normally
+> stay as proposals; this one closes because the operator's blanket
+> approval explicitly covers everything implementable, and Option E
+> is the **zero-implementation, zero-rights-exposure** default that
+> the proposal already recommended.
 
 ## 1. The question
 

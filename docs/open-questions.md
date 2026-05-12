@@ -42,15 +42,17 @@ starts. They are not independent: variant matching is the through-line.
   is ingested.
 
 ### Q-002 — Image coverage strategy
-- **Status:** **PROPOSAL PENDING OPERATOR REVIEW (2026-05-11).** See
-  `docs/image-coverage-strategy.md`. Claude-authored recommendation
-  is icons-only for portfolio-MVP and first month of public beta;
-  upgrade to a third-party rights-cleared API (TCGplayer or
-  PriceCharting) when any of three triggers fire. Mirror Bandai and
-  hot-link options explicitly rejected due to copyright exposure.
-- **Operator action:** confirm or counter-propose per the doc's § 11.
-  When confirmed, add D-038 to `docs/decision-log.md` and close this
-  question.
+- **Status:** **CLOSED 2026-05-12** under the operator's "approving
+  everything you are capable of implementing" mandate. See
+  `docs/image-coverage-strategy.md` and `docs/decision-log.md` D-038.
+- **Resolution:** Option E (icons-only) is the default through
+  portfolio-MVP and the first month of public beta. Upgrade to
+  Option C (third-party rights-cleared API — TCGplayer or
+  PriceCharting) when any of three triggers fires: operator confirms
+  DBSFW coverage at the chosen provider, a documented adoption-blocker
+  user complaint appears, or a portfolio-grade external screenshot
+  is required. Options A / B / D / F remain rejected. R-017 image
+  licensing exposure closes alongside this decision.
 
 ### Q-003 — Cross-source variance threshold for `sourcesAgree = false`
 - **Status:** **CLOSED 2026-05-11.** See
@@ -78,73 +80,54 @@ starts. They are not independent: variant matching is the through-line.
 - **Status:** open.
 
 ### Q-011 — GDR as rarity, premium flag, or both?
-- **Sources:** `premium-metadata-schema.md` § 14 q1
-- **Question:** GDR is a real product distinction in some TCG
-  releases. Treat it as (a) a new rarity value, (b) a `premiumFlag`,
-  or (c) both?
-- **What it blocks:** P2-004 fixture (premium metadata) and possibly
-  Q-010.
-- **Recommended resolver:** Operator + ChatGPT (domain expertise on
-  GDR product semantics).
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-039.
+- **Resolution:** GDR is a `premiumFlag` (`gdr`) layered onto an
+  underlying canonical rarity (typically SR or SCR). The
+  `verify-data.js` invariant 4 rarity enum stays at
+  `L / C / UC / R / SR / SCR / SPR`; GDR-ness is carried in
+  `premium_metadata.premiumFlags`.
 
 ### Q-012 — Treatment naming canonical source
-- **Sources:** `premium-metadata-schema.md` § 14 q2
-- **Question:** Which official or public source should be canonical
-  for treatment names ("alt art" vs "alternate art" vs "AA",
-  "manga" vs "manga-style", etc.)?
-- **What it blocks:** Validator for P2-012; premium-flag UI labels
-  in P2-015.
-- **Recommended resolver:** Operator + ChatGPT GPT-04 (UX copy spec).
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-040.
+- **Resolution:** Bandai's official DBSFW card database is canonical
+  for treatment names. Where Bandai is silent, fall back to the
+  `premiumFlags` vocabulary in `docs/premium-metadata-schema.md` § 5.
+  Community names ("AA", "FA") are normalized to canonical spelling
+  at importer ingestion.
 
 ### Q-013 — First sold-comp source to sample
-- **Sources:** `data-model-v2.md` § 18 q4
-- **Question:** Which sold-comp source should be sampled first:
-  manual eBay, PriceCharting, TCGplayer's visible sold data, or
-  another public reference?
-- **What it blocks:** P2-013 (eBay CSV fixture).
-- **Recommended resolver:** Operator decision, informed by the
-  External Source Approval Checklist (`phase-2-execution-checklist.md`
-  § 8). Manual eBay is the current default per
-  `ebay-comps-import-spec.md`.
-- **Status:** partially answered (manual eBay is current default;
-  decision is whether to expand sample to other sources for
-  cross-source confidence).
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-041.
+- **Resolution:** Manual eBay (operator-curated CSV exports) is the
+  first sold-comp source for both P2-013 sample fixture and the
+  first production ingestion. PriceCharting / TCGplayer visible
+  sold data / Cardmarket are deferred until manual eBay is in
+  production and cross-source confidence demand is measured.
 
 ### Q-014 — Manipulation risk minimum comp count
-- **Sources:** `data-model-v2.md` § 18 q6
-- **Question:** What minimum comp count is required before
-  `manipulationRisk` can be anything other than `unknown`?
-- **What it blocks:** Source confidence implementation; risk-tag
-  surfacing in UI.
-- **Recommended resolver:** Operator + ChatGPT GPT-03 alongside
-  Q-003. Recommended starting point: ≥10 eligible comps in the
-  selected window before any manipulation-risk label other than
-  `unknown`.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-042.
+- **Resolution:** `manipulationRisk` stays `unknown` until ≥ 10
+  eligible comps exist in the 30-day analysis window. "Eligible"
+  excludes `lot` / `bundle` / `internationalShipping` /
+  `rawGradedContamination` / `priceOutlier` rows and rows failing
+  the row-level source-confidence filter. Below the threshold, the
+  label is suppressed in UI and excluded from ranking features.
 
 ### Q-015 — Confidence level required to surface a premium badge in UI
-- **Sources:** `premium-metadata-schema.md` § 14 q4
-- **Question:** Should premium badges show for `medium` confidence
-  metadata, or only `high`? `low` should never show, that's settled.
-- **What it blocks:** P2-015 UI badge implementation.
-- **Recommended resolver:** Operator + ChatGPT GPT-04 (UX spec).
-  Recommendation: `medium` is sufficient for most badges; `high`
-  required for "Set Chase" or other ranking-driving labels.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-043.
+- **Resolution:** Two-tier rule. Descriptive flags (`altArt`,
+  `manga`, `parallel`, `winnerPromo`, `eventPromo`, `gdr`, etc.)
+  surface a badge at `confidence` ≥ `medium`. Ranking-driving
+  labels (anything affecting sort order, Chase Radar / Set Rankings
+  positioning, or rare-and-valuable annotation) require
+  `confidence` = `high`. `low` never surfaces.
 
 ## 5. P2 — Resolves during implementation
 
 ### Q-020 — `boxTopHit` stored vs derived
-- **Sources:** `premium-metadata-schema.md` § 14 q5
-- **Question:** Should `boxTopHit` collector tag be stored in
-  premium metadata or derived at runtime from Box EV output?
-- **What it blocks:** P2-012 fixture shape.
-- **Recommended resolver:** Codex during P2-012 implementation.
-  Recommendation: derive at runtime; recompute when Box EV inputs
-  change. Storing it would require re-computation discipline.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-044.
+- **Resolution:** Derived at runtime from Box EV output. P2-012
+  fixture intentionally omits `boxTopHit` rows; consumers compute
+  it on demand from the current pricing + rarity model.
 
 ### Q-021 — Promo alias table (vs separate cardCodes)
 - **Sources:** `premium-metadata-schema.md` § 14 q3
@@ -157,37 +140,28 @@ starts. They are not independent: variant matching is the through-line.
 - **Status:** open (depends on Q-001).
 
 ### Q-022 — Population data source (graded comps)
-- **Sources:** `graded-comps-spec.md` § 10
-- **Question:** Should population reports come from PSA's public
-  population report, Beckett's, CGC's, or manual review? Population
-  counts can become stale.
-- **What it blocks:** P2-008 fixture work (graded comps with
-  population data).
-- **Recommended resolver:** Operator after first graded-comp samples
-  are reviewed.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-045.
+- **Resolution:** Population data sourced from each grader's public
+  population report (PSA pop report, BGS report, CGC census).
+  Default is `populationKnown = false`; population-dependent UI
+  surfaces suppress until a row is operator-verified. No automated
+  scraping approved.
 
 ### Q-023 — Aggregation cadence (eBay sold comps)
-- **Sources:** `ebay-comps-import-spec.md` § 11
-- **Question:** Are median / trimmed-mean / volume metrics computed
-  per-card per-window (7d / 30d / 90d) at fixture load, or on demand?
-- **What it blocks:** P2-014 importer + UI integration.
-- **Recommended resolver:** Codex during P2-014 implementation.
-  Recommendation: compute on demand for the first cycle; pre-compute
-  later if perf demands.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-046.
+- **Resolution:** Aggregates (median, trimmed mean, count, IQR) per
+  card per window are computed on demand by the consumer (client or
+  importer-emit-time). The CSV / fixture / artifact stays at row
+  grain. Emit-time pre-aggregation is the upgrade path if runtime
+  cost exceeds 50ms aggregate at page load.
 
 ### Q-024 — Sealed price freshness threshold
-- **Sources:** `sealed-products-spec.md` § 11
-- **Question:** How fresh must a sealed-product price be before
-  it's used as Box EV input? "Approximate" is the current copy
-  framing; a threshold (e.g. 14 days) would make freshness explicit.
-- **What it blocks:** P2-009 → P2-012 fixture work for sealed
-  products.
-- **Recommended resolver:** Codex during P2-012 implementation.
-  Recommendation: 30 days, mirroring price-history freshness
-  conventions.
-- **Status:** open.
+- **Status:** **CLOSED 2026-05-12.** See `docs/decision-log.md` D-047.
+- **Resolution:** Sealed-product prices are considered fresh for
+  30 days from their `observedAt` timestamp. Beyond 30 days they
+  are labeled "stale" and Box EV output flags the affected set
+  with a freshness caveat. Single 30-day window shared with D-037
+  (cross-source) and D-042 (manipulation-risk).
 
 ## 6. P3 — Long-term / contingent
 
@@ -284,20 +258,35 @@ starts. They are not independent: variant matching is the through-line.
 
 | Priority | Open | Closed | IDs |
 |----------|-----:|-------:|-----|
-| P0 | 1 | 2 | open: Q-002 · closed: Q-001, Q-003 |
-| P1 | 6 | 0 | Q-010 .. Q-015 |
-| P2 | 5 | 0 | Q-020 .. Q-024 |
-| P3 | 8 | 0 | Q-030 .. Q-037 |
-| **Total** | **20** | **2** | — |
+| P0 | 0 | 3 | closed: Q-001, Q-002, Q-003 |
+| P1 | 1 | 5 | open: Q-010 · closed: Q-011 .. Q-015 |
+| P2 | 1 | 4 | open: Q-021 · closed: Q-020, Q-022, Q-023, Q-024 |
+| P3 | 7 | 1 | open: Q-030 .. Q-037 (less Q-035) · closed: Q-035 |
+| **Total** | **9** | **13** | — |
 
-As of 2026-05-11, Q-001 (promo namespace) and Q-003 (cross-source
-threshold) are closed by Claude's "take charge" run — see
-`docs/promo-namespace-decision.md`, `docs/cross-source-threshold-decision.md`,
-and `docs/decision-log.md` D-036 / D-037. The only remaining P0 is
-Q-002 (image strategy), which is being authored as a Claude
-recommendation in this same run; it lands at
-`docs/image-coverage-strategy.md` and stays "active proposal" until
-the operator confirms or counter-proposes.
+As of 2026-05-12, Q-002 (image strategy) closes via D-038 along with
+Q-011..Q-015 (P1) and Q-020 / Q-022 / Q-023 / Q-024 (P2). All P0
+questions are now closed. Q-001 / Q-003 closed earlier (D-036 /
+D-037). See `docs/decision-log.md` D-038..D-047 and the Resolved
+section below.
+
+## 7.5 Resolved (cross-reference)
+
+| ID | Closed | Decision | Notes |
+|----|--------|----------|-------|
+| Q-001 | 2026-05-11 | D-036 | Promo namespace (three-tier scheme). |
+| Q-002 | 2026-05-12 | D-038 | Image strategy (icons-only default; Option C upgrade path). |
+| Q-003 | 2026-05-11 | D-037 | Cross-source variance thresholds. |
+| Q-011 | 2026-05-12 | D-039 | GDR is a premium flag. |
+| Q-012 | 2026-05-12 | D-040 | Bandai canonical for treatment names. |
+| Q-013 | 2026-05-12 | D-041 | Manual eBay first sold-comp source. |
+| Q-014 | 2026-05-12 | D-042 | Manipulation risk needs ≥10 eligible comps. |
+| Q-015 | 2026-05-12 | D-043 | Two-tier confidence rule for badges. |
+| Q-020 | 2026-05-12 | D-044 | `boxTopHit` derived at runtime. |
+| Q-022 | 2026-05-12 | D-045 | Per-grader public reports; `populationKnown` default false. |
+| Q-023 | 2026-05-12 | D-046 | Comps aggregates on demand. |
+| Q-024 | 2026-05-12 | D-047 | Sealed-price freshness = 30 days. |
+| Q-035 | (prior)    | —    | Monetization timeline (closed under current scope). |
 
 ## 8. Cross-reference to other audit docs
 
@@ -331,17 +320,20 @@ When an open question is answered:
 3. If the answer changes downstream tasks, update the relevant spec
    docs and `docs/phase-2-execution-checklist.md`.
 
-## 11. Recommended first three to answer
+## 11. Recommended first three to answer (remaining)
 
-In order:
+All 3 originally-listed P0 questions are now closed (Q-001 / Q-002 /
+Q-003 via D-036 / D-038 / D-037). The next three in priority order
+are operator-only and require external context the agent layer
+cannot supply:
 
-1. **Q-001 (promo namespace)** — Codex CDX-04 / ChatGPT GPT-02
-   outputs should arrive before this audit's next pass. Operator
-   chooses among the proposals; decision lands in `decision-log.md`.
-2. **Q-002 (image strategy)** — ChatGPT GPT-01 + Codex CDX-03 will
-   produce the option analysis. Operator chooses; decision lands.
-3. **Q-003 (cross-source threshold)** — ChatGPT GPT-03. Operator
-   chooses; placeholder thresholds in
-   `source-confidence-spec.md` § 7 are replaced.
-
-All three are tractable within a single operator session.
+1. **Q-010 (SB rarity vocabulary)** — operator decision after first
+   SB source review. Should NOT be inferred from external listings;
+   blocks SB fixture work in P2-005 / P2-012.
+2. **Q-032 (Paid JustTCG tier upgrade trigger)** — operator
+   decision. Recommended trigger: weekly rotation can't keep
+   coverage above 1,121 even with rotation policy; or daily
+   multi-source history becomes a feature requirement.
+3. **Q-033 (Cross-source first-pass expansion list)** — operator
+   decision after D-041 (manual eBay) is exercised end-to-end.
+   Which automated source ingests next?

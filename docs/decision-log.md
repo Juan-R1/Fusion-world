@@ -605,15 +605,282 @@ expiry trigger fires.
   P2-014+; full thresholds documented in
   `docs/cross-source-threshold-decision.md`.
 
+### D-038 — Image strategy: icons-only default, Option C upgrade path
+- **Date:** 2026-05-12
+- **Decision:** Adopt **Option E (icons-only)** as the default image
+  posture through portfolio-MVP and the first month of public beta.
+  Upgrade to **Option C (third-party rights-cleared API — TCGplayer or
+  PriceCharting)** when any of three triggers fires: (1) operator
+  confirms DBSFW image coverage at the chosen provider is acceptable
+  for non-commercial display; (2) a documented user complaint that
+  missing images is blocking adoption appears in Plausible or direct
+  feedback; (3) a portfolio-grade screenshot is required for an
+  external conversation where icons-only would be a credibility cost.
+  Options A (mirror Bandai), B (hot-link Bandai), D (placeholder
+  renders styled like real cards), and F (user-uploaded) remain
+  rejected for current scope.
+- **Alternatives:** all six options analyzed in
+  `docs/image-coverage-strategy.md` § 4.
+- **Rationale:** Trust principle extends to **make FusionMetrics
+  unable to infringe by accident**. Icons-only is the only posture
+  with zero rights exposure and zero implementation cost. Option C
+  remains the strongest credibility upgrade once a clean source is
+  confirmed; rollout skeleton is in `docs/image-coverage-strategy.md`
+  § 7.
+- **Owner:** Product strategy.
+- **Expiry trigger:** any of the three Option-C upgrade triggers
+  fires; or Bandai publishes a clear non-commercial display license
+  that changes the Option-A risk profile.
+- **Related commits:** `68946c9` (proposal), this commit (closure).
+- **Status:** active.
+
+### D-039 — GDR is a premium flag, not a rarity tier
+- **Date:** 2026-05-12
+- **Decision:** GDR ("Gold Rare" / "God Rare", depending on the
+  Bandai product) is treated as a `premiumFlag` (`gdr`) on top of
+  the underlying rarity (typically SR or SCR), not as a new value in
+  `verify-data.js` invariant 4's rarity enum. The card's `rarity`
+  field stays in the canonical FB vocabulary
+  (`L`, `C`, `UC`, `R`, `SR`, `SCR`, `SPR`); GDR-ness is carried by
+  `premium_metadata.premiumFlags`.
+- **Alternatives:** (a) new rarity value `GDR` (rejected: every
+  rarity-stratified analytic — pull rates, base prices, regression —
+  would need an extra row with thin data; D-011 / D-035 keep rarity
+  enum stable); (b) both rarity AND flag (rejected: duplicates the
+  signal in two fields, raises drift risk).
+- **Rationale:** GDR is a treatment dimension layered onto an
+  underlying rarity, mirroring how `winnerPromo` and `eventPromo`
+  work. Keeps `verify-data.js` invariant 4 untouched and the OLS
+  regression's rarity strata stable. Treatment-dimension
+  classification matches the canonical schema in
+  `docs/premium-metadata-schema.md` § 5.
+- **Owner:** Premium metadata schema.
+- **Expiry trigger:** Bandai publishes a GDR-only product where the
+  underlying-rarity mapping is undefined.
+- **Related commits:** this commit.
+- **Status:** active.
+
+### D-040 — Bandai is canonical source for treatment names
+- **Date:** 2026-05-12
+- **Decision:** When Bandai's official DBSFW card database
+  (`scripts/scrape-official-fw.js` target) names a treatment, that
+  name is canonical. Where Bandai is silent, fall back to the
+  `premiumFlags` vocabulary already documented in
+  `docs/premium-metadata-schema.md` § 5 (`altArt`, `manga`, `parallel`,
+  `winnerPromo`, `eventPromo`, etc.). Community names ("AA" for alt
+  art, "FA" for full art) are not canonical and must be normalized
+  to the canonical spelling at importer ingestion.
+- **Alternatives:** TCGplayer (rejected: their treatment naming
+  varies by listing seller); PriceCharting (rejected: scoped to
+  pricing, not metadata); community wikis (rejected: no
+  authoritative provenance).
+- **Rationale:** Bandai is the publisher of record; their treatment
+  language is what eventually shows on the printed card and in
+  product pages. Matching their naming reduces UI ambiguity and
+  cross-source matching friction. Mirrors the existing decision
+  (D-006) to treat the Bandai scrape as the source-of-truth path
+  for card metadata.
+- **Owner:** Premium metadata schema; importer (P2-014).
+- **Expiry trigger:** Bandai stops publishing treatment names in
+  their database; or treatments emerge that Bandai never names
+  publicly.
+- **Related commits:** this commit.
+- **Status:** active.
+
+### D-041 — Manual eBay is the first sold-comp source to sample
+- **Date:** 2026-05-12
+- **Decision:** P2-013's sample fixture and the first production
+  sold-comp ingestion both target **manual eBay sold listings**
+  (operator-curated CSV exports). PriceCharting, TCGplayer visible
+  sold data, and Cardmarket are deferred until manual eBay is in
+  production and cross-source confidence demand is measured.
+- **Alternatives:** PriceCharting first (rejected: paywall + ToS
+  ambiguity for non-commercial dashboard use); TCGplayer sold data
+  first (rejected: requires authenticated scrape; not approved);
+  multi-source from day one (rejected: complexity without measured
+  demand; cross-source threshold D-037 only needs one source to
+  exercise the framework).
+- **Rationale:** Manual eBay is the only source with operator-led
+  due diligence already specified (`docs/ebay-comps-import-spec.md`
+  + `docs/cross-source-threshold-decision.md`). It exercises the
+  full sold-comp data path (validator, raw/graded separation,
+  manipulation-risk model from D-042, source-confidence from D-037)
+  without committing to any automated scrape.
+- **Owner:** Source-confidence model; comps ingestion.
+- **Expiry trigger:** manual eBay coverage stalls below an agreed
+  density (e.g. fewer than 50 cards/month getting comps), or a
+  rights-clean automated source becomes available.
+- **Related commits:** `9153ad6` (P2-013 fixture), this commit
+  (closure).
+- **Status:** active.
+
+### D-042 — Manipulation-risk minimum eligible comp count
+- **Date:** 2026-05-12
+- **Decision:** `manipulationRisk` on a card stays `unknown` until
+  **≥ 10 eligible comps** exist in the analysis window (default 30
+  days, aligned with D-037 cross-source threshold window). Below
+  that, any computed manipulationRisk label is suppressed in the UI
+  and excluded from ranking-driving features. "Eligible" means: not
+  flagged as `lot`, `bundle`, `internationalShipping`,
+  `rawGradedContamination`, or `priceOutlier`; and source-confidence
+  passes the row-level filter from `docs/source-confidence-spec.md`.
+- **Alternatives:** lower minimum (e.g. 5 — rejected: false-precision
+  for a risk label that drives UI badges); higher minimum (e.g. 25 —
+  rejected: with only manual eBay active, ≥ 25 comps in 30 days
+  excludes most of the catalog from ever getting a label); rolling
+  median (deferred: structural framework, not a starting threshold).
+- **Rationale:** 10 eligible comps gives enough variance signal to
+  separate "normal noise" from "pump pattern" without permanently
+  suppressing the label for thinner cards. Aligns with the standard
+  TCG analytics-community heuristic; matches the recommendation
+  already in `docs/open-questions.md` Q-014 (Claude-authored).
+- **Owner:** Source-confidence model.
+- **Expiry trigger:** measured false-positive rate > 10 % at this
+  threshold; or comp volume grows enough that a tighter threshold
+  becomes statistically defensible.
+- **Related commits:** this commit. Validator and UI implementation
+  deferred to P2-014+.
+- **Status:** active.
+
+### D-043 — Premium badges surface at confidence ≥ medium for descriptive flags; high required for ranking-driving labels
+- **Date:** 2026-05-12
+- **Decision:** Two-tier surfacing rule for premium-flag UI badges
+  in P2-015:
+  - **Descriptive flags** (`altArt`, `manga`, `parallel`,
+    `winnerPromo`, `eventPromo`, `gdr`, etc.) — surface a badge
+    when `premium_metadata.confidence` ≥ `medium`.
+  - **Ranking-driving labels** (anything that affects sort order,
+    Chase Radar / Set Rankings positioning, or a "rare and
+    valuable" annotation) — require `confidence` = `high`.
+  - **`low` confidence** never surfaces a badge in any UI surface
+    (D-014 / trust contract).
+- **Alternatives:** uniform `high` everywhere (rejected: starves
+  most flags out of the UI given current source thinness); uniform
+  `medium` everywhere (rejected: a medium-confidence "Set Chase"
+  label drives buy/sell behavior and would violate the trust
+  principle).
+- **Rationale:** Descriptive flags answer "what is this card";
+  ranking-driving labels answer "is this card valuable enough to
+  prioritize." The asymmetry of trust matches the asymmetry of
+  consequences. Aligns with the recommendation in
+  `docs/open-questions.md` Q-015.
+- **Owner:** UI (P2-015); premium-metadata consumer.
+- **Expiry trigger:** measured user feedback that descriptive
+  badges feel unreliable at `medium`; or operator decides a
+  third tier (e.g. "high+sample") is warranted.
+- **Related commits:** this commit. Implementation deferred to
+  P2-015 (Codex handoff).
+- **Status:** active.
+
+### D-044 — `boxTopHit` is derived at runtime, not stored
+- **Date:** 2026-05-12
+- **Decision:** The `boxTopHit` collector tag is computed at
+  runtime from Box EV output (top-N cards by predicted rarity
+  contribution per set), not stored in
+  `premium_metadata.collectorTags`. P2-012 fixture intentionally
+  does NOT include `boxTopHit` rows.
+- **Alternatives:** stored (rejected: requires recomputation
+  discipline every time live prices, rarity bases, or pull rates
+  change — five upstream inputs that drift independently); hybrid
+  (rejected: doubles the failure modes).
+- **Rationale:** `boxTopHit` is a function of pricing, not a
+  property of the card. Storing it would invite the model and the
+  metadata to disagree silently. Deriving keeps the trust contract
+  honest: a card that stops being a top hit stops carrying the
+  badge automatically.
+- **Owner:** Premium metadata consumer; Box EV tab.
+- **Expiry trigger:** runtime derivation cost becomes meaningful
+  (>50ms aggregate at page load); at that point a derived-and-cached
+  snapshot in a new artifact is the upgrade path, not a stored
+  field.
+- **Related commits:** this commit.
+- **Status:** active.
+
+### D-045 — Population data: per-grader public reports, default `populationKnown = false`
+- **Date:** 2026-05-12
+- **Decision:** Graded-comps population data, when populated, is
+  sourced from the respective grader's public population report
+  (PSA pop report, BGS report, CGC census). Manual review is the
+  default; no automated scraping of population reports is approved.
+  Until a row is operator-verified, `populationKnown` is `false`
+  and population-dependent UI surfaces (e.g. "rare grade")
+  suppress.
+- **Alternatives:** single-source PSA only (rejected: BGS / CGC
+  have meaningful share in DBSFW high grades); automated
+  ingestion (rejected: each grader's site has different ToS and
+  rate limits; not approved).
+- **Rationale:** Population is a tactical risk signal, not a
+  primary ranking input — manual review per row is acceptable
+  cost for the first cycle. Default-false posture matches the
+  trust principle: never imply a rarity that isn't verified.
+- **Owner:** Graded-comps ingestion; operator review queue.
+- **Expiry trigger:** graded-comp volume crosses ~200 rows where
+  manual review becomes a bottleneck; at that point an approved
+  automated source (e.g. PSA API if available) is the upgrade
+  path.
+- **Related commits:** this commit. Fixture and importer for
+  graded comps gated by P2-008 → P2-014.
+- **Status:** active.
+
+### D-046 — Comps aggregates computed on demand
+- **Date:** 2026-05-12
+- **Decision:** Per-card per-window aggregates (median, trimmed
+  mean, count, IQR) for eBay sold comps are computed at consumer
+  time (on the client or at importer-emit-time for the static
+  artifact), not pre-stored in the comp row. The CSV / fixture
+  stays at the row grain.
+- **Alternatives:** pre-aggregate at import (rejected: aggregates
+  drift the moment a new comp lands; static-artifact rebuild is
+  cheap enough that pre-aggregation buys nothing); both (rejected:
+  duplicates source of truth).
+- **Rationale:** Aggregates are a view over the row set, not a
+  property of any single row. Keeping the artifact at row grain
+  matches the existing pattern (`livePrices.json` per card,
+  `priceHistory30d.json` per card per timestamp) and keeps the
+  comps validator focused on row shape rather than aggregate
+  semantics. Aligns with the recommendation in Q-023.
+- **Owner:** Comps consumer (P2-014 importer; P2-016 UI).
+- **Expiry trigger:** aggregate computation cost becomes
+  meaningful at runtime (>50ms aggregate at page load), at which
+  point an emit-time pre-aggregate is the upgrade path.
+- **Related commits:** this commit. P2-014 importer emits row-grain
+  artifact; aggregates computed on demand.
+- **Status:** active.
+
+### D-047 — Sealed-price freshness threshold = 30 days
+- **Date:** 2026-05-12
+- **Decision:** Sealed-product prices used as Box EV inputs are
+  considered fresh for **30 days** from their `observedAt`
+  timestamp. Beyond 30 days they are labeled "stale" and the Box
+  EV output flags the affected set with a freshness caveat.
+  Mirrors the 30-day window used by the cross-source threshold
+  (D-037) and the manipulation-risk analysis window (D-042).
+- **Alternatives:** 14 days (rejected: sealed-product price
+  movement is slower than singles; 14 days would over-warn);
+  60 days (rejected: stale enough to mislead Box ROI conclusions);
+  per-set adaptive window (deferred: structural; not a starting
+  threshold).
+- **Rationale:** 30 days is the standard window already in use
+  across the Phase 2 trust framework. A single shared freshness
+  window keeps the trust contract tractable. Matches the
+  recommendation in Q-024.
+- **Owner:** Sealed-products ingestion; Box EV consumer.
+- **Expiry trigger:** measured sealed-price volatility makes 30
+  days under- or over-warn (visible in operator review of Box EV
+  outputs).
+- **Related commits:** this commit. Implementation deferred to
+  P2-009 → P2-014.
+- **Status:** active.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 37 |
+| active | 47 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **37** |
+| **Total** | **47** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
@@ -623,13 +890,21 @@ D-006, D-007, D-008, D-011, D-012, D-016.
 Open architectural questions that have NOT been decided yet — see
 also `docs/open-questions.md` (CLA-09):
 
-- Promo / event-card `cardCode` namespace (decision deferred to
-  Codex's CDX-04 / ChatGPT's GPT-02 outputs).
-- Cross-source agreement threshold (deferred to CDX-05 / GPT-03).
-- Image-coverage strategy (deferred to CDX-03 / GPT-01).
-- Set Rankings / Chase Radar UX (deferred to CDX-06 / GPT-04).
-- Test coverage phase trigger (P3 in `test-coverage-gap-analysis.md`).
-- Backend trigger event (gated by `phase-2-execution-checklist.md` § 7).
+- SB rarity vocabulary (Q-010 — operator decision after first SB
+  source review; not inferred from external listings).
+- Promo alias table (Q-021 — depends on first promo ingestion).
+- Set Rankings / Chase Radar UX (Q-034 — deferred to ChatGPT GPT-04
+  → Codex doc commit).
+- Test coverage phase trigger (Q-031 / P3 in
+  `test-coverage-gap-analysis.md`).
+- Backend trigger event (Q-030; gated by
+  `phase-2-execution-checklist.md` § 7).
+- Paid JustTCG tier upgrade trigger (Q-032 — operator decision).
+- Cross-source first-pass expansion list beyond manual eBay (Q-033
+  — operator decision after D-041 is exercised).
+- Accounts / auth introduction (Q-036 — contingent on monetization).
+- Long-term history archive (Q-037 — contingent on > 30-day window
+  demand).
 
 ## 6. Update protocol
 
@@ -645,3 +920,7 @@ When a decision is made or revisited:
 | Date | ID | Change | Notes |
 |------|----|--------|-------|
 | 2026-05-07 | init | Initial 32-decision log | Compiled from project history, AGENTS.md, Phase 2 specs, and observed pipeline behavior. |
+| 2026-05-07 | D-033..D-035 | Canonical naming decisions added (P2-018) | `winnerPromo`, `rawGradedContamination`, `gradeCompany`. |
+| 2026-05-11 | D-036 | Promo namespace (three-tier scheme) | Closes Q-001. |
+| 2026-05-11 | D-037 | Cross-source variance thresholds | Closes Q-003. |
+| 2026-05-12 | D-038..D-047 | Consolidated open-questions closure run | Closes Q-002, Q-011..Q-015, Q-020, Q-022..Q-024 (10 decisions). Claude-authored under operator's "take charge" mandate. |

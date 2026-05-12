@@ -245,12 +245,18 @@ Every risk row in § 4–7 cites where it came from:
   or worse.
 - **Likelihood:** Medium — image rights are a real constraint for any
   TCG project.
-- **Owner:** Product strategy (image-coverage spec is in Codex's CDX-03
-  prompt; not yet written).
-- **Mitigation:** Image fallback (icon) is in place; no scraping done.
-  Spec doc (image coverage strategy) is queued.
-- **Residual risk:** Medium until the strategy spec lands.
-- **Status:** open.
+- **Owner:** Product strategy.
+- **Mitigation:** Strategy confirmed via D-038 (2026-05-12). Option E
+  (icons-only) is the default; Option C (third-party rights-cleared
+  API) is the upgrade path with three named triggers. Options A
+  (mirror Bandai) / B (hot-link) / D (placeholder renders) / F
+  (user-uploaded) explicitly rejected. No images hosted, scraped, or
+  licensed; no rights exposure under current posture.
+- **Residual risk:** Low under current posture (rights exposure = 0;
+  credibility cost is the only remaining tradeoff, gated to
+  Option-C triggers).
+- **Status:** closed under current scope. Re-opens automatically if
+  Option-C upgrade triggers fire and a provider is approved.
 
 ### R-018 — Single-source dependency on JustTCG
 - **Sources:** new
@@ -484,21 +490,24 @@ Every risk row in § 4–7 cites where it came from:
 
 ## 9. Top 5 risks to act on this cycle
 
-In recommended order of address (R-001 closed via P2-018 spec-tightening; R-036 closed via Codex commit `02e9733` Methodology disclosures):
+In recommended order of address (R-001 closed via P2-018
+spec-tightening; R-036 closed via Codex commit `02e9733` Methodology
+disclosures; R-017 closed 2026-05-12 via D-038):
 
 1. **R-002** — Agent reality-drift. Process discipline issue. Mitigation
    is preflight checks already in `AGENTS.md`; needs enforcement on every
    review session.
-2. **R-017** — Image licensing exposure. Strategy spec is queued;
-   blocking visual polish past current state.
-3. **R-020** — Plausible analytics blind spot. First read takes 15
-   minutes; blocks honest user-behavior decisions.
-4. **R-036** — Methodology disclosure gaps. **Closed** by Codex commit
-   `02e9733` (the post-CLA-10 prompt). Tracked here as closed-this-cycle
-   for visibility.
-5. **Monitor P2-011 work once approved.** Staging-directory scaffold is
-   the next unblocked task; ensure scope stays docs-only and no
-   fixtures land without the dedicated validator path.
+2. **R-020** — Plausible analytics blind spot. First read takes 15
+   minutes; blocks honest user-behavior decisions. **Top open risk
+   after the 2026-05-12 D-038..D-047 closure run.**
+3. **R-018** — Single-source dependency on JustTCG. Methodology
+   discloses it; D-041 (manual eBay first sold-comp) is the first
+   structural mitigation step.
+4. **R-017** — Image licensing exposure. **Closed** by D-038
+   (2026-05-12). Tracked here for visibility; re-opens if Option-C
+   triggers fire.
+5. **R-036** — Methodology disclosure gaps. **Closed** by Codex
+   commit `02e9733`. Tracked here for visibility.
 
 ## 10. What this register did NOT include
 
@@ -527,3 +536,4 @@ When a risk changes state:
 | Date | Risk ID | Change | Notes |
 |------|---------|--------|-------|
 | 2026-05-07 | (init) | Initial register | Compiled from 8 Phase 2 specs + AGENTS.md + observed multi-agent session experience. |
+| 2026-05-12 | R-017 | open → closed under current scope | D-038 confirms icons-only default; re-opens if Option-C triggers fire. |
