@@ -51,9 +51,9 @@ fi
 VERIFY_LINE="$(node scripts/verify-data.js 2>&1 | tail -1 | head -c 240)"
 
 # Phase 3 task counts parsed from the checklist (rough but useful).
-P3_COMPLETE="$(grep -c '^| P3-.* | Complete ' docs/phase-3-execution-checklist.md 2>/dev/null || echo 0)"
-P3_TODO="$(grep -c '^| P3-.* | Not started ' docs/phase-3-execution-checklist.md 2>/dev/null || echo 0)"
-P3_GATED="$(grep -c '^| P3-.* | Needs user approval ' docs/phase-3-execution-checklist.md 2>/dev/null || echo 0)"
+P3_COMPLETE=$(grep -E '^\| P3-.* \| Complete ' docs/phase-3-execution-checklist.md 2>/dev/null | wc -l | tr -d ' ')
+P3_TODO=$(grep -E '^\| P3-.* \| Not started ' docs/phase-3-execution-checklist.md 2>/dev/null | wc -l | tr -d ' ')
+P3_GATED=$(grep -E '^\| P3-.* \| Needs user approval ' docs/phase-3-execution-checklist.md 2>/dev/null | wc -l | tr -d ' ')
 
 # Sample-gate presence (production paths must stay absent until real data).
 present_or_absent() {
