@@ -1,27 +1,31 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-12
-**Branch:** `claude/dbfw-market-analytics-1qh5D`
+**Date:** 2026-05-14
+**Branch:** `claude/dbfw-market-analytics-1qh5D` (PR #2 standing for Phase 3 work; PR #1 merged 2026-05-12)
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 2 UI consumption landing (17/18 tasks complete). P2-017 (backend decision) remains operator-only and is not approved.
+**Phase:** Phase 3 operate-and-harden — 11/14 tasks complete. Only operator-gated work remains.
 
 ---
 
 ## TL;DR
 
-FusionMetrics has a durable trust foundation, the full Phase 2 spec set,
-two sample fixtures with validators in `data-staging/`, the P2-014 importer
-emitting sample-flagged artifacts under `public/`, and **all P0 open
-questions closed** plus 10 additional P1/P2 closures from the 2026-05-12
-consolidated decision run (D-038..D-047). The app uses real JustTCG live
-prices, real JustTCG 30d history, visible provenance, per-card freshness,
-Methodology copy disclosing R² = 0.32 plus smoothed UC / extrapolated SPR /
-single-source caveats, Set-Level Analytics, tightened Box EV language,
-Watchlist v2 local portfolio fields, sample-gated premium metadata badges,
-and a sample-gated CardDetail eBay sold-comps panel. Phase 2 specs are
-internally consistent (P2-018 closed 8 drift items). Decision log now at 47
-entries (D-001 — D-047). The only remaining Phase 2 task is **P2-017**
-(backend decision), and no backend trigger condition has fired.
+FusionMetrics is in operate-and-harden mode. Phase 2 closed; Phase 3 has shipped:
+the SessionStart hook (R-002 mitigated), the cross-source spot-check protocol
+(P3-007, mitigates R-018), the backend pre-stage plan (P3-009, Postgres on
+Supabase free tier — activates only on trigger), the sample-gate promotion
+runbook (the only sanctioned path to disable the sample-gate per artifact),
+the quarterly model recalibration (constants updated against 1156 prices,
+R²=0.318), production error capture via Plausible (P3-004), workflow failure
+alerts (P3-005), Watchlist CSV export (P3-006), and a 20-case Vitest suite
+(P3-008) wired into CI. PR #1 merged main forward 122 commits; PR #2 carries
+ongoing Phase 3 work with a green CI gate. The trust contract is intact and
+strictly enforced: production UI refuses to consume sample-flagged artifacts,
+no synthetic price movement, R-001 / R-017 / R-036 / R-037 / R-038 closed;
+new R-055 esbuild dev-server advisory tracked but not blocking (production
+unaffected). Decision log at 47 entries (D-001 — D-047). All P0 open
+questions closed. Remaining Phase 3 backlog is **operator-only**: P3-010 UX
+spec, P3-011 real eBay fill, P3-012 real premium-metadata fill. Plus the
+standing R-020 Plausible weekly read.
 
 ---
 
@@ -66,44 +70,44 @@ Most recent first (latest dev-branch head):
 
 | SHA | Subject |
 |-----|---------|
+| `66285c4` | fix: P3-008 follow-up — regenerate package-lock.json (esbuild transitives) |
+| `df452e1` | test: P3-008c full Vitest suite + CI integration |
+| `bc9c8a8` | test: P3-008b smoke cases (5 of 20 gap-analysis cases) |
+| `87a2ab6` | chore: P3-008a Vitest + RTL infrastructure |
+| `247cf19` | docs: § 4b operator-handbook — ready-to-paste P3-008 Codex prompt |
+| `07e91fe` | fix: session-brief.sh — clean count output |
+| `bee76e9` | docs: ship P3-007 + P3-009 + sample-gate promotion runbook |
+| `ff51bf3` | feat: SessionStart hook + scripts/session-brief.sh |
+| `914d22a` | feat: P3-004 + P3-005 + P3-006 — error capture, workflow failure alerts, Watchlist CSV export |
+| `5d70587` | docs: Phase 3 operate-and-harden scope (P3-001 + P3-002) |
+| `81fadb7` | chore: quarterly recalibrate vs 1156 live prices (drift report) |
+| `aac36a7` | chore: post-merge production verification 2026-05-12 |
+| `13e4f29` | docs: housekeeping refresh post-P2-015 + P2-016 |
 | `178a00a` | feat: P2-016 — CardDetail eBay sold-comps panel (sample-gated) |
 | `0110c23` | feat: P2-015 — premium metadata UI badges (sample-gated) |
 | `6c24fa1` | feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts |
 | `d429b38` | docs: close Q-002/Q-011..Q-024 — D-038..D-047 consolidated closure |
-| `79cd1c8` | docs: housekeeping refresh post-P2-012/P2-013/Q-001/Q-002/Q-003 |
-| `68946c9` | docs: Q-002 image strategy proposal (icons-only default, Option C upgrade path) |
-| `d26ba1b` | docs: Q-003 closure — cross-source variance thresholds (D-037) |
-| `c2c7ae2` | docs: Q-001 closure — promo namespace decision (D-036) |
-| `9153ad6` | feat: P2-013 — eBay sold comps sample fixture + validator |
-| `313fa55` | feat: P2-012 — premium metadata sample fixture + validator |
-| `ee18acd` | docs: CLAUDE.md — append Phase 2 progress snapshot |
-| `6ab8719` | docs: add operator handbook with ready-to-paste prompts |
-| `bcc3dcc` | docs: refresh public-beta backlog against May 2026 state |
-| `dca9b04` | chore: approve P2-011 and add staging directory scaffold |
-| `869b3ee` | docs: STATUS.md refresh post-P2-018 |
-| `c00c4a1` | docs: log canonical naming decisions D-033..D-035 |
-| `0522bb8` | docs: P2-018a — canonical naming and required-field fixes |
-| `02e9733` | feat: Methodology — disclose model limits, delta, and coverage |
 
 ---
 
 ## Yellow flags worth tracking
 
-- **R-002 Agent reality-drift.** Multi-agent sessions occasionally
-  describe completed work that exists on origin but not on the local
-  clone. Mitigation: `AGENTS.md` § 9 now requires
-  `git fetch --all` before any review.
-- **R-017 Image licensing.** **Closed 2026-05-12 via D-038** — icons-only
-  is the default; Option C upgrade path (third-party rights-cleared API)
-  fires on three named triggers. Re-opens automatically if any trigger
-  fires. See `docs/image-coverage-strategy.md`.
-- **R-018 Single-source dependency on JustTCG.** Methodology page now
-  discloses this explicitly. D-041 (manual eBay first sold-comp) is the
-  first structural mitigation; the P2-015 / P2-016 consumption layers are
-  complete, but production comps data remains intentionally gated.
-- **R-020 Plausible analytics never reviewed.** Tag has been live since
-  `01daa2e`; nobody has read the dashboard. A 15-minute review would
-  unblock honest user-behavior decisions.
+- **R-020 Plausible analytics never reviewed.** **Highest-leverage open
+  risk.** Tag live since `01daa2e`; no read yet. Every public-beta
+  decision is being made without user-behavior signal. 15-min
+  checklist in `docs/operator-handbook.md` § 5.
+- **R-018 Single-source dependency on JustTCG.** Mitigation chain
+  expanded 2026-05-14: Methodology disclosure + UI degradation states
+  + `docs/cross-source-spot-check-protocol.md` (P3-007 quarterly
+  manual check) + sample-gated comps infra ready for D-041 manual
+  eBay fill + P3-009 backend pre-stage. Structural exit waits on
+  P3-011 (operator-only).
+- **R-055 esbuild dev-server advisory (new).** Two moderate-severity
+  advisories on `esbuild ≤ 0.24.2` via Vite 5.4.1. **Dev-server only;
+  production unaffected.** Fix requires Vite 8 breaking upgrade —
+  out of scope for now, tracked as future task.
+- **R-002 / R-017 / R-037 / R-038** — all closed or mitigated as of
+  2026-05-14. See risk-register § 12 change log for state shifts.
 
 ---
 
@@ -137,20 +141,34 @@ Most recent first (latest dev-branch head):
 
 ---
 
-## Recommended next sequence
+## Recommended next sequence (operator)
 
-1. **Do not start P2-017 backend work** unless at least one Backend Trigger
-   Checklist condition fires and the operator explicitly approves it.
-2. **Read Plausible analytics dashboard** once (R-020 mitigation; 15
-   minutes). Pre-staged checklist in `docs/operator-handbook.md` § 5.
-3. Capture portfolio screenshots and record a short demo flow.
-4. Review `docs/public-beta-backlog.md` for the rest of the public-beta
-   prerequisites.
-5. Focused automated UI smoke tests after explicit approval
-   (see `docs/test-coverage-gap-analysis.md` for proposed Vitest suite).
-6. Later only: CSV export, manipulation / outlier detection visible
-   in UI (gated on D-042 ≥10 eligible comps), long-term history
-   archive, paid API tier, accounts, alerts, and AI prediction.
+All agent-doable work is closed. The next moves require the operator
+(or operator-driven Codex sessions):
+
+1. **Merge PR #2 to main** when ready — fast-forward eligible, CI
+   green on `66285c4`. Vercel will redeploy automatically; no
+   user-visible change because the new commits are docs / test infra /
+   small additive features (CSV export, error capture).
+2. **Read Plausible analytics dashboard** once (R-020; 15 min).
+   Pre-staged checklist: `docs/operator-handbook.md` § 5.
+3. **Decide P3-010** — Set Rankings / Chase Radar UX. Either author
+   the spec yourself or hand to ChatGPT GPT-04. Output: a
+   `docs/set-rankings-spec.md` Codex can implement.
+4. **Decide P3-011** — start manual eBay sold-comps research per
+   `docs/sample-gate-promotion-runbook.md`. Even 10–20 cards
+   produces real comps data to promote.
+5. **Decide P3-012** — start manual premium-metadata review per the
+   same runbook. ~50 cards is enough to validate the surface.
+6. **Capture portfolio screenshots / demo flow** (any time).
+7. **Optional: Vite 8 upgrade** to close R-055. Out-of-band Codex
+   task; not blocking; defer until other work clears.
+8. **Do not start P2-017 backend** unless a Backend Trigger Checklist
+   condition fires AND you explicitly approve. The pre-stage plan is
+   ready (`docs/backend-prestage-plan.md`).
+9. **Quarterly recalibration cadence**: next due 2026-08-12 (P3-003).
+10. **Cross-source spot-check cadence**: first run pending; next due
+    90 days after first run (P3-007).
 
 ---
 

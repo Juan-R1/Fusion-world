@@ -1,7 +1,7 @@
 # FusionMetrics Operator Handbook
 
-**Last refreshed:** 2026-05-12
-**Baseline commit:** `6c24fa1 feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts`
+**Last refreshed:** 2026-05-14
+**Baseline commit:** `66285c4 fix: P3-008 follow-up — regenerate package-lock.json`
 
 > Single doc for the human operator. Every prompt here is ready to paste.
 > If you're reading this and don't know what to do next, jump to § 6
@@ -11,40 +11,51 @@
 
 ## 1. What you do
 
-The trust foundation and Phase 2 spec layer are done. The visible product
-moves forward only when *you* approve a gated task or pick an answer to
-an open question. Your three real responsibilities going forward:
+Phase 2 closed. Phase 3 operate-and-harden has shipped 11 / 14 tasks
+including the SessionStart hook (R-002 mitigated), cross-source
+spot-check protocol, backend pre-stage plan, sample-gate promotion
+runbook, model recalibration, production error capture, workflow
+failure alerts, Watchlist CSV export, and the 20-case Vitest suite
+(P3-008) wired into CI. **The agent-doable backlog is empty.**
 
-### (a) Approve gated Phase 2 tasks
+Your remaining responsibilities:
 
-The Phase 2 ladder (`docs/phase-2-execution-checklist.md`) has shrunk
-to **three** tasks at "Needs user approval." P2-012, P2-013, and
-P2-014 are all complete as of 2026-05-12.
+### (a) Merge PR #2
 
-- **P2-015** — UI badges/filters. Consumes
-  `public/premiumMetadata.sample.json` via the sample-gate. **Codex
-  handoff prompt staged in § 4a.**
-- **P2-016** — CardDetail comps panel. Consumes
-  `public/ebayCompsSummary.sample.json` via the sample-gate. **Codex
-  handoff prompt staged in § 4a** (same prompt — Codex ships both
-  surfaces in a single run because they share trust guardrails).
-- **P2-017** — Backend decision. Depends on Backend Trigger
-  Checklist. None of the conditions are true today.
+Standing PR `claude/dbfw-market-analytics-1qh5D` → `main`. CI green;
+fast-forward eligible. No user-visible change (docs / tests / small
+additive features). Merge whenever you want a clean checkpoint.
 
-### (b) Open questions: all P0 closed
+### (b) Operator-only Phase 3 tasks
+
+- **P3-010** — Set Rankings / Chase Radar UX spec (Q-034). Author or
+  hand to ChatGPT GPT-04. Output: `docs/set-rankings-spec.md`.
+- **P3-011** — First real eBay comps fill. Use
+  `docs/sample-gate-promotion-runbook.md`. 10–20 cards is enough to
+  start.
+- **P3-012** — First real premium-metadata fill. Same runbook. ~50
+  cards validates the surface.
+
+### (c) Standing cadences
+
+- **R-020 Plausible weekly read.** 15 min, solo. § 5 checklist.
+- **P3-003 quarterly recalibration.** Next due 2026-08-12.
+- **P3-007 cross-source spot-check.** First run pending; quarterly
+  thereafter.
+
+### (d) Gated future tasks (do NOT start without operator approval)
+
+- **P2-017 backend** — only if a Backend Trigger Checklist condition
+  fires. Pre-stage plan is ready: `docs/backend-prestage-plan.md`.
+- **R-055 Vite 8 upgrade** — closes the esbuild dev-server advisory.
+  Breaking; needs a dedicated Codex task with explicit smoke tests.
+
+### Open questions: all P0 closed
 
 `docs/open-questions.md` rollup as of 2026-05-12: **13 questions
 closed (Q-001 / Q-002 / Q-003 / Q-011..Q-015 / Q-020 / Q-022..Q-024 /
-Q-035), 9 open (none P0).** The remaining open questions are either
-operator-only (Q-010 SB rarity, Q-032 paid JustTCG trigger) or
-contingent on later phases (Q-021, Q-030, Q-031, Q-033, Q-034, Q-036,
-Q-037). No question gates current implementation work.
-
-### (c) Read Plausible analytics weekly
-
-The Plausible tag has been live since `01daa2e` (April 2026). Nobody has
-read the dashboard yet. Public-beta decisions are being made without
-user-behavior signal. Prompt in § 5; takes ~15 minutes.
+Q-035), 9 open (none P0).** No question gates current implementation
+work.
 
 ---
 
@@ -394,6 +405,11 @@ commits it verbatim as docs/image-coverage-strategy.md, or
 
 ## 4a. Ready-to-paste prompt: ship P2-015 + P2-016 (Codex)
 
+> **STATUS: SHIPPED 2026-05-12.** P2-015 landed in commit `0110c23`
+> and P2-016 in `178a00a`. Both surfaces are live in production
+> behind the sample-gate. This prompt is preserved as a reference
+> pattern; do not re-paste.
+
 Paste this after the P2-014 importer commit (`6c24fa1`) is pushed.
 This is a **single Codex run** that ships both surfaces because they
 share the same sample-gate, copy posture, and trust-contract
@@ -624,6 +640,13 @@ STOP CONDITIONS (any one triggers abort + report):
 ---
 
 ## 4b. Ready-to-paste prompt: ship P3-008 test suite (Codex)
+
+> **STATUS: SHIPPED 2026-05-14.** P3-008 landed in commits `87a2ab6`
+> (infra), `bc9c8a8` (smoke cases), `df452e1` (full 20-case suite +
+> CI integration), plus follow-up `66285c4` (lockfile regeneration).
+> CI runs `npm test` after build; 20 tests pass in ~1.2s. Dev deps
+> approved under Q-031: `vitest`, `@testing-library/react`, `jsdom`.
+> This prompt is preserved as a reference pattern; do not re-paste.
 
 **Operator gate:** This task adds two dev dependencies — `vitest` and
 `@testing-library/react`. Per CLAUDE.md § 7.7 ("Don't introduce…a
