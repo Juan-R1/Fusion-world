@@ -424,6 +424,9 @@ expiry trigger fires.
 - **Expiry trigger:** A genuinely-needed dep emerges (e.g. Vitest
   for the test coverage phase).
 - **Related commits:** project inception; reaffirmed `fcb0147`.
+- **Scope clarification:** 2026-05-13: Q-031 test-suite approval admits
+  `vitest`, `@testing-library/react`, and `jsdom` as dev-only transitives.
+  Production bundle unaffected. See P3-008 commits.
 - **Status:** active.
 
 ### D-028 — `fusionmetrics-*` skill family alongside legacy `fusion-*`
