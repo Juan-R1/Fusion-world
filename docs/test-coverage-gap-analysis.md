@@ -259,6 +259,17 @@ facing surface**. A regression in any one of them either:
 - **Breaks the lazy-load contract** (CardDetail history states), or
 - **Hides degradation** (ProvenanceFooter / freshness color drift).
 
+## 7. Closing note — P3-008 shipped
+
+**Closed:** 2026-05-13 under P3-008 / Q-031.
+
+FusionMetrics now ships a Vitest + React Testing Library suite with 20
+focused regression cases covering the highest-risk gaps from this analysis:
+data trust helpers, Watchlist v2 migration/storage paths, sample-gated public
+artifact loaders, CardDetail history/freshness states, ProvenanceFooter
+fallback/modal behavior, and ValueScanner ranking trust rules. CI now runs
+`npm test` after `npm run build`.
+
 Build + 9 invariants catches none of these.
 
 ## 7. Risks of not closing this gap

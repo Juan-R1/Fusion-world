@@ -39,12 +39,19 @@ expansion**.
 | Pipeline mode | Rotation (3 sets/run, ~25 reqs) is default; full mode (~67 reqs) is manual override |
 | CardDetail price history | Lazy-loaded via `fetch('/priceHistory30d.json')`, proven, cached in-memory |
 | Provenance / freshness | Footer + modal complete; per-card freshness badge complete |
-| Methodology | Methodology & Data Sources tab complete |
-| External spot-check | 10 cards checked: 9 aligned, 1 unclear due to variant ambiguity |
-| Retired legacy files | old accumulator script and legacy bundled history file are deleted |
-| Current JS bundle | ~646 kB raw / ~95 kB gzip after Watchlist v2 |
-| Phase 2 progress | 10 / 17 tasks complete; P2-011 awaiting operator approval |
-| In-flight work dashboard | `docs/phase-2-dashboard.md` (canonical daily heads-up) |
+| Methodology | Methodology & Data Sources tab complete with R²=0.32 / smoothed UC / extrapolated SPR / single-source disclosures |
+| Sample-gated UI consumption | P2-015 premium badges + P2-016 comps panel both ship; refuse `_isSample: true` |
+| Watchlist | v2 (localStorage) with quantity / entryPrice / currentValue / P&L; CSV export shipped (P3-006) |
+| Test suite | 20-case Vitest suite (P3-008) covers data.js invariants, Watchlist v1→v2 migration, sample-gate refusal, CompsPanel raw/graded separation, ValueScanner ranking, CardDetail, ProvenanceFooter. CI runs `npm test` after build. |
+| Production error capture | P3-004 — `src/lib/errorCapture.js` fires Plausible `js-error` events when `window.plausible` is defined |
+| Workflow failure alerts | P3-005 — `update-prices.yml` + `update-cards.yml` open a GitHub issue on failure |
+| Pricing model constants | Recalibrated 2026-05-12 against 1156 prices (R²=0.318); next recalibration 2026-08-12 |
+| External spot-check | Operator-driven, manual; protocol in `docs/cross-source-spot-check-protocol.md` |
+| Current JS bundle | ~662 kB raw / ~99 kB gzip after P3-008 test infra (test deps are dev-only and not bundled) |
+| Phase 2 progress | 17 / 18 complete; only P2-017 (backend) remains, operator-gated by Backend Trigger Checklist |
+| Phase 3 progress | 11 / 14 complete (P3-001 through P3-009, P3-013, P3-014); operator-gated: P3-010 (UX spec), P3-011 (eBay fill), P3-012 (premium-metadata fill) |
+| Branch discipline | All work on `claude/dbfw-market-analytics-1qh5D`; PRs to `main` (PR #1 merged 2026-05-12; PR #2 standing for ongoing Phase 3 work) |
+| Session brief | `scripts/session-brief.sh` auto-fires via `.claude/settings.json` SessionStart hook |
 
 ---
 
@@ -94,11 +101,19 @@ Operating principle: **make FusionMetrics unable to lie by accident.**
 
 ```bash
 # Local validation — run BOTH before any commit that touches code:
-npm run build                 # Vite build; bundle should stay ~645–646 kB raw
+npm run build                 # Vite build; bundle should stay ~660 kB raw
 node scripts/verify-data.js   # 9 invariants; must say "split shape required"
 
 # Optional dev server for UI smoke tests:
 npm run dev
+
+# Session brief — auto-runs via .claude/settings.json SessionStart hook,
+# but you can invoke it manually anytime:
+bash scripts/session-brief.sh
+# Prints: branch + HEAD + drift vs origin/main + verify-data result +
+# recent commits + Phase 3 task counts + sample-gate state. Reading
+# the brief is the cheapest way to ground a session without scrolling
+# git history. (R-002 mitigation.)
 
 # Trigger the price refresh manually (operator only — quota-aware):
 gh workflow run update-prices.yml --ref claude/dbfw-market-analytics-1qh5D \

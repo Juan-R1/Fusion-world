@@ -80,14 +80,19 @@ Every risk row in § 4–7 cites where it came from:
   wrong; later prompts compound the error.
 - **Likelihood:** High in multi-agent setups; observed twice in May 2026.
 - **Owner:** Process (operator + every agent's preflight).
-- **Mitigation:** `AGENTS.md` standard workflow already requires
-  `git fetch --all` + `git pull --ff-only` + `git status` + `git log` as
-  the first action of every session. `docs/phase-2-execution-checklist.md`
-  is the canonical "what's done" source. CLA-00 preflight added explicit
-  doc-existence verification.
-- **Residual risk:** Medium — process discipline only; one shortcut and
-  the drift returns.
-- **Status:** monitored.
+- **Mitigation:** **P3-014 SessionStart hook + `scripts/session-brief.sh`
+  (commit `ff51bf3` / `07e91fe`) structurally closes the silent-drift
+  path.** Every Claude Code session now auto-loads branch + drift vs
+  origin/main + verify-data + recent commits + Phase 3 task counts +
+  sample-gate state before the first prompt. `AGENTS.md` § 5 documents
+  the manual invocation.  `AGENTS.md` standard workflow still requires
+  `git fetch --all` + `git pull --ff-only` + `git status` as a belt-
+  and-suspenders preflight. The canonical "what's done" sources are
+  `docs/phase-2-execution-checklist.md` and
+  `docs/phase-3-execution-checklist.md`.
+- **Residual risk:** Low — auto-loaded brief + checklist canonical
+  source make silent drift hard to reach.
+- **Status:** mitigated (was: monitored).
 
 ### R-003 — Coverage guard can be silently bypassed via manual restore
 - **Sources:** `agents-§3` rule 5; new
@@ -269,13 +274,28 @@ Every risk row in § 4–7 cites where it came from:
 - **Likelihood:** Low–medium; JustTCG is a reasonable vendor but
   single-source dependency is structural.
 - **Owner:** Data strategy.
-- **Mitigation:** `priceStatus`/`historyState`/`unavailable` UI states
-  already model degradation. eBay / TCGplayer / PriceCharting comps are
-  spec'd but not implemented. Carry-forward freshness UI tolerates
-  short outages.
-- **Residual risk:** Medium structurally; low operationally.
-- **Status:** monitored; long-term mitigation is multi-source comp
-  ingestion (P2-013+).
+- **Mitigation:** Multi-layered:
+  - **Disclosure**: Methodology page explicitly states single-source
+    dependency (commit `02e9733`).
+  - **UI degradation states**: `priceStatus`/`historyState`/
+    `unavailable` already model graceful failure.
+  - **Carry-forward**: per-card freshness UI tolerates short outages.
+  - **Spot-check protocol**: `docs/cross-source-spot-check-protocol.md`
+    (P3-007) — quarterly 10-card stratified manual check against
+    TCGplayer + PriceCharting, with PASS/CAUTION/STRUCTURAL decision
+    bands tied to D-037. Detects systematic bias without requiring
+    automated cross-source ingestion.
+  - **First sold-comp source**: D-041 commits to manual eBay as the
+    first cross-source data path; sample-gated infrastructure
+    (P2-013/P2-014/P2-016) is ready. Operator fills via
+    `docs/sample-gate-promotion-runbook.md`.
+  - **Backend escape hatch**: P2-017/P3-009 backend pre-stage plan
+    (`docs/backend-prestage-plan.md`) defines the multi-source
+    Postgres path when comps exceed ~1,000 rows.
+- **Residual risk:** Low operationally; medium structurally until
+  D-041 production data exists.
+- **Status:** monitored — mitigation chain in place at multiple
+  layers; structural exit waits on P3-011 manual eBay fill.
 
 ### R-019 — Watchlist v2 localStorage corruption
 - **Sources:** new (observed during v2 migration design)
@@ -290,10 +310,14 @@ Every risk row in § 4–7 cites where it came from:
   happens.
 - **Owner:** Watchlist code (useWatchlist.js).
 - **Mitigation:** `hasStorage()` guard exists; `normalizeItems` handles
-  malformed rows; `clear()` removes both v1 and v2. No backup yet.
-- **Residual risk:** Medium — no automated test covers the migration
-  paths; CLA-03 will recommend specific Vitest cases.
-- **Status:** monitored.
+  malformed rows; `clear()` removes both v1 and v2. **P3-008 test
+  suite (commits `87a2ab6`/`bc9c8a8`/`df452e1`) ships gap-analysis
+  cases 11 (v1→v2 migration) and 12 (hasStorage failure path) as
+  part of the 20-case Vitest suite.** No backup yet.
+- **Residual risk:** Low — automated tests cover the documented
+  failure modes; an undocumented failure mode is the remaining
+  surface.
+- **Status:** mitigated (was: monitored).
 
 ### R-020 — Plausible analytics blind spot
 - **Sources:** new
@@ -406,28 +430,62 @@ Every risk row in § 4–7 cites where it came from:
 - **Status:** monitored.
 
 ### R-037 — Test coverage gap
-- **Sources:** new (will be detailed in CLA-03)
-- **Description:** CI has build + 9 invariants only. Zero UI/component
-  tests. A regression in `data.js` ranking logic, Watchlist v2
-  migration, or `loadPriceHistory30d` error handling would ship
-  silently.
-- **Owner:** Quality (test framework decision).
-- **Mitigation:** CLA-03 will spec a minimum Vitest suite without
-  approving installation.
-- **Status:** open.
+- **Sources:** new (detailed in `docs/test-coverage-gap-analysis.md`)
+- **Description:** CI had build + 9 invariants only. Zero
+  UI/component tests. A regression in `data.js` ranking logic,
+  Watchlist v2 migration, or `loadPriceHistory30d` error handling
+  would have shipped silently.
+- **Owner:** Quality.
+- **Mitigation:** **P3-008 ships a 20-case Vitest suite (commits
+  `87a2ab6`/`bc9c8a8`/`df452e1`) covering data.js invariants,
+  Watchlist v1→v2 migration + hasStorage failure, sample-gate
+  refusal on `_isSample: true`, CompsPanel raw/graded separation +
+  on-demand aggregates, ValueScanner ranking, CardDetail rendering,
+  and ProvenanceFooter.** CI gate added in `ci.yml` (commit
+  `df452e1`). Lockfile follow-up landed in `66285c4`.
+- **Status:** closed (was: open).
 
 ### R-038 — Vercel deploy gap (dev branch unmerged)
 - **Sources:** new
-- **Description:** `claude/dbfw-market-analytics-1qh5D` has not been
-  merged to `main` in weeks. Production at
-  `fusion-metrics-jet.vercel.app` reflects an older state than the
-  current dev branch.
-- **Impact:** Operator's mental model ("look at the live site") may
-  differ from what reviewers see.
+- **Description:** `claude/dbfw-market-analytics-1qh5D` was 122
+  commits ahead of `main` for months. Production reflected
+  pre-Phase-2 state.
+- **Impact:** Operator's mental model ("look at the live site")
+  differed from reviewer reality.
 - **Owner:** Operator (deploy decision).
-- **Mitigation:** Document the gap; consider a controlled merge after
-  Phase 2 stabilizes.
-- **Status:** monitored.
+- **Mitigation:** **PR #1 merged 2026-05-12, bringing main current.
+  Going forward, all Phase 3 work lands via PR #2 → main with CI
+  gate and Vercel preview deploys per PR.** Branch discipline
+  re-established. R-002 SessionStart hook prevents future drift.
+- **Status:** closed (was: monitored).
+
+### R-055 — esbuild dev-server vulnerability (CVE chain via Vite 5.4.1)
+- **Sources:** new (surfaced by `npm audit` 2026-05-14 during the
+  P3-008 lockfile regeneration follow-up)
+- **Description:** Two moderate-severity advisories on
+  `esbuild ≤ 0.24.2` shipped transitively by `vite@5.4.1`. The
+  vulnerability allows any website to send requests to a running
+  esbuild dev-server and read responses
+  (GHSA-67mh-4wv8-2f99).
+- **Impact:** **Dev-server only.** Affects developers running
+  `npm run dev` locally if they have a malicious tab open in the
+  same browser. Does NOT affect production builds, the Vercel
+  deploy, or end users of `fusion-metrics-jet.vercel.app`.
+- **Likelihood:** Low operationally; depends on developer browser
+  hygiene.
+- **Owner:** Build infrastructure (architecture).
+- **Mitigation:** Production unaffected — Vite's dev-server path is
+  not used for the deployed bundle. Upgrade requires Vite 8.x
+  (breaking major bump from 5.4.1) — defer until a separate task
+  with an explicit before/after smoke test on every tab + CI run.
+  Recommended: dedicated Codex prompt with bounded scope (npm
+  install vite@^8, verify build, verify all 20 tests still pass,
+  verify production bundle size hasn't regressed, document any
+  config migration needed).
+- **Residual risk:** Low — operational impact is zero for users;
+  developer-side risk is mitigated by browser hygiene plus the
+  fact that the dev server only binds to localhost by default.
+- **Status:** open (tracked; not blocking).
 
 ## 7. P3 — Long-term watch
 
@@ -482,32 +540,49 @@ Every risk row in § 4–7 cites where it came from:
 
 | Tier | Open | Monitored | Mitigated | Closed | Total |
 |------|-----:|----------:|----------:|-------:|------:|
-| P0 | 0 | 2 | 1 | 0 | 3 |
-| P1 | 3 | 4 | 5 | 0 | 12 |
-| P2 | 1 | 3 | 5 | 0 | 9 |
+| P0 | 0 | 1 | 2 | 0 | 3 |
+| P1 | 2 | 4 | 6 | 1 | 13 |
+| P2 | 1 | 2 | 6 | 1 | 10 |
 | P3 | 1 | 1 | 1 | 2 | 5 |
-| **Total** | **5** | **10** | **12** | **2** | **29** |
+| **Total** | **4** | **8** | **15** | **4** | **31** |
+
+Recent state changes (2026-05-12 → 2026-05-14):
+- R-001 spec drift → closed (P2-018).
+- R-002 agent reality-drift → mitigated (P3-014 SessionStart hook).
+- R-017 image licensing → closed (D-038).
+- R-018 single-source JustTCG → mitigation chain expanded (P3-007 protocol + sample-gate infra + backend pre-stage).
+- R-019 Watchlist localStorage → mitigated (P3-008 cases 11+12).
+- R-036 Methodology disclosure gaps → closed (`02e9733`).
+- R-037 test coverage → closed (P3-008).
+- R-038 Vercel deploy gap → closed (PR #1 merge 2026-05-12 + ongoing PR #2 pattern).
+- **R-055 esbuild dev-server advisory → open** (new, tracked, not blocking).
 
 ## 9. Top 5 risks to act on this cycle
 
-In recommended order of address (R-001 closed via P2-018
-spec-tightening; R-036 closed via Codex commit `02e9733` Methodology
-disclosures; R-017 closed 2026-05-12 via D-038):
+After the 2026-05-14 closure sweep, the top open risks are:
 
-1. **R-002** — Agent reality-drift. Process discipline issue. Mitigation
-   is preflight checks already in `AGENTS.md`; needs enforcement on every
-   review session.
-2. **R-020** — Plausible analytics blind spot. First read takes 15
-   minutes; blocks honest user-behavior decisions. **Top open risk
-   after the 2026-05-12 D-038..D-047 closure run.**
-3. **R-018** — Single-source dependency on JustTCG. Methodology
-   discloses it; D-041 (manual eBay first sold-comp) is the first
-   structural mitigation step.
-4. **R-017** — Image licensing exposure. **Closed** by D-038
-   (2026-05-12). Tracked here for visibility; re-opens if Option-C
-   triggers fire.
-5. **R-036** — Methodology disclosure gaps. **Closed** by Codex
-   commit `02e9733`. Tracked here for visibility.
+1. **R-020** — Plausible analytics blind spot. Operator-only;
+   15-minute first read still pending. **Highest-leverage
+   open risk because every public-beta decision is being made
+   without user-behavior signal.** Mitigation checklist:
+   `docs/operator-handbook.md` § 5.
+2. **R-018** — Single-source dependency on JustTCG. Mitigation
+   chain now in place (Methodology disclosure +
+   `priceStatus/historyState` UI states + P3-007 quarterly
+   spot-check protocol + sample-gated comps infra ready for
+   D-041 manual eBay fill + P3-009 backend pre-stage). Structural
+   exit waits on P3-011 operator-only data fill.
+3. **R-055** — esbuild dev-server advisory via Vite 5.4.1.
+   Dev-server only; production unaffected. Fix requires Vite 8
+   breaking upgrade. Tracked, not blocking.
+4. **R-054** — Dependency drift / no Dependabot. Lockfile pins
+   versions today; no automated security update flow. Would have
+   caught R-055 earlier.
+5. **R-002** — Agent reality-drift. **Mitigated** by P3-014
+   SessionStart hook + `scripts/session-brief.sh`; tracked for
+   visibility.
+
+Recently closed (visibility): R-001, R-017, R-036, R-037, R-038.
 
 ## 10. What this register did NOT include
 
@@ -537,3 +612,9 @@ When a risk changes state:
 |------|---------|--------|-------|
 | 2026-05-07 | (init) | Initial register | Compiled from 8 Phase 2 specs + AGENTS.md + observed multi-agent session experience. |
 | 2026-05-12 | R-017 | open → closed under current scope | D-038 confirms icons-only default; re-opens if Option-C triggers fire. |
+| 2026-05-14 | R-002 | monitored → mitigated | P3-014 SessionStart hook + `scripts/session-brief.sh` structurally close the silent-drift path. |
+| 2026-05-14 | R-018 | mitigation expanded | P3-007 spot-check protocol + sample-gate infra + P3-009 backend pre-stage now layered with the existing UI degradation states. |
+| 2026-05-14 | R-019 | monitored → mitigated | P3-008 cases 11 (v1→v2 migration) + 12 (hasStorage failure) ship in the Vitest suite. |
+| 2026-05-14 | R-037 | open → closed | P3-008 20-case Vitest suite + CI `npm test` step shipped. |
+| 2026-05-14 | R-038 | monitored → closed | PR #1 merged 2026-05-12; PR #2 pattern + standing dev branch reestablishes branch discipline. |
+| 2026-05-14 | R-055 | (new entry) open | esbuild dev-server advisory surfaced by npm audit. Dev-only; not blocking. |

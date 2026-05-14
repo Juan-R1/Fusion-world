@@ -1,7 +1,7 @@
 # FusionMetrics Operator Handbook
 
-**Last refreshed:** 2026-05-12
-**Baseline commit:** `6c24fa1 feat: P2-014 importer — sample-flagged premium-metadata + ebay-comps artifacts`
+**Last refreshed:** 2026-05-14
+**Baseline commit:** `66285c4 fix: P3-008 follow-up — regenerate package-lock.json`
 
 > Single doc for the human operator. Every prompt here is ready to paste.
 > If you're reading this and don't know what to do next, jump to § 6
@@ -11,40 +11,51 @@
 
 ## 1. What you do
 
-The trust foundation and Phase 2 spec layer are done. The visible product
-moves forward only when *you* approve a gated task or pick an answer to
-an open question. Your three real responsibilities going forward:
+Phase 2 closed. Phase 3 operate-and-harden has shipped 11 / 14 tasks
+including the SessionStart hook (R-002 mitigated), cross-source
+spot-check protocol, backend pre-stage plan, sample-gate promotion
+runbook, model recalibration, production error capture, workflow
+failure alerts, Watchlist CSV export, and the 20-case Vitest suite
+(P3-008) wired into CI. **The agent-doable backlog is empty.**
 
-### (a) Approve gated Phase 2 tasks
+Your remaining responsibilities:
 
-The Phase 2 ladder (`docs/phase-2-execution-checklist.md`) has shrunk
-to **three** tasks at "Needs user approval." P2-012, P2-013, and
-P2-014 are all complete as of 2026-05-12.
+### (a) Merge PR #2
 
-- **P2-015** — UI badges/filters. Consumes
-  `public/premiumMetadata.sample.json` via the sample-gate. **Codex
-  handoff prompt staged in § 4a.**
-- **P2-016** — CardDetail comps panel. Consumes
-  `public/ebayCompsSummary.sample.json` via the sample-gate. **Codex
-  handoff prompt staged in § 4a** (same prompt — Codex ships both
-  surfaces in a single run because they share trust guardrails).
-- **P2-017** — Backend decision. Depends on Backend Trigger
-  Checklist. None of the conditions are true today.
+Standing PR `claude/dbfw-market-analytics-1qh5D` → `main`. CI green;
+fast-forward eligible. No user-visible change (docs / tests / small
+additive features). Merge whenever you want a clean checkpoint.
 
-### (b) Open questions: all P0 closed
+### (b) Operator-only Phase 3 tasks
+
+- **P3-010** — Set Rankings / Chase Radar UX spec (Q-034). Author or
+  hand to ChatGPT GPT-04. Output: `docs/set-rankings-spec.md`.
+- **P3-011** — First real eBay comps fill. Use
+  `docs/sample-gate-promotion-runbook.md`. 10–20 cards is enough to
+  start.
+- **P3-012** — First real premium-metadata fill. Same runbook. ~50
+  cards validates the surface.
+
+### (c) Standing cadences
+
+- **R-020 Plausible weekly read.** 15 min, solo. § 5 checklist.
+- **P3-003 quarterly recalibration.** Next due 2026-08-12.
+- **P3-007 cross-source spot-check.** First run pending; quarterly
+  thereafter.
+
+### (d) Gated future tasks (do NOT start without operator approval)
+
+- **P2-017 backend** — only if a Backend Trigger Checklist condition
+  fires. Pre-stage plan is ready: `docs/backend-prestage-plan.md`.
+- **R-055 Vite 8 upgrade** — closes the esbuild dev-server advisory.
+  Breaking; needs a dedicated Codex task with explicit smoke tests.
+
+### Open questions: all P0 closed
 
 `docs/open-questions.md` rollup as of 2026-05-12: **13 questions
 closed (Q-001 / Q-002 / Q-003 / Q-011..Q-015 / Q-020 / Q-022..Q-024 /
-Q-035), 9 open (none P0).** The remaining open questions are either
-operator-only (Q-010 SB rarity, Q-032 paid JustTCG trigger) or
-contingent on later phases (Q-021, Q-030, Q-031, Q-033, Q-034, Q-036,
-Q-037). No question gates current implementation work.
-
-### (c) Read Plausible analytics weekly
-
-The Plausible tag has been live since `01daa2e` (April 2026). Nobody has
-read the dashboard yet. Public-beta decisions are being made without
-user-behavior signal. Prompt in § 5; takes ~15 minutes.
+Q-035), 9 open (none P0).** No question gates current implementation
+work.
 
 ---
 
@@ -394,6 +405,11 @@ commits it verbatim as docs/image-coverage-strategy.md, or
 
 ## 4a. Ready-to-paste prompt: ship P2-015 + P2-016 (Codex)
 
+> **STATUS: SHIPPED 2026-05-12.** P2-015 landed in commit `0110c23`
+> and P2-016 in `178a00a`. Both surfaces are live in production
+> behind the sample-gate. This prompt is preserved as a reference
+> pattern; do not re-paste.
+
 Paste this after the P2-014 importer commit (`6c24fa1`) is pushed.
 This is a **single Codex run** that ships both surfaces because they
 share the same sample-gate, copy posture, and trust-contract
@@ -619,6 +635,152 @@ STOP CONDITIONS (any one triggers abort + report):
   priceHistory30d.json, priceUpdateLog.json) is modified.
 - Bundle grows past 750 kB raw (would need an explicit operator
   decision per bundle-audit-2026-05-07.md).
+```
+
+---
+
+## 4b. Ready-to-paste prompt: ship P3-008 test suite (Codex)
+
+> **STATUS: SHIPPED 2026-05-14.** P3-008 landed in commits `87a2ab6`
+> (infra), `bc9c8a8` (smoke cases), `df452e1` (full 20-case suite +
+> CI integration), plus follow-up `66285c4` (lockfile regeneration).
+> CI runs `npm test` after build; 20 tests pass in ~1.2s. Dev deps
+> approved under Q-031: `vitest`, `@testing-library/react`, `jsdom`.
+> This prompt is preserved as a reference pattern; do not re-paste.
+
+**Operator gate:** This task adds two dev dependencies — `vitest` and
+`@testing-library/react`. Per CLAUDE.md § 7.7 ("Don't introduce…a
+test runner without plan") and Q-031, this needs your explicit
+go-ahead before pasting. The plan IS the
+`docs/test-coverage-gap-analysis.md` doc which already exists and
+proposes 20 test cases.
+
+When you're ready to approve, paste this into Codex:
+
+```text
+Ship FusionMetrics P3-008: install Vitest + React Testing Library
+and port the 20 test cases proposed in
+docs/test-coverage-gap-analysis.md. Three commits:
+infra, smoke cases, full suite + CI integration. Operator pre-
+approved the two new dev deps under Q-031.
+
+Read first:
+- AGENTS.md (especially § 5 commands and § 9 don't-without-approval)
+- CLAUDE.md § 7.7 (dependency policy — this is the explicit
+  "with plan" approval; the plan is the gap-analysis doc)
+- docs/test-coverage-gap-analysis.md (the 20 cases — canonical)
+- docs/phase-3-execution-checklist.md P3-008 row
+- docs/decision-log.md (D-027 lean dependency policy — read for
+  context; this approval is the explicit exception)
+- package.json
+- src/data.js (the heart — most cases target it)
+- src/hooks/useWatchlist.js (cases 11–14)
+- src/lib/premiumMetadata.js, src/lib/ebayComps.js (sample-gate cases)
+- src/components/CompsPanel.jsx (aggregate-on-demand cases)
+- .github/workflows/ci.yml (add test step here)
+
+Preflight:
+  bash scripts/session-brief.sh
+  git fetch --all
+  git pull --ff-only
+  git status
+  node scripts/verify-data.js
+Confirm: clean tree, 9 invariants pass, on the dev branch (NOT main).
+
+────────────────────────────────────────────────────────────────────
+COMMIT 1 — chore: P3-008 test infrastructure (Vitest + RTL)
+────────────────────────────────────────────────────────────────────
+
+Allowed files:
+- package.json (EDIT — add `vitest` and `@testing-library/react`
+  to devDependencies at versions current as of 2026-05; add scripts
+  `"test": "vitest run"` and `"test:watch": "vitest"`)
+- package-lock.json (auto-regenerated by `npm install`)
+- vitest.config.js (NEW — jsdom env, globals=true, setupFiles for
+  cleanup)
+- tests/setup.js (NEW — RTL afterEach cleanup)
+- tests/.gitkeep removed if present
+
+Forbidden: every other file.
+
+Validation:
+  npm install                  (lockfile updated)
+  npm test                     (must run with 0 tests = success)
+  npm run build                (must succeed unchanged)
+  node scripts/verify-data.js  (9 invariants)
+
+Commit message: chore: P3-008a Vitest + RTL infrastructure
+
+────────────────────────────────────────────────────────────────────
+COMMIT 2 — test: P3-008 smoke cases (top 5 from gap analysis)
+────────────────────────────────────────────────────────────────────
+
+Allowed files:
+- tests/data.test.js (NEW — covers gap-analysis cases 1, 2, 3:
+  CARDS.length === 1258, HAS_LIVE_PRICES truthy, no NaN/Infinity
+  in predicted/market prices)
+- tests/useWatchlist.test.jsx (NEW — covers case 11: v1→v2
+  migration; case 12: hasStorage failure path)
+- tests/sampleGate.test.jsx (NEW — covers cases 18, 19: loaders
+  refuse _isSample: true and missing-file)
+
+Each test must:
+- Use vi.mock for fetch where loaders are involved.
+- Not call any real network.
+- Run in < 5s total.
+
+Validation:
+  npm test (5 tests pass)
+  npm run build
+  node scripts/verify-data.js
+
+Commit message: test: P3-008b smoke cases (5 of 20 gap-analysis cases)
+
+────────────────────────────────────────────────────────────────────
+COMMIT 3 — test: P3-008 full suite + CI integration
+────────────────────────────────────────────────────────────────────
+
+Allowed files:
+- tests/*.test.{js,jsx} (NEW — remaining 15 cases from gap analysis)
+- .github/workflows/ci.yml (EDIT — add `npm test` step after the
+  build step; do NOT change other steps)
+- docs/phase-3-execution-checklist.md (EDIT — flip P3-008 to
+  Complete; ledger row)
+- docs/test-coverage-gap-analysis.md (EDIT — add a closing § noting
+  the 20 cases now ship; do not rewrite the analysis)
+
+Forbidden: every other file. ESPECIALLY: src/* (the test suite must
+work against the current source; if a test reveals a real bug,
+report it but do NOT fix in this commit — open a follow-up).
+
+Validation:
+  npm test (all 20 pass)
+  npm run build
+  node scripts/verify-data.js
+  # If CI YAML changed, lint it: actionlint (if installed locally;
+  # otherwise rely on GitHub side validation post-push)
+
+Commit message: test: P3-008c full Vitest suite + CI integration
+
+────────────────────────────────────────────────────────────────────
+FINAL RESPONSE
+────────────────────────────────────────────────────────────────────
+
+1. Three commit SHAs.
+2. `npm test` output summary (count, runtime).
+3. Bundle delta (test deps are dev-only; production bundle should
+   not grow).
+4. CI yaml diff summary.
+5. STOP. Do not push.
+
+STOP CONDITIONS:
+- Any test FAILS in any commit.
+- Any forbidden file appears in diff.
+- A test discovers a real bug — REPORT it; do NOT fix in this run.
+- `npm install` brings in any unexpected transitive dependency that
+  inflates `node_modules` beyond a reasonable budget (e.g., > 200
+  MB). If so, stop and ask which dep is the bloat source.
+- A test relies on the production deploy URL (offline-first only).
 ```
 
 ---
