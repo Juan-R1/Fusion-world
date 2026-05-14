@@ -42,7 +42,7 @@ skipped task.
 | P3-005 | Complete | Workflow failure alerts | Codex/Claude | `.github/workflows/update-prices.yml`; `.github/workflows/update-cards.yml`; checklist | `npm run build`; `node scripts/verify-data.js` | Each workflow creates a failure issue without exposing secrets. | Uses `actions/github-script@v7`; workflows were not run. |
 | P3-006 | Complete | Watchlist CSV export | Codex/Claude | `src/tabs/Watchlist.jsx`; checklist | `npm run build`; `node scripts/verify-data.js`; manual export smoke test | Empty Watchlist disables export; non-empty export downloads CSV with required columns. | Client-side blob only. |
 | P3-007 | Complete | Cross-source spot-check protocol doc | Claude | `docs/cross-source-spot-check-protocol.md`; checklist | `git diff --check`; `node scripts/verify-data.js` | Manual operator checklist exists; no API calls. | Closed by Claude under operator's Phase 3 heavy-session mandate. First run is operator-driven; next due 2026-08-12. |
-| P3-008 | Needs user approval | Test suite | Claude/Codex | To be approved | `npm run build`; `node scripts/verify-data.js`; test command | Operator-approved test framework and first smoke cases exist. | Q-031; do not start without approval. |
+| P3-008 | Complete | Test suite | Claude/Codex | `package.json`; `package-lock.json`; `vitest.config.js`; `tests/*`; `.github/workflows/ci.yml`; docs | `npm test`; `npm run build`; `node scripts/verify-data.js` | Vitest + React Testing Library suite ships 20 gap-analysis cases and CI runs `npm test` after build. | Q-031 approved dev-only `vitest`, `@testing-library/react`, and `jsdom`. |
 | P3-009 | Complete | P2-017 backend pre-stage doc | Claude | `docs/backend-prestage-plan.md`; checklist | `git diff --check`; `node scripts/verify-data.js` | Backend trigger analysis exists; no implementation. | Closed by Claude under operator's Phase 3 heavy-session mandate. Stack: Postgres on Supabase free tier. Activates only when a Backend Trigger Checklist condition fires AND operator approves. |
 | P3-013 | Complete | Sample-gate promotion runbook | Claude | `docs/sample-gate-promotion-runbook.md`; checklist | `git diff --check`; `node scripts/verify-data.js` | Operator procedure for safely promoting sample artifacts to production. | Closed by Claude under operator's Phase 3 heavy-session mandate. Adds the only sanctioned path to disable the sample-gate per artifact. |
 | P3-014 | Complete | SessionStart hook + session-brief script | Claude | `.claude/settings.json`; `scripts/session-brief.sh`; `AGENTS.md` § 5 | `bash scripts/session-brief.sh` (manual smoke); `node scripts/verify-data.js` | Brief auto-loads at session start with branch, drift, verify-data, recent commits, P3 task counts, and sample-gate state. | Closes R-002 structurally. |
@@ -64,6 +64,7 @@ skipped task.
 | 2026-05-12 | P3-007 | Current docs commit | Added `docs/cross-source-spot-check-protocol.md`. 10-card stratified sample, D-037 variance bands, quarterly cadence. | `git diff --check`; `node scripts/verify-data.js` | Operator runs the first spot-check when ready. Next-due 2026-08-12 once a baseline run exists. |
 | 2026-05-12 | P3-009 | Current docs commit | Added `docs/backend-prestage-plan.md`. Postgres on Supabase free tier; dual-write → read-pilot → graduated-cutover migration plan; full SQL schema + rollback plan. | `git diff --check`; `node scripts/verify-data.js` | Activates only when a Backend Trigger Checklist condition fires AND operator approves. Zero implementation. |
 | 2026-05-12 | P3-013 | Current docs commit | Added `docs/sample-gate-promotion-runbook.md`. Pre-promotion gate, six-step promotion procedure, post-promotion verification, demotion path. | `git diff --check`; `node scripts/verify-data.js` | Only sanctioned path to disable the sample-gate per artifact. |
+| 2026-05-13 | P3-008 | Current test commit | Added Vitest + React Testing Library + jsdom infrastructure, 20 focused regression tests, and CI `npm test` step. | `npm test` (20 passed); `npm run build`; `node scripts/verify-data.js` | Covers data trust, Watchlist migration, sample-gates, CardDetail history/freshness, provenance, and ValueScanner ranking filters. |
 
 ## 6. Forbidden Files Without Explicit Approval
 
@@ -114,13 +115,10 @@ Workflow YAML:
 
 ## 9. Next Recommended Task
 
-All agent-doable Phase 3 docs are closed (P3-001..P3-007, P3-009,
+All agent-doable Phase 3 docs are closed (P3-001..P3-009,
 P3-013, P3-014 complete; P3-003..P3-006 features shipped). The
 remaining tasks are operator-gated:
 
-- **P3-008** Test suite (Q-031 — adds Vitest dev dep; operator yes/no).
-  Ready-to-paste Codex prompt staged in
-  `docs/operator-handbook.md` § 4b.
 - **P3-010** Set Rankings / Chase Radar UX spec (Q-034 — operator
   authors spec or hands to ChatGPT GPT-04).
 - **P3-011** First real eBay comps fill (manual operator research;
