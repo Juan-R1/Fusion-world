@@ -40,7 +40,7 @@ jobs:
         run: node scripts/fetch-cards.js
 
       - name: Commit updated card data
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           add: |
             scripts/known-cards.json
