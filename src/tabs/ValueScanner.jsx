@@ -4,7 +4,6 @@ import { SETS, RARITIES } from '../data.js'
 import { loadPremiumMetadata } from '../lib/premiumMetadata.js'
 import { useIsMobile } from '../hooks/useIsMobile.js'
 import DeltaBadge    from '../components/DeltaBadge.jsx'
-import MiniBar       from '../components/MiniBar.jsx'
 import RarityBadge   from '../components/RarityBadge.jsx'
 import CardDetail    from '../components/CardDetail.jsx'
 import CardImage     from '../components/CardImage.jsx'
@@ -15,9 +14,7 @@ const PAGE_SIZE = 100
 const SORT_OPTS = [
   { value: 'undervalued',  label: 'Most Undervalued'  },
   { value: 'overvalued',   label: 'Most Overvalued'   },
-  { value: 'demand',       label: 'Highest Demand'    },
   { value: 'price',        label: 'Highest Price'     },
-  { value: 'desirability', label: 'Desirability'      },
 ]
 
 const INP = {
@@ -86,9 +83,7 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
       switch (sort) {
         case 'undervalued':  return a.delta - b.delta
         case 'overvalued':   return b.delta - a.delta
-        case 'demand':       return b.demandPressure - a.demandPressure
         case 'price':        return b.marketPrice - a.marketPrice
-        case 'desirability': return b.desirability - a.desirability
         default: return 0
       }
     })
@@ -100,9 +95,6 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
 
   const undervalued = filtered.filter(c => c.delta < -15).length
   const overvalued  = filtered.filter(c => c.delta >  15).length
-  const avgDP       = filtered.length
-    ? filtered.reduce((s, c) => s + c.demandPressure, 0) / filtered.length
-    : 0
 
   const selCard = selected != null ? cards.find(c => c.id === selected) : null
 
@@ -115,8 +107,8 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
   }
   const handleFilterChange = (fn) => { fn(); setPage(0) }
 
-  const gridCols = '2fr 1fr 1fr 1fr 1fr 1fr'
-  const tableMinWidth = isMobile ? 640 : 'auto'
+  const gridCols = '2fr 1fr 1fr 1fr'
+  const tableMinWidth = isMobile ? 520 : 'auto'
 
   return (
     <div style={{
@@ -136,14 +128,13 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
         {/* Summary bar */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
           gap: 10, marginBottom: 14,
         }}>
           {[
             { label: 'Cards',       value: filtered.length,                color: T.text    },
             { label: 'Undervalued', value: undervalued,                    color: T.green   },
             { label: 'Overvalued',  value: overvalued,                     color: T.red     },
-            { label: 'Avg Demand',  value: `${(avgDP*100).toFixed(0)}%`,   color: T.orange  },
           ].map(({ label, value, color }) => (
             <div key={label} style={{ background: T.s1, border: `1px solid ${T.border}`, borderRadius: 8, padding: '8px 14px' }}>
               <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>{label}</div>
@@ -189,13 +180,10 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
               <span style={{ textAlign: 'right' }}>Market $</span>
               <span style={{ textAlign: 'right' }}>Model $</span>
               <span style={{ textAlign: 'right' }}>Delta</span>
-              <span style={{ textAlign: 'center' }}>Demand</span>
-              <span style={{ textAlign: 'right' }}>Sup. Sat.</span>
             </div>
 
             {pageSlice.map(card => {
               const active = selected === card.id
-              const dpCol  = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
 
               return (
                 <div
@@ -252,15 +240,6 @@ export default function ValueScanner({ cards, watchedCodes = new Set(), onToggle
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <DeltaBadge delta={card.delta} />
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                    <MiniBar value={card.demandPressure} max={1} color={dpCol} w={60} />
-                    <span style={{ fontSize: 10, fontFamily: T.mono, color: T.dim }}>
-                      {(card.demandPressure * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                  <div style={{ textAlign: 'right', fontFamily: T.mono, fontSize: 12, fontWeight: 600, color: card.supplySaturation > 1 ? T.red : T.green }}>
-                    {card.supplySaturation.toFixed(2)}
                   </div>
                 </div>
               )
