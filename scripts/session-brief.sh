@@ -72,7 +72,7 @@ $(git log -5 --oneline --no-decorate 2>/dev/null | sed 's/^/  /')
 
 Phase 3: $P3_COMPLETE complete · $P3_TODO not-started · $P3_GATED operator-only
 
-Sample-gate (production filenames must stay 'absent'):
+Sample-gate (production filename PRESENT = live artifact; absent = sample-gate active):
   premiumMetadata.json        $(present_or_absent premiumMetadata.json)
   ebayCompsSummary.json       $(present_or_absent ebayCompsSummary.json)
   premiumMetadata.sample.json $(present_or_absent premiumMetadata.sample.json)

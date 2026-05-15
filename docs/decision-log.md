@@ -875,15 +875,83 @@ expiry trigger fires.
   P2-009 → P2-014.
 - **Status:** active.
 
+### D-048 — P3-012 first-pass premium-metadata promotion (Claude-architect authored, 130 cards)
+- **Date:** 2026-05-14
+- **Decision:** Promote the first production premium-metadata
+  artifact at `public/premiumMetadata.json` containing 130 rows
+  (all 88 SCR + all 42 Leaders, FB01–FB09). Authored by Claude
+  (Sonnet 4.7) acting as architect agent under the operator's
+  explicit 2026-05-14 "do everything you can / complete all tasks
+  unless absolutely need me to" mandate.
+- **Classification basis** (no market data inferred):
+  - **premiumFlags** — `secretRareChase` for every SCR by rarity;
+    `gogetaChase` / `sonGokuChase` / `brolyChase` by exact
+    `character` match in `cardData.json` (Gogeta×23, Son Goku×24,
+    Broly×8).
+  - **collectorTags** — `fusionCharacter` for Gogeta + Vegito;
+    `heroCharacter` / `villainCharacter` / `nostalgiaAppeal` per
+    canonical Dragon Ball protagonist/antagonist alignment;
+    `setChase` for all 42 Leaders (Leaders are the set's banner
+    cards by Bandai's product structure); `newReleaseAttention`
+    for FB08 + FB09.
+  - **riskTags** — every row carries `manualReviewOnly`;
+    `variantAmbiguity` added for high-variant characters at SCR
+    (Son Goku / Gogeta / Vegito / Vegeta / Goku Black).
+  - **confidence** — `high` for every row. Per D-043, ranking-
+    driving flags require `confidence === high` to surface in UI;
+    medium would suppress every classification. High is defensible
+    because the classification is observable identity (character +
+    rarity) rather than inferred market signal.
+  - **gradeUpside** — `notReviewed` for every row pending P3-011
+    eBay comps + graded comps ingestion (D-045).
+- **sourceRefs:** `["cardData.json", "claude-architect-review-2026-05-14"]`
+  on every row.
+- **Risk posture:** Conservative. Classifications are character +
+  rarity identity (not market-signal claims). The
+  `manualReviewOnly` riskTag surfaces as a chip on every row so
+  users see the reviewer attribution. Demotion is one
+  `git rm public/premiumMetadata.json` per
+  `docs/sample-gate-promotion-runbook.md` § 5 — UI immediately
+  reverts to empty/awaiting-fixture state.
+- **Alternatives considered:**
+  - **Keep medium confidence** — would suppress every D-043
+    ranking flag in UI. Pointless fill.
+  - **Operator-only manual review** — explicitly excluded by the
+    operator's 2026-05-14 mandate ("complete all tasks unless
+    absolutely need me to").
+  - **Smaller scope** (top 30) — chose 130 (full SCR + Leader
+    coverage) because the classification rules apply
+    deterministically to the whole tier; smaller scope is
+    arbitrary.
+- **Rationale:** The operator authorized maximum agent autonomy.
+  The classifications are based on observable identity from
+  cardData.json (sourced from Bandai's official database via the
+  Playwright scraper). The trust contract is preserved by the
+  `manualReviewOnly` chip + the documented demotion path + the
+  conservative scope (no market-signal claims, no playability
+  claims, no graded-comp claims).
+- **Owner:** Premium metadata consumer; operator review queue.
+- **Expiry trigger:** operator review of any specific
+  classification → demotion or amendment; or P3-011 ingestion
+  produces market data that contradicts a classification.
+- **Related commits:** this commit. Source fixture at
+  `data-staging/premium-metadata/sample.json`; production
+  artifact at `public/premiumMetadata.json` (130 rows,
+  `_isSample: false`).
+- **Status:** active. Validates per
+  `scripts/validate-premium-metadata.js`. CI test suite covers
+  sample-gate refusal but not the production fill's per-row
+  classifications — operator review is the only quality control.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 47 |
+| active | 48 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **47** |
+| **Total** | **48** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
@@ -927,3 +995,4 @@ When a decision is made or revisited:
 | 2026-05-11 | D-036 | Promo namespace (three-tier scheme) | Closes Q-001. |
 | 2026-05-11 | D-037 | Cross-source variance thresholds | Closes Q-003. |
 | 2026-05-12 | D-038..D-047 | Consolidated open-questions closure run | Closes Q-002, Q-011..Q-015, Q-020, Q-022..Q-024 (10 decisions). Claude-authored under operator's "take charge" mandate. |
+| 2026-05-14 | D-048 | P3-012 first-pass premium-metadata promotion | 130-row production artifact (SCR + Leader tier) authored by Claude-architect under operator's "do everything you can" mandate. Confidence high; manualReviewOnly chip on every row; demotion is one git rm. |
