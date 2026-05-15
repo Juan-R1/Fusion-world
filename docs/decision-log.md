@@ -964,6 +964,28 @@ expiry trigger fires.
   removing RNG-derived surfaces before public launch. Methodology
   already disclosed they were heuristics, but gauges and sortable
   columns visually implied authority the inputs did not have.
+- **Restoration path per surface:**
+  - **Demand % gauge + ValueScanner Demand column** — returns when
+    eBay Browse API credentials land. Source: eBay listing
+    `watchCount` (active) + sold-listing volume per card.
+  - **Sup. Sat. % gauge + ValueScanner Sup. Sat. column** — returns
+    when eBay Browse API credentials land. Source: eBay
+    active-listing count per card.
+  - **Market Dynamics tab (quadrant chart)** — returns after both
+    Demand and Supply have ~30 days of accumulated real signal.
+    Same visual; real inputs.
+  - **Watchlist Highest-Demand sort** — returns when Demand has a
+    real signal (replaces the retired Desirability sort).
+  - **Composite Desirability score** — does NOT return as a
+    composite; component values surface separately so users see
+    what they are looking at.
+  - **artScore / Art-Hype gauge** — does NOT return. No real source
+    exists for "art quality"; only path back would be manual
+    operator review per card, which is a cost the trust contract
+    does not justify.
+  - **charPremium (Character Popularity heuristic)** — already
+    retained as a stored-value heuristic. Could be refreshed via
+    Google Trends API integration; not currently on the roadmap.
 - **Operator authorization:** 2026-05-15 "this is a deployable tool but
   needs to be accurate with real data" mandate.
 - **Owner:** Trust contract.
