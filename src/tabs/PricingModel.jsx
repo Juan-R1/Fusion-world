@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { T }        from '../theme.js'
 import DeltaBadge   from '../components/DeltaBadge.jsx'
 
+const popularityOf = card => {
+  const value = card.characterPopularityHeuristic ?? card.universalAppeal ?? card.charPremium
+  return Number.isFinite(value) ? Math.max(0, Math.min(10, value)) : 0
+}
+
 // ── Scatter Plot ──────────────────────────────────────────────────────────────
 function ScatterPlot({ cards }) {
   const [tooltip, setTooltip] = useState(null)
@@ -15,14 +20,14 @@ function ScatterPlot({ cards }) {
   const logMin = Math.log(Math.min(...prices) * 0.9)
   const logMax = Math.log(Math.max(...prices) * 1.1)
 
-  const xS = d  => ml + ((d - 1) / 9) * pw
+  const xS = d  => ml + (d / 10) * pw
   const yS = p  => mt + ph - ((Math.log(p) - logMin) / (logMax - logMin)) * ph
   const rS = pc => 4 + ((pc - 1) / 9) * 12
   const dotColor = c => c.delta < -15 ? T.green : c.delta > 15 ? T.red : T.yellow
 
   // Reference trend line at avg pull cost (~5.5)
   const refPts = []
-  for (let d = 1; d <= 10; d += 0.5)
+  for (let d = 0; d <= 10; d += 0.5)
     refPts.push([xS(d), yS(Math.exp(0.80 + 0.17 * 5.5 + 0.38 * d))])
   const refPath = refPts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')
 
@@ -33,7 +38,7 @@ function ScatterPlot({ cards }) {
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <svg width={W} height={H} style={{ background: T.s2, borderRadius: 10, display: 'block' }}>
         {/* Grid lines */}
-        {[2,4,6,8,10].map(d => (
+        {[0,2,4,6,8,10].map(d => (
           <line key={d} x1={xS(d)} x2={xS(d)} y1={mt} y2={mt+ph} stroke={T.border} strokeWidth={1} />
         ))}
         {yTicks.map(v => (
@@ -47,7 +52,7 @@ function ScatterPlot({ cards }) {
         {cards.map(c => (
           <circle
             key={c.id}
-            cx={xS(c.desirability)} cy={yS(c.marketPrice)} r={rS(c.pullCost)}
+            cx={xS(popularityOf(c))} cy={yS(c.marketPrice)} r={rS(c.pullCost)}
             fill={dotColor(c)} fillOpacity={0.75}
             stroke={dotColor(c)} strokeWidth={1}
             style={{ cursor: 'pointer' }}
@@ -58,14 +63,14 @@ function ScatterPlot({ cards }) {
 
         {/* X axis */}
         <line x1={ml} x2={ml+pw} y1={mt+ph} y2={mt+ph} stroke={T.dim} strokeWidth={1} />
-        {[1,2,3,4,5,6,7,8,9,10].map(d => (
+        {[0,1,2,3,4,5,6,7,8,9,10].map(d => (
           <g key={d}>
             <line x1={xS(d)} x2={xS(d)} y1={mt+ph} y2={mt+ph+4} stroke={T.dim} />
             <text x={xS(d)} y={mt+ph+16} textAnchor="middle" fill={T.dim} fontSize={10} fontFamily={T.mono}>{d}</text>
           </g>
         ))}
         <text x={ml+pw/2} y={H-6} textAnchor="middle" fill={T.muted} fontSize={11} fontFamily={T.display}>
-          Desirability Index
+          Character popularity heuristic
         </text>
 
         {/* Y axis */}
@@ -100,7 +105,7 @@ function ScatterPlot({ cards }) {
             Market: ${tooltip.card.marketPrice.toFixed(2)} · Model: ${tooltip.card.predictedPrice.toFixed(2)}
           </div>
           <div style={{ fontSize: 11, color: T.muted, fontFamily: T.mono, marginTop: 2 }}>
-            Desirability: {tooltip.card.desirability.toFixed(2)} · Pull Cost: {tooltip.card.pullCost.toFixed(2)}
+            Popularity: {popularityOf(tooltip.card).toFixed(2)} · Pull Cost: {tooltip.card.pullCost.toFixed(2)}
           </div>
           <div style={{ marginTop: 7 }}>
             <DeltaBadge delta={tooltip.card.delta} />
@@ -114,8 +119,8 @@ function ScatterPlot({ cards }) {
 // ── Price Predictor calculator ────────────────────────────────────────────────
 function PricePredictor() {
   const [pullCost,     setPullCost]     = useState(5)
-  const [desirability, setDesirability] = useState(5)
-  const predicted = Math.exp(0.80 + 0.17 * pullCost + 0.38 * desirability)
+  const [popularity, setPopularity] = useState(5)
+  const predicted = Math.exp(0.80 + 0.17 * pullCost + 0.38 * popularity)
 
   return (
     <div style={{ background: T.s2, borderRadius: 10, padding: 20 }}>
@@ -124,7 +129,7 @@ function PricePredictor() {
       </div>
       {[
         { label: 'Pull Cost',    val: pullCost,     setVal: setPullCost,     color: T.orange },
-        { label: 'Desirability', val: desirability, setVal: setDesirability, color: T.purple },
+        { label: 'Character popularity', val: popularity, setVal: setPopularity, color: T.purple },
       ].map(({ label, val, setVal, color }) => (
         <div key={label} style={{ marginBottom: 14 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
@@ -132,7 +137,7 @@ function PricePredictor() {
             <span style={{ fontSize: 12, fontFamily: T.mono, color }}>{val.toFixed(1)}/10</span>
           </div>
           <input
-            type="range" min={1} max={10} step={0.1} value={val}
+            type="range" min={label === 'Character popularity' ? 0 : 1} max={10} step={0.1} value={val}
             style={{ width: '100%', accentColor: color }}
             onChange={e => setVal(+e.target.value)}
           />
@@ -164,13 +169,16 @@ export default function PricingModel({ cards }) {
         <div style={{ marginBottom: 14, padding: 16, background: T.s1, border: `1px solid ${T.border}`, borderRadius: 10, fontSize: 13, color: T.muted, lineHeight: 1.75 }}>
           The FusionMetrics model uses two independent variables —{' '}
           <strong style={{ color: T.text }}>Pull Cost</strong> (rarity-derived scarcity, 1–10) and{' '}
-          <strong style={{ color: T.text }}>Desirability Index</strong> (character premium 45%, art/hype 45%,
-          universal appeal 10%) — to predict expected market price via exponential regression.
+          <strong style={{ color: T.text }}>character popularity</strong> (stored card metadata, 0–10) — to
+          compare expected market price via exponential regression.
           Cards below the model may be worth a closer look; cards above it may need extra assumption review.
         </div>
 
         <div style={{ maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
           <ScatterPlot cards={cards} />
+        </div>
+        <div style={{ marginTop: 8, fontSize: 11, color: T.dim, fontFamily: T.mono }}>
+          X axis: stored character popularity heuristic; not a live signal.
         </div>
 
         {/* Legend */}
@@ -209,7 +217,7 @@ export default function PricingModel({ cards }) {
             </div>
             <div style={{ paddingLeft: 14 }}>
               + <span style={{ color: T.purple }}>0.38</span>
-              <span style={{ color: T.muted }}> × desirability</span>
+              <span style={{ color: T.muted }}> × characterPopularity</span>
             </div>
             <div style={{ color: T.muted }}>)</div>
           </div>
@@ -228,7 +236,7 @@ export default function PricingModel({ cards }) {
           </div>
           {[
             { label: 'Pull Cost',    coef: '+0.17', sub: '+17% price impact per point', color: T.orange },
-            { label: 'Desirability', coef: '+0.38', sub: '+38% price impact per point', color: T.purple },
+            { label: 'Character popularity', coef: '+0.38', sub: '+38% model impact per point', color: T.purple },
             { label: 'Intercept',    coef: '0.80',  sub: `base price $${Math.exp(0.80).toFixed(2)}`, color: T.muted },
           ].map(({ label, coef, sub, color }) => (
             <div key={label} style={{ marginBottom: 12, paddingBottom: 12, borderBottom: `1px solid ${T.border}` }}>

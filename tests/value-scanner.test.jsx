@@ -20,8 +20,6 @@ const cards = [
     marketPrice: 1,
     predictedPrice: 2,
     delta: -50,
-    demandPressure: 0.5,
-    supplySaturation: 0.8,
     priceStatus: 'live',
   },
   {
@@ -37,8 +35,6 @@ const cards = [
     marketPrice: 99,
     predictedPrice: 99,
     delta: 0,
-    demandPressure: 0.9,
-    supplySaturation: 1.2,
     priceStatus: 'estimated',
   },
 ]

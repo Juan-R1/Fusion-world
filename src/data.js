@@ -1,6 +1,9 @@
 import RAW      from './cardData.json'     assert { type: 'json' }
 import LIVE_RAW from './livePrices.json'   assert { type: 'json' }
 
+// Character popularity fields are derived from stored card metadata
+// (`googleTrends`) and are not live demand, market movement, or supply data.
+
 // 30d priceHistory is now lazy-loaded from public/priceHistory30d.json by
 // CardDetail (see loadPriceHistory30d below). It is no longer bundled into
 // the main JS chunk, which keeps initial app load small.
@@ -52,19 +55,6 @@ const CHAR_PREMIUM_BETA = 0.0731   // within-rarity charPremium effect (OLS, R²
 const MEAN_CHAR_PREMIUM = 5.9386   // global mean charPremium across 1,156 priced cards
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-
-// Seeded PRNG (mulberry32) — reproducible, no external deps. Used for non-price
-// synthetic fields (artScore, totalSupply, absorbed, supplySaturation) which are
-// internal mechanics, not visualized as time series.
-function mkRng(seed) {
-  let s = seed | 0
-  return () => {
-    s = (s + 0x6D2B79F5) | 0
-    let t = Math.imul(s ^ (s >>> 15), 1 | s)
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-  }
-}
 
 const LOG_MIN = Math.log(1 / 0.55)   // log(packs for Common)
 const LOG_MAX = Math.log(1 / 0.003)  // log(packs for SPR)
@@ -132,13 +122,10 @@ export async function loadPriceHistory30d() {
 // preserved on every card for tabs that filter on them (e.g. ValueScanner
 // rankings excluding 'estimated').
 export const CARDS = RAW.map((raw, idx) => {
-  const rng = mkRng(idx * 7919 + 42)
-
   const pullCost        = pullCostOf(raw.pullRate)
   const charPremium     = charPremiumOf(raw.googleTrends)
-  const artScore        = 3 + rng() * 7           // rng #1: 3–10
   const universalAppeal = raw.googleTrends / 10
-  const desirability    = charPremium * 0.45 + artScore * 0.45 + universalAppeal * 0.10
+  const characterPopularityHeuristic = universalAppeal
 
   const rarityBase      = RARITY_BASE_PRICE[raw.rarity] ?? RARITY_BASE_PRICE['C']
   const predictedPrice  = rarityBase * Math.exp(CHAR_PREMIUM_BETA * (charPremium - MEAN_CHAR_PREMIUM))
@@ -149,11 +136,6 @@ export const CARDS = RAW.map((raw, idx) => {
   const livePrice  = liveEntry?.marketPrice ?? null
   const marketPrice = livePrice ?? predictedPrice
   const delta      = ((marketPrice - predictedPrice) / predictedPrice) * 100
-
-  const totalSupply      = Math.floor(100 + rng() * 1400)                  // rng #2
-  const absorbed         = Math.floor(totalSupply * (0.15 + rng() * 0.80)) // rng #3
-  const demandPressure   = absorbed / totalSupply
-  const supplySaturation = 0.4 + rng() * 1.7                               // rng #4
 
   // Trust labels surfaced to the UI:
   //   priceStatus: 'live' (real market price) | 'estimated' (model fallback)
@@ -183,16 +165,11 @@ export const CARDS = RAW.map((raw, idx) => {
     verified:        raw.verified ?? false,
     pullCost:        +pullCost.toFixed(2),
     charPremium:     +charPremium.toFixed(2),
-    artScore:        +artScore.toFixed(2),
     universalAppeal: +universalAppeal.toFixed(2),
-    desirability:    +desirability.toFixed(2),
+    characterPopularityHeuristic: +characterPopularityHeuristic.toFixed(2),
     predictedPrice:  +predictedPrice.toFixed(2),
     marketPrice:     +marketPrice.toFixed(2),
     delta:           +delta.toFixed(1),
-    totalSupply,
-    absorbed,
-    demandPressure:    +demandPressure.toFixed(3),
-    supplySaturation:  +supplySaturation.toFixed(3),
     priceStatus,           // 'live' | 'estimated'
     confidence,            // 'medium' (live) | 'low' (estimated)
     hasLivePrice:    livePrice !== null,  // legacy alias used by Watchlist/BoxEV/ValueScanner LIVE chip

@@ -41,6 +41,27 @@ describe('data model smoke checks', () => {
     expect(estimated.priceTimestamp).toBeNull()
   })
 
+  test('does not export RNG-derived synthetic market fields', () => {
+    const removedFields = [
+      'artScore',
+      'desirability',
+      'demandPressure',
+      'supplySaturation',
+      'totalSupply',
+      'absorbed',
+    ]
+
+    for (const card of CARDS) {
+      for (const field of removedFields) {
+        expect(card).not.toHaveProperty(field)
+      }
+
+      expect(Number.isFinite(card.characterPopularityHeuristic)).toBe(true)
+      expect(card.characterPopularityHeuristic).toBeGreaterThanOrEqual(0)
+      expect(card.characterPopularityHeuristic).toBeLessThanOrEqual(10)
+    }
+  })
+
   test('lazy price-history loader single-flights concurrent calls', async () => {
     vi.resetModules()
     globalThis.fetch = vi.fn(async () => ({

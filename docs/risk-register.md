@@ -531,10 +531,14 @@ Every risk row in § 4–7 cites where it came from:
 - **Sources:** new
 - **Description:** React 18.3.1, Vite 5.4.1, no automated security
   update flow. CVE in a transitive dep could ship to production.
-- **Owner:** Operator (renovate/dependabot setup decision).
-- **Mitigation:** `package-lock.json` pins versions; no add-on
-  dependencies; small surface.
-- **Status:** monitored.
+- **Owner:** Architecture.
+- **Mitigation:** **`.github/dependabot.yml` shipped 2026-05-14.**
+  Weekly Monday scan for both npm dependencies and GitHub Actions.
+  Production deps and dev deps batched separately (low PR noise);
+  major-version bumps come as individual PRs (explicit review).
+  CI gate (build + tests) runs on each Dependabot PR. Catches the
+  same advisory class as R-055 going forward.
+- **Status:** mitigated (was: monitored).
 
 ## 8. Aggregate counts
 
@@ -618,3 +622,4 @@ When a risk changes state:
 | 2026-05-14 | R-037 | open → closed | P3-008 20-case Vitest suite + CI `npm test` step shipped. |
 | 2026-05-14 | R-038 | monitored → closed | PR #1 merged 2026-05-12; PR #2 pattern + standing dev branch reestablishes branch discipline. |
 | 2026-05-14 | R-055 | (new entry) open | esbuild dev-server advisory surfaced by npm audit. Dev-only; not blocking. |
+| 2026-05-14 | R-054 | monitored → mitigated | `.github/dependabot.yml` shipped; weekly Monday scan for npm + GitHub Actions. |

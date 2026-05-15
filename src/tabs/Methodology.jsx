@@ -39,21 +39,21 @@ const sections = [
     ],
   },
   {
-    title: 'Set-Level Analytics',
+    title: 'Retired heuristics',
     items: [
-      'Set live value is calculated from live-priced cards only; estimated cards are excluded.',
-      'Chase Dependency is a concentration-risk metric based on top 1, top 3, and top 10 live-priced value share.',
-      'A higher Chase Dependency means set value depends more on a few chase cards; it is not an investment rating.',
-      'Set freshness reflects rotation and carried-forward prices, which remain visible with their timestamps.',
+      'D-049 retired RNG-derived art/hype, demand pressure, pseudo-supply, supply saturation, and composite scoring from production UI.',
+      'These surfaces previously displayed RNG-derived values; they have been removed in favor of disclosing only observed data.',
+      'The Market Dynamics tab was removed because its chart axes depended on synthetic demand and supply values.',
     ],
   },
   {
     title: 'Model Limits',
     items: [
-      'Character, demand, supply, and desirability metrics are model heuristics.',
-      'Demand and supply scores are not observed market time series.',
+      'Character popularity remains only as a stored value from the card database; it has not been refreshed since the card database was authored.',
+      'The Pricing Model scatter uses stored character popularity on the X axis and labels it as a non-live signal.',
       'Box EV is approximate and may include model-estimated prices when live prices are missing.',
       'Box EV does not model variant-specific odds, fees, taxes, shipping, liquidity, or sealed-product variance.',
+      'eBay Browse API integration is pending operator approval; when it lands, real comp data will replace the manual research path.',
     ],
   },
 ]

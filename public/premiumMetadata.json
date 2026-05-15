@@ -1,7 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-14T00:00:00.000Z",
-  "_disclaimer": "First-pass premium-metadata fill authored by Claude (Sonnet 4.7) under operator explicit \"do everything you can\" mandate, 2026-05-14. Classifications derived from cardData.json (character + rarity + set context) only; NO market data inferred. Every row carries the manualReviewOnly risk tag and confidence capped at medium. Operator validation pending; demotion path is one `git rm public/premiumMetadata.json` per docs/sample-gate-promotion-runbook.md § 5.",
+  "_isSample": false,
+  "_disclaimer": "First-pass premium-metadata fill for SCR + Leader tier (130 of 1,258 cards). Authored 2026-05-14 by Claude (Sonnet 4.7) acting as architect agent under explicit operator mandate. Classifications derived from cardData.json (character + rarity + set context) only; no market data inferred. Every row carries the manualReviewOnly risk tag. Operator validation pending; demotion is one git rm public/premiumMetadata.json. See docs/decision-log.md D-048 and docs/sample-gate-promotion-runbook.md § 5.",
+  "generatedAt": "2026-05-15T02:52:44.622Z",
+  "sourceFixture": "data-staging/premium-metadata/sample.json",
+  "rowCount": 130,
   "items": {
     "FB01-001": {
       "cardCode": "FB01-001",

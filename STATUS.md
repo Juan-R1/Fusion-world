@@ -1,9 +1,9 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-14
-**Branch:** `claude/dbfw-market-analytics-1qh5D` (PR #2 standing for Phase 3 work; PR #1 merged 2026-05-12)
+**Date:** 2026-05-15
+**Branch:** `claude/dbfw-market-analytics-1qh5D` (PR #2 merged 2026-05-14; PR #1 merged 2026-05-12; new commits accumulating on the dev branch)
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 3 operate-and-harden — 11/14 tasks complete. Only operator-gated work remains.
+**Phase:** Phase 3 operate-and-harden — 14/15 P3 tasks complete (P3-015 added). Synthetic UI surfaces retired.
 
 ---
 
@@ -21,8 +21,11 @@ alerts (P3-005), Watchlist CSV export (P3-006), and a 20-case Vitest suite
 ongoing Phase 3 work with a green CI gate. The trust contract is intact and
 strictly enforced: production UI refuses to consume sample-flagged artifacts,
 no synthetic price movement, R-001 / R-017 / R-036 / R-037 / R-038 closed;
+P3-015 retired RNG-derived art/hype, demand, supply, pseudo-counts,
+composite desirability, Watchlist Desirability sort, and Market Dynamics from
+production UI; bundle shrank by roughly 14 kB raw versus the pre-strip build;
 new R-055 esbuild dev-server advisory tracked but not blocking (production
-unaffected). Decision log at 47 entries (D-001 — D-047). All P0 open
+unaffected). Decision log at 49 entries (D-001 — D-049). All P0 open
 questions closed. Remaining Phase 3 backlog is **operator-only**: P3-010 UX
 spec, P3-011 real eBay fill, P3-012 real premium-metadata fill. Plus the
 standing R-020 Plausible weekly read.
@@ -43,11 +46,11 @@ standing R-020 Plausible weekly read.
 | Provenance | Footer/status chip and modal complete |
 | Per-card freshness | Badge complete, based on each card's live price timestamp |
 | Methodology | Methodology & Data Sources tab complete |
-| Set analytics | Market Dynamics includes live value, coverage, freshness, and Chase Dependency |
+| Set analytics | Retired from UI; Market Dynamics was removed because its axes depended on synthetic demand/supply values |
 | Box EV | Approximate assumptions, input quality, and cautious model verdict copy complete |
 | Watchlist | Local v2 portfolio fields: quantity, entry price, current value, Unrealized P/L |
 | Data verification | `scripts/verify-data.js` requires split shape only |
-| Bundle | ~660 kB raw / ~99 kB gzip after sample-gated UI consumption layers |
+| Bundle | ~648 kB raw / ~96 kB gzip after retiring synthetic UI paths |
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 | Phase 2 spec drift | **Closed** (P2-018 — 5 commits, all 8 drift items resolved) |
 | Methodology trust disclosures | **Live** (commit `02e9733`) — R², smoothed UC, extrapolated SPR, single-source explicitly stated |
@@ -70,6 +73,12 @@ Most recent first (latest dev-branch head):
 
 | SHA | Subject |
 |-----|---------|
+| `this commit` | refactor: P3-015 follow-up — Watchlist sort + D-049 docs |
+| `51df4b9` | refactor: PricingModel — X axis = character popularity heuristic (was: synthetic desirability composite) |
+| `96a34a1` | refactor: remove Market Dynamics tab (synthetic inputs) |
+| `48c54d5` | refactor: ValueScanner — drop demand and supply columns (synthetic; no real source) |
+| `e57e6e1` | refactor: CardDetail — remove synthetic Demand/Supply gauges and Desirability composite (D-006/D-007 extension) |
+| `0abf43e` | refactor: remove RNG artScore/demand/supply from data.js |
 | `66285c4` | fix: P3-008 follow-up — regenerate package-lock.json (esbuild transitives) |
 | `df452e1` | test: P3-008c full Vitest suite + CI integration |
 | `bc9c8a8` | test: P3-008b smoke cases (5 of 20 gap-analysis cases) |
@@ -121,8 +130,10 @@ Most recent first (latest dev-branch head):
   approved long-term-history design.
 - Estimated cards remain visible but are excluded from undervalued and
   overvalued rankings.
-- Character, demand, supply, and desirability scores are model heuristics, not
-  observed demand time series.
+- Character popularity is a stored card-database heuristic, not observed demand
+  or a live trend.
+- RNG-derived art/hype, demand, supply, pseudo-counts, and composite
+  desirability are retired from production UI.
 
 ---
 
@@ -130,7 +141,7 @@ Most recent first (latest dev-branch head):
 
 - Make FusionMetrics unable to lie by accident.
 - Do not add synthetic price history, synthetic market movement, fake trend
-  visuals, or RNG pricing noise.
+  visuals, RNG pricing noise, or RNG-derived demand/supply/art scoring.
 - Do not weaken `scripts/verify-data.js`, the 1,121 coverage guard, or the
   per-set guard.
 - Do not manually edit generated JSON data.
@@ -152,15 +163,15 @@ All agent-doable work is closed. The next moves require the operator
    small additive features (CSV export, error capture).
 2. **Read Plausible analytics dashboard** once (R-020; 15 min).
    Pre-staged checklist: `docs/operator-handbook.md` § 5.
-3. **Decide P3-010** — Set Rankings / Chase Radar UX. Either author
-   the spec yourself or hand to ChatGPT GPT-04. Output: a
-   `docs/set-rankings-spec.md` Codex can implement.
+3. **Review the P3-015 synthetic-strip UI** on the dev branch before
+   pushing/deploying. Watchlist should no longer offer Desirability sort.
 4. **Decide P3-011** — start manual eBay sold-comps research per
    `docs/sample-gate-promotion-runbook.md`. Even 10–20 cards
-   produces real comps data to promote.
-5. **Decide P3-012** — start manual premium-metadata review per the
-   same runbook. ~50 cards is enough to validate the surface.
-6. **Capture portfolio screenshots / demo flow** (any time).
+   produces real comps data to promote. If eBay Browse API credentials
+   land first, approve a separate ingester plan before any API work.
+5. **Continue P3-012 review** — production premium metadata is live;
+   operator review can demote or amend any row.
+6. **Capture portfolio screenshots / demo flow** after P3-015 review.
 7. **Optional: Vite 8 upgrade** to close R-055. Out-of-band Codex
    task; not blocking; defer until other work clears.
 8. **Do not start P2-017 backend** unless a Backend Trigger Checklist
