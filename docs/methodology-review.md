@@ -310,3 +310,9 @@ Estimated effort: 30 minutes; one commit; ~30–50 lines added to
   `feat: Methodology — disclose model limits, delta, and coverage`.
 - **Tier:** P1 (material trust gap; should land before public-beta
   push).
+
+## Update log
+
+| Date | Update |
+|------|--------|
+| 2026-05-15 | Synthetic UI strip shipped per D-049 (P3-015). All RNG-derived surfaces retired; only observed data and stored-value heuristics with explicit caveats remain. |

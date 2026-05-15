@@ -14,7 +14,6 @@ const SORT_OPTS = [
   { value: 'undervalued',  label: 'Most Undervalued'  },
   { value: 'overvalued',   label: 'Most Overvalued'   },
   { value: 'price',        label: 'Highest Price'     },
-  { value: 'desirability', label: 'Desirability'      },
   { value: 'name',         label: 'Alphabetical'      },
 ]
 
@@ -163,7 +162,6 @@ export default function Watchlist({
         case 'undervalued':  return a.card.delta - b.card.delta
         case 'overvalued':   return b.card.delta - a.card.delta
         case 'price':        return b.card.marketPrice - a.card.marketPrice
-        case 'desirability': return b.card.desirability - a.card.desirability
         case 'name':         return String(a.card.name ?? '').localeCompare(String(b.card.name ?? ''))
         default: return 0
       }

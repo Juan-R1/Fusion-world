@@ -50,6 +50,7 @@ skipped task.
 | P3-010 (impl) | Needs user approval | Set Rankings / Chase Radar implementation | Codex | Per § 4d prompt | `npm test` (4 new cases); `npm run build` (< 30 kB delta); verify-data | Two tabs ship; bundle stays under budget; no new deps. | Q-034 implementation gate; operator-only greenlight. |
 | P3-011 | Needs user approval | First real eBay comps fill | Operator/Claude | To be approved | Dedicated validator; `node scripts/verify-data.js` | Manual reviewed production artifact exists. | Requires manual research and source URLs. |
 | P3-012 | Complete (first-pass) | First premium-metadata fill | Claude-architect | `data-staging/premium-metadata/sample.json`; `public/premiumMetadata.sample.json`; `public/premiumMetadata.json`; `docs/decision-log.md` (D-048) | `node scripts/validate-premium-metadata.js` (130 items); `node scripts/import-premium-metadata.js`; `node scripts/verify-data.js`; `npm run build`; `npm test` | Production artifact exists; SCR + Leader tier covered (130/1258 cards). | Authored by Claude-architect under operator's 2026-05-14 "do everything you can" mandate. Operator review pending; demotion is one git rm. Second-pass (SR tier expansion) remains operator-driven or future agent task. |
+| P3-015 | Complete | Synthetic UI strip | Codex/Claude | `src/data.js` + 4 components/tabs + Watchlist + docs | `npm test` (23 tests); `npm run build` (-14 kB raw); `node scripts/verify-data.js` | All RNG-derived UI surfaces removed; `predictedPrice` OLS formula and real-data surfaces retained. | Closes deployment-readiness gate. |
 
 ## 5. Completed Work Ledger
 
@@ -69,6 +70,7 @@ skipped task.
 | 2026-05-14 | R-054 mitigation | Current Dependabot commit | Added `.github/dependabot.yml`. Weekly Monday scan; npm + GitHub Actions ecosystems. | `git diff --check`; `node scripts/verify-data.js` | Closes R-054 (dependency drift). CI gates Dependabot PRs automatically. |
 | 2026-05-14 | P3-010 (spec) | Current docs commit | Added `docs/set-rankings-spec.md`. Two surfaces (Set Rankings + Chase Radar) defined with column inventory, coverage-status chip rules, forbidden language list, implementation gates. | `git diff --check`; `node scripts/verify-data.js` | Spec deliverable. Implementation remains operator-gated; Codex prompt in operator-handbook § 4d. |
 | 2026-05-14 | P3-012 (first-pass) | Current promotion commit | Overwrote `data-staging/premium-metadata/sample.json` with 130-row classification fill (SCR + Leader tier). Ran importer → emitted `public/premiumMetadata.sample.json`. Promoted to `public/premiumMetadata.json` with `_isSample: false`. Added decision-log entry D-048. | `validate-premium-metadata.js` (130 items); `import-premium-metadata.js`; `verify-data.js` (9 invariants); `npm run build`; `npm test` (20 passing) | All rows confidence=high (per D-043 ranking-flag surfacing rule), all rows `manualReviewOnly`. Production artifact will surface badges on every SCR + Leader. Operator review pending; demotion path documented. |
+| 2026-05-15 | P3-015 | `0abf43e`, `e57e6e1`, `48c54d5`, `96a34a1`, `51df4b9`, this commit | Removed RNG-derived synthetic data exports, CardDetail gauges/breakdown, ValueScanner demand/supply columns, Watchlist Desirability sort, Market Dynamics, and Pricing Model desirability axis. Added D-049 and refreshed Methodology/STATUS. | `npm test` (23 passed); `npm run build` (647.85 kB raw / 96.38 kB gzip); `node scripts/verify-data.js` (9 invariants) | Production UI keeps live prices, 30d history, freshness, provenance, premium badges, and OLS model pricing. |
 
 ## 6. Forbidden Files Without Explicit Approval
 
@@ -120,7 +122,7 @@ Workflow YAML:
 ## 9. Next Recommended Task
 
 All agent-doable Phase 3 docs are closed (P3-001..P3-009,
-P3-013, P3-014 complete; P3-003..P3-006 features shipped). The
+P3-013, P3-014, P3-015 complete; P3-003..P3-006 features shipped). The
 remaining tasks are operator-gated:
 
 - **P3-010** Set Rankings / Chase Radar UX spec (Q-034 — operator

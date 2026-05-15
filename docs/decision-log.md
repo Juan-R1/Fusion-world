@@ -943,15 +943,46 @@ expiry trigger fires.
   sample-gate refusal but not the production fill's per-row
   classifications — operator review is the only quality control.
 
+### D-049 — Synthetic UI surfaces retired (P3-015)
+- **Date:** 2026-05-15
+- **Decision:** Retire RNG-derived synthetic UI surfaces before
+  public launch. Removed: `artScore` (RNG), `demandPressure` (RNG),
+  `supplySaturation` (RNG), `totalSupply` / `absorbed` pseudo-counts,
+  the desirability composite, CardDetail Demand + Sup. Sat. gauges,
+  CardDetail Desirability Breakdown, ValueScanner Demand + Sup. Sat.
+  columns, ValueScanner desirability + demand sort modes, Watchlist
+  Desirability sort, and the Market Dynamics tab in entirety.
+- **Retained:** `charPremium` as a stored `googleTrends`-derived
+  heuristic, documented as stale-value and not RNG; the
+  `predictedPrice` OLS formula from real regression; and all real-data
+  surfaces including live prices, 30d history, freshness, provenance,
+  and D-048 premium badges.
+- **Alternatives:** Keep the surfaces with stronger disclaimers;
+  relabel synthetic values as heuristics; defer until a replacement
+  source exists.
+- **Rationale:** Deployment-readiness gate. The trust contract demanded
+  removing RNG-derived surfaces before public launch. Methodology
+  already disclosed they were heuristics, but gauges and sortable
+  columns visually implied authority the inputs did not have.
+- **Operator authorization:** 2026-05-15 "this is a deployable tool but
+  needs to be accurate with real data" mandate.
+- **Owner:** Trust contract.
+- **Expiry trigger:** A real observed demand, supply, liquidity, or
+  comps source is ingested, validated, and disclosed. Any replacement
+  surface must use observed data, not RNG or pseudo-counts.
+- **Related commits:** `0abf43e`, `e57e6e1`, `48c54d5`, `96a34a1`,
+  `51df4b9`, and this follow-up commit.
+- **Status:** active.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 48 |
+| active | 49 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **48** |
+| **Total** | **49** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
@@ -996,3 +1027,4 @@ When a decision is made or revisited:
 | 2026-05-11 | D-037 | Cross-source variance thresholds | Closes Q-003. |
 | 2026-05-12 | D-038..D-047 | Consolidated open-questions closure run | Closes Q-002, Q-011..Q-015, Q-020, Q-022..Q-024 (10 decisions). Claude-authored under operator's "take charge" mandate. |
 | 2026-05-14 | D-048 | P3-012 first-pass premium-metadata promotion | 130-row production artifact (SCR + Leader tier) authored by Claude-architect under operator's "do everything you can" mandate. Confidence high; manualReviewOnly chip on every row; demotion is one git rm. |
+| 2026-05-15 | D-049 | Synthetic UI surfaces retired | P3-015 removed RNG-derived demand, supply, art/hype, desirability, Watchlist desirability sort, and Market Dynamics from production UI. |
