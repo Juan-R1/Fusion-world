@@ -4,8 +4,6 @@ import { useIsMobile } from '../hooks/useIsMobile.js'
 import { loadPriceHistory30d, normalizeHistory, historyStateOf } from '../data.js'
 import { loadPremiumMetadata } from '../lib/premiumMetadata.js'
 import Sparkline     from './Sparkline.jsx'
-import GaugeRing     from './GaugeRing.jsx'
-import MiniBar       from './MiniBar.jsx'
 import DeltaBadge    from './DeltaBadge.jsx'
 import RarityBadge   from './RarityBadge.jsx'
 import CardImage     from './CardImage.jsx'
@@ -121,9 +119,9 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
   const historyCount = Array.isArray(historyEntries) ? historyEntries.length : 0
   const priceFreshness = priceFreshnessOf(card)
   const premiumMetadata = premiumItems[card.cardCode] ?? null
-
-  const dpColor = card.demandPressure > 0.7 ? T.red : card.demandPressure > 0.4 ? T.orange : T.green
-  const ssColor = card.supplySaturation > 1 ? T.red : T.green
+  const characterPopularity = Number.isFinite(card.characterPopularityHeuristic)
+    ? card.characterPopularityHeuristic
+    : card.charPremium
 
   // Responsive widths for inline charts
   const chartWidth = isMobile
@@ -360,73 +358,33 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
 
       <CompsPanel cardCode={card.cardCode} />
 
-      {/* ── Desirability breakdown ── */}
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: T.dim, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          Desirability Breakdown
-        </div>
-        {[
-          { label: 'Character Premium (45%)', value: card.charPremium,     color: T.orange },
-          { label: 'Art / Hype (45%)',         value: card.artScore,        color: T.purple },
-          { label: 'Universal Appeal (10%)',   value: card.universalAppeal, color: T.cyan   },
-        ].map(({ label, value, color }) => (
-          <div key={label} style={{ marginBottom: 10 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-              <span style={{ fontSize: 12, color: T.muted }}>{label}</span>
-              <span style={{ fontSize: 12, fontFamily: T.mono, color }}>{value.toFixed(1)}/10</span>
-            </div>
-            <MiniBar value={value} max={10} color={color} w={chartWidth} />
-          </div>
-        ))}
-        <div
-          style={{
-            borderTop: `1px solid ${T.border}`, marginTop: 10, paddingTop: 10,
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          }}
-        >
-          <span style={{ fontSize: 12, color: T.muted, fontWeight: 600 }}>Composite Desirability</span>
-          <span style={{ fontSize: 18, fontFamily: T.mono, color: T.orange, fontWeight: 700 }}>
-            {card.desirability.toFixed(2)}/10
-          </span>
-        </div>
-      </div>
-
-      {/* ── Gauge rings ── */}
-      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ textAlign: 'center' }}>
-          <GaugeRing value={card.demandPressure} max={1} color={dpColor} size={90} label="Demand" />
-          <div style={{ fontSize: 10, color: dpColor, marginTop: 4 }}>
-            {card.demandPressure > 0.7 ? 'High Demand' : card.demandPressure > 0.4 ? 'Moderate' : 'Low Demand'}
-          </div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <GaugeRing value={Math.min(card.supplySaturation, 2)} max={2} color={ssColor} size={90} label="Sup. Sat." />
-          <div style={{ fontSize: 10, color: ssColor, marginTop: 4 }}>
-            {card.supplySaturation > 1 ? 'Loosening' : 'Tightening'}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Supply stats grid ── */}
+      {/* ── Stored metadata signal ── */}
       <div style={{ background: T.s2, borderRadius: 8, padding: 14, marginBottom: 16 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          {[
-            { label: 'Pull Cost',    value: `${card.pullCost.toFixed(1)}/10`  },
-            { label: 'Total Supply', value: card.totalSupply.toLocaleString() },
-            { label: 'Absorbed',     value: card.absorbed.toLocaleString()    },
-            { label: 'Supply Sat.',  value: card.supplySaturation.toFixed(3)  },
-          ].map(({ label, value }) => (
-            <div key={label}>
-              <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>{label}</div>
-              <div style={{ fontSize: 14, fontFamily: T.mono, color: T.text, fontWeight: 600 }}>{value}</div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12 }}>
+          <div>
+            <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>Pull Cost</div>
+            <div style={{ fontSize: 14, fontFamily: T.mono, color: T.text, fontWeight: 600 }}>
+              {card.pullCost.toFixed(1)}/10
             </div>
-          ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 10, color: T.dim, marginBottom: 2 }}>Character popularity heuristic</div>
+            <div style={{ fontSize: 14, fontFamily: T.mono, color: T.text, fontWeight: 600 }}>
+              {Number.isFinite(characterPopularity) ? characterPopularity.toFixed(1) : 'Unknown'}/10
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: 10, fontSize: 11, color: T.dim, lineHeight: 1.6 }}>
+          Stored value; last refreshed when card database was last refreshed.{' '}
+          <a
+            href="/methodology"
+            title="Methodology explains stored character popularity fields"
+            style={{ color: T.orange, textDecoration: 'none', fontWeight: 700 }}
+          >
+            Methodology
+          </a>
         </div>
       </div>
-
-      {/* Demand-trend sparkline removed: there is no real time series for
-          demand pressure. The gauge ring above already conveys the static
-          score; rule 4 of the trust fix forbids synthetic movement. */}
     </div>
   )
 }

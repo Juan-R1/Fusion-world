@@ -40,15 +40,10 @@ const card = {
   delta: -16.7,
   hasLivePrice: true,
   priceTimestamp: new Date(Date.now() - 10 * 86_400_000).toISOString(),
-  demandPressure: 0.5,
-  supplySaturation: 0.8,
   charPremium: 7,
-  artScore: 6,
   universalAppeal: 5,
-  desirability: 6.25,
+  characterPopularityHeuristic: 5,
   pullCost: 5,
-  totalSupply: 1000,
-  absorbed: 500,
 }
 
 beforeEach(() => {
@@ -93,5 +88,17 @@ describe('CardDetail history and freshness states', () => {
 
     const freshness = await screen.findByText(/Source: JustTCG · refreshed 10 days ago/)
     await waitFor(() => expect(freshness.style.color).toBe('rgb(234, 179, 8)'))
+  })
+
+  test('shows stored character popularity disclosure instead of synthetic gauges', async () => {
+    mocks.loadPriceHistory30d.mockResolvedValue({ [card.cardCode]: [] })
+
+    render(<CardDetail card={card} onClose={() => {}} />)
+
+    expect(await screen.findByText('Character popularity heuristic')).toBeTruthy()
+    expect(screen.getByText(/Stored value; last refreshed when card database was last refreshed/)).toBeTruthy()
+    expect(screen.queryByText('Desirability Breakdown')).toBeNull()
+    expect(screen.queryByText('Demand')).toBeNull()
+    expect(screen.queryByText('Sup. Sat.')).toBeNull()
   })
 })
