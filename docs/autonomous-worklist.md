@@ -27,7 +27,8 @@
 | 3 | Set Rankings + Chase Radar (P3-010 impl) | ⏳ queued | Spec at docs/set-rankings-spec.md; uses only real live-price + rarity data, honest today. |
 | 4 | Bundle optimization (R-021 / S2 code-split) | ⏳ queued | Dynamic import() per tab. |
 | 5 | Test coverage deepening | ⏳ queued | Cases for paths touched above + unimplemented gap-analysis cases. |
-| 6 | Doc consistency sweep | ⏳ queued | Reconcile STATUS / AGENTS § 2 / checklist / decision-log + risk-register counts; log D-050 (Item 1 bound), D-051 if Vite landed. |
+| 6 | Doc consistency sweep | ⏳ queued | Reconcile STATUS / AGENTS § 2 / checklist / decision-log + risk-register counts; log D-050 (Item 1 bound), D-051 (Vite 8), D-052 (FB10 rotation pre-decision). |
+| 7 | FB10 onboarding pre-stage (operator signal) | ✅ | `docs/fb10-onboarding-prestage.md`. New set triggers D-002 expiry (>9 sets breaks 3×3 rotation). Captures rotation decision (option B recommended), coverage-floor math, 9-step onboarding sequence, agent-vs-operator split. Data cannot be fabricated; doc prepares the path. |
 
 ## Operator gates (noted, not attempted)
 - ⛔ eBay ingester — needs EBAY_APP_ID/CERT_ID in secrets.
@@ -41,7 +42,8 @@
 
 | SHA | Subject | Validation |
 |-----|---------|------------|
-| _(this commit)_ | chore: Vite 5→8 upgrade (closes R-055) + autonomous worklist | build ✓, verify-data 9✓, tests 23✓, dev HTTP 200 |
+| `4a559d7` | chore: Vite 5→8 upgrade (closes R-055) + autonomous worklist | build ✓, verify-data 9✓, tests 23✓, dev HTTP 200, **CI green** |
+| _(this commit)_ | docs: FB10 onboarding pre-stage | docs-only; verify-data 9✓ |
 
 ## Update protocol
 - After each commit, add a row to the commit log + flip the backlog
