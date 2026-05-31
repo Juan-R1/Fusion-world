@@ -6,6 +6,7 @@ import { useIsMobile }  from './hooks/useIsMobile.js'
 import ValueScanner     from './tabs/ValueScanner.jsx'
 import PricingModel     from './tabs/PricingModel.jsx'
 import BoxEV            from './tabs/BoxEV.jsx'
+import SetRankings      from './tabs/SetRankings.jsx'
 import Watchlist        from './tabs/Watchlist.jsx'
 import Methodology      from './tabs/Methodology.jsx'
 import ProvenanceFooter from './components/ProvenanceFooter.jsx'
@@ -14,6 +15,7 @@ const TABS = [
   { id: 'scanner',   label: '🔍 Value Scanner',   short: '🔍 Scanner'  },
   { id: 'model',     label: '📈 Pricing Model',   short: '📈 Model'    },
   { id: 'boxev',     label: '📦 Box EV',          short: '📦 Box EV'   },
+  { id: 'sets',      label: '🏆 Set Rankings',    short: '🏆 Sets'     },
   { id: 'watchlist', label: '⭐ Watchlist',        short: '⭐ Watch'    },
   { id: 'method',    label: '📘 Methodology',     short: '📘 Method'   },
 ]
@@ -110,6 +112,7 @@ export default function App() {
         {tab === 'scanner'   && <ValueScanner   cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} />}
         {tab === 'model'     && <PricingModel   cards={CARDS} />}
         {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
+        {tab === 'sets'      && <SetRankings    cards={CARDS} />}
         {tab === 'watchlist' && (
           <Watchlist
             cards={CARDS}
