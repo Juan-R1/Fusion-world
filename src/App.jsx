@@ -7,6 +7,7 @@ import ValueScanner     from './tabs/ValueScanner.jsx'
 import PricingModel     from './tabs/PricingModel.jsx'
 import BoxEV            from './tabs/BoxEV.jsx'
 import SetRankings      from './tabs/SetRankings.jsx'
+import ChaseRadar       from './tabs/ChaseRadar.jsx'
 import Watchlist        from './tabs/Watchlist.jsx'
 import Methodology      from './tabs/Methodology.jsx'
 import ProvenanceFooter from './components/ProvenanceFooter.jsx'
@@ -16,6 +17,7 @@ const TABS = [
   { id: 'model',     label: '📈 Pricing Model',   short: '📈 Model'    },
   { id: 'boxev',     label: '📦 Box EV',          short: '📦 Box EV'   },
   { id: 'sets',      label: '🏆 Set Rankings',    short: '🏆 Sets'     },
+  { id: 'radar',     label: '🎯 Chase Radar',     short: '🎯 Radar'    },
   { id: 'watchlist', label: '⭐ Watchlist',        short: '⭐ Watch'    },
   { id: 'method',    label: '📘 Methodology',     short: '📘 Method'   },
 ]
@@ -113,6 +115,7 @@ export default function App() {
         {tab === 'model'     && <PricingModel   cards={CARDS} />}
         {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
         {tab === 'sets'      && <SetRankings    cards={CARDS} />}
+        {tab === 'radar'     && <ChaseRadar     cards={CARDS} />}
         {tab === 'watchlist' && (
           <Watchlist
             cards={CARDS}
