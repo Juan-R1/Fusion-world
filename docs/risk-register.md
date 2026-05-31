@@ -474,18 +474,29 @@ Every risk row in § 4–7 cites where it came from:
 - **Likelihood:** Low operationally; depends on developer browser
   hygiene.
 - **Owner:** Build infrastructure (architecture).
-- **Mitigation:** Production unaffected — Vite's dev-server path is
-  not used for the deployed bundle. Upgrade requires Vite 8.x
-  (breaking major bump from 5.4.1) — defer until a separate task
-  with an explicit before/after smoke test on every tab + CI run.
-  Recommended: dedicated Codex prompt with bounded scope (npm
-  install vite@^8, verify build, verify all 20 tests still pass,
-  verify production bundle size hasn't regressed, document any
-  config migration needed).
-- **Residual risk:** Low — operational impact is zero for users;
-  developer-side risk is mitigated by browser hygiene plus the
-  fact that the dev server only binds to localhost by default.
-- **Status:** open (tracked; not blocking).
+- **Mitigation:** **CLOSED 2026-05-31 by Vite 5.4.1 → 8.0.14
+  upgrade.** Vite 8 replaced esbuild with Rolldown + OXC as its
+  bundler/minifier, so esbuild is **removed entirely from the
+  dependency tree** (`node_modules/esbuild` no longer exists;
+  `npm audit` reports 0 vulnerabilities). This is a more complete
+  fix than an esbuild version bump — the vulnerable package is gone,
+  not patched. `@vitejs/plugin-react` bumped 4.x → 6.0.2 for Vite 8
+  peer compatibility.
+- **Validation:** `npm ci` clean, `node scripts/verify-data.js` 9
+  invariants, `npm test` 23/23, dev server boots (207 ms) + serves
+  HTTP 200, production build succeeds.
+- **Known tradeoff (transparent):** raw bundle grew 647.94 → 702.57
+  kB (+54 kB) because OXC minifies more verbosely than esbuild.
+  **gzip — the size Vercel actually serves — is flat (96.48 →
+  96.52 kB, +0.04 kB).** Real-world transfer size is unchanged;
+  the raw delta is a local-artifact measurement difference. Still
+  well under the 750 kB raw session hard-stop. Code-splitting
+  (R-021 / bundle-audit S2) can recover the raw figure later if
+  desired.
+- **Residual risk:** None for the original advisory (esbuild gone).
+  New surface: Rolldown is a younger bundler than Rollup; monitored
+  via the existing CI build gate + Dependabot.
+- **Status:** closed (esbuild advisory eliminated).
 
 ## 7. P3 — Long-term watch
 
@@ -560,10 +571,12 @@ Recent state changes (2026-05-12 → 2026-05-14):
 - R-037 test coverage → closed (P3-008).
 - R-038 Vercel deploy gap → closed (PR #1 merge 2026-05-12 + ongoing PR #2 pattern).
 - **R-055 esbuild dev-server advisory → open** (new, tracked, not blocking).
+- **R-055 esbuild dev-server advisory → closed 2026-05-31** (Vite 8 / Rolldown upgrade removed esbuild entirely).
 
 ## 9. Top 5 risks to act on this cycle
 
-After the 2026-05-14 closure sweep, the top open risks are:
+After the 2026-05-31 autonomous run (R-055 closed), the top open
+risks are:
 
 1. **R-020** — Plausible analytics blind spot. Operator-only;
    15-minute first read still pending. **Highest-leverage
@@ -576,17 +589,14 @@ After the 2026-05-14 closure sweep, the top open risks are:
    spot-check protocol + sample-gated comps infra ready for
    D-041 manual eBay fill + P3-009 backend pre-stage). Structural
    exit waits on P3-011 operator-only data fill.
-3. **R-055** — esbuild dev-server advisory via Vite 5.4.1.
-   Dev-server only; production unaffected. Fix requires Vite 8
-   breaking upgrade. Tracked, not blocking.
-4. **R-054** — Dependency drift / no Dependabot. Lockfile pins
-   versions today; no automated security update flow. Would have
-   caught R-055 earlier.
-5. **R-002** — Agent reality-drift. **Mitigated** by P3-014
+3. **R-021** — Bundle bloat. Raw bundle now 702 kB (post Vite 8
+   OXC minifier); gzip flat at ~96 kB. Code-splitting tabs
+   (bundle-audit S2) would recover the raw figure. Not urgent.
+4. **R-002** — Agent reality-drift. **Mitigated** by P3-014
    SessionStart hook + `scripts/session-brief.sh`; tracked for
    visibility.
 
-Recently closed (visibility): R-001, R-017, R-036, R-037, R-038.
+Recently closed (visibility): R-001, R-017, R-036, R-037, R-038, R-055.
 
 ## 10. What this register did NOT include
 
