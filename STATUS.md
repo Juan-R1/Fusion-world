@@ -1,9 +1,17 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-15
-**Branch:** `claude/review-claude-md-nZk1S` (PR #6 merged 2026-05-15; ongoing dev branch — system harness moved to this branch from `claude/dbfw-market-analytics-1qh5D` after the strip-wave merge)
+**Date:** 2026-05-31
+**Branch:** `claude/review-claude-md-nZk1S` (ongoing dev branch; PRs to main per the standing pattern)
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 3 operate-and-harden — 15/15 P3 tasks visible-complete + P3-016 eBay ingester pre-stage. Premium-metadata production artifact extended to 169 cards (SCR + SR + Leader tier, D-048 second pass). Synthetic UI surfaces retired (D-049). eBay ingester ready to ship as a single Codex run the moment credentials land.
+**Phase:** Phase 3 operate-and-harden. P3-010 implementation complete (Set Rankings + Chase Radar tabs, live-data only). Vite 8 upgrade closed R-055 (esbuild removed entirely). FB10 + eBay + restoration paths all pre-staged. Premium-metadata production artifact at 169 cards (SCR+SR+Leader). Synthetic UI surfaces retired (D-049). Decision log at 53 entries.
+
+> **2026-05-31 autonomous run shipped:** Vite 5→8 (D-051, R-055 closed,
+> CI-green), FB10 onboarding pre-stage (D-052), eBay ingester pre-stage,
+> restoration-prompts pre-stage, README rewrite, Set Rankings + Chase
+> Radar tabs (D-053, 3 commits), and this doc sweep (D-050 premium-fill
+> bound). Test suite 23 → 44. All on PR #14 / branch dev. Premium-metadata
+> expansion below SCR+SR+Leader was BOUNDED (D-050): schema forbids chase
+> flags on commons.
 
 ---
 
