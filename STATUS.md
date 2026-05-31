@@ -1,9 +1,9 @@
 # FusionMetrics — Status Snapshot
 
 **Date:** 2026-05-15
-**Branch:** `claude/dbfw-market-analytics-1qh5D` (PR #2 merged 2026-05-14; PR #1 merged 2026-05-12; new commits accumulating on the dev branch)
+**Branch:** `claude/review-claude-md-nZk1S` (PR #6 merged 2026-05-15; ongoing dev branch — system harness moved to this branch from `claude/dbfw-market-analytics-1qh5D` after the strip-wave merge)
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 3 operate-and-harden — 14/15 P3 tasks complete (P3-015 added). Synthetic UI surfaces retired.
+**Phase:** Phase 3 operate-and-harden — 15/15 P3 tasks visible-complete + P3-016 eBay ingester pre-stage. Premium-metadata production artifact extended to 169 cards (SCR + SR + Leader tier, D-048 second pass). Synthetic UI surfaces retired (D-049). eBay ingester ready to ship as a single Codex run the moment credentials land.
 
 ---
 

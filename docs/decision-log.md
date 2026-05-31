@@ -942,6 +942,42 @@ expiry trigger fires.
   `scripts/validate-premium-metadata.js`. CI test suite covers
   sample-gate refusal but not the production fill's per-row
   classifications — operator review is the only quality control.
+- **Second-pass amendment (2026-05-15):** Coverage extended to SR
+  tier. Fill grew from 130 → **169 rows** (88 SCR + 39 SR + 42 L).
+  Same classification rules apply:
+  - `secretRareChase` premium flag only for SCR rarity (unchanged).
+  - Character chase flags (`gogetaChase` / `sonGokuChase` /
+    `brolyChase`) apply at any rarity by exact character match.
+  - `fusionCharacter` collector tag expanded to include Kefla +
+    Veku (both are fusion characters at SR tier).
+  - `nostalgiaAppeal` expanded to include the Android trio
+    (16/17/18) — classic-era characters with cross-generational
+    recognition.
+  - `variantAmbiguity` risk tag now also applies at SR tier for
+    high-variant characters (Son Goku / Gogeta / Vegito / Vegeta
+    / Goku Black).
+  - Confidence remains `high` per the original D-043 reasoning.
+  - Surface count: **113 of 169 rows surface at least one badge
+    flag** (all 88 SCR + 12 SR Goku/Gogeta/Broly + 13 of 42
+    Leaders by character match). The remaining 56 rows are
+    metadata-only — they carry honest character/rarity
+    classifications that the UI correctly suppresses per D-043
+    until a specific chase flag applies.
+  - sourceRefs reviewer updated to
+    `claude-architect-review-2026-05-15-v2-sr-expansion`.
+- **Why the 56 non-surfacing rows are still valuable:** They
+  populate the data layer with reviewed character/alignment
+  classifications that the future eBay ingester (see
+  `docs/ebay-ingester-prestage.md`) can use for variant matching
+  and confidence scoring. The metadata exists; the UI gate
+  decides what to render.
+- **Demotion path unchanged:** one
+  `git rm public/premiumMetadata.json` reverts both first and
+  second pass simultaneously. There is no partial demotion.
+- **Related commits (second pass):** Current commit (169-row
+  promotion). Same artifact path as first pass; the
+  production filename is overwritten in-place, the sample artifact
+  is regenerated, no path changes.
 
 ### D-049 — Synthetic UI surfaces retired (P3-015)
 - **Date:** 2026-05-15
@@ -1049,4 +1085,5 @@ When a decision is made or revisited:
 | 2026-05-11 | D-037 | Cross-source variance thresholds | Closes Q-003. |
 | 2026-05-12 | D-038..D-047 | Consolidated open-questions closure run | Closes Q-002, Q-011..Q-015, Q-020, Q-022..Q-024 (10 decisions). Claude-authored under operator's "take charge" mandate. |
 | 2026-05-14 | D-048 | P3-012 first-pass premium-metadata promotion | 130-row production artifact (SCR + Leader tier) authored by Claude-architect under operator's "do everything you can" mandate. Confidence high; manualReviewOnly chip on every row; demotion is one git rm. |
+| 2026-05-15 | D-048 second pass | P3-012 SR-tier expansion | Coverage 130 → 169 rows (added 39 SR cards). 113 of 169 surface UI badges per D-043; remainder is data-layer-only metadata for future eBay ingester. |
 | 2026-05-15 | D-049 | Synthetic UI surfaces retired | P3-015 removed RNG-derived demand, supply, art/hype, desirability, Watchlist desirability sort, and Market Dynamics from production UI. |
