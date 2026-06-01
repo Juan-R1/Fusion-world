@@ -23,6 +23,8 @@ FusionMetrics ships only what it can defend. When real data isn't available, the
 | **Value Scanner** | All 1,258 cards across FB01–FB09 with market price, model price, delta, freshness | Estimated cards excluded from undervalued/overvalued rankings; live-priced cards carry a `LIVE` chip |
 | **Pricing Model** | OLS regression scatter (real prices vs predicted) with R² and coefficient breakdown | Stale-value `charPremium` heuristic explicitly labeled |
 | **Box EV** | Expected value per sealed box, ROI vs box cost, buy-singles comparison, top-cards-per-pack breakdown | Cautious copy; flags sets where rarity data is incomplete |
+| **Set Rankings** | Per-set live value, median price, coverage status, freshness, top card | Live-priced cards only; estimated cards excluded; "observations, not buy/sell signals" |
+| **Chase Radar** | Top 20 cards by the market-vs-model gap, sortable + filterable | Live-priced only; cites the model's R² error; explicitly not advice |
 | **Watchlist** | Local browser portfolio tracker: quantity, entry price, current value, unrealized P/L, CSV export | localStorage only; no cloud sync; LIVE/EST chips and freshness on every row |
 | **Methodology** | In-app explanation of every data source, every model limit, and every disclosure decision | The single source of truth for what the dashboard is and isn't |
 
@@ -47,7 +49,7 @@ FusionMetrics ships only what it can defend. When real data isn't available, the
 
 ## Architecture highlights
 
-- **React 18 + Vite 5**, no CSS framework (inline styles + a single theme tokens module).
+- **React 18 + Vite 8** (Rolldown/OXC bundler), no CSS framework (inline styles + a single theme tokens module). Tabs are code-split via `React.lazy` — initial gzip ~80 kB, each tab loads on demand.
 - **No backend, no database, no auth.** Static JSON served by Vercel; entire app is a deterministic build.
 - **Deterministic pricing model.** OLS-fit rarity bases + character-premium coefficient; recalibrated quarterly against the latest 1,156-card sample.
 - **20-case Vitest suite** wired into CI: covers data-trust invariants, Watchlist v1→v2 storage migration, sample-gate refusal, raw/graded comp separation, premium-badge surfacing rules, and provenance rendering.
@@ -61,7 +63,7 @@ FusionMetrics ships only what it can defend. When real data isn't available, the
 npm ci
 npm run dev            # http://localhost:5173
 npm run build          # production bundle at dist/
-npm test               # 23 Vitest cases
+npm test               # 46 Vitest cases (10 files)
 node scripts/verify-data.js   # 9 invariants
 ```
 
@@ -116,9 +118,10 @@ docs/
 
 - **eBay Browse API ingester.** Replaces manual comp research with automated weekly ingestion. Pre-staged; ships in a single Codex run when credentials drop.
 - **Restoration of demand + supply surfaces.** Once real eBay watchCount + listing-count data exists, the gauges and Market Dynamics tab return — same UI, real inputs.
-- **Set Rankings + Chase Radar tabs.** [Spec drafted](./docs/set-rankings-spec.md); implementation gated on operator approval.
 - **Quarterly model recalibration.** Next due 2026-08-12.
-- **Premium-metadata coverage expansion** to UC and lower tiers.
+- **FB10 (next set) onboarding.** Pre-staged; activates when Bandai + JustTCG publish the set. See [`docs/fb10-onboarding-prestage.md`](./docs/fb10-onboarding-prestage.md).
+
+*Shipped since first draft:* Set Rankings + Chase Radar tabs ([spec](./docs/set-rankings-spec.md), implemented), Vite 8 upgrade, tab code-split. Premium-metadata coverage is intentionally **bounded at the SCR + SR + Leader tier** — the classification schema forbids "chase" flags on common cards, so expanding lower would overclaim (see `docs/decision-log.md` D-050).
 - **TCGplayer partner application** revisited after consistent traffic shows in Plausible.
 - **Backend** when (and only when) one of the six Backend Trigger Checklist conditions actually fires.
 
