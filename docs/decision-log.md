@@ -23,6 +23,80 @@ expiry trigger fires.
 - **Owner**: who would re-decide. "Operator" = the human; "agent" =
   any coding agent acting on direction.
 
+## 2.5 Quick index (by domain)
+
+53 decisions (D-001 — D-053). Ctrl-F the `D-NNN` code to jump to the
+full entry in § 3. Grouped by domain for fast scanning.
+
+**Trust contract / honesty (the spine — several permanent):**
+- D-006 synthetic price history permanently removed *(permanent)*
+- D-007 synthetic demand sparkline removed
+- D-008 estimated cards: marketPrice = predictedPrice, delta = 0 *(permanent)*
+- D-009 estimated cards excluded from undervalued/overvalued rankings
+- D-014 Watchlist v2 migration non-destructive
+- D-016 no eBay scraping *(permanent)*
+- D-049 synthetic UI surfaces retired (gauges / desirability / Market Dynamics)
+- D-050 premium-metadata fill bounded at SCR+SR+Leader (no chase flags on commons)
+- D-053 Set Rankings + Chase Radar use live-price + rarity data only
+
+**Data model / coverage:**
+- D-011 coverage guard floor 1,121 (97% of 1,156) *(permanent)*
+- D-012 per-set guard 90% of previous count *(permanent)*
+- D-017 split-shape required (livePrices vs priceHistory30d)
+- D-018 coverage guard refuses to write rather than write partial
+
+**Pipeline / API:**
+- D-001 stay on JustTCG free tier
+- D-002 3-set rotation over full refresh
+- D-003 ISO-week % 3 group selection
+- D-019 typed errors in update-prices.js
+- D-020 Retry-After honored, max 3 retries
+- D-021 run-level abort on RateLimitedError
+- D-031 retired accumulate-prices.js + priceHistory.json
+- D-032 set-rotation strict ordering (manual override allowed)
+- D-052 FB10 rotation pre-decision (joins group C)
+
+**Premium metadata / comps schema:**
+- D-033 canonical `winnerPromo` (not `winner`)
+- D-034 canonical `rawGradedContamination` (not `gradedContamination`)
+- D-035 canonical `gradeCompany` (not `company`)
+- D-036 promo cardCode namespace (three-tier)
+- D-037 cross-source variance thresholds for sourceAgreement
+- D-039 GDR is a premium flag, not a rarity tier
+- D-040 Bandai canonical for treatment names
+- D-041 manual eBay first sold-comp source
+- D-042 manipulation-risk minimum eligible comp count
+- D-043 premium badges: medium-confidence descriptive, high for ranking-driving
+- D-044 boxTopHit derived at runtime, not stored
+- D-045 population data per-grader, default populationKnown = false
+- D-046 comps aggregates computed on demand
+- D-047 sealed-price freshness threshold 30 days
+- D-048 P3-012 premium-metadata promotion (SCR+SR+Leader, 169 cards)
+
+**UI / product:**
+- D-005 lazy-load priceHistory30d.json over bundling
+- D-010 per-card freshness thresholds <7d / 7–21d / >21d
+- D-013 Watchlist local-only (no backend)
+- D-015 Methodology page as a dedicated tab
+- D-038 image strategy: icons-only default, Option C upgrade path
+
+**Infrastructure / build / deps:**
+- D-004 static JSON over backend (for now)
+- D-022 CI gate: build + verify-data (Vitest added later — P3-008)
+- D-023 no error monitoring (Sentry etc.)
+- D-024 Plausible over Google Analytics
+- D-025 Vercel deploy, push to main
+- D-026 Vite over CRA / Next.js
+- D-027 lean dependency policy
+- D-051 Vite 5 → 8 (Rolldown/OXC) — closes R-055
+
+**Agent process / docs:**
+- D-028 fusionmetrics-* skill family
+- D-029 AGENTS.md as agent contract
+- D-030 Phase 2 docs-first
+
+> Permanent / "do not weaken": D-006, D-007, D-008, D-011, D-012, D-016.
+
 ## 3. Decision entries
 
 ### D-001 — Stay on JustTCG free tier
