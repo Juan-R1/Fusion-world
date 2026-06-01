@@ -1,14 +1,8 @@
-# Autonomous Work Session — Live Worklist
+# Autonomous Work Session — Live Worklist (run journal)
 
-**Session started:** 2026-05-31
-**Agent:** Claude architect (Opus 4.8)
-**Branch:** `claude/review-claude-md-nZk1S`
-**Driving prompt:** operator's "AUTONOMOUS WORK SESSION" mandate.
-
-> This is the live task tracker for the current autonomous run. Updated
-> as each item lands. Replaces the ephemeral TodoWrite (MCP server is
-> disconnected this session) with a durable artifact that survives
-> across sessions and is visible to the operator + future agents.
+> Durable run journal. Each session adds a dated block ABOVE the prior
+> one. Replaces ephemeral TodoWrite (MCP server disconnected). Visible
+> to operator + future agents.
 
 ## Status legend
 - ✅ Done (committed + pushed + validated)
@@ -16,6 +10,41 @@
 - ⏳ Queued
 - ⏸ Bounded / skipped (with rationale)
 - ⛔ Operator gate (cannot proceed without operator)
+
+---
+
+# Session 2 — 2026-05-31 (v2 prompt)
+
+**Agent:** Claude architect (Opus 4.8) · **Branch:** `claude/review-claude-md-nZk1S`
+
+## Backlog (v2)
+
+| # | Item | Status | Notes |
+|---|------|--------|-------|
+| 0 | Preflight | ✅ | Clean tree, 9 invariants, 44 tests, in sync. Baseline bundle 714.78 kB raw / 99.15 kB gzip (single chunk). |
+| 1 | Bundle code-split (R-021) | ✅ | React.lazy on all 7 tabs + Suspense. Initial chunk 714.78→631.20 kB raw (−83.6 kB); gzip 99.15→79.59 kB (**−19.6 kB, ~20%**). Tabs now lazy chunks (BoxEV 17.6, CardDetail 18.9, Watchlist 12.2…). +2 shell tests (44→46). |
+| 2 | README tune-up | 🔧 | Verify Set Rankings/Chase Radar/Vite 8/test count current. |
+| 3 | AGENTS.md § 2 + § 5 sync | 🔧 | Bundle figures updated in this commit; verify tab list + test count. |
+| 4 | Accessibility pass | ⏳ | aria-labels, table roles, focus rings on SetRankings/ChaseRadar/CardDetail. |
+| 5 | Mobile layout audit (≤375px) | ⏳ | matchMedia-mocked RTL cases. |
+| 6 | Script hardening (read-and-propose) | ⏳ | Author findings doc; no pipeline edits. |
+| 7 | Decision-log quick index | ⏳ | 53 entries; add grouped index. |
+| 8 | Risk-register sweep | ⏳ | Reconcile statuses post-cycle. |
+
+## Commit log (session 2)
+
+| SHA | Subject | Validation |
+|-----|---------|------------|
+| _(this commit)_ | feat: code-split tabs via React.lazy (R-021) | build ✓, verify-data 9✓, tests 46✓, initial gzip −20 kB |
+
+---
+
+# Session 1 — 2026-05-31 (v1 prompt)
+
+> Original session block preserved below.
+
+## Status legend (session 1)
+- ✅ Done · 🔧 In progress · ⏳ Queued · ⏸ Bounded · ⛔ Operator gate
 
 ## Backlog
 

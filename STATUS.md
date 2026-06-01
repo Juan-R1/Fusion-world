@@ -58,7 +58,7 @@ standing R-020 Plausible weekly read.
 | Box EV | Approximate assumptions, input quality, and cautious model verdict copy complete |
 | Watchlist | Local v2 portfolio fields: quantity, entry price, current value, Unrealized P/L |
 | Data verification | `scripts/verify-data.js` requires split shape only |
-| Bundle | ~648 kB raw / ~96 kB gzip after retiring synthetic UI paths |
+| Bundle | Initial chunk ~631 kB raw / ~80 kB gzip after tab code-split (R-021); tabs lazy-load on demand. Initial gzip dropped ~20 kB (~20%) vs the single-chunk build. |
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 | Phase 2 spec drift | **Closed** (P2-018 — 5 commits, all 8 drift items resolved) |
 | Methodology trust disclosures | **Live** (commit `02e9733`) — R², smoothed UC, extrapolated SPR, single-source explicitly stated |

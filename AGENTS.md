@@ -47,7 +47,7 @@ expansion**.
 | Workflow failure alerts | P3-005 — `update-prices.yml` + `update-cards.yml` open a GitHub issue on failure |
 | Pricing model constants | Recalibrated 2026-05-12 against 1156 prices (R²=0.318); next recalibration 2026-08-12 |
 | External spot-check | Operator-driven, manual; protocol in `docs/cross-source-spot-check-protocol.md` |
-| Current JS bundle | ~662 kB raw / ~99 kB gzip after P3-008 test infra (test deps are dev-only and not bundled) |
+| Current JS bundle | Initial chunk ~631 kB raw / ~80 kB gzip after tab code-split (R-021). Tabs lazy-load as separate chunks (BoxEV 17.6 kB, CardDetail 18.9 kB, Watchlist 12.2 kB, etc.). The ~631 kB shared chunk is React + data.js + inlined cardData.json, which the shell needs eagerly. |
 | Phase 2 progress | 17 / 18 complete; only P2-017 (backend) remains, operator-gated by Backend Trigger Checklist |
 | Phase 3 progress | 11 / 14 complete (P3-001 through P3-009, P3-013, P3-014); operator-gated: P3-010 (UX spec), P3-011 (eBay fill), P3-012 (premium-metadata fill) |
 | Branch discipline | All work on `claude/dbfw-market-analytics-1qh5D`; PRs to `main` (PR #1 merged 2026-05-12; PR #2 standing for ongoing Phase 3 work) |
@@ -101,7 +101,7 @@ Operating principle: **make FusionMetrics unable to lie by accident.**
 
 ```bash
 # Local validation — run BOTH before any commit that touches code:
-npm run build                 # Vite build; bundle should stay ~660 kB raw
+npm run build                 # Vite 8 (Rolldown). Initial chunk ~631 kB raw / ~80 kB gzip; tabs code-split into lazy chunks. npm run preview serves the production build on :4173.
 node scripts/verify-data.js   # 9 invariants; must say "split shape required"
 
 # Optional dev server for UI smoke tests:
