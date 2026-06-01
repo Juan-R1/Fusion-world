@@ -337,20 +337,27 @@ Every risk row in § 4–7 cites where it came from:
 
 ### R-021 — Bundle bloat from future artifacts
 - **Sources:** new
-- **Description:** Current bundle is 647 kB raw / 95 kB gzip (just over
-  the 600 kB Vite warning). Future inlined artifacts —
-  `premiumMetadata.json`, image manifests, `sourceConfidence.json`,
-  expanded `cardData.json` for SB sets — could push it past 1 MB raw
-  again unless lazy-loaded the same way `priceHistory30d.json` was.
+- **Description:** Future inlined artifacts — `premiumMetadata.json`,
+  image manifests, `sourceConfidence.json`, expanded `cardData.json`
+  for SB/FB10 sets — could push the bundle past 1 MB raw unless
+  lazy-loaded the same way `priceHistory30d.json` was.
 - **Impact:** Mobile users on slow connections feel it; portfolio-grade
   load time suffers.
 - **Likelihood:** Medium — every new data layer is a candidate to be
   accidentally bundled.
 - **Owner:** Frontend (data.js + Vite config).
-- **Mitigation:** Existing pattern: large data → `public/` + lazy
-  `fetch()`. CLA-04 (bundle audit) will document this explicitly.
-- **Residual risk:** Low if the lazy pattern is followed.
-- **Status:** monitored.
+- **Mitigation:** Two layers now in place. (1) **Tab code-split
+  (2026-05-31, commit `9c264dd`):** all 7 tabs lazy-load via
+  `React.lazy`; initial gzip dropped ~20 kB (99→80 kB) and each tab
+  is its own on-demand chunk. (2) The established large-data → public/
+  + lazy `fetch()` pattern (priceHistory30d, premiumMetadata sample).
+  Data artifacts already promoted (premiumMetadata.json) are
+  fetched, not bundled. The remaining ~631 kB shared chunk is
+  React + inlined cardData.json; FB10 (~140 cards, ~5-8 kB gzip)
+  stays within budget per `docs/fb10-onboarding-prestage.md` § 8.
+- **Residual risk:** Low — code-split + lazy-fetch patterns cover the
+  realistic growth paths.
+- **Status:** mitigated (was: monitored).
 
 ## 6. P2 — Tracked, not urgent
 
@@ -556,12 +563,16 @@ Every risk row in § 4–7 cites where it came from:
 | Tier | Open | Monitored | Mitigated | Closed | Total |
 |------|-----:|----------:|----------:|-------:|------:|
 | P0 | 0 | 1 | 2 | 0 | 3 |
-| P1 | 2 | 4 | 6 | 1 | 13 |
+| P1 | 2 | 3 | 7 | 1 | 13 |
 | P2 | 1 | 2 | 6 | 1 | 10 |
 | P3 | 1 | 1 | 1 | 2 | 5 |
-| **Total** | **4** | **8** | **15** | **4** | **31** |
+| **Total** | **4** | **7** | **16** | **4** | **31** |
 
-Recent state changes (2026-05-12 → 2026-05-14):
+Recent state changes (2026-05-31 autonomous run):
+- R-021 bundle bloat → mitigated (tab code-split via React.lazy; initial gzip −20 kB).
+- R-055 esbuild dev-server advisory → closed (Vite 8 / Rolldown removed esbuild entirely).
+
+Earlier state changes (2026-05-12 → 2026-05-14):
 - R-001 spec drift → closed (P2-018).
 - R-002 agent reality-drift → mitigated (P3-014 SessionStart hook).
 - R-017 image licensing → closed (D-038).
@@ -572,6 +583,7 @@ Recent state changes (2026-05-12 → 2026-05-14):
 - R-038 Vercel deploy gap → closed (PR #1 merge 2026-05-12 + ongoing PR #2 pattern).
 - **R-055 esbuild dev-server advisory → open** (new, tracked, not blocking).
 - **R-055 esbuild dev-server advisory → closed 2026-05-31** (Vite 8 / Rolldown upgrade removed esbuild entirely).
+- **R-021 bundle bloat → mitigated 2026-05-31** (tab code-split via React.lazy, commit `9c264dd`; initial gzip −20 kB; each tab an on-demand chunk).
 
 ## 9. Top 5 risks to act on this cycle
 
@@ -589,14 +601,15 @@ risks are:
    spot-check protocol + sample-gated comps infra ready for
    D-041 manual eBay fill + P3-009 backend pre-stage). Structural
    exit waits on P3-011 operator-only data fill.
-3. **R-021** — Bundle bloat. Raw bundle now 702 kB (post Vite 8
-   OXC minifier); gzip flat at ~96 kB. Code-splitting tabs
-   (bundle-audit S2) would recover the raw figure. Not urgent.
+3. **R-014** — JustTCG schema/availability change could break the
+   weekly refresh. Typed errors + coverage guard catch it loudly;
+   no automated alert beyond the workflow-failure issue (P3-005).
 4. **R-002** — Agent reality-drift. **Mitigated** by P3-014
    SessionStart hook + `scripts/session-brief.sh`; tracked for
    visibility.
 
-Recently closed (visibility): R-001, R-017, R-036, R-037, R-038, R-055.
+Recently closed/mitigated (visibility): R-001, R-017, R-021 (tab
+code-split + lazy-fetch), R-036, R-037, R-038, R-055.
 
 ## 10. What this register did NOT include
 
@@ -633,3 +646,5 @@ When a risk changes state:
 | 2026-05-14 | R-038 | monitored → closed | PR #1 merged 2026-05-12; PR #2 pattern + standing dev branch reestablishes branch discipline. |
 | 2026-05-14 | R-055 | (new entry) open | esbuild dev-server advisory surfaced by npm audit. Dev-only; not blocking. |
 | 2026-05-14 | R-054 | monitored → mitigated | `.github/dependabot.yml` shipped; weekly Monday scan for npm + GitHub Actions. |
+| 2026-05-31 | R-055 | open → closed | Vite 5→8 (Rolldown/OXC) removed esbuild from the tree entirely; npm audit 0 vulnerabilities. D-051. CI-green. |
+| 2026-05-31 | R-021 | monitored → mitigated | Tab code-split via React.lazy (`9c264dd`); initial gzip 99→80 kB; each tab an on-demand chunk. |
