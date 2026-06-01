@@ -73,7 +73,7 @@ export default function SetRankings({ cards }) {
       </p>
 
       <div style={{ marginBottom: 14 }}>
-        <select style={{ ...INP, flex: isMobile ? '1 1 auto' : '0 0 auto' }} value={sort} onChange={e => setSort(e.target.value)}>
+        <select aria-label="Sort set rankings" style={{ ...INP, flex: isMobile ? '1 1 auto' : '0 0 auto' }} value={sort} onChange={e => setSort(e.target.value)}>
           {SORTS.map(s => <option key={s.value} value={s.value}>Sort: {s.label}</option>)}
         </select>
       </div>

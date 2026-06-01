@@ -51,6 +51,13 @@ describe('ChaseRadar tab', () => {
     expect(screen.queryByText('In FB01')).toBeNull()
   })
 
+  test('a11y: all three filter controls have accessible names', () => {
+    render(<ChaseRadar cards={[card()]} />)
+    expect(screen.getByRole('combobox', { name: /sort chase radar/i })).toBeTruthy()
+    expect(screen.getByRole('combobox', { name: /filter by set/i })).toBeTruthy()
+    expect(screen.getByRole('combobox', { name: /filter by rarity/i })).toBeTruthy()
+  })
+
   test('empty state when no live cards match', () => {
     const cards = [card({ priceStatus: 'estimated', delta: 0, priceTimestamp: null })]
     render(<ChaseRadar cards={cards} />)

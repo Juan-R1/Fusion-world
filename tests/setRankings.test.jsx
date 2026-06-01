@@ -37,6 +37,11 @@ describe('SetRankings tab', () => {
     expect(screen.getAllByText('On track').length).toBeGreaterThan(0)
   })
 
+  test('a11y: sort control is reachable by accessible name', () => {
+    render(<SetRankings cards={[card()]} />)
+    expect(screen.getByRole('combobox', { name: /sort set rankings/i })).toBeTruthy()
+  })
+
   test('changing the sort control does not crash and keeps rows', () => {
     const cards = [
       card({ set: 'FB01', marketPrice: 5 }),

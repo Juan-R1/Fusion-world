@@ -48,14 +48,14 @@ export default function ChaseRadar({ cards }) {
       </p>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
-        <select style={INP} value={sort} onChange={e => setSort(e.target.value)}>
+        <select aria-label="Sort chase radar" style={INP} value={sort} onChange={e => setSort(e.target.value)}>
           {SORTS.map(s => <option key={s.value} value={s.value}>Sort: {s.label}</option>)}
         </select>
-        <select style={INP} value={setFilter} onChange={e => setSetFilter(e.target.value)}>
+        <select aria-label="Filter by set" style={INP} value={setFilter} onChange={e => setSetFilter(e.target.value)}>
           <option value="">All sets</option>
           {SETS.map(s => <option key={s.code} value={s.code}>{s.code}</option>)}
         </select>
-        <select style={INP} value={rarityFilter} onChange={e => setRarityFilter(e.target.value)}>
+        <select aria-label="Filter by rarity" style={INP} value={rarityFilter} onChange={e => setRarityFilter(e.target.value)}>
           <option value="">All rarities</option>
           {RARITIES.map(r => <option key={r.code} value={r.code}>{r.code}</option>)}
         </select>
