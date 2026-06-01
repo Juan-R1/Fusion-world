@@ -23,19 +23,38 @@
 |---|------|--------|-------|
 | 0 | Preflight | ✅ | Clean tree, 9 invariants, 44 tests, in sync. Baseline bundle 714.78 kB raw / 99.15 kB gzip (single chunk). |
 | 1 | Bundle code-split (R-021) | ✅ | React.lazy on all 7 tabs + Suspense. Initial chunk 714.78→631.20 kB raw (−83.6 kB); gzip 99.15→79.59 kB (**−19.6 kB, ~20%**). Tabs now lazy chunks (BoxEV 17.6, CardDetail 18.9, Watchlist 12.2…). +2 shell tests (44→46). |
-| 2 | README tune-up | 🔧 | Verify Set Rankings/Chase Radar/Vite 8/test count current. |
-| 3 | AGENTS.md § 2 + § 5 sync | 🔧 | Bundle figures updated in this commit; verify tab list + test count. |
-| 4 | Accessibility pass | ⏳ | aria-labels, table roles, focus rings on SetRankings/ChaseRadar/CardDetail. |
-| 5 | Mobile layout audit (≤375px) | ⏳ | matchMedia-mocked RTL cases. |
-| 6 | Script hardening (read-and-propose) | ⏳ | Author findings doc; no pipeline edits. |
-| 7 | Decision-log quick index | ⏳ | 53 entries; add grouped index. |
-| 8 | Risk-register sweep | ⏳ | Reconcile statuses post-cycle. |
+| 2 | README tune-up | ✅ | Added Set Rankings/Chase Radar tab rows; Vite 5→8; test count 23→46; roadmap reconciled (removed shipped items, removed D-050-contradicted item). |
+| 3 | AGENTS.md § 2 + § 5 sync | ✅ | Test count 20→46, Phase 3 progress, 7-tab list row; § 5 got preview + Vite 8 boot note in the code-split commit. |
+| 4 | Accessibility pass | ✅ | aria-labels on all tab selects + CardDetail close/watch/range buttons (+aria-pressed). +2 a11y test assertions. Bundle unchanged. |
+| 5 | Mobile layout audit (≤375px) | ✅ | tests/mobile-layout.test.jsx, 5 cases. No bug surfaced — SetRankings stacks, ChaseRadar drops FRESH column. |
+| 6 | Script hardening (read-and-propose) | ✅ | docs/pipeline-hardening-2026-05-31.md — P1-1/P1-2 (FB10 floor + rotation comments) recommended before FB10; P2/P3 polish. NO pipeline edits. |
+| 7 | Decision-log quick index | ✅ | § 2.5 grouped index of all 53 D-NNN by domain; Ctrl-F keyed. |
+| 8 | Risk-register sweep | ✅ | R-021 monitored→mitigated (code-split); R-055 closed; counts + top-5 + change log refreshed. |
 
 ## Commit log (session 2)
 
 | SHA | Subject | Validation |
 |-----|---------|------------|
-| _(this commit)_ | feat: code-split tabs via React.lazy (R-021) | build ✓, verify-data 9✓, tests 46✓, initial gzip −20 kB |
+| `9c264dd` | feat: code-split tabs via React.lazy (R-021) | tests 46✓, initial gzip 99→80 kB (−20 kB) |
+| `381f6bd` | docs: README tune-up | docs-only |
+| `d8be441` | docs: AGENTS.md § 2 sync | docs-only |
+| `310e075` | feat: accessibility pass — aria-labels | tests 48✓, bundle flat |
+| `3517cd8` | test: mobile layout audit (≤375px) | tests 53✓ |
+| `30c38b6` | docs: pipeline hardening findings | docs-only |
+| `3e11f28` | docs: decision-log quick index | docs-only |
+| `4745614` | docs: risk-register sweep | docs-only |
+| _(this commit)_ | docs: worklist session-2 summary | docs-only |
+
+## Session 2 summary
+
+All 8 reachable backlog items shipped. 9 commits. Test suite
+44 → 53 (+9: 2 app-shell, 2 a11y, 5 mobile). Initial bundle gzip
+99.15 → 79.59 kB (~20% lighter) via tab code-split; R-055 already
+closed (Vite 8) + R-021 now mitigated. No operator gates hit that
+weren't already known (eBay, Plausible, FB10 data, backend). No
+trust-contract violations; no model-math touched; no new deps; no
+pipeline-script edits (item 6 was propose-only). Stopping per the
+"exhausted all reachable items" condition.
 
 ---
 
