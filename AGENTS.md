@@ -42,12 +42,12 @@ expansion**.
 | Methodology | Methodology & Data Sources tab complete with R²=0.32 / smoothed UC / extrapolated SPR / single-source disclosures |
 | Sample-gated UI consumption | P2-015 premium badges + P2-016 comps panel both ship; refuse `_isSample: true` |
 | Watchlist | v2 (localStorage) with quantity / entryPrice / currentValue / P&L; CSV export shipped (P3-006) |
-| Test suite | 46-case Vitest suite (10 files): data.js invariants, Watchlist v1→v2 migration, sample-gate refusal, CompsPanel raw/graded separation, ValueScanner ranking, CardDetail, ProvenanceFooter, setAggregates (15), SetRankings + ChaseRadar UI, App-shell code-split. CI runs `npm test` after build. |
+| Test suite | 53-case Vitest suite (12 files): data.js invariants, Watchlist v1→v2 migration, sample-gate refusal, CompsPanel raw/graded separation, ValueScanner ranking, CardDetail, ProvenanceFooter, setAggregates (15), SetRankings + ChaseRadar UI, App-shell code-split, a11y assertions, mobile-layout audit. CI runs `npm test` after build. |
 | Production error capture | P3-004 — `src/lib/errorCapture.js` fires Plausible `js-error` events when `window.plausible` is defined |
 | Workflow failure alerts | P3-005 — `update-prices.yml` + `update-cards.yml` open a GitHub issue on failure |
 | Pricing model constants | Recalibrated 2026-05-12 against 1156 prices (R²=0.318); next recalibration 2026-08-12 |
 | External spot-check | Operator-driven, manual; protocol in `docs/cross-source-spot-check-protocol.md` |
-| Current JS bundle | Initial chunk ~631 kB raw / ~80 kB gzip after tab code-split (R-021). Tabs lazy-load as separate chunks (BoxEV 17.6 kB, CardDetail 18.9 kB, Watchlist 12.2 kB, etc.). The ~631 kB shared chunk is React + data.js + inlined cardData.json, which the shell needs eagerly. |
+| Current JS bundle | Initial chunk ~681 kB raw / ~94 kB gzip after tab code-split (R-021) + React 19 upgrade (D-054, +14.5 kB gzip vs React 18). Tabs lazy-load as separate chunks (BoxEV ~18 kB, CardDetail ~19 kB, Watchlist ~12 kB, etc.). The ~681 kB shared chunk is React 19 + data.js + inlined cardData.json, which the shell needs eagerly. Still well under the 750 kB raw hard stop. |
 | Phase 2 progress | 17 / 18 complete; only P2-017 (backend) remains, operator-gated by Backend Trigger Checklist |
 | Phase 3 progress | P3-001–P3-010, P3-012–P3-016 done (incl. Set Rankings + Chase Radar tabs implemented, premium-metadata SCR+SR+Leader tier promoted, Vite 8 / R-055, FB10 pre-stage). Only operator-gated work remains: P3-011 (eBay fill — needs API credentials) + the eBay ingester + restoration chain. |
 | Tabs (7) | Value Scanner · Pricing Model · Box EV · Set Rankings · Chase Radar · Watchlist · Methodology. (Market Dynamics retired D-049; returns with real demand/supply data.) |

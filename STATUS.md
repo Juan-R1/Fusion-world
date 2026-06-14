@@ -1,10 +1,23 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-31
+**Date:** 2026-06-14
 **Branch:** `claude/review-claude-md-nZk1S` (ongoing dev branch; PRs to main per the standing pattern)
-**Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 3 operate-and-harden. P3-010 implementation complete (Set Rankings + Chase Radar tabs, live-data only). Vite 8 upgrade closed R-055 (esbuild removed entirely). FB10 + eBay + restoration paths all pre-staged. Premium-metadata production artifact at 169 cards (SCR+SR+Leader). Synthetic UI surfaces retired (D-049). Decision log at 53 entries.
+**Production:** https://fusion-metrics-jet.vercel.app/ (production deploys verified working again after R-056 fix on 2026-06-14)
+**Phase:** Phase 3 operate-and-harden. Deploy pipeline fixed (R-056, PR #15), dependency stack current (PR #16 + React 19 upcoming PR), Phase 3 surfaces all shipped. Premium-metadata production artifact at 169 cards (SCR+SR+Leader). Synthetic UI surfaces retired (D-049). Decision log at 54 entries.
 
+> **2026-06-14 "best deployable build" run shipped:** Diagnosed and fixed
+> the production deploy break (R-056: amondnet/vercel-action@v25 shipped
+> a CLI version Vercel was rejecting; PR #15 replaces it with the
+> official Vercel CLI installed @latest on every run). Bumped
+> checkout/setup-node 4→6 and add-and-commit 9→10 across all workflow
+> files (PR #16) to clear the Node-20 deprecation. Closed all 8
+> Dependabot PRs (3 superseded by the consolidated bump, 3 obsolete
+> already-on-main, 2 React-19 rolled into our own bump). React 18.3.1 →
+> 19.2.7 with zero src/ changes (D-054). Pipeline P1-1 + P1-2 from
+> docs/pipeline-hardening-2026-05-31.md applied (constant hoist + FB10
+> rotation comment). Decision log 53 → 54. Open Dependabot PRs: 0.
+> Production deploys verified green via Actions logs.
+>
 > **2026-05-31 autonomous run shipped:** Vite 5→8 (D-051, R-055 closed,
 > CI-green), FB10 onboarding pre-stage (D-052), eBay ingester pre-stage,
 > restoration-prompts pre-stage, README rewrite, Set Rankings + Chase
