@@ -25,9 +25,9 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
 
@@ -42,7 +42,7 @@ jobs:
         run: node scripts/update-prices.js
 
       - name: Commit updated price files
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           add: 'src/livePrices.json public/priceHistory30d.json public/priceUpdateLog.json'
           message: 'chore: weekly price update'
