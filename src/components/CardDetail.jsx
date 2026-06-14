@@ -18,6 +18,8 @@ function RangeToggle({ range, setRange }) {
         <button
           key={r}
           onClick={() => setRange(r)}
+          aria-label={`Show ${r}-day price history`}
+          aria-pressed={range === r}
           style={{
             padding: '2px 9px',
             borderRadius: 4,
@@ -148,6 +150,7 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
       {/* Close button */}
       <button
         onClick={onClose}
+        aria-label="Close card detail"
         style={{
           position: 'absolute', top: 16, right: 16,
           background: T.s2, border: 'none', color: T.muted,
@@ -162,6 +165,8 @@ export default function CardDetail({ card, onClose, watched = false, onToggleWat
       {onToggleWatch && (
         <button
           onClick={onToggleWatch}
+          aria-label={watched ? 'Remove from watchlist' : 'Add to watchlist'}
+          aria-pressed={watched}
           style={{
             position: 'absolute', top: 16, right: isMobile ? 92 : 80,
             background: watched ? 'rgba(234,179,8,0.12)' : T.s2,

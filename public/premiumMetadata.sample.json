@@ -2,9 +2,9 @@
   "version": 1,
   "_isSample": true,
   "_disclaimer": "ILLUSTRATIVE SAMPLE ONLY. Not consumed by production UI. Not financial advice. Every row is manualReviewOnly. See data-staging/premium-metadata/README.md.",
-  "generatedAt": "2026-05-15T02:52:44.622Z",
+  "generatedAt": "2026-05-31T06:45:33.941Z",
   "sourceFixture": "data-staging/premium-metadata/sample.json",
-  "rowCount": 130,
+  "rowCount": 169,
   "items": {
     "FB01-001": {
       "cardCode": "FB01-001",
@@ -22,16 +22,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-002": {
       "cardCode": "FB01-002",
@@ -46,16 +46,89 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB01-015": {
+      "cardCode": "FB01-015",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB01-021": {
+      "cardCode": "FB01-021",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Hit SR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB01-023": {
+      "cardCode": "FB01-023",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-035": {
       "cardCode": "FB01-035",
@@ -70,16 +143,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-036": {
       "cardCode": "FB01-036",
@@ -95,21 +168,22 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-070": {
       "cardCode": "FB01-070",
       "premiumFlags": [],
       "collectorTags": [
+        "nostalgiaAppeal",
         "setChase"
       ],
       "riskTags": [
@@ -118,16 +192,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-071": {
       "cardCode": "FB01-071",
@@ -143,16 +217,39 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB01-079": {
+      "cardCode": "FB01-079",
+      "premiumFlags": [],
+      "collectorTags": [
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Android 18 SR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-104": {
       "cardCode": "FB01-104",
@@ -166,16 +263,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-105": {
       "cardCode": "FB01-105",
@@ -189,16 +286,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Awakened Pulse; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-139": {
       "cardCode": "FB01-139",
@@ -217,16 +314,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB01-140": {
       "cardCode": "FB01-140",
@@ -243,16 +340,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Gohan SCR from Awakened Pulse. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-001": {
       "cardCode": "FB02-001",
@@ -270,16 +367,39 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Blazing Aura; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB02-013": {
+      "cardCode": "FB02-013",
+      "premiumFlags": [],
+      "collectorTags": [
+        "fusionCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Kefla SR from Blazing Aura. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-036": {
       "cardCode": "FB02-036",
@@ -294,16 +414,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Blazing Aura; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-070": {
       "cardCode": "FB02-070",
@@ -319,16 +439,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Blazing Aura; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-105": {
       "cardCode": "FB02-105",
@@ -344,16 +464,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Blazing Aura; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-139": {
       "cardCode": "FB02-139",
@@ -370,16 +490,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Blazing Aura. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB02-140": {
       "cardCode": "FB02-140",
@@ -396,16 +516,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Frieza SCR from Blazing Aura. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-001": {
       "cardCode": "FB03-001",
@@ -420,16 +540,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Raging Roar; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-009": {
       "cardCode": "FB03-009",
@@ -445,16 +565,39 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Jiren SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB03-025": {
+      "cardCode": "FB03-025",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Pan SR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-027": {
       "cardCode": "FB03-027",
@@ -472,16 +615,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Raging Roar; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-053": {
       "cardCode": "FB03-053",
@@ -497,16 +640,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Raging Roar; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-070": {
       "cardCode": "FB03-070",
@@ -520,16 +663,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Raging Roar; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-104": {
       "cardCode": "FB03-104",
@@ -547,16 +690,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Raging Roar; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-111": {
       "cardCode": "FB03-111",
@@ -575,16 +718,67 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB03-141": {
+      "cardCode": "FB03-141",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Vegeta SR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB03-142": {
+      "cardCode": "FB03-142",
+      "premiumFlags": [
+        "gogetaChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Gogeta SR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-143": {
       "cardCode": "FB03-143",
@@ -601,16 +795,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-144": {
       "cardCode": "FB03-144",
@@ -627,16 +821,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-145": {
       "cardCode": "FB03-145",
@@ -653,16 +847,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-146": {
       "cardCode": "FB03-146",
@@ -680,16 +874,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-147": {
       "cardCode": "FB03-147",
@@ -707,16 +901,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-148": {
       "cardCode": "FB03-148",
@@ -734,16 +928,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-149": {
       "cardCode": "FB03-149",
@@ -760,16 +954,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-150": {
       "cardCode": "FB03-150",
@@ -787,16 +981,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-151": {
       "cardCode": "FB03-151",
@@ -814,16 +1008,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-152": {
       "cardCode": "FB03-152",
@@ -842,16 +1036,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-153": {
       "cardCode": "FB03-153",
@@ -870,16 +1064,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-154": {
       "cardCode": "FB03-154",
@@ -896,16 +1090,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-155": {
       "cardCode": "FB03-155",
@@ -923,16 +1117,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-156": {
       "cardCode": "FB03-156",
@@ -949,16 +1143,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-157": {
       "cardCode": "FB03-157",
@@ -976,16 +1170,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-158": {
       "cardCode": "FB03-158",
@@ -1002,16 +1196,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-159": {
       "cardCode": "FB03-159",
@@ -1029,16 +1223,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-160": {
       "cardCode": "FB03-160",
@@ -1055,16 +1249,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-161": {
       "cardCode": "FB03-161",
@@ -1081,16 +1275,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-162": {
       "cardCode": "FB03-162",
@@ -1108,16 +1302,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-163": {
       "cardCode": "FB03-163",
@@ -1134,16 +1328,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB03-164": {
       "cardCode": "FB03-164",
@@ -1162,16 +1356,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Raging Roar. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-001": {
       "cardCode": "FB04-001",
@@ -1189,16 +1383,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Ultra Limit; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-026": {
       "cardCode": "FB04-026",
@@ -1214,16 +1408,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Ultra Limit; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-051": {
       "cardCode": "FB04-051",
@@ -1239,16 +1433,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Ultra Limit; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-077": {
       "cardCode": "FB04-077",
@@ -1264,16 +1458,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Ultra Limit; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-103": {
       "cardCode": "FB04-103",
@@ -1287,16 +1481,216 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Ultra Limit; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-131": {
+      "cardCode": "FB04-131",
+      "premiumFlags": [
+        "brolyChase"
+      ],
+      "collectorTags": [
+        "villainCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Broly SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-132": {
+      "cardCode": "FB04-132",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-133": {
+      "cardCode": "FB04-133",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-134": {
+      "cardCode": "FB04-134",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-135": {
+      "cardCode": "FB04-135",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Vegeta SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-136": {
+      "cardCode": "FB04-136",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-137": {
+      "cardCode": "FB04-137",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Frieza SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB04-138": {
+      "cardCode": "FB04-138",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Vegeta SR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-139": {
       "cardCode": "FB04-139",
@@ -1313,16 +1707,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-140": {
       "cardCode": "FB04-140",
@@ -1339,16 +1733,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-141": {
       "cardCode": "FB04-141",
@@ -1365,16 +1759,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-142": {
       "cardCode": "FB04-142",
@@ -1391,16 +1785,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-143": {
       "cardCode": "FB04-143",
@@ -1418,16 +1812,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-144": {
       "cardCode": "FB04-144",
@@ -1446,16 +1840,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-145": {
       "cardCode": "FB04-145",
@@ -1472,16 +1866,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-146": {
       "cardCode": "FB04-146",
@@ -1499,16 +1893,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-147": {
       "cardCode": "FB04-147",
@@ -1526,16 +1920,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-148": {
       "cardCode": "FB04-148",
@@ -1554,16 +1948,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-149": {
       "cardCode": "FB04-149",
@@ -1581,16 +1975,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-150": {
       "cardCode": "FB04-150",
@@ -1608,16 +2002,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-151": {
       "cardCode": "FB04-151",
@@ -1636,16 +2030,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-152": {
       "cardCode": "FB04-152",
@@ -1664,16 +2058,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-153": {
       "cardCode": "FB04-153",
@@ -1691,16 +2085,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-154": {
       "cardCode": "FB04-154",
@@ -1718,16 +2112,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-155": {
       "cardCode": "FB04-155",
@@ -1746,16 +2140,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-156": {
       "cardCode": "FB04-156",
@@ -1774,16 +2168,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-157": {
       "cardCode": "FB04-157",
@@ -1800,16 +2194,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-158": {
       "cardCode": "FB04-158",
@@ -1827,16 +2221,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB04-159": {
       "cardCode": "FB04-159",
@@ -1854,16 +2248,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Ultra Limit. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-001": {
       "cardCode": "FB05-001",
@@ -1881,16 +2275,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from New Adventure; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-025": {
       "cardCode": "FB05-025",
@@ -1905,16 +2299,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from New Adventure; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-049": {
       "cardCode": "FB05-049",
@@ -1932,16 +2326,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from New Adventure; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-073": {
       "cardCode": "FB05-073",
@@ -1955,16 +2349,356 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from New Adventure; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-125": {
+      "cardCode": "FB05-125",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-126": {
+      "cardCode": "FB05-126",
+      "premiumFlags": [
+        "gogetaChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Gogeta SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-127": {
+      "cardCode": "FB05-127",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Jiren SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-128": {
+      "cardCode": "FB05-128",
+      "premiumFlags": [
+        "gogetaChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Gogeta SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-129": {
+      "cardCode": "FB05-129",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-130": {
+      "cardCode": "FB05-130",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Frieza SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-131": {
+      "cardCode": "FB05-131",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Frieza SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-132": {
+      "cardCode": "FB05-132",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Gohan SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-133": {
+      "cardCode": "FB05-133",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Jiren SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-134": {
+      "cardCode": "FB05-134",
+      "premiumFlags": [],
+      "collectorTags": [
+        "fusionCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Vegito SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-135": {
+      "cardCode": "FB05-135",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Beerus SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-136": {
+      "cardCode": "FB05-136",
+      "premiumFlags": [],
+      "collectorTags": [
+        "villainCharacter"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Jiren SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-137": {
+      "cardCode": "FB05-137",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB05-138": {
+      "cardCode": "FB05-138",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-139": {
       "cardCode": "FB05-139",
@@ -1982,16 +2716,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-140": {
       "cardCode": "FB05-140",
@@ -2010,16 +2744,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-141": {
       "cardCode": "FB05-141",
@@ -2037,16 +2771,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-142": {
       "cardCode": "FB05-142",
@@ -2064,16 +2798,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-143": {
       "cardCode": "FB05-143",
@@ -2090,16 +2824,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-144": {
       "cardCode": "FB05-144",
@@ -2118,16 +2852,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-145": {
       "cardCode": "FB05-145",
@@ -2145,16 +2879,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-146": {
       "cardCode": "FB05-146",
@@ -2171,16 +2905,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-147": {
       "cardCode": "FB05-147",
@@ -2198,16 +2932,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-148": {
       "cardCode": "FB05-148",
@@ -2225,16 +2959,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-149": {
       "cardCode": "FB05-149",
@@ -2252,16 +2986,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-150": {
       "cardCode": "FB05-150",
@@ -2278,16 +3012,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-151": {
       "cardCode": "FB05-151",
@@ -2305,16 +3039,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-152": {
       "cardCode": "FB05-152",
@@ -2332,16 +3066,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-153": {
       "cardCode": "FB05-153",
@@ -2358,16 +3092,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-154": {
       "cardCode": "FB05-154",
@@ -2384,16 +3118,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-155": {
       "cardCode": "FB05-155",
@@ -2410,16 +3144,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-156": {
       "cardCode": "FB05-156",
@@ -2436,16 +3170,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-157": {
       "cardCode": "FB05-157",
@@ -2462,16 +3196,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-158": {
       "cardCode": "FB05-158",
@@ -2489,16 +3223,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB05-159": {
       "cardCode": "FB05-159",
@@ -2516,21 +3250,22 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from New Adventure. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-001": {
       "cardCode": "FB06-001",
       "premiumFlags": [],
       "collectorTags": [
+        "nostalgiaAppeal",
         "setChase"
       ],
       "riskTags": [
@@ -2539,16 +3274,39 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Rivals Clash; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB06-009": {
+      "cardCode": "FB06-009",
+      "premiumFlags": [],
+      "collectorTags": [
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Android 16 SR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-025": {
       "cardCode": "FB06-025",
@@ -2566,16 +3324,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Rivals Clash; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-048": {
       "cardCode": "FB06-048",
@@ -2593,16 +3351,42 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Rivals Clash; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB06-063": {
+      "cardCode": "FB06-063",
+      "premiumFlags": [
+        "brolyChase"
+      ],
+      "collectorTags": [
+        "villainCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Broly SR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-071": {
       "cardCode": "FB06-071",
@@ -2616,16 +3400,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Rivals Clash; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-095": {
       "cardCode": "FB06-095",
@@ -2639,16 +3423,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Rivals Clash; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-119": {
       "cardCode": "FB06-119",
@@ -2667,16 +3451,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-120": {
       "cardCode": "FB06-120",
@@ -2694,16 +3478,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-121": {
       "cardCode": "FB06-121",
@@ -2720,16 +3504,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-122": {
       "cardCode": "FB06-122",
@@ -2746,16 +3530,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB06-123": {
       "cardCode": "FB06-123",
@@ -2773,16 +3557,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Rivals Clash. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-001": {
       "cardCode": "FB07-001",
@@ -2796,16 +3580,43 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Wish for Shenron; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB07-010": {
+      "cardCode": "FB07-010",
+      "premiumFlags": [
+        "sonGokuChase"
+      ],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Goku SR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-025": {
       "cardCode": "FB07-025",
@@ -2819,16 +3630,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Wish for Shenron; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-049": {
       "cardCode": "FB07-049",
@@ -2844,16 +3655,64 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Wish for Shenron; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB07-056": {
+      "cardCode": "FB07-056",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Gohan SR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB07-058": {
+      "cardCode": "FB07-058",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Gohan SR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-073": {
       "cardCode": "FB07-073",
@@ -2869,16 +3728,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Wish for Shenron; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-097": {
       "cardCode": "FB07-097",
@@ -2892,16 +3751,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Wish for Shenron; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-121": {
       "cardCode": "FB07-121",
@@ -2918,16 +3777,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Gohan SCR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-122": {
       "cardCode": "FB07-122",
@@ -2946,16 +3805,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Son Goku SCR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-123": {
       "cardCode": "FB07-123",
@@ -2973,16 +3832,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegeta SCR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-124": {
       "cardCode": "FB07-124",
@@ -2999,16 +3858,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB07-125": {
       "cardCode": "FB07-125",
@@ -3025,16 +3884,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goku Black SCR from Wish for Shenron. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-001": {
       "cardCode": "FB08-001",
@@ -3051,16 +3910,65 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Saiyan's Pride; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB08-012": {
+      "cardCode": "FB08-012",
+      "premiumFlags": [],
+      "collectorTags": [
+        "heroCharacter",
+        "nostalgiaAppeal",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Son Gohan SR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB08-034": {
+      "cardCode": "FB08-034",
+      "premiumFlags": [],
+      "collectorTags": [
+        "fusionCharacter",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Kefla SR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-121": {
       "cardCode": "FB08-121",
@@ -3077,16 +3985,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Goten SCR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-122": {
       "cardCode": "FB08-122",
@@ -3105,16 +4013,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-123": {
       "cardCode": "FB08-123",
@@ -3133,16 +4041,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-124": {
       "cardCode": "FB08-124",
@@ -3161,16 +4069,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Broly SCR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB08-125": {
       "cardCode": "FB08-125",
@@ -3188,16 +4096,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Vegito SCR from Saiyan's Pride. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-001": {
       "cardCode": "FB09-001",
@@ -3215,16 +4123,43 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Dual Evolution; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB09-007": {
+      "cardCode": "FB09-007",
+      "premiumFlags": [
+        "gogetaChase"
+      ],
+      "collectorTags": [
+        "fusionCharacter",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly",
+        "variantAmbiguity"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Gogeta SR from Dual Evolution. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-025": {
       "cardCode": "FB09-025",
@@ -3243,16 +4178,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Dual Evolution; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-049": {
       "cardCode": "FB09-049",
@@ -3269,16 +4204,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Dual Evolution; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-073": {
       "cardCode": "FB09-073",
@@ -3296,16 +4231,40 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Dual Evolution; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
+    },
+    "FB09-091": {
+      "cardCode": "FB09-091",
+      "premiumFlags": [],
+      "collectorTags": [
+        "fusionCharacter",
+        "newReleaseAttention"
+      ],
+      "riskTags": [
+        "manualReviewOnly"
+      ],
+      "confidence": "high",
+      "sourceRefs": [
+        "cardData.json",
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
+      ],
+      "gradeUpside": {
+        "status": "notReviewed",
+        "confidence": "unknown",
+        "sourceRefs": [],
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
+      },
+      "notes": "Veku SR from Dual Evolution. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-097": {
       "cardCode": "FB09-097",
@@ -3323,16 +4282,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Leader rarity card from Dual Evolution; banner card by Bandai's set structure. Classification derived from cardData.json (rarity + character) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-121": {
       "cardCode": "FB09-121",
@@ -3351,16 +4310,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Dual Evolution. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-122": {
       "cardCode": "FB09-122",
@@ -3379,16 +4338,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Dual Evolution. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     },
     "FB09-123": {
       "cardCode": "FB09-123",
@@ -3407,16 +4366,16 @@
       "confidence": "high",
       "sourceRefs": [
         "cardData.json",
-        "claude-architect-review-2026-05-14"
+        "claude-architect-review-2026-05-15-v2-sr-expansion"
       ],
       "gradeUpside": {
         "status": "notReviewed",
         "confidence": "unknown",
         "sourceRefs": [],
-        "notes": "Graded comps not yet ingested per D-045; revisit after P3-011 lands real cross-source data."
+        "notes": "Graded comps not yet ingested per D-045; revisit after eBay ingester lands real comp data."
       },
       "notes": "Gogeta SCR from Dual Evolution. Classification derived from cardData.json (rarity + character + set context) only; no market data inferred.",
-      "updatedAt": "2026-05-14T00:00:00.000Z"
+      "updatedAt": "2026-05-15T00:00:00.000Z"
     }
   }
 }

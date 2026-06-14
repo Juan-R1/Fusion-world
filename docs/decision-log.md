@@ -23,6 +23,80 @@ expiry trigger fires.
 - **Owner**: who would re-decide. "Operator" = the human; "agent" =
   any coding agent acting on direction.
 
+## 2.5 Quick index (by domain)
+
+53 decisions (D-001 — D-053). Ctrl-F the `D-NNN` code to jump to the
+full entry in § 3. Grouped by domain for fast scanning.
+
+**Trust contract / honesty (the spine — several permanent):**
+- D-006 synthetic price history permanently removed *(permanent)*
+- D-007 synthetic demand sparkline removed
+- D-008 estimated cards: marketPrice = predictedPrice, delta = 0 *(permanent)*
+- D-009 estimated cards excluded from undervalued/overvalued rankings
+- D-014 Watchlist v2 migration non-destructive
+- D-016 no eBay scraping *(permanent)*
+- D-049 synthetic UI surfaces retired (gauges / desirability / Market Dynamics)
+- D-050 premium-metadata fill bounded at SCR+SR+Leader (no chase flags on commons)
+- D-053 Set Rankings + Chase Radar use live-price + rarity data only
+
+**Data model / coverage:**
+- D-011 coverage guard floor 1,121 (97% of 1,156) *(permanent)*
+- D-012 per-set guard 90% of previous count *(permanent)*
+- D-017 split-shape required (livePrices vs priceHistory30d)
+- D-018 coverage guard refuses to write rather than write partial
+
+**Pipeline / API:**
+- D-001 stay on JustTCG free tier
+- D-002 3-set rotation over full refresh
+- D-003 ISO-week % 3 group selection
+- D-019 typed errors in update-prices.js
+- D-020 Retry-After honored, max 3 retries
+- D-021 run-level abort on RateLimitedError
+- D-031 retired accumulate-prices.js + priceHistory.json
+- D-032 set-rotation strict ordering (manual override allowed)
+- D-052 FB10 rotation pre-decision (joins group C)
+
+**Premium metadata / comps schema:**
+- D-033 canonical `winnerPromo` (not `winner`)
+- D-034 canonical `rawGradedContamination` (not `gradedContamination`)
+- D-035 canonical `gradeCompany` (not `company`)
+- D-036 promo cardCode namespace (three-tier)
+- D-037 cross-source variance thresholds for sourceAgreement
+- D-039 GDR is a premium flag, not a rarity tier
+- D-040 Bandai canonical for treatment names
+- D-041 manual eBay first sold-comp source
+- D-042 manipulation-risk minimum eligible comp count
+- D-043 premium badges: medium-confidence descriptive, high for ranking-driving
+- D-044 boxTopHit derived at runtime, not stored
+- D-045 population data per-grader, default populationKnown = false
+- D-046 comps aggregates computed on demand
+- D-047 sealed-price freshness threshold 30 days
+- D-048 P3-012 premium-metadata promotion (SCR+SR+Leader, 169 cards)
+
+**UI / product:**
+- D-005 lazy-load priceHistory30d.json over bundling
+- D-010 per-card freshness thresholds <7d / 7–21d / >21d
+- D-013 Watchlist local-only (no backend)
+- D-015 Methodology page as a dedicated tab
+- D-038 image strategy: icons-only default, Option C upgrade path
+
+**Infrastructure / build / deps:**
+- D-004 static JSON over backend (for now)
+- D-022 CI gate: build + verify-data (Vitest added later — P3-008)
+- D-023 no error monitoring (Sentry etc.)
+- D-024 Plausible over Google Analytics
+- D-025 Vercel deploy, push to main
+- D-026 Vite over CRA / Next.js
+- D-027 lean dependency policy
+- D-051 Vite 5 → 8 (Rolldown/OXC) — closes R-055
+
+**Agent process / docs:**
+- D-028 fusionmetrics-* skill family
+- D-029 AGENTS.md as agent contract
+- D-030 Phase 2 docs-first
+
+> Permanent / "do not weaken": D-006, D-007, D-008, D-011, D-012, D-016.
+
 ## 3. Decision entries
 
 ### D-001 — Stay on JustTCG free tier
@@ -942,6 +1016,42 @@ expiry trigger fires.
   `scripts/validate-premium-metadata.js`. CI test suite covers
   sample-gate refusal but not the production fill's per-row
   classifications — operator review is the only quality control.
+- **Second-pass amendment (2026-05-15):** Coverage extended to SR
+  tier. Fill grew from 130 → **169 rows** (88 SCR + 39 SR + 42 L).
+  Same classification rules apply:
+  - `secretRareChase` premium flag only for SCR rarity (unchanged).
+  - Character chase flags (`gogetaChase` / `sonGokuChase` /
+    `brolyChase`) apply at any rarity by exact character match.
+  - `fusionCharacter` collector tag expanded to include Kefla +
+    Veku (both are fusion characters at SR tier).
+  - `nostalgiaAppeal` expanded to include the Android trio
+    (16/17/18) — classic-era characters with cross-generational
+    recognition.
+  - `variantAmbiguity` risk tag now also applies at SR tier for
+    high-variant characters (Son Goku / Gogeta / Vegito / Vegeta
+    / Goku Black).
+  - Confidence remains `high` per the original D-043 reasoning.
+  - Surface count: **113 of 169 rows surface at least one badge
+    flag** (all 88 SCR + 12 SR Goku/Gogeta/Broly + 13 of 42
+    Leaders by character match). The remaining 56 rows are
+    metadata-only — they carry honest character/rarity
+    classifications that the UI correctly suppresses per D-043
+    until a specific chase flag applies.
+  - sourceRefs reviewer updated to
+    `claude-architect-review-2026-05-15-v2-sr-expansion`.
+- **Why the 56 non-surfacing rows are still valuable:** They
+  populate the data layer with reviewed character/alignment
+  classifications that the future eBay ingester (see
+  `docs/ebay-ingester-prestage.md`) can use for variant matching
+  and confidence scoring. The metadata exists; the UI gate
+  decides what to render.
+- **Demotion path unchanged:** one
+  `git rm public/premiumMetadata.json` reverts both first and
+  second pass simultaneously. There is no partial demotion.
+- **Related commits (second pass):** Current commit (169-row
+  promotion). Same artifact path as first pass; the
+  production filename is overwritten in-place, the sample artifact
+  is regenerated, no path changes.
 
 ### D-049 — Synthetic UI surfaces retired (P3-015)
 - **Date:** 2026-05-15
@@ -996,15 +1106,114 @@ expiry trigger fires.
   `51df4b9`, and this follow-up commit.
 - **Status:** active.
 
+### D-050 — Premium-metadata fill bounded at the SCR+SR+Leader tier
+- **Date:** 2026-05-31
+- **Decision:** Do NOT extend the premium-metadata production fill
+  (currently 169 cards: SCR + SR + Leader) into the R / UC / C
+  tiers. The chase-flag classification stops at the top three
+  tiers.
+- **Rationale:** `docs/premium-metadata-schema.md` § 5 explicitly
+  forbids chase flags on commons — for `gogetaChase`: *"Do not use
+  when: Card is a low-context Gogeta common with no source-backed
+  chase role."* The same applies to `sonGokuChase` / `brolyChase`.
+  A $0.03 common Goku is not a "chase" card; labeling it one would
+  overclaim — a trust-contract violation. Separately, collector
+  tags only render alongside a surfaced premium flag
+  (`PremiumBadges.jsx`: `if (!surfacedFlags.length) return null`),
+  so bulk-classifying the 1,028 commons would add thousands of
+  invisible rule-generated rows to a "reviewed" artifact with zero
+  UI value and no real cross-source matching benefit (eBay matching
+  keys on cardCode + name, both already in cardData.json).
+- **Alternatives:** Extend chase flags to commons (rejected:
+  overclaim, schema violation); bulk-add collector-tag-only rows
+  for "data completeness" (rejected: invisible noise, dilutes the
+  reviewed-artifact signal).
+- **Owner:** Premium metadata; trust contract.
+- **Expiry trigger:** A real source establishes chase status for a
+  specific lower-rarity card (e.g. a common with a verified
+  tournament-promo treatment), in which case that individual card
+  earns a flag — not the whole tier.
+- **Related commits:** this docs commit (decision capture during
+  the 2026-05-31 autonomous run).
+- **Status:** active.
+
+### D-051 — Vite 5 → 8 (Rolldown/OXC) over an esbuild version bump
+- **Date:** 2026-05-31
+- **Decision:** Resolve R-055 (esbuild dev-server advisory) by
+  upgrading Vite 5.4.1 → 8.0.14 rather than patching esbuild. Vite 8
+  ships Rolldown + OXC as its bundler/minifier, removing esbuild
+  from the dependency tree entirely (`npm audit` 0 vulnerabilities).
+  `@vitejs/plugin-react` bumped 4.x → 6.0.2 for peer compatibility.
+- **Accepted tradeoff:** raw bundle grew ~54 kB (OXC minifies more
+  verbosely than esbuild) but gzip — the size Vercel serves — is
+  flat (+0.04 kB). The raw-size increase exceeds the tight 5 kB cap
+  written in the operator-handbook § 4c Vite prompt; that cap
+  predated knowledge that Vite 8 swaps the whole bundler. Real-world
+  transfer size is unchanged and the figure is well under the 750 kB
+  raw session hard-stop. Documented transparently rather than hidden.
+- **Alternatives:** esbuild version pin (rejected: Vite 5 pins a
+  vulnerable esbuild range; no clean pin); stay on Vite 5 + accept
+  the dev-only advisory (rejected: operator wanted it closed);
+  Terser minifier to shrink raw (rejected: adds a dependency for a
+  non-problem since gzip is flat).
+- **Owner:** Build infrastructure.
+- **Expiry trigger:** Rolldown instability surfaces in CI or
+  production; or a future Vite major changes the minifier again.
+- **Related commits:** `4a559d7`. CI green-verified.
+- **Status:** active.
+
+### D-052 — FB10 rotation pre-decision (Option B: FB10 joins group C)
+- **Date:** 2026-05-31
+- **Decision:** When FB10 (the next mainline set) lands, extend the
+  3-set ISO-week rotation by adding FB10 to group C (FB07–FB10)
+  rather than restructuring into 4 or 5 groups. This is the
+  pre-committed default; the operator may override at activation.
+- **Rationale:** FB10 fires D-002's documented expiry trigger
+  ("more than 9 sets exist"). Option B is the minimal code change —
+  group C's heavier week (~33 JustTCG calls) stays well under the
+  ~100/day free-tier ceiling, and the 3-week full-cycle cadence is
+  preserved. Full analysis in `docs/fb10-onboarding-prestage.md`
+  § 2 (Options A–D).
+- **Alternatives:** 4 groups % 4 (Option A — slower full cycle);
+  5 groups % 5 (Option C — slowest freshness); paid JustTCG tier
+  (Option D — only if traffic justifies, ties to Q-032).
+- **Owner:** Pipeline; operator at activation.
+- **Expiry trigger:** Sets 11–12 arrive (revisit toward Option A);
+  or traffic justifies the paid tier (Option D).
+- **Related commits:** `a210b1a` (FB10 onboarding pre-stage doc).
+- **Status:** active (pending FB10 release).
+
+### D-053 — Set Rankings + Chase Radar use live-price + rarity data only
+- **Date:** 2026-05-31
+- **Decision:** Implement P3-010's two surfaces
+  (`src/tabs/SetRankings.jsx`, `src/tabs/ChaseRadar.jsx`) consuming
+  only the real fields data.js already exports — live prices,
+  rarity, delta, freshness. No demand/supply columns (those are
+  eBay-gated). Price aggregates exclude estimated cards (D-009).
+- **Rationale:** These surfaces are honest today without waiting
+  for eBay because every input is observed market data or card
+  identity. Demand/supply columns from the spec are deferred to the
+  eBay-ingester restoration chain rather than shipped synthetic.
+- **Alternatives:** Wait for eBay to ship the full spec including
+  demand/supply (rejected: the price/coverage/delta surfaces are
+  valuable now and fully honest); include placeholder demand columns
+  (rejected: synthetic, trust violation).
+- **Owner:** Product surfaces; trust contract.
+- **Expiry trigger:** eBay ingester ships → demand/supply columns
+  can be added to these surfaces per the restoration prompts.
+- **Related commits:** `28de053` (aggregates lib), `495cb2b`
+  (Set Rankings tab), `a804939` (Chase Radar tab).
+- **Status:** active.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 49 |
+| active | 53 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **49** |
+| **Total** | **53** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
@@ -1049,4 +1258,6 @@ When a decision is made or revisited:
 | 2026-05-11 | D-037 | Cross-source variance thresholds | Closes Q-003. |
 | 2026-05-12 | D-038..D-047 | Consolidated open-questions closure run | Closes Q-002, Q-011..Q-015, Q-020, Q-022..Q-024 (10 decisions). Claude-authored under operator's "take charge" mandate. |
 | 2026-05-14 | D-048 | P3-012 first-pass premium-metadata promotion | 130-row production artifact (SCR + Leader tier) authored by Claude-architect under operator's "do everything you can" mandate. Confidence high; manualReviewOnly chip on every row; demotion is one git rm. |
+| 2026-05-15 | D-048 second pass | P3-012 SR-tier expansion | Coverage 130 → 169 rows (added 39 SR cards). 113 of 169 surface UI badges per D-043; remainder is data-layer-only metadata for future eBay ingester. |
+| 2026-05-31 | D-050..D-053 | Autonomous-run decisions | D-050 premium fill bounded at SCR+SR+Leader (schema forbids chase flags on commons); D-051 Vite 8/Rolldown closes R-055; D-052 FB10 rotation pre-decision (Option B); D-053 Set Rankings + Chase Radar live-data-only. |
 | 2026-05-15 | D-049 | Synthetic UI surfaces retired | P3-015 removed RNG-derived demand, supply, art/hype, desirability, Watchlist desirability sort, and Market Dynamics from production UI. |

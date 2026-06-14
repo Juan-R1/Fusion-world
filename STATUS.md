@@ -1,9 +1,17 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-05-15
-**Branch:** `claude/dbfw-market-analytics-1qh5D` (PR #2 merged 2026-05-14; PR #1 merged 2026-05-12; new commits accumulating on the dev branch)
+**Date:** 2026-05-31
+**Branch:** `claude/review-claude-md-nZk1S` (ongoing dev branch; PRs to main per the standing pattern)
 **Production:** https://fusion-metrics-jet.vercel.app/
-**Phase:** Phase 3 operate-and-harden — 14/15 P3 tasks complete (P3-015 added). Synthetic UI surfaces retired.
+**Phase:** Phase 3 operate-and-harden. P3-010 implementation complete (Set Rankings + Chase Radar tabs, live-data only). Vite 8 upgrade closed R-055 (esbuild removed entirely). FB10 + eBay + restoration paths all pre-staged. Premium-metadata production artifact at 169 cards (SCR+SR+Leader). Synthetic UI surfaces retired (D-049). Decision log at 53 entries.
+
+> **2026-05-31 autonomous run shipped:** Vite 5→8 (D-051, R-055 closed,
+> CI-green), FB10 onboarding pre-stage (D-052), eBay ingester pre-stage,
+> restoration-prompts pre-stage, README rewrite, Set Rankings + Chase
+> Radar tabs (D-053, 3 commits), and this doc sweep (D-050 premium-fill
+> bound). Test suite 23 → 44. All on PR #14 / branch dev. Premium-metadata
+> expansion below SCR+SR+Leader was BOUNDED (D-050): schema forbids chase
+> flags on commons.
 
 ---
 
@@ -50,7 +58,7 @@ standing R-020 Plausible weekly read.
 | Box EV | Approximate assumptions, input quality, and cautious model verdict copy complete |
 | Watchlist | Local v2 portfolio fields: quantity, entry price, current value, Unrealized P/L |
 | Data verification | `scripts/verify-data.js` requires split shape only |
-| Bundle | ~648 kB raw / ~96 kB gzip after retiring synthetic UI paths |
+| Bundle | Initial chunk ~631 kB raw / ~80 kB gzip after tab code-split (R-021); tabs lazy-load on demand. Initial gzip dropped ~20 kB (~20%) vs the single-chunk build. |
 | External spot-check | 10 cards checked; 9 aligned, 1 unclear due to variant ambiguity |
 | Phase 2 spec drift | **Closed** (P2-018 — 5 commits, all 8 drift items resolved) |
 | Methodology trust disclosures | **Live** (commit `02e9733`) — R², smoothed UC, extrapolated SPR, single-source explicitly stated |

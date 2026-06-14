@@ -1,19 +1,37 @@
-import { useState }     from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { T }            from './theme.js'
 import { CARDS, HAS_LIVE_PRICES } from './data.js'
 import { useWatchlist } from './hooks/useWatchlist.js'
 import { useIsMobile }  from './hooks/useIsMobile.js'
-import ValueScanner     from './tabs/ValueScanner.jsx'
-import PricingModel     from './tabs/PricingModel.jsx'
-import BoxEV            from './tabs/BoxEV.jsx'
-import Watchlist        from './tabs/Watchlist.jsx'
-import Methodology      from './tabs/Methodology.jsx'
 import ProvenanceFooter from './components/ProvenanceFooter.jsx'
+
+// Tabs are code-split (R-021 / bundle-audit S2): each tab's component
+// code loads on demand rather than in the initial bundle. The shared
+// data layer (data.js + cardData.json) still loads eagerly because the
+// header needs CARDS.length immediately — that weight cannot move out,
+// but the per-tab UI code can and does.
+const ValueScanner = lazy(() => import('./tabs/ValueScanner.jsx'))
+const PricingModel  = lazy(() => import('./tabs/PricingModel.jsx'))
+const BoxEV         = lazy(() => import('./tabs/BoxEV.jsx'))
+const SetRankings   = lazy(() => import('./tabs/SetRankings.jsx'))
+const ChaseRadar    = lazy(() => import('./tabs/ChaseRadar.jsx'))
+const Watchlist     = lazy(() => import('./tabs/Watchlist.jsx'))
+const Methodology   = lazy(() => import('./tabs/Methodology.jsx'))
+
+function TabFallback() {
+  return (
+    <div style={{ padding: '48px 0', textAlign: 'center', color: '#64748b', fontFamily: "'JetBrains Mono', monospace", fontSize: 13 }}>
+      Loading…
+    </div>
+  )
+}
 
 const TABS = [
   { id: 'scanner',   label: '🔍 Value Scanner',   short: '🔍 Scanner'  },
   { id: 'model',     label: '📈 Pricing Model',   short: '📈 Model'    },
   { id: 'boxev',     label: '📦 Box EV',          short: '📦 Box EV'   },
+  { id: 'sets',      label: '🏆 Set Rankings',    short: '🏆 Sets'     },
+  { id: 'radar',     label: '🎯 Chase Radar',     short: '🎯 Radar'    },
   { id: 'watchlist', label: '⭐ Watchlist',        short: '⭐ Watch'    },
   { id: 'method',    label: '📘 Methodology',     short: '📘 Method'   },
 ]
@@ -107,21 +125,25 @@ export default function App() {
 
       {/* ── Main content ── */}
       <main style={{ maxWidth: 1400, margin: '0 auto', padding: mainPad }}>
-        {tab === 'scanner'   && <ValueScanner   cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} />}
-        {tab === 'model'     && <PricingModel   cards={CARDS} />}
-        {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
-        {tab === 'watchlist' && (
-          <Watchlist
-            cards={CARDS}
-            watchedCodes={watchedCodes}
-            watchlistItems={watchlistItems}
-            onToggleWatch={toggle}
-            onUpdateItem={updateItem}
-            onRemove={remove}
-            onClear={clear}
-          />
-        )}
-        {tab === 'method'    && <Methodology cards={CARDS} />}
+        <Suspense fallback={<TabFallback />}>
+          {tab === 'scanner'   && <ValueScanner   cards={CARDS} watchedCodes={watchedCodes} onToggleWatch={toggle} />}
+          {tab === 'model'     && <PricingModel   cards={CARDS} />}
+          {tab === 'boxev'     && <BoxEV          cards={CARDS} />}
+          {tab === 'sets'      && <SetRankings    cards={CARDS} />}
+          {tab === 'radar'     && <ChaseRadar     cards={CARDS} />}
+          {tab === 'watchlist' && (
+            <Watchlist
+              cards={CARDS}
+              watchedCodes={watchedCodes}
+              watchlistItems={watchlistItems}
+              onToggleWatch={toggle}
+              onUpdateItem={updateItem}
+              onRemove={remove}
+              onClear={clear}
+            />
+          )}
+          {tab === 'method'    && <Methodology cards={CARDS} />}
+        </Suspense>
         <ProvenanceFooter />
       </main>
     </div>

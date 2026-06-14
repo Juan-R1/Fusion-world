@@ -1,87 +1,142 @@
 # FusionMetrics
 
-FusionMetrics is a Dragon Ball Super: Fusion World TCG market analytics dashboard built around live price provenance and conservative model labeling.
+**Live demo:** [fusion-metrics-jet.vercel.app](https://fusion-metrics-jet.vercel.app/)
 
-It is designed as a portfolio/public-demo project that shows how to build an analytics UI without hiding where the data comes from or overstating what the model knows.
+A market-analytics dashboard for **Dragon Ball Super: Fusion World** built around a single operating principle:
 
-## What It Does
+> Make the dashboard unable to lie by accident.
 
-FusionMetrics helps compare cards and sets across FB01-FB09 using current JustTCG market prices, model-derived estimates where live prices are missing, and real 30-day JustTCG price history.
+Every price is sourced, every label is provenanced, every model heuristic is disclosed, and every speculative visual that couldn't be backed by real data has been removed.
 
-## Current Features
+---
 
-- **Value Scanner:** filter, sort, and inspect cards by market price, model price, delta, demand heuristic, and supply-saturation heuristic.
-- **Pricing Model:** visualize modeled price expectations against live market prices.
-- **Market Dynamics:** inspect card-level demand/supply heuristics and set-level live value, coverage, freshness, and Chase Dependency concentration risk.
-- **Box EV:** approximate open-vs-singles comparison based on simplified rarity and pack assumptions.
-- **Watchlist:** local browser portfolio tracker with quantity, entry price, current value, cautious Unrealized P/L, LIVE/EST chips, and freshness labels.
-- **Methodology:** in-app explanation of data sources, estimates, history states, and model limits.
-- **Real 30d history:** `CardDetail` lazy-loads real JustTCG history from `/priceHistory30d.json`.
-- **Provenance footer:** shows refresh metadata from `/priceUpdateLog.json`.
-- **Per-card freshness:** shows each live card's JustTCG price timestamp.
+## Why this exists
 
-## Screenshots
+Most TCG analytics tools quietly fill the gaps between real data with synthetic gauges, RNG-derived "demand" scores, and projections framed as observations. That's fine for a toy; it's a problem for a tool collectors and investors might actually rely on.
 
-Screenshots are not committed yet. Before a public portfolio post, capture:
+FusionMetrics ships only what it can defend. When real data isn't available, the dashboard says so — explicitly, in the same UI where the real data lives.
 
-- Value Scanner with CardDetail open.
-- Market Dynamics Set-Level Analytics.
-- Box EV on desktop and mobile.
-- Watchlist v2 with sample local positions.
-- Methodology & Data Sources.
+## What's in the app
 
-See `docs/screenshot-plan.md` for the full capture list and framing notes.
+| Tab | What it shows | Honesty rail |
+|-----|---------------|--------------|
+| **Value Scanner** | All 1,258 cards across FB01–FB09 with market price, model price, delta, freshness | Estimated cards excluded from undervalued/overvalued rankings; live-priced cards carry a `LIVE` chip |
+| **Pricing Model** | OLS regression scatter (real prices vs predicted) with R² and coefficient breakdown | Stale-value `charPremium` heuristic explicitly labeled |
+| **Box EV** | Expected value per sealed box, ROI vs box cost, buy-singles comparison, top-cards-per-pack breakdown | Cautious copy; flags sets where rarity data is incomplete |
+| **Set Rankings** | Per-set live value, median price, coverage status, freshness, top card | Live-priced cards only; estimated cards excluded; "observations, not buy/sell signals" |
+| **Chase Radar** | Top 20 cards by the market-vs-model gap, sortable + filterable | Live-priced only; cites the model's R² error; explicitly not advice |
+| **Watchlist** | Local browser portfolio tracker: quantity, entry price, current value, unrealized P/L, CSV export | localStorage only; no cloud sync; LIVE/EST chips and freshness on every row |
+| **Methodology** | In-app explanation of every data source, every model limit, and every disclosure decision | The single source of truth for what the dashboard is and isn't |
 
-## Data And Trust Notes
+## Data sources
 
-- Current live prices come from JustTCG.
-- Price updates use quota-safe set rotation, so some sets refresh before others.
-- `src/livePrices.json` contains current prices only; 30-day history is split into `public/priceHistory30d.json`.
-- Cards without live JustTCG prices stay visible with model-derived estimates.
-- Estimated cards are excluded from undervalued and overvalued rankings.
-- Character, demand, supply, desirability, and Box EV outputs are model heuristics, not observed market guarantees.
-- FusionMetrics is a research tool, not financial advice.
+| Source | What it gives us | Coverage | Refresh |
+|--------|------------------|----------|---------|
+| **JustTCG API** | Live market prices for FB01–FB09 | 1,156 of 1,258 cards | Weekly via GitHub Actions; 3-set ISO-week rotation to fit the free-tier quota |
+| **JustTCG 30d history** | Real per-card price history | 1,156 cards × 30 days | Same workflow |
+| **Bandai official card database** | Verified card metadata (name, rarity, character, set) | 1,157 of 1,258 cards | Monthly via Playwright scraper |
+| **Premium metadata (reviewed)** | Character + rarity classifications driving collector badges | 169 of 1,258 cards (SCR + SR + Leader tier) | Operator-promoted via the sample-gate runbook; demotable in one command |
+| **eBay Browse API** | *(pre-staged)* Recent listing prices, watchCount-derived demand, active-listing supply | (pending API credential approval) | Single Codex run unlocks the ingester per [`docs/ebay-ingester-prestage.md`](./docs/ebay-ingester-prestage.md) |
 
-## Tech Stack
+## Trust foundation — what makes this defensible
 
-- React
-- Vite
-- JavaScript
-- JSON data files
-- GitHub Actions
-- Vercel
+1. **Sample-gate contract.** Every data artifact carries `_isSample: true` until it's been operator-reviewed and promoted via the runbook. The UI loaders refuse sample-flagged artifacts and silently fall back to empty — the entire promotion path is documented in [`docs/sample-gate-promotion-runbook.md`](./docs/sample-gate-promotion-runbook.md).
+2. **Split-shape data contract.** `src/livePrices.json` holds current prices only; `public/priceHistory30d.json` is lazy-fetched on demand; `public/priceUpdateLog.json` powers provenance. No single artifact can corrupt another.
+3. **Coverage guards.** `scripts/verify-data.js` enforces nine invariants on every commit: absolute floor of 1,121 live-priced cards, per-set 90% floor against the prior count, raw/graded separation, no NaN prices, and more. CI runs this gate on every PR.
+4. **No synthetic data anywhere visible.** The mulberry32 RNG and stored-value heuristics that previously drove "Demand" / "Supply Saturation" / "Art Hype" / "Desirability" gauges have been retired (see [`docs/decision-log.md`](./docs/decision-log.md) D-049). Surfaces that depended on those values will return when real signal lands via the eBay ingester.
+5. **Provenance everywhere.** Per-card freshness badges, footer attribution, modal source breakdown, Methodology page disclosing R² = 0.32, smoothed UC base, extrapolated SPR, and single-source dependency on JustTCG.
+6. **Reviewer attribution on every premium-metadata row.** Each badge cluster surfaces a `manualReviewOnly` chip so users see who classified the card.
 
-## Local Setup
+## Architecture highlights
 
-```bash
-npm install
-npm run dev
-npm run build
-node scripts/verify-data.js
-```
+- **React 18 + Vite 8** (Rolldown/OXC bundler), no CSS framework (inline styles + a single theme tokens module). Tabs are code-split via `React.lazy` — initial gzip ~80 kB, each tab loads on demand.
+- **No backend, no database, no auth.** Static JSON served by Vercel; entire app is a deterministic build.
+- **Deterministic pricing model.** OLS-fit rarity bases + character-premium coefficient; recalibrated quarterly against the latest 1,156-card sample.
+- **20-case Vitest suite** wired into CI: covers data-trust invariants, Watchlist v1→v2 storage migration, sample-gate refusal, raw/graded comp separation, premium-badge surfacing rules, and provenance rendering.
+- **Dependabot weekly scan** on npm + GitHub Actions.
+- **47-entry decision log + 31-entry risk register.** Every design choice has a documented rationale and an expiry trigger that would justify revisiting it.
+- **Multi-agent operating contract.** [`AGENTS.md`](./AGENTS.md) defines what every coding agent (Claude, Codex, etc.) must respect — forbidden language list, file boundaries, trust-contract rules, preflight requirements.
 
-## Validation
-
-Before sharing a demo or making a code commit, run:
+## Local setup
 
 ```bash
-node scripts/verify-data.js
-npm run build
+npm ci
+npm run dev            # http://localhost:5173
+npm run build          # production bundle at dist/
+npm test               # 46 Vitest cases (10 files)
+node scripts/verify-data.js   # 9 invariants
 ```
 
-`verify-data` should report 1,258 cards, 1,156 live prices, split shape required, and 9 invariants passed.
+## Repository layout
 
-## Current Limitations
+```
+src/
+├── tabs/              # one file per dashboard tab
+├── components/        # presentational components (CardDetail, PremiumBadges, CompsPanel, ...)
+├── lib/               # lazy-loaded artifact loaders with sample-gate
+├── hooks/             # useWatchlist (localStorage v1→v2 migration), useIsMobile
+├── data.js            # analytics core: rarity bases, β, predictedPrice formula
+├── cardData.json      # generated artifact: card metadata
+└── livePrices.json    # generated artifact: current prices (split-shape)
 
-- JustTCG free-tier quota limits make full refreshes expensive; rotation is the default update strategy.
-- Image coverage is incomplete.
-- Box EV is approximate and depends on simplified pull-rate and set-composition assumptions.
-- There are no user accounts, alerts, or cloud-synced watchlists yet.
-- Cross-source pricing, eBay sold comps, and long-term history archives are future work, not current production inputs.
+public/
+├── priceHistory30d.json     # lazy-loaded real history
+├── priceUpdateLog.json      # provenance metadata
+└── premiumMetadata.json     # production-promoted premium metadata (169 cards)
 
-## Portfolio Notes
+scripts/
+├── update-prices.js         # JustTCG rotation + coverage guard
+├── verify-data.js           # 9-invariant CI gate
+├── fetch-cards.js           # Bandai scraper merge
+├── calibrate-model.js       # OLS regression for the pricing model
+├── import-premium-metadata.js   # sample → production promotion path
+├── validate-premium-metadata.js # schema validator
+├── session-brief.sh         # SessionStart hook: situational awareness on every agent session
+└── ...
 
-- `docs/portfolio-case-study.md` summarizes the product problem, technical architecture, trust model, and roadmap.
-- `docs/demo-script.md` provides 60-second and 3-minute walkthroughs.
-- `docs/public-beta-backlog.md` tracks remaining public-beta and monetization gaps.
-- `docs/deployment-check.md` lists the no-surprises production verification flow.
+docs/
+├── decision-log.md          # 48 architectural decisions
+├── risk-register.md         # 31 ranked risks, current status
+├── methodology-review.md    # trust-disclosure spine
+├── operator-handbook.md     # ready-to-paste Codex prompts for gated tasks
+├── ebay-ingester-prestage.md   # § 7 prompt activates when API credentials land
+├── sample-gate-promotion-runbook.md   # operator procedure
+└── ...
+```
+
+## Current limitations (honest)
+
+- **JustTCG is the single live-price source.** Methodology page discloses this explicitly. eBay Browse API ingester is pre-staged but waiting on credential approval.
+- **No comps data yet.** The CardDetail "eBay Sold Comps" panel renders an awaiting-fixture state until the eBay ingester ships.
+- **Premium-metadata coverage is 169 of 1,258 cards** (top-tier only). Lower-rarity tiers will be classified in future passes.
+- **Box EV uses simplified pull-rate assumptions** for unverified sets. The model verdict copy reflects this caveat.
+- **SPR rarity base is extrapolated**; UC base is smoothed; both are documented on the Methodology page.
+- **No automated cross-source verification yet.** Operators run the manual spot-check protocol quarterly per [`docs/cross-source-spot-check-protocol.md`](./docs/cross-source-spot-check-protocol.md).
+- **No accounts, no alerts, no cloud sync.** Watchlist is local-only.
+
+## Roadmap (no promises, just direction)
+
+- **eBay Browse API ingester.** Replaces manual comp research with automated weekly ingestion. Pre-staged; ships in a single Codex run when credentials drop.
+- **Restoration of demand + supply surfaces.** Once real eBay watchCount + listing-count data exists, the gauges and Market Dynamics tab return — same UI, real inputs.
+- **Quarterly model recalibration.** Next due 2026-08-12.
+- **FB10 (next set) onboarding.** Pre-staged; activates when Bandai + JustTCG publish the set. See [`docs/fb10-onboarding-prestage.md`](./docs/fb10-onboarding-prestage.md).
+
+*Shipped since first draft:* Set Rankings + Chase Radar tabs ([spec](./docs/set-rankings-spec.md), implemented), Vite 8 upgrade, tab code-split. Premium-metadata coverage is intentionally **bounded at the SCR + SR + Leader tier** — the classification schema forbids "chase" flags on common cards, so expanding lower would overclaim (see `docs/decision-log.md` D-050).
+- **TCGplayer partner application** revisited after consistent traffic shows in Plausible.
+- **Backend** when (and only when) one of the six Backend Trigger Checklist conditions actually fires.
+
+## Acknowledgments
+
+- **JustTCG** for the live-price API.
+- **Bandai Card Games** for the official DBSFW card database.
+- **Plausible** for privacy-respecting analytics.
+- **Vercel** for the build + deploy pipeline.
+- **Anthropic Claude + OpenAI Codex** for being honest collaborators on the trust contract.
+
+## License
+
+This is a personal portfolio project. Card art, character names, and the Dragon Ball franchise belong to Bandai / Toei Animation; FusionMetrics does not redistribute card images and renders icon fallbacks until a rights-cleared image source is approved.
+
+---
+
+*FusionMetrics is a research and analytics tool. It is not financial advice. Trading-card prices are volatile and uncorrelated with traditional investment instruments.*
