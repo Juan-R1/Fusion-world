@@ -45,11 +45,22 @@ const SET_SLUGS = {
 const ALL_SETS = Object.keys(SET_SLUGS)
 
 // Rotation groups — 3 sets per group → ~21–25 requests per run, 3-week cycle.
+// 3 groups, ISO-week % 3 selection (D-003). When FB10 lands, it joins group C
+// per D-052 (see docs/fb10-onboarding-prestage.md § 2); do not restructure
+// into 4 or 5 groups without revisiting the week-selection math.
 const ROTATION_GROUPS = {
   A: ['FB01', 'FB02', 'FB03'],
   B: ['FB04', 'FB05', 'FB06'],
   C: ['FB07', 'FB08', 'FB09'],
 }
+
+// Coverage guard thresholds. Lifted out of main() for visibility because
+// FB10 onboarding (docs/fb10-onboarding-prestage.md § 3) will need MIN_TOTAL
+// raised once FB10 prices stabilize — buried inside main() it's easy to miss
+// and a stale floor either false-fails during the FB10 ramp or silently
+// under-guards afterward. NEVER lower MIN_TOTAL below 1121 (D-011, permanent).
+const MIN_TOTAL          = 1121          // 1156 × 0.97 floor; ~97% of the live-price baseline
+const PER_SET_FLOOR_RATIO = 0.90         // each set ≥ 90% of its previous count (D-012, permanent)
 
 // Load local card index — keyed by full code "FB01-001"
 const cardDataPath = path.join(__dirname, '..', 'src', 'cardData.json')
@@ -392,8 +403,8 @@ async function main() {
   }
 
   // ── Coverage regression guard (validates the merged output) ────────────
-  const MIN_TOTAL          = 1121          // 1156 × 0.97 floor
-  const PER_SET_FLOOR_RATIO = 0.90
+  // Thresholds: see MIN_TOTAL / PER_SET_FLOOR_RATIO hoisted to the
+  // top-of-file config block (D-011, D-012, D-052 pre-decision for FB10).
 
   const prevPerSet = {}
   for (const e of previousLive) {
