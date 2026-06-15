@@ -13,6 +13,43 @@
 
 ---
 
+# Session 4 — 2026-06-15 ("Finish the deployable-build hardening, then stop")
+
+**Agent:** Claude architect (Opus 4.8) · **Branches:** `claude/upgrade-react-19` (Phase 1 merge), `claude/pipeline-hardening-p2` (Phases 2-4)
+
+**Driving prompt:** operator's `/goal Finish the deployable-build hardening and then stop at the operator gates honestly. Small, finite scope.`
+
+## Phases
+
+| # | Phase | Status | Notes |
+|---|-------|--------|-------|
+| 0 | Preflight | ✅ | 53 tests, 9 invariants, clean tree. |
+| 1 | Land PR #17 | ✅ | Merged (merge-commit `9c239ae`). **deploy.yml run #9 SUCCESS** — React 19 now in production via the reliable CLI deploy path. Dev branch ff'd to main. |
+| 2 | Pipeline-hardening P2 | ✅ | P2-1 + P2-2 (`85545a4`): scraper silent `.catch(() => {})` → debug logging; magic timeouts → named `T={}` config block. P2-3 (`4422c44`): calibrate-model input reads wrapped in `readJsonOrExit()`. All behavior-preserving; calibrate ran identically locally; scraper NOT run against live site. |
+| 3 | CI hardening | ✅ | `18d8b43`: bundle-size ceiling (fail CI if any chunk > 750 kB raw — main is 681 kB, ~69 kB headroom) + non-blocking `npm audit --omit=dev` signal step. Dry-run locally: FAIL=0, 0 vulnerabilities. |
+| 4 | Housekeeping | 🔧 | This commit. pipeline-hardening doc marked P2 done; STATUS + worklist Session 4. One PR for Phases 2-4. |
+
+## Commit log (session 4)
+
+| SHA | Subject | Validation |
+|-----|---------|------------|
+| (PR #17 merge `9c239ae`) | React 19 + pipeline P1 + Session-3 docs | deploy.yml run #9 ✅ on main |
+| `85545a4` | chore(pipeline): scraper diagnostics + timeout config (P2-1, P2-2) | node --check ✓; verify-data 9 ✓ |
+| `4422c44` | chore(pipeline): guard calibrate-model.js input reads (P2-3) | ran identically; verify-data 9 ✓ |
+| `18d8b43` | ci: bundle-size ceiling (750 kB) + non-blocking dependency audit | local dry-run FAIL=0; audit 0 vulns |
+| _(this commit)_ | docs: mark P2 done + STATUS + worklist Session 4 | docs-only |
+
+## Session 4 summary
+
+PR #17 landed (React 19 in production, deploy run #9 green). Pipeline
+P2-1/P2-2/P2-3 robustness applied (behavior-preserving). CI gained a
+750 kB bundle ceiling + a non-blocking audit signal. **Agent-doable
+build hardening is COMPLETE.** All remaining high-value work is
+operator-gated — see the final report and `STATUS.md` for the
+priority-ordered list.
+
+---
+
 # Session 3 — 2026-06-14 ("Reach the best deployable build")
 
 **Agent:** Claude architect (Opus 4.8) · **Branches:** `claude/fix-deploy-vercel-cli` (Phase 1), `claude/bump-workflow-actions` (Phase 2), `claude/upgrade-react-19` (Phases 3-5)

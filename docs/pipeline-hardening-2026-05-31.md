@@ -60,6 +60,12 @@ selection contract (D-003).
 
 ## P2 — Worth doing; not urgent
 
+> **STATUS: P2-1, P2-2, P2-3 all DONE 2026-06-15** (branch
+> `claude/pipeline-hardening-p2`, commits `85545a4` scraper
+> diagnostics + timeout config, `4422c44` calibrate input guard).
+> All three were behavior-preserving and verified locally. The
+> entries below are retained for the historical record.
+
 ### P2-1 · Scraper swallows errors silently in several places
 **File:** `scripts/scrape-official-fw.js` lines 182, 227–228, 235
 ```js

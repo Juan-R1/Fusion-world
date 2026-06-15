@@ -1,9 +1,16 @@
 # FusionMetrics — Status Snapshot
 
-**Date:** 2026-06-14
+**Date:** 2026-06-15
 **Branch:** `claude/review-claude-md-nZk1S` (ongoing dev branch; PRs to main per the standing pattern)
-**Production:** https://fusion-metrics-jet.vercel.app/ (production deploys verified working again after R-056 fix on 2026-06-14)
-**Phase:** Phase 3 operate-and-harden. Deploy pipeline fixed (R-056, PR #15), dependency stack current (PR #16 + React 19 upcoming PR), Phase 3 surfaces all shipped. Premium-metadata production artifact at 169 cards (SCR+SR+Leader). Synthetic UI surfaces retired (D-049). Decision log at 54 entries.
+**Production:** https://fusion-metrics-jet.vercel.app/ (deploys reliable since R-056 fix; React 19 live as of deploy run #9 on `9c239ae`)
+**Phase:** Phase 3 operate-and-harden — **agent-doable build hardening COMPLETE**. Deploy pipeline fixed (R-056), React 19 + Vite 8 + current actions, pipeline P1+P2 robustness applied, CI gained a 750 kB bundle ceiling + audit signal, open Dependabot PRs = 0. All remaining high-value work is operator-gated (see "Operator-only next moves" below). Decision log at 54 entries.
+
+## Operator-only next moves (priority order)
+
+1. **Plausible 15-min read (R-020)** — highest-leverage open item. Every product decision is being made blind without it. First action: log in to Plausible, read the dashboard for `fusion-metrics-jet.vercel.app`, note top tabs + bounce points in a new `docs/analytics-snapshot-YYYY-MM-DD.md`.
+2. **eBay credentials → ingester** — first action: add `EBAY_APP_ID` + `EBAY_CERT_ID` to GitHub Actions secrets, then hand `docs/ebay-ingester-prestage.md` § 7 to an agent.
+3. **Production visual eyeball** — first action: open the live site, confirm 7 tabs + Set Rankings/Chase Radar render (the sandbox cannot curl the prod host; only the operator can do the literal visual check).
+4. **FB10 onboarding** — when Bandai/JustTCG publish the set; `docs/fb10-onboarding-prestage.md` sequences it (pipeline P1 already applied, so step 3 is mechanical).
 
 > **2026-06-14 "best deployable build" run shipped:** Diagnosed and fixed
 > the production deploy break (R-056: amondnet/vercel-action@v25 shipped
