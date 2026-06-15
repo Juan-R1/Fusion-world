@@ -14,6 +14,21 @@ import { chromium } from "playwright";
 const OUTPUT_DIR = path.resolve("./scripts/official-card-db");
 const DEBUG_DIR  = path.resolve("./scripts/debug");
 
+// ── Tunable timeouts (ms) ─────────────────────────────────────────────────────
+// Hoisted from inline literals (P2-2, docs/pipeline-hardening-2026-05-31.md) so
+// scrape patience is tunable in one place when Bandai's site is slow. Values are
+// identical to the previous inline literals — pure hoist, no behavior change.
+const T = {
+  LIST_NAV:     90000, // card-list page goto
+  DETAIL_NAV:   60000, // card-detail page goto
+  NETWORK_IDLE: 30000, // waitForLoadState("networkidle") on list + detail
+  SCROLL_MAX:   20000, // max time to keep scrolling for lazy content (browser ctx)
+  BTN_VISIBLE:   2000, // cookie-button visibility probe
+  SETTLE:        2000, // post-load settle
+  SETTLE_SHORT:  1000, // post-scroll settle
+  POLITE_DELAY:   300, // delay between detail-page fetches
+};
+
 const SETS = {
   FB01: { url: "https://www.dbs-cardgame.com/fw/en/cardlist/?category%5B0%5D=583001&search=true" },
   FB02: { url: "https://www.dbs-cardgame.com/fw/en/cardlist/?category%5B0%5D=583002&search=true" },
@@ -65,7 +80,9 @@ function splitCharacter(name, type) {
 // ── Scroll helper — flush lazy-loaded content ─────────────────────────────────
 
 async function scrollToBottom(page) {
-  await page.evaluate(async () => {
+  // SCROLL_MAX is passed into the browser context as an argument because the
+  // evaluate callback runs in the page, not in Node (can't close over T there).
+  await page.evaluate(async (maxMs) => {
     await new Promise(resolve => {
       let lastH = 0;
       const id = setInterval(() => {
@@ -74,9 +91,9 @@ async function scrollToBottom(page) {
         if (h === lastH) { clearInterval(id); resolve(); }
         lastH = h;
       }, 300);
-      setTimeout(() => { clearInterval(id); resolve(); }, 20000); // max 20s
+      setTimeout(() => { clearInterval(id); resolve(); }, maxMs); // max scroll time
     });
-  });
+  }, T.SCROLL_MAX);
   // Scroll back to top so element positions are stable
   await page.evaluate(() => window.scrollTo(0, 0));
 }
@@ -178,8 +195,9 @@ async function scrapeCardDetail(context, card) {
 
   const page = await context.newPage();
   try {
-    await page.goto(card.href, { waitUntil: "domcontentloaded", timeout: 60000 });
-    await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
+    await page.goto(card.href, { waitUntil: "domcontentloaded", timeout: T.DETAIL_NAV });
+    await page.waitForLoadState("networkidle", { timeout: T.NETWORK_IDLE })
+      .catch(e => console.error(`  debug: ${card.code} detail networkidle wait skipped: ${e.message}`));
 
     const header = cleanText(
       await page.locator("h1").first().innerText().catch(() => `${card.code} ${card.name || ""}`)
@@ -219,24 +237,25 @@ async function scrapeSet(browser, setCode, config) {
   const page = await context.newPage();
 
   console.log(`  Loading ${config.url}`);
-  await page.goto(config.url, { waitUntil: "domcontentloaded", timeout: 90000 });
+  await page.goto(config.url, { waitUntil: "domcontentloaded", timeout: T.LIST_NAV });
 
   // Accept cookie banner if present
   for (const label of ["Accept", "Accept All", "Accept Cookies", "OK", "同意"]) {
     const btn = page.locator(`button:has-text("${label}")`).first();
-    if (await btn.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await btn.click().catch(() => {});
+    if (await btn.isVisible({ timeout: T.BTN_VISIBLE }).catch(() => false)) {
+      await btn.click().catch(e => console.error(`  debug: cookie click ("${label}") skipped: ${e.message}`));
       console.log(`  Accepted cookie banner ("${label}")`);
       break;
     }
   }
 
   // Wait for page to settle, then scroll to flush lazy-loaded cards
-  await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState("networkidle", { timeout: T.NETWORK_IDLE })
+    .catch(e => console.error(`  debug: ${setCode} list networkidle wait skipped: ${e.message}`));
+  await page.waitForTimeout(T.SETTLE);
   console.log(`  Scrolling page to flush lazy-loaded content...`);
   await scrollToBottom(page);
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(T.SETTLE_SHORT);
 
   // Try to find card links
   const cards = await getCardLinks(page, setCode);
@@ -258,7 +277,7 @@ async function scrapeSet(browser, setCode, config) {
     const row = await scrapeCardDetail(context, card);
     results.push(row);
     process.stdout.write(`    ${row.code}  ${row.name}\n`);
-    await page.waitForTimeout(300); // polite delay between detail pages
+    await page.waitForTimeout(T.POLITE_DELAY); // polite delay between detail pages
   }
 
   await context.close();
