@@ -505,6 +505,51 @@ Every risk row in § 4–7 cites where it came from:
   via the existing CI build gate + Dependabot.
 - **Status:** closed (esbuild advisory eliminated).
 
+### R-056 — Third-party deploy action ships frozen CLI versions
+- **Sources:** new (surfaced 2026-06-14 when production deploys
+  silently broke; discovered during the "Reach the best deployable
+  build" goal preflight diagnosis)
+- **Description:** `deploy.yml` was using
+  `amondnet/vercel-action@v25`, a third-party GitHub Action that
+  bundles a frozen Vercel CLI version. When Vercel raised the
+  minimum CLI version their deploy API accepts (now requires
+  >=47.2.2), the action began failing with `DeploymentError:
+  Your Vercel CLI version is outdated` on every push to main.
+  Multiple PR merges (#6 strip wave 2026-05-15; #14 Phase 3
+  expansion 2026-06-14) silently failed to deploy to production;
+  the live site was serving builds weeks out of date.
+- **Impact:** P0 in operational terms — the project's primary
+  customer-facing surface (the live site) was decoupled from main
+  for ~30 days without any visible CI red signal (the action
+  conclusion is visible only in the Actions tab, not in the PR
+  merge view). Operator's "look at the live site" mental model
+  was wrong but unflagged.
+- **Likelihood:** Was certain; the failure recurs every push until
+  the third-party action releases a CLI bump matching Vercel's
+  new requirement.
+- **Owner:** Build infrastructure (workflows).
+- **Mitigation:** **CLOSED 2026-06-14 by PR #15** — replaced
+  `amondnet/vercel-action@v25` with the official Vercel CLI
+  installed at `@latest` on every workflow run
+  (`npm install --global vercel@latest` → `vercel pull` →
+  `vercel build --prod` → `vercel deploy --prebuilt --prod`).
+  The CLI is always current, so a future CLI-version bump on
+  Vercel's side cannot recur as a deploy failure. Verified
+  green on the merge commit's `deploy.yml` run (#7) plus the
+  follow-up workflow-action bump merge (#8) — both concluded
+  `success` with a production deployment URL printed in the
+  Action logs (captured via `$GITHUB_OUTPUT` + `::notice`
+  annotation for verification without curl).
+- **Residual risk:** Low. The CLI is published by Vercel
+  directly; a regression in the CLI would affect everyone using
+  it. The CI build gate plus the `::notice` URL annotation give
+  early signal.
+- **Related commits:** PR #15 (`4bac673` merge), PR #16
+  (`dde8733` merge — bumped actions/checkout + setup-node 4→6,
+  add-and-commit 9→10 to clear the Node-20 deprecation that
+  surfaced in the same Action log).
+- **Status:** closed.
+
 ## 7. P3 — Long-term watch
 
 ### R-050 — Backend complexity creep
@@ -562,11 +607,14 @@ Every risk row in § 4–7 cites where it came from:
 
 | Tier | Open | Monitored | Mitigated | Closed | Total |
 |------|-----:|----------:|----------:|-------:|------:|
-| P0 | 0 | 1 | 2 | 0 | 3 |
+| P0 | 0 | 1 | 2 | 1 | 4 |
 | P1 | 2 | 3 | 7 | 1 | 13 |
 | P2 | 1 | 2 | 6 | 1 | 10 |
 | P3 | 1 | 1 | 1 | 2 | 5 |
-| **Total** | **4** | **7** | **16** | **4** | **31** |
+| **Total** | **4** | **7** | **16** | **5** | **32** |
+
+Recent state changes (2026-06-14 "best deployable build" run):
+- R-056 deploy-action ships frozen CLI → closed (PR #15 official Vercel CLI @latest; first green deploy run #7 on 2026-06-14).
 
 Recent state changes (2026-05-31 autonomous run):
 - R-021 bundle bloat → mitigated (tab code-split via React.lazy; initial gzip −20 kB).

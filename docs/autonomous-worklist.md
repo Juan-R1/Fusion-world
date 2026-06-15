@@ -13,6 +13,41 @@
 
 ---
 
+# Session 3 — 2026-06-14 ("Reach the best deployable build")
+
+**Agent:** Claude architect (Opus 4.8) · **Branches:** `claude/fix-deploy-vercel-cli` (Phase 1), `claude/bump-workflow-actions` (Phase 2), `claude/upgrade-react-19` (Phases 3-5)
+
+**Driving prompt:** operator's `/goal Reach the best deployable build: make merge-to-main reliably ship to production, bring dependencies current, keep CI green, and clear known deprecations`.
+
+## Phases
+
+| # | Phase | Status | Notes |
+|---|-------|--------|-------|
+| 0 | Preflight | ✅ | Dev branch ff-only to main 23a07d3; 9 invariants; 53 tests; clean tree. |
+| 1 | Fix Vercel deploy (R-056) | ✅ | Diagnosed: amondnet/vercel-action@v25 ships frozen CLI that Vercel now rejects. PR #15 replaced it with official Vercel CLI @latest pinning + bumped checkout/setup-node 4→6 in deploy.yml. **Deploy run #7 on merge `4bac673` concluded SUCCESS** with prod URL printed: `https://fusion-metrics-bb19o8oxh-juan-r1s-projects.vercel.app`. R-056 closed. |
+| 2 | Dependabot triage | ✅ | All 8 PRs closed with rationale comments. PR #16 consolidates the 3 stale workflow-action bumps (checkout, setup-node, add-and-commit) across ci.yml + update-prices.yml + update-cards.yml. add-and-commit v10 changelog reviewed; only breaking change is the Node 24 requirement (precisely the deprecation fix). **Deploy run #8 on merge `dde8733` concluded SUCCESS**. Open Dependabot PRs: 0. |
+| 3 | React 18 → 19 | ✅ | Zero src/ changes needed (function components + hooks + createRoot + RTL@16 + plugin-react@6 all already React-19 compatible). Bundle 631.20 → 680.96 kB raw / 79.59 → 94.12 kB gzip; dev boots 319 ms; 53/53 tests; verify-data 9 invariants. D-054 logged. |
+| 4 | Pipeline hardening P1 | ✅ | P1-1 (hoist MIN_TOTAL + PER_SET_FLOOR_RATIO) + P1-2 (comment ROTATION_GROUPS re: D-052) applied to scripts/update-prices.js. Provably comment/hoist-only — logic-line grep returned 0 lines. |
+| 5 | Housekeeping + PR | 🔧 | This commit. STATUS.md / risk-register (R-056) / AGENTS § 2 / worklist (Session 3) refreshed. Phases 3-5 PR to follow. |
+
+## Commit log (session 3)
+
+| SHA | Subject | Validation |
+|-----|---------|------------|
+| `d43654b` → merged as `4bac673` (PR #15) | fix(ci): replace amondnet/vercel-action with official Vercel CLI @latest | deploy.yml run #7 ✅ on main |
+| `fe2b9af` → merged as `dde8733` (PR #16) | chore(ci): bump checkout/setup-node 4→6 + add-and-commit 9→10 | deploy.yml run #8 ✅ on main |
+| `ada0c04` | chore(deps): upgrade React 18.3.1 → 19.2.7 (D-054) | tests 53✓, bundle +50 kB raw / +14.5 kB gzip |
+| `a58d28c` | chore(pipeline): hoist coverage-guard constants + comment ROTATION_GROUPS | comment/hoist-only; gates green |
+| _(this commit)_ | docs: STATUS + risk-register R-056 + AGENTS § 2 + worklist Session 3 | docs-only |
+
+## Session 3 summary
+
+5 phases shipped; 2 PRs merged to main (#15 deploy fix, #16 action bumps); 2 PRs queued for one consolidated dev-branch PR (React 19 + pipeline hardening + this housekeeping). **The production deploy pipeline is now reliable** — verified via two consecutive `deploy.yml` SUCCESS runs on main with deployment URLs printed in Action logs. R-056 closed. R-021 (bundle bloat) note refreshed for React 19 (+14.5 kB gzip). Decision log 53 → 54. Open Dependabot PRs: 0.
+
+Operator-only items remaining: Plausible 15-min read (R-020 — highest open risk); eBay credentials → ingester ship; FB10 onboarding when Bandai/JustTCG publish.
+
+---
+
 # Session 2 — 2026-05-31 (v2 prompt)
 
 **Agent:** Claude architect (Opus 4.8) · **Branch:** `claude/review-claude-md-nZk1S`

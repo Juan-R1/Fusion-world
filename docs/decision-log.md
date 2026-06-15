@@ -1205,15 +1205,58 @@ full entry in § 3. Grouped by domain for fast scanning.
   (Set Rankings tab), `a804939` (Chase Radar tab).
 - **Status:** active.
 
+### D-054 — React 18.3.1 → 19.2.7 (clean upgrade, zero src/ changes)
+- **Date:** 2026-06-14
+- **Decision:** Bump `react` and `react-dom` from `^18.3.1` to
+  `^19.2.7`. Major version bump, but the codebase needs **zero
+  source-code changes** to accept it. The dev branch's gates pass
+  unmodified: `npm ci` clean, `node scripts/verify-data.js` 9
+  invariants, `npm run build` succeeds, `npm test` 53/53 passing,
+  `npm run dev` boots cleanly (Vite 8, 319 ms, HTTP 200).
+- **Why no src changes were needed:** the codebase is entirely
+  function components + hooks (no class components, no legacy
+  string refs, no deprecated lifecycle methods); `src/main.jsx`
+  already uses `createRoot` not the removed `ReactDOM.render`;
+  `@testing-library/react@^16.3.2` is the React 19-compatible
+  major and was already in place from P3-008; `@vitejs/plugin-react@^6.0.2`
+  (landed via Vite 8 work) is the React 19-compatible major. The
+  only behavioral surface visible in this PR is React 19's runtime
+  size: bundle moved from 631.20 → 680.96 kB raw (+50 kB) and
+  79.59 → 94.12 kB gzip (+14.5 kB). Both still well under the
+  750 kB raw hard stop; gzip is the figure that ships over the
+  wire and the +14.5 kB increase is unavoidable for the React 19
+  runtime upgrade.
+- **Approving trigger:** Dependabot proposed `react 18.3.1 → 19.2.6`
+  in PR #9 and `react-dom 18.3.1 → 19.2.6` in PR #8 (both closed
+  in favor of this consolidated bump). The "Reach the best
+  deployable build" goal authorized package.json edits for this
+  purpose.
+- **Alternatives:**
+  - Stay on React 18 (rejected: divergence from current React
+    ecosystem; future plugin/dep PRs will increasingly assume 19).
+  - Merge Dependabot's PRs individually (rejected: their stale
+    base branch `claude/dbfw-market-analytics-1qh5D` no longer
+    exists, and `react` + `react-dom` must move in lockstep —
+    one consolidated bump avoids any window where the versions
+    disagree).
+- **Owner:** Frontend (package.json) + trust contract (verify the
+  gate held).
+- **Expiry trigger:** React 20 ships and offers something we need;
+  or a security advisory on 19.x; or a measured runtime issue.
+- **Related commits:** this commit. Built / tested / dev-server
+  smoke verified locally; CI gate on the PR is the
+  production-equivalent check.
+- **Status:** active.
+
 ## 4. Decision count and tier summary
 
 | Status | Count |
 |--------|------:|
-| active | 53 |
+| active | 54 |
 | revisited | 0 |
 | superseded | 0 |
 | closed | 0 |
-| **Total** | **53** |
+| **Total** | **54** |
 
 Six decisions explicitly marked **permanent** or **do not weaken**:
 D-006, D-007, D-008, D-011, D-012, D-016.
@@ -1261,3 +1304,4 @@ When a decision is made or revisited:
 | 2026-05-15 | D-048 second pass | P3-012 SR-tier expansion | Coverage 130 → 169 rows (added 39 SR cards). 113 of 169 surface UI badges per D-043; remainder is data-layer-only metadata for future eBay ingester. |
 | 2026-05-31 | D-050..D-053 | Autonomous-run decisions | D-050 premium fill bounded at SCR+SR+Leader (schema forbids chase flags on commons); D-051 Vite 8/Rolldown closes R-055; D-052 FB10 rotation pre-decision (Option B); D-053 Set Rankings + Chase Radar live-data-only. |
 | 2026-05-15 | D-049 | Synthetic UI surfaces retired | P3-015 removed RNG-derived demand, supply, art/hype, desirability, Watchlist desirability sort, and Market Dynamics from production UI. |
+| 2026-06-14 | D-054 | React 18.3.1 → 19.2.7 | Major-version bump with zero src/ changes (function components + hooks + createRoot already in place). Bundle +50 kB raw / +14.5 kB gzip. 53/53 tests pass; dev boots in 319 ms. |
