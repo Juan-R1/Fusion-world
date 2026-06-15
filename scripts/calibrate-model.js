@@ -26,8 +26,20 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const cardData   = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/cardData.json'),  'utf8'))
-const livePrices = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/livePrices.json'), 'utf8'))
+// Read + parse a JSON file, failing with a clear message instead of a raw
+// SyntaxError/ENOENT stack (P2-3, docs/pipeline-hardening-2026-05-31.md).
+function readJsonOrExit(relPath) {
+  const abs = path.join(__dirname, relPath)
+  try {
+    return JSON.parse(fs.readFileSync(abs, 'utf8'))
+  } catch (err) {
+    console.error(`ERROR: could not read ${relPath} — ${err.message}`)
+    process.exit(1)
+  }
+}
+
+const cardData   = readJsonOrExit('../src/cardData.json')
+const livePrices = readJsonOrExit('../src/livePrices.json')
 
 const priceMap = new Map(livePrices.map(e => [e.cardCode, e.marketPrice]))
 
