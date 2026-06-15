@@ -27,5 +27,26 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Bundle-size ceiling (hard stop 750 kB raw per chunk)
+        run: |
+          # Fail CI if any built JS chunk exceeds the documented 750 kB raw
+          # hard stop (risk-register R-021 / bundle-audit). Keeps a future
+          # dependency from silently blowing the budget.
+          MAX=750000   # 750 kB (decimal, matching Vite's reported kB)
+          FAIL=0
+          for f in dist/assets/*.js; do
+            SIZE=$(wc -c < "$f")
+            printf '  %8d B  %s\n' "$SIZE" "$f"
+            if [ "$SIZE" -gt "$MAX" ]; then
+              echo "::error title=Bundle ceiling::$f is ${SIZE}B (> ${MAX}B / 750 kB hard stop)"
+              FAIL=1
+            fi
+          done
+          exit $FAIL
+
       - name: Test
         run: npm test
+
+      - name: Dependency audit (signal only, non-blocking)
+        if: always()
+        run: npm audit --omit=dev || true
