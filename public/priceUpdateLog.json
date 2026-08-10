@@ -1,6 +1,18 @@
 {
   "history": [
     {
+      "runAt": "2026-08-10T06:15:54.338Z",
+      "mode": "rotation",
+      "group": "C",
+      "sets": [
+        "FB07",
+        "FB08",
+        "FB09"
+      ],
+      "fetched": 367,
+      "merged": 1156
+    },
+    {
       "runAt": "2026-08-03T08:35:49.179Z",
       "mode": "rotation",
       "group": "B",
@@ -131,28 +143,16 @@
       ],
       "fetched": 367,
       "merged": 1156
-    },
-    {
-      "runAt": "2026-05-11T08:29:57.942Z",
-      "mode": "rotation",
-      "group": "B",
-      "sets": [
-        "FB04",
-        "FB05",
-        "FB06"
-      ],
-      "fetched": 370,
-      "merged": 1156
     }
   ],
-  "lastRunAt": "2026-08-03T08:35:49.179Z",
+  "lastRunAt": "2026-08-10T06:15:54.338Z",
   "lastMode": "rotation",
-  "lastGroup": "B",
+  "lastGroup": "C",
   "lastRefreshedSets": [
-    "FB04",
-    "FB05",
-    "FB06"
+    "FB07",
+    "FB08",
+    "FB09"
   ],
-  "lastFetchedCount": 370,
+  "lastFetchedCount": 367,
   "lastMergedCount": 1156
 }
